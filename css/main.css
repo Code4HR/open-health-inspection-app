@@ -5,7 +5,6 @@ body{
 .main-content{
 	text-align:center;
 	border-bottom:1px solid #ccc;
-	padding-bottom:30px;
 }
 
 .main-content img{
@@ -59,11 +58,18 @@ input[type=text]:focus{
 	outline:none;
 }
 
-.navbar{
+.navbar {
 	margin-bottom:0;
 }
 
-#map {
-	min-height: 360px;
-	background: url('../img/map.jpg');
+@media screen and (min-width: 768px) {
+
+	header h1, header p {
+		text-align: left;
+	}
+
+	#map {
+		min-height: 360px;
+		background: url('../img/map.jpg');	
+	}		
 }
