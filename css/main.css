@@ -1,0 +1,43 @@
+body{
+	color:#494949;
+}
+
+.main-content{
+	text-align:center;
+	border-bottom:1px solid #ccc;
+	padding-bottom:30px;
+}
+
+.main-content img{
+	padding:15px 0;
+}
+
+.main-content p{
+	padding-bottom:15px;
+}
+
+.main-content input[type=text]{
+	min-width:270px;
+	border-radius:15px;
+	height:35px;
+	border:1px solid #ccc;
+	padding-left:10px;
+}
+
+.main-content input[type=text]:focus{
+	outline:none;
+}
+
+.list{
+	padding:0;
+}
+
+.list .row{
+	padding-top: 20px;
+	min-height:60px;
+	border-bottom:1px solid #ccc;
+}
+
+.list .row:nth-child(even){
+	background-color:#eee;
+}
