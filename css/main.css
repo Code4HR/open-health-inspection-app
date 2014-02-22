@@ -41,3 +41,23 @@ body{
 .list .row:nth-child(even){
 	background-color:#eee;
 }
+
+
+/* views with nav bar on top */
+.top-searchbar{
+	width:200px;
+	float:right;
+	margin-top:10px;
+	border-radius:15px;
+	height:30px;
+	border:1px solid #ccc;
+	padding-left:10px;
+}
+
+input[type=text]:focus{
+	outline:none;
+}
+
+.navbar{
+	margin-bottom:0;
+}
