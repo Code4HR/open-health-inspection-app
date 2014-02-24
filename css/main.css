@@ -1,5 +1,14 @@
+/************************
+Base / Mobile Styles here.
+*************************/
+
+
 body{
 	color:#494949;
+}
+
+header {
+	background: white;
 }
 
 .main-content{
@@ -27,18 +36,20 @@ body{
 	outline:none;
 }
 
-#list{
-	padding:0;
+.list {
+	margin-top: 1em;
+	padding: 0;
 	list-style-type: none;
+	background: white;
 }
 
-#list li{
+.list li{
 	padding-top: 20px;
 	min-height:60px;
 	border-bottom:1px solid #ccc;
 }
 
-#list li:nth-child(even){
+.list li:nth-child(even){
 	background-color:#eee;
 }
 
@@ -62,23 +73,3 @@ input[type=text]:focus{
 	margin-bottom:0;
 }
 
-@media screen and (min-width: 768px) {
-
-	header h1, header p {
-		text-align: left;
-	}
-
-	#map {
-		position: absolute;
-		z-index: -1;
-		top: 0;
-		left: 0;
-		height: 100%;
-		width: 100%;
-		background: url('../img/map.jpg');	
-	}		
-
-	#main {
-	}
-
-}
