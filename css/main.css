@@ -1,11 +1,19 @@
+/************************
+Base / Mobile Styles here.
+*************************/
+
+
 body{
 	color:#494949;
+}
+
+header {
+	background: white;
 }
 
 .main-content{
 	text-align:center;
 	border-bottom:1px solid #ccc;
-	padding-bottom:30px;
 }
 
 .main-content img{
@@ -28,17 +36,20 @@ body{
 	outline:none;
 }
 
-.list{
-	padding:0;
+.list {
+	margin-top: 1em;
+	padding: 0;
+	list-style-type: none;
+	background: white;
 }
 
-.list .row{
+.list li{
 	padding-top: 20px;
 	min-height:60px;
 	border-bottom:1px solid #ccc;
 }
 
-.list .row:nth-child(even){
+.list li:nth-child(even){
 	background-color:#eee;
 }
 
@@ -59,11 +70,10 @@ input[type=text]:focus{
 	outline:none;
 }
 
-.navbar{
+.navbar {
 	margin-bottom:0;
 }
 
-/* restaurant view stuff */
 .restaurant-img{
 	height:300px;
 	background-color:#aaa;
@@ -108,3 +118,4 @@ input[type=text]:focus{
 .violations .big{
 	font-size:30px;
 }
+
