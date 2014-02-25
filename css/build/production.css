@@ -1,0 +1,161 @@
+/************************
+Base / Mobile Styles here.
+*************************/
+
+
+body{
+	color:#494949;
+}
+
+header {
+	background: white;
+}
+
+.main-content{
+	text-align:center;
+	border-bottom:1px solid #ccc;
+}
+
+.main-content img{
+	padding:15px 0;
+}
+
+.main-content p{
+	padding-bottom:15px;
+}
+
+.main-content input[type=text]{
+	min-width:270px;
+	border-radius:15px;
+	height:35px;
+	border:1px solid #ccc;
+	padding-left:10px;
+}
+
+.main-content input[type=text]:focus{
+	outline:none;
+}
+
+.list {
+	margin-top: 1em;
+	padding: 0;
+	list-style-type: none;
+	background: white;
+}
+
+.list li{
+	padding-top: 20px;
+	min-height:60px;
+	border-bottom:1px solid #ccc;
+}
+
+.list li:nth-child(even){
+	background-color:#eee;
+}
+
+
+/* views with nav bar on top */
+
+.top-searchbar{
+	width:200px;
+	float:right;
+	margin-top:10px;
+	border-radius:15px;
+	height:30px;
+	border:1px solid #ccc;
+	padding-left:10px;
+}
+
+input[type=text]:focus{
+	outline:none;
+}
+
+.navbar {
+	margin-bottom:0;
+}
+
+.restaurant-img{
+	height:300px;
+	background-color:#aaa;
+}
+
+.restaurant{
+	padding: 20px 0;
+}
+
+.restaurant{
+	border-bottom:1px solid #ccc;
+}
+
+.restaurant .name{
+	font-size:20px;
+}
+
+.restaurant .rate{
+	font-size:30px;
+	text-align:right;
+}
+
+.restaurant table{
+	width:100%;
+}
+
+.violations ul{
+	padding:0;
+}
+.violations li{
+	list-style:none;
+	margin:0;
+	padding: 10px 0;
+	min-height:60px;
+	border-bottom:1px solid #ccc;
+}
+
+.violations li:nth-child(even){
+	background-color:#eee;
+}
+
+.violations .big{
+	font-size:30px;
+}
+
+
+/***********************************
+Tablet and Small Screen Styles here.
+***********************************/
+
+@media screen and (min-width: 776px) {
+
+	header h1, header p {
+		text-align: left;
+	}
+
+	#map {
+		position: absolute;
+		z-index: -1;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: url('../img/map.jpg');	
+	}		
+
+	#main {
+		
+	}
+
+}
+/********************************
+Normal sized desktop styles here.
+********************************/
+
+@media screen and (min-width: 992px) {
+
+}
+/************************
+Big desktop styles here
+*************************/
+
+@media screen and (min-width: 1200px) {
+
+}
