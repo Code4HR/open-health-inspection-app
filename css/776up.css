@@ -1,0 +1,25 @@
+/***********************************
+Tablet and Small Screen Styles here.
+***********************************/
+
+@media screen and (min-width: 776px) {
+
+	header h1, header p {
+		text-align: left;
+	}
+
+	#map {
+		position: absolute;
+		z-index: -1;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: url('../img/map.jpg');	
+	}		
+
+	#main {
+		
+	}
+
+}
