@@ -10,29 +10,29 @@ module.exports = function(grunt) {
     		  src: [
     		    'js/**/*.js', '!js/build/*.js'
     		  ],
-    		    dest: 'js/build/production.js',
+    		    dest: 'js/production.js',
     	    },
             styles: {
               src: [
                 'css/main.css', 'css/776up.css', 'css/992up.css', 'css/1200up.css', '!css/build/*.css'
               ],
-              dest: 'css/build/production.css'
+              dest: 'css/production.css'
             }	
         },
 
         uglify: {
             build: {
-                src: 'js/build/production.js',
-                dest: 'js/build/production.min.js'
+                src: 'js/production.js',
+                dest: 'js/production.min.js'
             }
         },
 
         cssmin: {
             minify: {
               expand: true,
-              cwd: 'css/build/',
+              cwd: 'css/',
               src: 'production.css',
-              dest: 'css/build/',
+              dest: 'css/',
               ext: '.min.css'
             }
         },
@@ -82,7 +82,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
 
     // 4. Where we tell Grunt what to do when we type "grunt" into the terminal.
-    grunt.registerTask('default', ['concat', 'uglify', 'imagemin', 'cssmin']);
+    grunt.registerTask('default', ['concat', 'uglify', 'cssmin', 'imagemin']);
 
 };
 
