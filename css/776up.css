@@ -4,7 +4,7 @@ Tablet and Small Screen Styles here.
 
 @media screen and (min-width: 776px) {
 
-	header h1, header p {h
+	header h1, header p {
 		text-align: left;
 	}
 
