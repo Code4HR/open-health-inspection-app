@@ -1,4 +1,5 @@
 [{
+ "id": "1",
  "name": "Boulevard Pizza",
  "score": "99",
  "inspections": "10",
@@ -7,6 +8,7 @@
  "city":"Norfolk"
 },
 {
+  "id": "2",
   "name": "Todd's Refresher Pizza",
   "score": "83",
   "inspections": "4",
@@ -15,6 +17,7 @@
   "city":"Norfolk"
 },
 {
+  "id": "3",
   "name": "Chick Fil-A",
   "score": "99",
   "inspections": "5",
