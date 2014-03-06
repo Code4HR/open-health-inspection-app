@@ -1,6 +1,7 @@
 [{
  "id": "1",
  "name": "Boulevard Pizza",
+ "safeName": "boulevard-pizza",
  "score": "99",
  "inspections": "10",
  "last_inspection_date": "22-Oct-2013",
@@ -10,6 +11,7 @@
 {
   "id": "2",
   "name": "Todd's Refresher Pizza",
+  "safeName": "todds-refresher",
   "score": "83",
   "inspections": "4",
   "last_inspection_date": "30-Oct-2013",
@@ -19,6 +21,7 @@
 {
   "id": "3",
   "name": "Chick Fil-A",
+  "safeName": "chick-fil-a",
   "score": "99",
   "inspections": "5",
   "last_inspection_date": "15-Oct-2013",
