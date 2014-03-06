@@ -1,4 +1,8 @@
-var openHealthDataApp = angular.module('openHealthDataApp', ['ngRoute', 'openHealthDataApp']);
+/****************
+App.js
+****************/
+
+var openHealthDataApp = angular.module('openHealthDataApp', ['ngRoute', 'openHealthDataAppControllers']);
 
 openHealthDataApp.config(['$routeProvider',
   function($routeProvider) {
