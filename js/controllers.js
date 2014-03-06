@@ -7,16 +7,16 @@ var openHealthDataApp = angular.module('openHealthDataApp', ['ngRoute']);
 openHealthDataApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
-      when('/', {
+      when('#/', {
         templateUrl: 'index.html',
         controller: 'restaurantListCtrl'
       }).
-      when('/restaurants/', {
+      when('#/restaurants/', {
         templateUrl: 'restaurantview.html',
         controller: 'restaurantDetailCtrl'
       }).
       otherwise({
-        redirectTo: '/'
+        redirectTo: '#/'
       });
   }]);
 
