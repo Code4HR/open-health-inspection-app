@@ -9,14 +9,11 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http'
     $http.get('restaurants/restaurants.json').success(function(data) {
       $scope.restaurants = data;
     });
-
   }]);
 
-openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams',
+openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', '$http',
   function($scope, $routeParams, $http) {
-
-  	$http.get('restaurants/' + $routeParams.safeName + '.json').success(function(data) {
+  	$http.get('restaurants/' + $routeParams.id + '.json').success(function(data) {
       $scope.restaurant = data;
     });
-
   }]);
