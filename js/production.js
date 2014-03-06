@@ -1,24 +1,23 @@
-/******************
-Controllers
-******************/	
-
-var openHealthDataApp = angular.module('openHealthDataApp', ['ngRoute']);
+var openHealthDataApp = angular.module('openHealthDataApp', ['ngRoute', 'openHealthDataApp']);
 
 openHealthDataApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
-      when('#/', {
-        templateUrl: 'index.html',
+      when('/', {
+        templateUrl: 'partials/listView.html',
         controller: 'restaurantListCtrl'
       }).
-      when('#/restaurants/', {
-        templateUrl: 'restaurantview.html',
+      when('/restaurants/:id', {
+        templateUrl: 'partials/restaurantDetailView.html',
         controller: 'restaurantDetailCtrl'
       }).
       otherwise({
-        redirectTo: '#/'
+        redirectTo: '/'
       });
   }]);
+/******************
+Controllers
+******************/	
 
 openHealthDataApp.controller('restaurantListCtrl', function ($scope, $http) {
     
@@ -28,11 +27,10 @@ openHealthDataApp.controller('restaurantListCtrl', function ($scope, $http) {
 
 });
 
-openHealthDataApp.controller('restaurantDetailCtrl', function ($scope, $http) {
+openHealthDataApp.controller('restaurantDetailCtrl', ['$scope', '$http', function($scope, $routeParams) {
+    $scope.id = $routeParams.id;
+}]);
     
-
-
-});
 /******************
 Models
 ******************/
