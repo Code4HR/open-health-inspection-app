@@ -1,0 +1,28 @@
+{
+    "_id" : ObjectId("530907547d95393b690c216e"),
+    "inspections" : [ 
+        {
+            "date" : "  30-Oct-2013",
+            "violations" : [],
+            "type" : "Routine Inspection"
+        }, 
+        {
+            "date" : "  30-Apr-2013",
+            "violations" : [],
+            "type" : "Routine Inspection"
+        }, 
+        {
+            "date" : "  2-Oct-2012",
+            "violations" : [],
+            "type" : "Risk Factor Assessment Inspection"
+        }, 
+        {
+            "date" : "  29-Jun-2012",
+            "violations" : [],
+            "type" : "Routine Inspection"
+        }
+    ],
+    "last_inspection_date" : "  30-Oct-2013",
+    "name" : "\nTodd's Refresher",
+    "address" : " 150 W. Main St #100"
+}
