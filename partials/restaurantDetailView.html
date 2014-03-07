@@ -1,2 +1,18 @@
-<p>TBD {{restaurant.id}}, {{restaurant.name}}, {{restaurant.rating}}</p>
+<h1>{{restaurant.name}}</h1>
+<ul>
+	<li>Address: {{restaurant.address}}</li>
+	<li>Last Inspection Date: {{restaurant.last_inspection_date}}</li>
+	<li>Number of Inspections: {{restaurant.inspections.length }}</li>
+</ul>
 
+<ul>
+	<li ng-repeat="inspection in restaurant.inspections">
+		{{inspection.date}}
+		<ul>
+			<li ng-repeat="violation in inspection.violations">
+				{{violation.code}}
+				{{violation.observations}}
+			</li>
+		</ul>
+	</li>
+</ul>
