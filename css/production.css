@@ -143,6 +143,8 @@ Tablet and Small Screen Styles here.
 		width: 100%;
 		background: url('../img/build/map.jpg') !important;	
 	}		
+    
+    .angular-google-map-container { height: 400px; }
 
 	#main {
 		
