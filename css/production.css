@@ -36,22 +36,39 @@ header {
 	outline:none;
 }
 
-.list {
+#list {
 	margin-top: 1em;
 	padding: 0;
 	list-style-type: none;
 	background: white;
 }
 
-.list li{
+#list li{
 	padding-top: 20px;
 	min-height:60px;
 	border-bottom:1px solid #ccc;
 }
 
-.list li:nth-child(even){
+list li:nth-child(even){
 	background-color:#eee;
 }
+
+#info {
+	margin-top: 32px;
+	background: white;
+}
+	#info ul {
+		list-style-type: none;
+		padding: 0;
+	}
+		.inspection-date {
+			font-size: 1.25em;
+			display: block;
+			border: 1px solid #dfdfdf;
+			border-left: 0;
+			border-right: 0;
+			line-height: 45px;
+		}
 
 
 /* views with nav bar on top */
