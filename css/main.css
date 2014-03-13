@@ -61,14 +61,26 @@ list li:nth-child(even){
 		list-style-type: none;
 		padding: 0;
 	}
-		.inspection-date {
-			font-size: 1.25em;
-			display: block;
-			border: 1px solid #dfdfdf;
-			border-left: 0;
-			border-right: 0;
-			line-height: 45px;
-		}
+
+	.inspection {
+		font-weight: bold;
+	}
+
+	.violation {
+		margin-bottom: 1em;
+	}
+
+	.violation-code {
+		font-weight: bold;
+		display: block;
+		border-bottom: 1px solid #dfdfdf;
+	}
+	.observations {
+		list-style-type: disc !important;
+	}
+	.observations li {
+		margin-left: 1.5em;
+	}
 
 
 /* views with nav bar on top */

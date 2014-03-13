@@ -1,22 +1,26 @@
-<h1>{{restaurant.name}}</h1>
-<ul>
-	<li><strong>Address:</strong> {{restaurant.address}}</li>
-	<li><strong>Last Inspection Date:</strong> {{restaurant.last_inspection_date}}</li>
-	<li><strong>Number of Inspections:</strong> {{restaurant.inspections.length }}</li>
-</ul>
+<section>
+	<h1>{{restaurant.name}}</h1>
+	<ul>
+		<li><strong>Address:</strong> {{restaurant.address}}</li>
+		<li><strong>Score:</strong> {{restaurant.score}} </li>
+	</ul>
+</section>
 
-<ul>
-	<li ng-repeat="inspection in restaurant.inspections">
-		<span class="inspection-date">{{inspection.date}}</span>
+<section>
+	<h3>Last Inspection Report</h3>
+	<span class="inspection">Inspection:</span>{{restaurant.inspections[0].date}}
+	<ul class="violation" ng-repeat="violation in restaurant.inspections[0].violations">
+		<li><span class="violation-code">{{violation.code}}</span></li>
+		<li ng-repeat="observation in violation.observations">
+			<ul class="observations">
+				<li>{{observation}}</li>
+			</ul>
+		</li>
+	</ul>
+	<ul>
+		<li><a href="#">Past Inspections</a></li>
 		<ul>
-			<li ng-repeat="violation in inspection.violations" class="ng-hide-remove">
-				<span class="violation-code">{{violation.code}}</span>
-				<ul class="inpsection-observation">
-					<li ng-repeat="observation in violation.observations">
-						<span class="violation-observation">{{observation}}</span>
-					</li>
-				</ul>
-			</li>
+			<li></li>
 		</ul>
-	</li>
-</ul>
+	</ul>
+</section>
