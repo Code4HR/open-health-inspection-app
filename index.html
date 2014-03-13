@@ -37,15 +37,8 @@
 
       <div class="row">
       
-        <ul class="col-sm-4 col-sm-offset-8 list" ng-controller="restaurantListCtrl">
-            <li ng-repeat="restaurant in restaurants">
-                <a href="#/restaurants/{{restaurant.id}}">
-                  <div class="col-xs-10">{{restaurant.name}}</div>
-                  <div class="col-xs-2">{{restaurant.score}}</div>
-                </a>
-            </li>
-        </ul>
-
+        <section class="col-sm-4 col-sm-offset-8" id="info" ng-view></section>
+    
       </div>
 
     </div>
@@ -55,6 +48,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular-route.min.js
 "></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular-animate.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="js/production.js"></script>
 

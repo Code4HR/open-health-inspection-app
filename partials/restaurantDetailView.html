@@ -1,0 +1,26 @@
+<section>
+	<h1>{{restaurant.name}}</h1>
+	<ul>
+		<li><strong>Address:</strong> {{restaurant.address}}</li>
+		<li><strong>Score:</strong> {{restaurant.score}} </li>
+	</ul>
+</section>
+
+<section>
+	<h3>Last Inspection Report</h3>
+	<span class="inspection">Inspection:</span>{{restaurant.inspections[0].date}}
+	<ul class="violation" ng-repeat="violation in restaurant.inspections[0].violations">
+		<li><span class="violation-code">{{violation.code}}</span></li>
+		<li ng-repeat="observation in violation.observations">
+			<ul class="observations">
+				<li>{{observation}}</li>
+			</ul>
+		</li>
+	</ul>
+	<ul>
+		<li><a href="#">Past Inspections</a></li>
+		<ul>
+			<li></li>
+		</ul>
+	</ul>
+</section>
