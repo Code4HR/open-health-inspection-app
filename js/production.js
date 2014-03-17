@@ -33,11 +33,13 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http'
 
     $scope.map = {
         center: {
-            latitude: 45,
-            longitude: -73
+            latitude: 36.847010,
+            longitude: -76.292430
         },
-        zoom: 8
+        zoom: 17
     };
+
+
 
   }]);
 
