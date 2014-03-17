@@ -1,4 +1,7 @@
-<ul class="list" ng-controller="restaurantListCtrl">
+<ul class="list">
+
+	<google-map center="map.center" zoom="map.zoom"></google-map>
+
     <li ng-repeat="restaurant in restaurants">
         <a href="#/restaurants/{{restaurant.safeName}}">
           <div class="col-xs-10">{{restaurant.name}}</div>

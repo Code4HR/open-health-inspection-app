@@ -53,6 +53,7 @@ header {
 	background-color:#eee;
 }
 
+.angular-google-map-container { height: 400px; }
 
 /* views with nav bar on top */
 
