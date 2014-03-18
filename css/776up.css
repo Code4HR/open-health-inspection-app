@@ -10,22 +10,17 @@ Tablet and Small Screen Styles here.
 	header h1 {
 		font-size: 1.5em;
 	}
-
-
-	#map {
-		position: absolute;
-		z-index: -1;
-		top: 0;
-		left: 0;
-		height: 100%;
-		width: 100%;
-		background: url('../img/build/map.jpg') !important;	
-	}		
     
-    .angular-google-map-container { height: 400px; }
+    #listView {
+    
+    }
+    
+    #listView .angular-google-map-container { height: 400px; }
 
-	#main {
-		
-	}
+	#restuarantDetailView {
+        
+    }
+    
+    #restaurantDetailView .angular-google-map-container { height: 200px }
 
 }

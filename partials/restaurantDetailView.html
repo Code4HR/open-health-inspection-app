@@ -1,18 +1,25 @@
-<h1>{{restaurant.name}}</h1>
-<ul>
-	<li>Address: {{restaurant.address}}</li>
-	<li>Last Inspection Date: {{restaurant.last_inspection_date}}</li>
-	<li>Number of Inspections: {{restaurant.inspections.length }}</li>
-</ul>
+<article id="restaurantDetailView">
+    <section id="restaurant-info" class="col-sm-3">
+        <google-map center="map.center" zoom="map.zoom" draggable="true"></google-map>
 
-<ul>
-	<li ng-repeat="inspection in restaurant.inspections">
-		{{inspection.date}}
-		<ul>
-			<li ng-repeat="violation in inspection.violations">
-				{{violation.code}}
-				{{violation.observations}}
-			</li>
-		</ul>
-	</li>
-</ul>
+        <h1>{{restaurant.name}}</h1>
+        <ul>
+            <li>Address: {{restaurant.address}}</li>
+            <li>Last Inspection Date: {{restaurant.last_inspection_date}}</li>
+            <li>Number of Inspections: {{restaurant.inspections.length }}</li>
+        </ul>
+    </section>
+
+    <ul id="violations" class="col-sm-9">
+        <li ng-repeat="inspection in restaurant.inspections">
+            {{inspection.date}}
+            <ul>
+                <li ng-repeat="violation in inspection.violations">
+                    {{violation.code}}
+                    {{violation.observations}}
+                </li>
+            </ul>
+        </li>
+    </ul>
+    
+</article>
