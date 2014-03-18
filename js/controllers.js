@@ -17,7 +17,7 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http'
         },
         zoom: 17
     };
-
+    
     $scope.mapHeight = "innerHeight" in window 
       ? window.innerHeight
       : document.documentElement.offsetHeight; 
@@ -29,13 +29,13 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$rou
   	$http.get('restaurants/' + $routeParams.id + '.json').success(function(data) {
       $scope.restaurant = data;
     });
-                                                                 
+                                                               
     $scope.map = {
         center: {
-            latitude: 36.847010,
-            longitude: -76.292430
+            latitude: 35.154343,
+            longitude: -81.862407
         },
         zoom: 18
     };
-                                                                  
+                                                                      
   }]);

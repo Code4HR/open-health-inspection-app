@@ -1,7 +1,9 @@
 <article id="restaurantDetailView">
     <section id="restaurant-info" class="col-sm-3">
-        <google-map center="map.center" zoom="map.zoom" draggable="true"></google-map>
-
+        <google-map center="map.center" zoom="20" draggable="false">
+            <marker coords="map.center"></marker>
+        </google-map>
+        {{restaurant.center}}            
         <h1>{{restaurant.name}}</h1>
         <ul>
             <li>Address: {{restaurant.address}}</li>

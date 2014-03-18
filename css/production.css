@@ -140,6 +140,10 @@ Tablet and Small Screen Styles here.
     
     #listView .angular-google-map-container { height: 400px; }
 
+    #main {
+        padding: 2em 0;
+    }
+    
 	#restuarantDetailView {
         
     }
