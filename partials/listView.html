@@ -1,7 +1,6 @@
-<ul class="list">
+<google-map center="map.center" zoom="map.zoom" draggable="true" class="col-sm-9"></google-map>
 
-	<google-map center="map.center" zoom="map.zoom" draggable="true"></google-map>
-
+<ul class="list col-sm-3">
     <li ng-repeat="restaurant in restaurants">
         <a href="#/restaurants/{{restaurant.safeName}}">
           <div class="col-xs-10">{{restaurant.name}}</div>

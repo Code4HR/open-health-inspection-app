@@ -39,7 +39,11 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http'
         zoom: 17
     };
 
+    $scope.mapHeight = "innerHeight" in window 
+      ? window.innerHeight
+      : document.documentElement.offsetHeight; 
 
+    
 
   }]);
 
@@ -53,7 +57,6 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$rou
 Models
 ******************/
 
-console.log(scope);
 /******************
 Views
 ******************/
