@@ -716,5 +716,9 @@
     ],
     "last_inspection_date" : "  23-Oct-2013",
     "name" : "\nBoulevard Pizza",
-    "address" : " 201 E Berkely Ave #J"
+    "address" : "201 E Berkely Ave #J",
+    "center": {
+       "latitude": 36.831482,
+       "longitude": -76.282373
+    }
 }

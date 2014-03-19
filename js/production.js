@@ -38,10 +38,6 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http'
         },
         zoom: 17
     };
-    
-    $scope.mapHeight = "innerHeight" in window 
-      ? window.innerHeight
-      : document.documentElement.offsetHeight; 
 
   }]);
 
@@ -49,16 +45,18 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$rou
   function($scope, $routeParams, $http) {
   	$http.get('restaurants/' + $routeParams.id + '.json').success(function(data) {
       $scope.restaurant = data;
+      $scope.map.center = $scope.restaurant.center;
     });
-                                                               
+
     $scope.map = {
         center: {
-            latitude: 35.154343,
-            longitude: -81.862407
+            latitude: 90.847010,
+            longitude: 90.292430
         },
         zoom: 18
     };
-                                                                      
+
+
   }]);
 /******************
 Models
