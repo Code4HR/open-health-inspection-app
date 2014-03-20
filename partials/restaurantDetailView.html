@@ -2,7 +2,9 @@
 
 	<section id="restuarant-info" class="col-sm-3">
 
-		<google-map center="map.center" zoom="map.zoom" draggable="true"></google-map>
+		<google-map center="map.center" zoom="18" options="{'disableDefaultUI':'true'}" draggable="true">
+		    <marker coords="map.center"></marker>
+		</google-map>
 
 		<h1>{{restaurant.name}}</h1>
 		<ul>
