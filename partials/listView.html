@@ -1,12 +1,14 @@
-<article id="listView">
-    <google-map center="map.center" zoom="map.zoom" draggable="true" class="col-sm-9"></google-map>
+<section id="list-view">
 
-    <ul class="list col-sm-3">
-        <li ng-repeat="restaurant in restaurants">
-            <a href="#/restaurants/{{restaurant.safeName}}">
-              <div class="col-xs-10">{{restaurant.name}}</div>
-              <div class="col-xs-2">{{restaurant.score}}</div>
-            </a>
-        </li>
-    </ul>
-</article>
+	<google-map center="map.center" zoom="map.zoom" draggable="true" class="col-sm-9"></google-map>
+
+	<ul class="list col-sm-3 row">
+	    <li ng-repeat="restaurant in restaurants">
+	        <a href="#/restaurants/{{restaurant.safeName}}">
+	          <div class="col-xs-10">{{restaurant.name}}</div>
+	          <div class="col-xs-2">{{restaurant.score}}</div>
+	        </a>
+	    </li>
+	</ul>
+
+</section>
