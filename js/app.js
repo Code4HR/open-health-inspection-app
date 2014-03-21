@@ -2,7 +2,7 @@
 App.js
 ****************/
 
-var openHealthDataApp = angular.module('openHealthDataApp', ['ngRoute', 'ngAnimate', 'openHealthDataAppControllers']);
+var openHealthDataApp = angular.module('openHealthDataApp', ['ngRoute', 'openHealthDataAppControllers', 'ngAnimate', 'google-maps']);
 
 openHealthDataApp.config(['$routeProvider',
   function($routeProvider) {

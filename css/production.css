@@ -53,6 +53,7 @@ list li:nth-child(even){
 	background-color:#eee;
 }
 
+<<<<<<< HEAD
 #info {
 	margin-top: 32px;
 	background: white;
@@ -82,6 +83,9 @@ list li:nth-child(even){
 		margin-left: 1.5em;
 	}
 
+=======
+.angular-google-map-container { height: 400px; }
+>>>>>>> google-maps-integration
 
 /* views with nav bar on top */
 
@@ -161,21 +165,22 @@ Tablet and Small Screen Styles here.
 	header h1 {
 		font-size: 1.5em;
 	}
+    
+    #listView {
+    
+    }
+    
+    #listView .angular-google-map-container { height: 400px; }
 
-
-	#map {
-		position: absolute;
-		z-index: -1;
-		top: 0;
-		left: 0;
-		height: 100%;
-		width: 100%;
-		background: url('../img/build/map.jpg') !important;	
-	}		
-
-	#main {
-		
-	}
+    #main {
+        padding: 2em 0;
+    }
+    
+	#restuarantDetailView {
+        
+    }
+    
+    #restaurantDetailView .angular-google-map-container { height: 200px }
 
 }
 /********************************
