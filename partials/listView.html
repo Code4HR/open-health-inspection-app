@@ -1,8 +1,14 @@
-<ul class="list" ng-controller="restaurantListCtrl">
-    <li ng-repeat="restaurant in restaurants">
-        <a href="#/restaurants/{{restaurant.safeName}}">
-          <div class="col-xs-10">{{restaurant.name}}</div>
-          <div class="col-xs-2">{{restaurant.score}}</div>
-        </a>
-    </li>
-</ul>
+<section id="list-view">
+
+	<google-map center="map.center" zoom="map.zoom" draggable="true" class="col-sm-9"></google-map>
+
+	<ul class="list col-sm-3 row">
+	    <li ng-repeat="restaurant in restaurants">
+	        <a href="#/restaurants/{{restaurant.safeName}}">
+	          <div class="col-xs-10">{{restaurant.name}}</div>
+	          <div class="col-xs-2">{{restaurant.score}}</div>
+	        </a>
+	    </li>
+	</ul>
+	
+</section>
