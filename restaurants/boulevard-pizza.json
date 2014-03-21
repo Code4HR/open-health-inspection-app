@@ -1,0 +1,725 @@
+{
+    "inspections" : [ 
+        {
+            "date" : "  23-Oct-2013",
+            "violations" : [ 
+                {
+                    "code" : "Code",
+                    "observations" : [ 
+                        "Observation / Corrective Action"
+                    ]
+                }, 
+                {
+                    "code" : "6-301.11  ",
+                    "observations" : [ 
+                        "Corrected During Inspection", 
+                        " ", 
+                        "Core Item  ", 
+                        "Soap was not provided at the hand washing lavatory in the kitchen area.", 
+                        "Hand soap must be provided at all hand washing lavatories to encourage proper hand washing. Hand cleanser must always be present to aid in reducing microorganisms and particulate matter found on hands."
+                    ]
+                }, 
+                {
+                    "code" : "6-301.12  ",
+                    "observations" : [ 
+                        "Corrected During Inspection", 
+                        " ", 
+                        "Core Item  ", 
+                        "No disposable towels were provided a the hand washing lavatory in the kitchen area.", 
+                        "Hand drying devices such as individual disposable paper towels, a continuous towel system that supplies the user with a clean towel or heated air hand drying device must be provided at all hand washing lavatories to encourage proper hand washing and avoid employees to drying their hands on their clothing or other unclean materials"
+                    ]
+                }, 
+                {
+                    "code" : "7-202.11  ",
+                    "observations" : [ 
+                        " ", 
+                        "Priority Foundation Item  ", 
+                        "Unnecessary poisonous or toxic materials found in the food establishment.", 
+                        "Remove unnecessary poisonous or toxic materials."
+                    ]
+                }, 
+                {
+                    "code" : "3-304.12  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item  ", 
+                        "In-use utensils improperly stored between use.", 
+                        "Store in-use utensils or dispensing utensils in one of the following manners: 1) In the food with their handles above the top of the food and the container. 2) In food that is not potentially hazardous with their handles above the top of the food within containers or equipment that can be closed. 3) On a clean portion of the food preparation table or cooking equipment only if the in-use utensil and the food-contact surface of the food preparation table or cooking equipment are cleaned and sanitized every 4 hours. 4) In running water of sufficient velocity to flush particulates to the drain. 5) In a clean, protected location if the utensils are used only with a food that is not potentially hazardous. 6) In a container of water if the water is maintained at a temperature of at least 135°F and the container."
+                    ]
+                }, 
+                {
+                    "code" : "4-601.11b  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item Repeat ", 
+                        "The nonfood-contact surfaces of the following equipment were observed soiled with an accumulation of dust, dirt, food residue, and/or other debris: hood filters", 
+                        "Maintain nonfood-contact surfaces of equipment clean."
+                    ]
+                }
+            ],
+            "type" : "Routine Inspection"
+        }, 
+        {
+            "date" : "  12-Jul-2013",
+            "violations" : [ 
+                {
+                    "code" : "Code",
+                    "observations" : [ 
+                        "Observation / Corrective Action"
+                    ]
+                }, 
+                {
+                    "code" : "2-301.15  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item  ", 
+                        "A food employee was observed cleaning their hands in a food preparation sink or a sink used for utensil washing.", 
+                        "Instruct food employees to clean their hands in a handwashing lavatory. Food employees may not clean their hands in a sink used for food preparation or utensil washing."
+                    ]
+                }, 
+                {
+                    "code" : "5-205.11  ",
+                    "observations" : [ 
+                        " ", 
+                        "Priority Item  ", 
+                        "The handwashing facility located at the front of the kitchen is blocked, preventing access by employees for easy handwashing.", 
+                        "Access to the handwashing facility identified above is to be available during all hours of operation. Remove the boxes preventing its use."
+                    ]
+                }, 
+                {
+                    "code" : "7-102.11  ",
+                    "observations" : [ 
+                        " ", 
+                        "Priority Item  ", 
+                        "Working containers of cleaners are not properly labeled.", 
+                        "Working containers of toxic items are to be properly labeled with contents. Identification of these containers with the common name of the material helps prevent the dangerous misuse of the contents."
+                    ]
+                }, 
+                {
+                    "code" : "2-402.11  ",
+                    "observations" : [ 
+                        "Corrected During Inspection", 
+                        " ", 
+                        "Core Item  ", 
+                        "Employees observed working in the food service area without proper hair restraints.", 
+                        "Ensure all employees wear hair restraints such as hats, hair coverings or nets, beard restraints, and clothing that covers body hair, that are designed and worn to effectively keep their hair from contacting exposed food clean equipment, utensils, and linens, and unwrapped single-service and single-use articles."
+                    ]
+                }, 
+                {
+                    "code" : "4-601.11b  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item Repeat ", 
+                        "The nonfood-contact surfaces of the following equipment were observed soiled with an accumulation of dust, dirt, food residue, and/or other debris: hood filters, oven trays, and front Pepsi Unit.", 
+                        "Maintain nonfood-contact surfaces of equipment clean."
+                    ]
+                }
+            ],
+            "type" : "Routine Inspection"
+        }, 
+        {
+            "date" : "  11-Apr-2013",
+            "violations" : [ 
+                {
+                    "code" : "Code",
+                    "observations" : [ 
+                        "Observation / Corrective Action"
+                    ]
+                }, 
+                {
+                    "code" : "4-601.11b  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item  ", 
+                        "The nonfood-contact surfaces of the following equipment were observed soiled with an accumulation of dust, dirt, food residue, and/or other debris: hood filters and front Pepsi Unit", 
+                        "Maintain nonfood-contact surfaces of equipment clean."
+                    ]
+                }
+            ],
+            "type" : "Routine Inspection"
+        }, 
+        {
+            "date" : "  15-Jan-2013",
+            "violations" : [ 
+                {
+                    "code" : "2-101.11",
+                    "observations" : [ 
+                        "The person in charge was not available at the time of inspection."
+                    ]
+                }, 
+                {
+                    "code" : "2-102.11 a.18.1-17 II",
+                    "observations" : [ 
+                        "Several food service employees were working in the food service establishment without having a valid food service card."
+                    ]
+                }, 
+                {
+                    "code" : "3-301.11",
+                    "observations" : [ 
+                        "Employees observed handling ready-to-eat (RTE) food with their bare hands."
+                    ]
+                }, 
+                {
+                    "code" : "4-602.12",
+                    "observations" : [ 
+                        "The cavity of the microwave oven is observed soiled."
+                    ]
+                }, 
+                {
+                    "code" : "7-202.11",
+                    "observations" : [ 
+                        "Unnecessary poisonous or toxic materials found in the food establishment."
+                    ]
+                }, 
+                {
+                    "code" : "3-302.12",
+                    "observations" : [ 
+                        "Unlabeled food containers."
+                    ]
+                }, 
+                {
+                    "code" : "2-402.11",
+                    "observations" : [ 
+                        "Employees observed working in the food service area without proper hair restraints."
+                    ]
+                }, 
+                {
+                    "code" : "3-304.14",
+                    "observations" : [ 
+                        "Wiping cloths improperly stored between use."
+                    ]
+                }, 
+                {
+                    "code" : "4-601.11b",
+                    "observations" : [ 
+                        "The nonfood-contact surfaces of the following equipment were observed soiled with an accumulation of dust, dirt, food residue, and/or other debris: hood filters, besides stove, and oven trays."
+                    ]
+                }, 
+                {
+                    "code" : "6-501.16",
+                    "observations" : [ 
+                        "Mops not hung up to air dry."
+                    ]
+                }
+            ],
+            "type" : "Follow-up Inspection"
+        }, 
+        {
+            "date" : "  17-Dec-2012",
+            "violations" : [ 
+                {
+                    "code" : "Code",
+                    "observations" : [ 
+                        "Observation / Corrective Action"
+                    ]
+                }, 
+                {
+                    "code" : "2-101.11  ",
+                    "observations" : [ 
+                        "Corrected During Inspection", 
+                        " ", 
+                        "Priority Item  ", 
+                        "The person in charge was not available at the time of inspection.", 
+                        "The permit holder shall designate a person in charge who is authorized to monitor and manage all food establishment operations and who is authorized to take actions to ensure that the Regulations' objectives are fulfilled."
+                    ]
+                }, 
+                {
+                    "code" : "2-102.11 a.18.1-17 II  ",
+                    "observations" : [ 
+                        " ", 
+                        "Priority Item  ", 
+                        "Several food service employees were working in the food service establishment without having a valid food service card.", 
+                        "A food service employee shall have a valid food service card prior to working in the food service establishment. The person in charge shall not employ anyone to work in the food service establishment until they posses a valid food service card. A food service employee shall have a valid food service card while working in a food establishment."
+                    ]
+                }, 
+                {
+                    "code" : "3-301.11  ",
+                    "observations" : [ 
+                        " ", 
+                        "Priority Item Repeat ", 
+                        "Employees observed handling ready-to-eat (RTE) food with their bare hands.", 
+                        "Provide suitable utensils such as deli tissue, spatulas, tongs, single-use gloves, or dispensing equipment to handle RTE food to prevent contamination from hands."
+                    ]
+                }, 
+                {
+                    "code" : "4-602.12  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item  ", 
+                        "The cavity of the microwave oven is observed soiled.", 
+                        "Using the manufacturer's recommended cleaning procedure, clean the cavity of the microwave oven at least every 24 hours."
+                    ]
+                }, 
+                {
+                    "code" : "7-202.11  ",
+                    "observations" : [ 
+                        " ", 
+                        "Priority Foundation Item  ", 
+                        "Unnecessary poisonous or toxic materials found in the food establishment.", 
+                        "Remove unnecessary poisonous or toxic materials."
+                    ]
+                }, 
+                {
+                    "code" : "3-302.12  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item  ", 
+                        "Unlabeled food containers.", 
+                        "Label working containers with the common name of its contents. Food containers shall be labeled in a language that is understood by the regulatory authority and by the employee. Consumers may be allergic to certain foods or ingredients. The mistaken use of an ingredient when the consumer has requested that it not be used may result in severe medical consequences. Liquid foods and granular foods may resemble cleaning compounds. The mistaken use of food from an unlabeled container could result in chemical poisoning."
+                    ]
+                }, 
+                {
+                    "code" : "2-402.11  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item  ", 
+                        "Employees observed working in the food service area without proper hair restraints.", 
+                        "Ensure all employees wear hair restraints such as hats, hair coverings or nets, beard restraints, and clothing that covers body hair, that are designed and worn to effectively keep their hair from contacting exposed food clean equipment, utensils, and linens, and unwrapped single-service and single-use articles."
+                    ]
+                }, 
+                {
+                    "code" : "3-304.14  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item  ", 
+                        "Wiping cloths improperly stored between use.", 
+                        "Ensure wet wiping cloths are stored in a chemical sanitizer at the proper concentration between use."
+                    ]
+                }, 
+                {
+                    "code" : "4-601.11b  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item Repeat ", 
+                        "The nonfood-contact surfaces of the following equipment were observed soiled with an accumulation of dust, dirt, food residue, and/or other debris: hood filters, besides stove, and oven trays.", 
+                        "Maintain nonfood-contact surfaces of equipment clean."
+                    ]
+                }, 
+                {
+                    "code" : "6-501.16  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item  ", 
+                        "Mops not hung up to air dry.", 
+                        "Wet use maintenance items such as mops must be hung in a position that allows them to air dry so they are not allowed to grow contamination which can then be spread through the establishment at the next use."
+                    ]
+                }
+            ],
+            "type" : "Routine Inspection"
+        }, 
+        {
+            "date" : "  17-Sep-2012",
+            "violations" : [ 
+                {
+                    "code" : "Code",
+                    "observations" : [ 
+                        "Observation / Corrective Action"
+                    ]
+                }, 
+                {
+                    "code" : "7-201.11  ",
+                    "observations" : [ 
+                        " ", 
+                        "Priority Item  ", 
+                        "Containers of kitchen cleaners are not properly stored to prevent the contamination of food, equipment, utensils, linens or single service items.", 
+                        "Containers of kitchen cleaners must be located in an area that is not above food, equipment, utensils, linens or single service items."
+                    ]
+                }, 
+                {
+                    "code" : "4-601.11b  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item Repeat ", 
+                        "The nonfood-contact surfaces of the following equipment were observed soiled with an accumulation of dust, dirt, food residue, and/or other debris: hood filters, both oven trays, and can opener.", 
+                        "Maintain nonfood-contact surfaces of equipment clean."
+                    ]
+                }
+            ],
+            "type" : "Routine Inspection"
+        }, 
+        {
+            "date" : "  14-Jun-2012",
+            "violations" : [ 
+                {
+                    "code" : "Code",
+                    "observations" : [ 
+                        "Observation / Corrective Action"
+                    ]
+                }, 
+                {
+                    "code" : "3-301.11  ",
+                    "observations" : [ 
+                        " ", 
+                        "Priority Item  ", 
+                        "Employees observed handling ready-to-eat (RTE) food with their bare hands.", 
+                        "Provide suitable utensils such as deli tissue, spatulas, tongs, single-use gloves, or dispensing equipment to handle RTE food to prevent contamination from hands."
+                    ]
+                }, 
+                {
+                    "code" : "3-202.15  ",
+                    "observations" : [ 
+                        "Corrected During Inspection", 
+                        " ", 
+                        "Priority Item  ", 
+                        "Food from damaged packaging offered for sale or service (dented cans).", 
+                        "Discard or return food products once the packaging is damaged or is in bad condition. Food packages must be in good condition to protect the integrity of the contents so that food is not exposed to adulteration or potential contaminants."
+                    ]
+                }, 
+                {
+                    "code" : "4-901.11  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item  ", 
+                        "Metal pans were found stacked while wet after cleaning and chemical sanitization.", 
+                        "Items must be allowed to drain and air-dry before being stacked or stored to allow evaporation of chemical sanitizer and moisture that may encourage microbial growth."
+                    ]
+                }, 
+                {
+                    "code" : "4-601.11b  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item Repeat ", 
+                        "The nonfood-contact surfaces of the following equipment were observed soiled with an accumulation of dust, dirt, food residue, and/or other debris: hood filters and oven trays.", 
+                        "Maintain nonfood-contact surfaces of equipment clean."
+                    ]
+                }
+            ],
+            "type" : "Routine Inspection"
+        }, 
+        {
+            "date" : "  20-Mar-2012",
+            "violations" : [ 
+                {
+                    "code" : "Code",
+                    "observations" : [ 
+                        "Observation / Corrective Action"
+                    ]
+                }, 
+                {
+                    "code" : "3-501.19  ",
+                    "observations" : [ 
+                        " ", 
+                        "Priority Item Repeat ", 
+                        "No written procedures for the use of time as a public health control with potentially hazardous foods.", 
+                        "Provide written procedures for the use of time as a public health control. The procedures must include the following steps or practices: a. Food must be marked with the time within which it must be cooked, served or discarded. b. The food is served or discarded within four hours from the time when the food is removed from temperature control c. Food in unmarked containers or packages, or for which the time expires is discarded and d. Written procedures are maintained in the food establishment and made available to the regulatory authority upon request e. Once time is implemented as a control measure for potentially hazardous food, no other measures may be substituted."
+                    ]
+                }, 
+                {
+                    "code" : "4-601.11b  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item Repeat ", 
+                        "The nonfood-contact surfaces of the following equipment were observed soiled with an accumulation of dust, dirt, food residue, and/or other debris: both oven trays.", 
+                        "Maintain nonfood-contact surfaces of equipment clean."
+                    ]
+                }, 
+                {
+                    "code" : "5-501.115  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item Repeat ", 
+                        "Trash and litter were observed adjacent to the refuse container outside the facility.", 
+                        "The refuse container storage area and grounds adjacent to the container are to be maintained clean and sanitary."
+                    ]
+                }, 
+                {
+                    "code" : "6-202.15  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item Repeat ", 
+                        "Outer opening of the food establishment is not protected against entry of insects and rodents (back door).", 
+                        "Protect the food establishment against the entry of insects and rodents by: 1. Filling or closing holes and other gaps along floors, walls, and ceilings; 2. Closed, tight fitting windows; and 3. Solid, self-closing, tight-fitting doors. Insects and rodents are vectors of disease-causing microorganisms which may be transmitted to humans by contamination of food and food-contact surfaces."
+                    ]
+                }
+            ],
+            "type" : "Routine Inspection"
+        }, 
+        {
+            "date" : "  19-Mar-2012",
+            "violations" : [ 
+                {
+                    "code" : "Code",
+                    "observations" : [ 
+                        "Observation / Corrective Action"
+                    ]
+                }, 
+                {
+                    "code" : "3-501.19  ",
+                    "observations" : [ 
+                        " ", 
+                        "Priority Item Repeat ", 
+                        "No written procedures for the use of time as a public health control with potentially hazardous foods.", 
+                        "Provide written procedures for the use of time as a public health control. The procedures must include the following steps or practices: a. Food must be marked with the time within which it must be cooked, served or discarded. b. The food is served or discarded within four hours from the time when the food is removed from temperature control c. Food in unmarked containers or packages, or for which the time expires is discarded and d. Written procedures are maintained in the food establishment and made available to the regulatory authority upon request e. Once time is implemented as a control measure for potentially hazardous food, no other measures may be substituted."
+                    ]
+                }, 
+                {
+                    "code" : "4-601.11b  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item Repeat ", 
+                        "The nonfood-contact surfaces of the following equipment were observed soiled with an accumulation of dust, dirt, food residue, and/or other debris: last hood filter and both oven trays.", 
+                        "Maintain nonfood-contact surfaces of equipment clean."
+                    ]
+                }, 
+                {
+                    "code" : "5-501.115  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item Repeat ", 
+                        "Trash and litter were observed adjacent to the refuse container outside the facility.", 
+                        "The refuse container storage area and grounds adjacent to the container are to be maintained clean and sanitary."
+                    ]
+                }, 
+                {
+                    "code" : "6-202.15  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item Repeat ", 
+                        "Outer opening (back door) of the food establishment is not protected against entry of insects and rodents.", 
+                        "Protect the food establishment against the entry of insects and rodents by: 1. Filling or closing holes and other gaps along floors, walls, and ceilings; 2. Closed, tight fitting windows; and 3. Solid, self-closing, tight-fitting doors. Insects and rodents are vectors of disease-causing microorganisms which may be transmitted to humans by contamination of food and food-contact surfaces."
+                    ]
+                }
+            ],
+            "type" : "Follow-up Inspection"
+        }, 
+        {
+            "date" : "  13-Mar-2012",
+            "violations" : [ 
+                {
+                    "code" : "Code",
+                    "observations" : [ 
+                        "Observation / Corrective Action"
+                    ]
+                }, 
+                {
+                    "code" : "2-102.11 a.18.1-17 II  ",
+                    "observations" : [ 
+                        " ", 
+                        "Priority Item  ", 
+                        "All food service employees were working in the food service establishment without having a valid food service card.", 
+                        "All food service employees shall have a valid food service card prior to working in the food service establishment. The person in charge shall not employ anyone to work in the food service establishment until they posses a valid food service card. A food service employee shall have a valid food service card while working in a food establishment."
+                    ]
+                }, 
+                {
+                    "code" : "2-101.11  ",
+                    "observations" : [ 
+                        "Corrected During Inspection", 
+                        " ", 
+                        "Priority Item  ", 
+                        "The person in charge was not available at the time of inspection.", 
+                        "The permit holder shall designate a person in charge who is authorized to monitor and manage all food establishment operations and who is authorized to take actions to ensure that the Regulations' objectives are fulfilled."
+                    ]
+                }, 
+                {
+                    "code" : "2-201.11  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item  ", 
+                        "Employees or applicants are not aware of the reporting procedures concerning information about their health and activities as they relate to diseases that are transmissible through food, including the date of onset of jaundice or of an illness due to Salmonella Typhi, Shigella spp., Escherichia coli O157:H7, Hepatitis A virus or Norovirus.", 
+                        "Have the license holder require employees or applicants report to the person in charge any information about their health and activities if they are diagnosed with or had a past illness from Salmonella Typhi, Shigella spp., Escherichia coli O157:H7, Hepatitis A virusor Norovirus."
+                    ]
+                }, 
+                {
+                    "code" : "2-301.14  ",
+                    "observations" : [ 
+                        " ", 
+                        "Priority Item  ", 
+                        "A food employee failed to wash his or her hands before engaging in food preparation, after touching bare human body parts, after coughing, sneezing, eating, after handling soiled utensils or after engaging in any activity which may have contaminated his/her hands.", 
+                        "Instruct food employees to clean their hands and exposed portions of their arms immediately before engaging in food preparation including working with exposed food, clean equipment and utensils, and unwrapped single-service and single-use articles and during food preparation, as often as necessary to remove soil and contamination and to prevent cross contamination when changing task."
+                    ]
+                }, 
+                {
+                    "code" : "3-301.11  ",
+                    "observations" : [ 
+                        " ", 
+                        "Priority Item  ", 
+                        "Employees observed handling ready-to-eat (RTE) food with their bare hands.", 
+                        "Provide suitable utensils such as deli tissue, spatulas, tongs, single-use gloves, or dispensing equipment to handle RTE food to prevent contamination from hands."
+                    ]
+                }, 
+                {
+                    "code" : "5-205.11  ",
+                    "observations" : [ 
+                        " ", 
+                        "Priority Item  ", 
+                        "The handwashing facility located next to the Pepsi Fridge is blocked, preventing access by employees for easy handwashing.", 
+                        "Access to the handwashing facility identified above is to be available during all hours of operation. Remove blockage, preventing its use."
+                    ]
+                }, 
+                {
+                    "code" : "3-501.14  ",
+                    "observations" : [ 
+                        "Corrected During Inspection", 
+                        " ", 
+                        "Priority Item  ", 
+                        "Marina sauce noted not being adequately cooled to prevent the growth of harmful bacteria.", 
+                        "Cool potentially hazardous foods prepared from ingredients at ambient temperature to 41°F or below within 4 hours. A longer time for cooling allows an ideal situation for bacterial growth. This has been shown to be the major contributing factor in many foodborne illnesses."
+                    ]
+                }, 
+                {
+                    "code" : "3-501.16 (A) (2)  ",
+                    "observations" : [ 
+                        "Corrected During Inspection", 
+                        " ", 
+                        "Priority Item  ", 
+                        "Shredded cheese cold holding at improper temperatures", 
+                        "Discard the food and ensure that potentially hazardous foods for cold holding are maintained at 41°F or below to inhibit the growth of harmful bacteria."
+                    ]
+                }, 
+                {
+                    "code" : "3-501.17  ",
+                    "observations" : [ 
+                        " ", 
+                        "Priority Item  ", 
+                        "The ready-to-eat (RTE) commercially processed ham in the refrigeration unit was not properly dated for disposition after opening.", 
+                        "Mark a \"\"consume by\"\" date on commercially processed RTE foods at the time the original container is opened. If the food is held at 41°F or below the food shall be served or sold within 7 calendar days. Some harmful bacteria continue to grow even at refrigeration temperatures so limiting the amount of time in storage limits the amount of growth allowed for these bacteria."
+                    ]
+                }, 
+                {
+                    "code" : "3-501.19  ",
+                    "observations" : [ 
+                        " ", 
+                        "Priority Item  ", 
+                        "No written procedures for the use of time as a public health control with potentially hazardous foods.", 
+                        "Provide written procedures for the use of time as a public health control. The procedures must include the following steps or practices: a. Food must be marked with the time within which it must be cooked, served or discarded. b. The food is served or discarded within four hours from the time when the food is removed from temperature control c. Food in unmarked containers or packages, or for which the time expires is discarded and d. Written procedures are maintained in the food establishment and made available to the regulatory authority upon request e. Once time is implemented as a control measure for potentially hazardous food, no other measures may be substituted."
+                    ]
+                }, 
+                {
+                    "code" : "7-202.11  ",
+                    "observations" : [ 
+                        " ", 
+                        "Priority Foundation Item  ", 
+                        "Unnecessary poisonous or toxic materials found in the food establishment. (can of Raid)", 
+                        "Remove unnecessary poisonous or toxic materials."
+                    ]
+                }, 
+                {
+                    "code" : "3-501.15  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item  ", 
+                        "The methods used for cooling were not adequate.", 
+                        "Cool foods by the following methods: 1. Placing food in shallow pans 2. Separating food into smaller thinner portions 3. Using rapid chill cooling equipment 4. Stirring the food in a container placed in an ice water bath 5. Using containers that facilitate heat transfer 6. Adding ice as an ingredient 7. Any other method that can effectively accomplish cooling."
+                    ]
+                }, 
+                {
+                    "code" : "4-203.11  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item  ", 
+                        "The food temperature measuring device (degrees F) located in the True Fridge is not accurate.", 
+                        "Provide a temperature measuring device that is accurate within +/- 2 degrees Fahrenheit in the intended range of use."
+                    ]
+                }, 
+                {
+                    "code" : "6-202.15  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item  ", 
+                        "Outer opening (back door) of the food establishment is not protected against entry of insects and rodents.", 
+                        "Protect the food establishment against the entry of insects and rodents by: 1. Filling or closing holes and other gaps along floors, walls, and ceilings; 2. Closed, tight fitting windows; and 3. Solid, self-closing, tight-fitting doors. Insects and rodents are vectors of disease-causing microorganisms which may be transmitted to humans by contamination of food and food-contact surfaces."
+                    ]
+                }, 
+                {
+                    "code" : "2-402.11  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item  ", 
+                        "Employees observed working in the food service area without proper hair restraints.", 
+                        "Ensure all employees wear hair restraints such as hats, hair coverings or nets, beard restraints, and clothing that covers body hair, that are designed and worn to effectively keep their hair from contacting exposed food clean equipment, utensils, and linens, and unwrapped single-service and single-use articles."
+                    ]
+                }, 
+                {
+                    "code" : "3-304.14  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item  ", 
+                        "Wiping cloths improperly stored between use.\nHeavily soiled wiping cloths in use.\nWiping cloths improperly used.", 
+                        "Ensure wet wiping cloths are stored in a chemical sanitizer at the proper concentration between use.\nReplace wiping cloths once visibly soiled. Wiping cloths shall be free of food debris and visible soil.\nEnsure cloths used for wiping food spills are not used for any other purpose."
+                    ]
+                }, 
+                {
+                    "code" : "4-502.13  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item  ", 
+                        "Single-service items were observed reused for the storage of garlic knots.", 
+                        "Discontinue the reuse of single-use containers for garlic knot storage. Provide approved reusable food storage containers designed for your food storage needs."
+                    ]
+                }, 
+                {
+                    "code" : "4-102.11  ",
+                    "observations" : [ 
+                        " ", 
+                        "Priority Foundation Item  ", 
+                        "Observed use of non-food grade items (plastic bin and opened cans) are used as a single-use/single-service food contact material.", 
+                        "Discontinue use of the non-food grade items as food contact material. Provide single-service and single-use articles that are safe and clean, and will not allow the transfer of colors, odors, or tastes to the food."
+                    ]
+                }, 
+                {
+                    "code" : "4-601.11b  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item  ", 
+                        "The nonfood-contact surfaces of the following equipment were observed soiled with an accumulation of dust, dirt, food residue, and/or other debris: hood filters, Pepsi Fridge in kitchen, can opener, both oven trays, next to oven (accumulation of grease), drip trays and complete fryer unit.", 
+                        "Maintain nonfood-contact surfaces of equipment clean."
+                    ]
+                }, 
+                {
+                    "code" : "4-601.11b  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item  ", 
+                        "Encrusted grease deposits and/or other soil deposits were observed on the food contact surfaces of the following cooking equipment: slicer under prep table, pizza cutter, pizza dough pans and flat top.", 
+                        "Clean and sanitize food-contact surface of equipment and pans. Discard carbonized pans due to lack of cleanability."
+                    ]
+                }, 
+                {
+                    "code" : "5-501.115  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item  ", 
+                        "Trash and litter were observed adjacent to the refuse container outside the facility.", 
+                        "The refuse container storage area and grounds adjacent to the container are to be maintained clean and sanitary."
+                    ]
+                }, 
+                {
+                    "code" : "6-501.16  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item  ", 
+                        "Mops and brooms not hung up to air dry.", 
+                        "Wet use maintenance items such as mops must be hung in a position that allows them to air dry so they are not allowed to grow contamination which can then be spread through the establishment at the next use."
+                    ]
+                }, 
+                {
+                    "code" : "6-501.12  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item  ", 
+                        "Entire kitchen noted in need of cleaning.", 
+                        "All floors, walls, and ceilings must be cleaned as often as necessary to keep them clean. Cleaning of the physical facilities is an important measure in ensuring the protection and sanitary preparation of food. A regular cleaning schedule should be established and followed to maintain the facility in a clean and sanitary manner."
+                    ]
+                }, 
+                {
+                    "code" : "6-501.11  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item  ", 
+                        "Lowboy unit (torn gasket), refrigerate line on prep unit (iced and not maintaing appropraite temperatures-reading 46 degrees F) flat top (missing drip tray-rag was stuffed in hole with nearby flame),  is not maintained in good repair", 
+                        "Maintain physical facilities in good repair. Poor repair and maintenance compromises the functionality of the physical facilities."
+                    ]
+                }
+            ],
+            "type" : "Routine Inspection"
+        }
+    ],
+    "last_inspection_date" : "  23-Oct-2013",
+    "score" : "99",
+    "name" : "\nBoulevard Pizza",
+    "address" : "201 E Berkely Ave #J",
+    "center": {
+       "latitude": 36.831482,
+       "longitude": -76.282373
+    }
+}

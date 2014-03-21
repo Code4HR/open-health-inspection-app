@@ -152,3 +152,48 @@ input[type=text]:focus{
 	font-size:30px;
 }
 
+
+/***********************************
+Tablet and Small Screen Styles here.
+***********************************/
+
+@media screen and (min-width: 776px) {
+
+	header h1, header p {
+		text-align: left;
+	}
+	header h1 {
+		font-size: 1.5em;
+	}
+    
+    #listView {
+    
+    }
+    
+    #listView .angular-google-map-container { height: 400px; }
+
+    #main {
+        padding: 2em 0;
+    }
+    
+	#restuarantDetailView {
+        
+    }
+    
+    #restaurantDetailView .angular-google-map-container { height: 200px }
+
+}
+/********************************
+Normal sized desktop styles here.
+********************************/
+
+@media screen and (min-width: 992px) {
+
+}
+/************************
+Big desktop styles here
+*************************/
+
+@media screen and (min-width: 1200px) {
+
+}
