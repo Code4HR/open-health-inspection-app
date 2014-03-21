@@ -39,6 +39,29 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http'
         zoom: 17
     };
 
+    console.log($scope.map);
+
+    $scope.showPosition = function(position) {
+      $scope.map.center.latitude = position.coords.latitude;
+      $scope.map.center.longitude = position.coords.longitude;
+    }
+
+    $scope.showError = function() {
+      console.log("error");
+    }
+
+    $scope.getLocation = function(){
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition($scope.showPosition, $scope.showError)
+      } else {
+        $scope.error = "Geolocation is not supported by this browser.";
+      }
+    }
+
+    $scope.getLocation();
+
+    console.log($scope.map);
+
   }]);
 
 openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', '$http',
