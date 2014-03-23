@@ -9,6 +9,8 @@ body{
 
 header {
 	background: white;
+	position: relative;
+	z-index: 10;
 }
 
 .main-content{
@@ -36,20 +38,21 @@ header {
 	outline:none;
 }
 
-#list {
+#listView ul {
 	margin-top: 1em;
 	padding: 0;
 	list-style-type: none;
-	background: white;
+	
 }
 
-#list li{
+#listView li{
 	padding-top: 20px;
 	min-height:60px;
 	border-bottom:1px solid #ccc;
+	background: white;
 }
 
-list li:nth-child(even){
+#listView li:nth-child(even){
 	background-color:#eee;
 }
 
@@ -147,6 +150,8 @@ input[type=text]:focus{
 	font-size:30px;
 }
 
+.angular-google-map-container { height:100% !important; width:100% !important; position:absolute !important; top:0; left:0; }
+
 
 /***********************************
 Tablet and Small Screen Styles here.
@@ -164,8 +169,6 @@ Tablet and Small Screen Styles here.
     #listView {
     
     }
-    
-    #listView .angular-google-map-container { height: 400px; }
 
     #main {
         padding: 2em 0;
@@ -174,8 +177,7 @@ Tablet and Small Screen Styles here.
 	#restuarantDetailView {
         
     }
-    
-    #restaurantDetailView .angular-google-map-container { height: 200px }
+
 
 }
 /********************************

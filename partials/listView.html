@@ -1,6 +1,6 @@
 <section id="listView">
 
-	<google-map center="map.center" zoom="map.zoom" draggable="	true" class="col-sm-9">
+	<google-map center="map.center" zoom="map.zoom" draggable="	true">
 		<marker ng-repeat="restaurant in restaurants" coords="restaurant.center">
 			<window show="markerShow" closeClick="true">
                 <h3>{{restaurant.name}}</h3>
@@ -10,13 +10,13 @@
 		</marker>
 	</google-map>
 
-	<ul class="list col-sm-3 row">
+	<ul class="list col-sm-3 col-sm-offset-9">
 	    <li ng-repeat="restaurant in restaurants" class="row">
 	        <a href="#/restaurants/{{restaurant.safeName}}">
 	          <div class="col-xs-10">{{restaurant.name}}</div>
 	          <div class="col-xs-2">{{restaurant.score}}</div>
 	        </a>
-	        <p>{{distanceCalculation(restaurant.center) | number:2}} Miles Away</p>
+	        <p class="col-xs-12">{{distanceCalculation(restaurant.center) | number:2}} Miles Away</p>
 	    </li>
 	</ul>
 	
