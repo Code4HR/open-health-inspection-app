@@ -53,7 +53,6 @@ list li:nth-child(even){
 	background-color:#eee;
 }
 
-<<<<<<< HEAD
 #info {
 	margin-top: 32px;
 	background: white;
@@ -82,10 +81,6 @@ list li:nth-child(even){
 	.observations li {
 		margin-left: 1.5em;
 	}
-
-=======
-.angular-google-map-container { height: 400px; }
->>>>>>> google-maps-integration
 
 /* views with nav bar on top */
 
