@@ -8,8 +8,8 @@
  "address": "201 E Berkely Plaza #J",
  "city":"Norfolk",
  "center": {
-    "longitude": 36,
-    "latitude": 72
+    "latitude": 36.8315849  ,
+    "longitude": -76.2819519  
  }
 },
 {
@@ -22,8 +22,8 @@
   "address": "150 W. Main St #100",
   "city":"Norfolk",
   "center": {
-    "longitude": 37,
-    "latitude": 72
+    "latitude": 36.8471527,
+    "longitude": -76.2931824   
   }
 },
 {
@@ -36,7 +36,7 @@
   "address": "1205 N Military Highway",
   "city":"Norfolk",
   "center": {
-    "longitude": 38,
-    "latitude": 72
+    "latitude": 36.863647,
+    "longitude": -76.2106267
   }
 }]
