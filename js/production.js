@@ -39,8 +39,6 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http'
         zoom: 17
     };
 
-    console.log($scope.map);
-
     $scope.showPosition = function(position) {
       $scope.map.center.latitude = position.coords.latitude;
       $scope.map.center.longitude = position.coords.longitude;
@@ -60,7 +58,30 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http'
 
     $scope.getLocation();
 
-    console.log($scope.map);
+    $scope.distanceCalculation = function(input) {
+
+      console.log(input.latitude);
+      var lat2 = input.latitude;
+      console.log(input.longitude);
+      var lon2 = input.longitude;
+      console.log($scope.map.center.latitude);
+      var lat1 = $scope.map.center.latitude;
+      console.log($scope.map.center.longitude);
+      var lon2 = $scope.map.center.longitude;
+
+      /*
+      var R = 6371; // km
+      var dLat = (lat2-lat1).toRad();
+      var dLon = (lon2-lon1).toRad();
+      var lat1 = lat1.toRad();
+      var lat2 = lat2.toRad();
+
+      var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+              Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+      var d = R * c;
+      */
+    };
 
   }]);
 
