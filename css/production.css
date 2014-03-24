@@ -61,10 +61,11 @@ header {
 				margin-bottom: 0;
 			}
 			#listView ul li .restaurant-score {
-				font-size: 2em;
+				font-size: 3em;
 				line-height: .75em;
 				font-weight: 600;
 				color: #666;
+				text-align: right;
 			}
 			#listView ul li .distance {
 				color: #999999;
