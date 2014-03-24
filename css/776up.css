@@ -3,13 +3,24 @@ Tablet and Small Screen Styles here.
 ***********************************/
 
 @media screen and (min-width: 776px) {
+    
+    header {
 
-	header h1, header p {
-		text-align: left;
-	}
-	header h1 {
-		font-size: 1.5em;
-	}
+    }
+    	header h1, header p {
+    		text-align: left;
+    	}
+    	header h1 {
+    		font-size: 1.5em;
+            line-height: 60px;
+            margin: 0;
+    	}
+        header img {
+            margin-top: 15px;
+        }
+        form {
+            padding: 15px 0;
+        }
     
     #listView {
     
