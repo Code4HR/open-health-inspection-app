@@ -53,6 +53,9 @@ header {
 			border-bottom:1px solid #ccc;
 			background: white;
 		}
+			#listView ul li a:active, #listView ul li a:focus {
+				background: #eee;
+			}
 			#listView ul li .restaurant-name {
 				font-size: 1.25em;
 				line-height: .85em;
@@ -62,7 +65,7 @@ header {
 			#listView ul li .restaurant-score {
 				font-size: 3em;
 				line-height: .75em;
-				font-weight: 600;
+				font-weight: 400;
 				color: #666;
 				text-align: right;
 			}
