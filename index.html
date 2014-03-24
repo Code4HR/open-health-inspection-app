@@ -19,25 +19,29 @@
     <header>
       <div class="container">
         
-        <div class="col-sm-9">
-          <h1>Open Health Inspection App</h1>
-        </div>
+        <div class="row">
+          <div class="col-sm-9">
+            <h1>Open Health Inspection App</h1>
+          </div>
 
-        <form action="#" class="col-sm-3">
-          <input type="text" placeholder="Search"></input>
-        </form>
+          <form action="#" class="col-sm-3">
+            <input type="text" placeholder="Search"></input>
+          </form>
+        </div>
       
       </div>
     </header>
 
-    <div id="main">
+    <div id="main" class="container">
 
-      <div class="container" ng-view></div>
+      <div ng-view></div>
 
     </div>
 
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/production.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular-route.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular-animate.min.js"></script>
