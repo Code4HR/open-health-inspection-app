@@ -9,51 +9,41 @@ body{
 
 header {
 	background: white;
-}
-
-.main-content{
-	text-align:center;
+	position: relative;
+	z-index: 10;
 	border-bottom:1px solid #ccc;
 }
+	header form {
+		padding: 15px 0 !important;
+	}
+		header form input[type=text]{
+			width: 100%;
+			border-radius:15px;
+			height:35px;
+			border:1px solid #ccc;
+			text-indent: 15px;
+		}
+		header input[type=text]:focus{
+			outline:none;
+		}
 
-.main-content img{
-	padding:15px 0;
-}
 
-.main-content p{
-	padding-bottom:15px;
-}
+#listView {}
+	#listView ul {
+		margin-top: 1em;
+		padding: 0;
+		list-style-type: none;
+	}
+		#listView li{
+			padding: 10px 0;
+			min-height:60px;
+			border-bottom:1px solid #ccc;
+			background: white;
+		}
+			#listView li:nth-child(even){
+				background-color:#eee;
+			}
 
-.main-content input[type=text]{
-	min-width:270px;
-	border-radius:15px;
-	height:35px;
-	border:1px solid #ccc;
-	padding-left:10px;
-}
-
-.main-content input[type=text]:focus{
-	outline:none;
-}
-
-#list {
-	margin-top: 1em;
-	padding: 0;
-	list-style-type: none;
-	background: white;
-}
-
-#list li{
-	padding-top: 20px;
-	min-height:60px;
-	border-bottom:1px solid #ccc;
-}
-
-list li:nth-child(even){
-	background-color:#eee;
-}
-
-<<<<<<< HEAD
 #info {
 	margin-top: 32px;
 	background: white;
@@ -82,10 +72,6 @@ list li:nth-child(even){
 	.observations li {
 		margin-left: 1.5em;
 	}
-
-=======
-.angular-google-map-container { height: 400px; }
->>>>>>> google-maps-integration
 
 /* views with nav bar on top */
 
@@ -152,25 +138,36 @@ input[type=text]:focus{
 	font-size:30px;
 }
 
+.angular-google-map-container { height:100% !important; width:100% !important; position:absolute !important; top:0; left:0; }
+
 
 /***********************************
 Tablet and Small Screen Styles here.
 ***********************************/
 
 @media screen and (min-width: 776px) {
+    
+    header {
 
-	header h1, header p {
-		text-align: left;
-	}
-	header h1 {
-		font-size: 1.5em;
-	}
+    }
+    	header h1, header p {
+    		text-align: left;
+    	}
+    	header h1 {
+    		font-size: 1.5em;
+            line-height: 60px;
+            margin: 0;
+    	}
+        header img {
+            margin-top: 15px;
+        }
+        form {
+            padding: 15px 0;
+        }
     
     #listView {
     
     }
-    
-    #listView .angular-google-map-container { height: 400px; }
 
     #main {
         padding: 2em 0;
@@ -179,8 +176,7 @@ Tablet and Small Screen Styles here.
 	#restuarantDetailView {
         
     }
-    
-    #restaurantDetailView .angular-google-map-container { height: 200px }
+
 
 }
 /********************************
