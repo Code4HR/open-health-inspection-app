@@ -26,14 +26,19 @@ header {
 		padding: .5em 0;
 	}
 		header form input[type=text]{
-			width: 100%;
+			width: 25px;
 			border-radius:15px;
 			height:35px;
 			border:1px solid #ccc;
 			text-indent: 15px;
+			transition:all .2s ease;
+			-moz-transition:all .2s ease;
+			-webkit-transition:all .2s ease;
+			-ms-transition:all .2s ease;
+			-o-transition:all .2s ease;
 		}
 		header input[type=text]:focus{
-			outline:none;
+			width:100%; /* You can change this to the desired width */
 		}
 
 #main {}
