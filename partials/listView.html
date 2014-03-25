@@ -1,6 +1,6 @@
 <section id="listView">
 
-	<google-map center="map.center" zoom="map.zoom" draggable="	true">
+	<google-map center="map.center" zoom="map.zoom" draggable="true" options="{'disableDefaultUI':'true'}">
 		<marker ng-repeat="restaurant in restaurants" coords="restaurant.center">
 			<window show="markerShow" closeClick="true">
                 <h3>{{restaurant.name}}</h3>
