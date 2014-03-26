@@ -3,31 +3,30 @@ Tablet and Small Screen Styles here.
 ***********************************/
 
 @media screen and (min-width: 776px) {
+
+    .angular-google-map-container { height:100%; width:100%; position:absolute; top:0; left:0; }
     
     header {
-
+        text-align: left;   
     }
-    	header h1, header p {
-    		text-align: left;
-    	}
     	header h1 {
-    		font-size: 1.5em;
+    		font-size: 2em;
             line-height: 60px;
             margin: 0;
     	}
         header img {
-            margin-top: 15px;
+            margin-top: 1em;
         }
         form {
-            padding: 15px 0;
+            
         }
     
     #listView {
-    
+        
     }
 
-    #main {
-        padding: 2em 0;
+    #main.container {
+        padding-top: 2em;
     }
     
 	#restuarantDetailView {
