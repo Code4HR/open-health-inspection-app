@@ -2,155 +2,129 @@
 Base / Mobile Styles here.
 *************************/
 
+.angular-google-map-container { height:120px; width:100%;}
 
 body{
 	color:#494949;
+	font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Arial", "sans";
 }
 
 header {
 	background: white;
-}
-
-.main-content{
-	text-align:center;
+	position: relative;
+	z-index: 10;
 	border-bottom:1px solid #ccc;
+	text-align: center;
+	min-height: 60px;
+} 
+	header a {
+		color: inherit;
+		text-decoration: none;
+	} 
+		header a:hover, header a:focus {
+			color: inherit;
+			text-decoration: none;
+		}
+		header a h1 {
+		margin: .5em 0;
+		font-size: 1.2em;
+		line-height: 2.5em;
+		font-weight: 900;
+		text-align: left;
+		text-transform: uppercase;
+	}
+	header form#search {
+		position: relative;
+		padding: .5em 0;
+	}
+		header form#search input {
+			outline:none; /* Removes the browsers default outline when focus */
+			transition:all .2s ease;
+			-moz-transition:all .2s ease;
+			-webkit-transition:all .2s ease;
+			-ms-transition:all .2s ease;
+			-o-transition:all .2s ease;
+			border:0;
+			background:#dfdfdf;
+			padding:14px 0;
+			width:0;
+			overflow:hidden;
+			position:absolute;
+			right:0;
+			margin-left:5px;
+			text-indent:10px;
+		}
+			header form#search input:focus {
+				width: 100%; /* You can change this to the desired width */
+				box-shadow:inset -44px 0 0 #e74c3c
+			}	
+
+			#search-label {
+				border-radius: 100%;
+				outline:none;
+				z-index:99999; /* This will keep the label on top of the input bar */
+				display:block;
+				width: 44px;
+				padding:0;
+				background:#e74c3c;
+				color:#FFF;
+				font-size:1.2em;
+				height:44px;
+				line-height:42px;
+				text-align:center;
+				position:absolute;
+				top:.5em;
+				right:0;
+				cursor:pointer
+			}		
+			#search-label .glyphicon {
+				top: 3px;
+			}
+
+				#search-label:hover {
+					background:#e74c3c
+				}
+
+#main {}
+
+#main.container {
+	padding: 0 0 0 0;
 }
 
-.main-content img{
-	padding:15px 0;
-}
-
-.main-content p{
-	padding-bottom:15px;
-}
-
-.main-content input[type=text]{
-	min-width:270px;
-	border-radius:15px;
-	height:35px;
-	border:1px solid #ccc;
-	padding-left:10px;
-}
-
-.main-content input[type=text]:focus{
-	outline:none;
-}
-
-#list {
-	margin-top: 1em;
-	padding: 0;
-	list-style-type: none;
-	background: white;
-}
-
-#list li{
-	padding-top: 20px;
-	min-height:60px;
-	border-bottom:1px solid #ccc;
-}
-
-list li:nth-child(even){
-	background-color:#eee;
-}
-
-<<<<<<< HEAD
-#info {
-	margin-top: 32px;
-	background: white;
-}
-	#info ul {
-		list-style-type: none;
+#listView {}
+	#listView ul {
 		padding: 0;
+		list-style-type: none;
 	}
+		#listView ul li{
+			padding: 10px 0;
+			min-height:60px;
+			border-bottom:1px solid #ccc;
+			background: white;
+		}
+			#listView ul li a:active, #listView ul li a:focus {
+				background: #eee;
+			}
+			#listView ul li .restaurant-name {
+				font-size: 1.25em;
+				line-height: .85em;
+				font-weight: 600;
+				margin-bottom: 0;
+			}
+			#listView ul li .restaurant-score {
+				font-size: 3em;
+				line-height: .75em;
+				font-weight: 400;
+				color: #666;
+				text-align: right;
+			}
+			#listView ul li .distance {
+				color: #999999;
+			}
+			#listView ul li:nth-child(even){
+				background-color:#eee;
+			}
 
-	.inspection {
-		font-weight: bold;
-	}
-
-	.violation {
-		margin-bottom: 1em;
-	}
-
-	.violation-code {
-		font-weight: bold;
-		display: block;
-		border-bottom: 1px solid #dfdfdf;
-	}
-	.observations {
-		list-style-type: disc !important;
-	}
-	.observations li {
-		margin-left: 1.5em;
-	}
-
-=======
-.angular-google-map-container { height: 400px; }
->>>>>>> google-maps-integration
-
-/* views with nav bar on top */
-
-.top-searchbar{
-	width:200px;
-	float:right;
-	margin-top:10px;
-	border-radius:15px;
-	height:30px;
-	border:1px solid #ccc;
-	padding-left:10px;
-}
-
-input[type=text]:focus{
-	outline:none;
-}
-
-.navbar {
-	margin-bottom:0;
-}
-
-.restaurant-img{
-	height:300px;
-	background-color:#aaa;
-}
-
-.restaurant{
-	padding: 20px 0;
-}
-
-.restaurant{
-	border-bottom:1px solid #ccc;
-}
-
-.restaurant .name{
-	font-size:20px;
-}
-
-.restaurant .rate{
-	font-size:30px;
-	text-align:right;
-}
-
-.restaurant table{
-	width:100%;
-}
-
-.violations ul{
-	padding:0;
-}
-.violations li{
-	list-style:none;
-	margin:0;
-	padding: 10px 0;
-	min-height:60px;
-	border-bottom:1px solid #ccc;
-}
-
-.violations li:nth-child(even){
-	background-color:#eee;
-}
-
-.violations .big{
-	font-size:30px;
-}
 
 
 /***********************************
@@ -159,28 +133,35 @@ Tablet and Small Screen Styles here.
 
 @media screen and (min-width: 776px) {
 
-	header h1, header p {
-		text-align: left;
-	}
-	header h1 {
-		font-size: 1.5em;
-	}
+    .angular-google-map-container { height:100%; width:100%; position:absolute; top:0; left:0; }
+    
+    header {
+        text-align: left;   
+    }
+    	header h1 {
+    		font-size: 2em;
+            line-height: 60px;
+            margin: 0;
+    	}
+        header img {
+            margin-top: 1em;
+        }
+        form {
+            
+        }
     
     #listView {
-    
+        
     }
-    
-    #listView .angular-google-map-container { height: 400px; }
 
-    #main {
-        padding: 2em 0;
+    #main.container {
+        padding-top: 2em;
     }
     
 	#restuarantDetailView {
         
     }
-    
-    #restaurantDetailView .angular-google-map-container { height: 200px }
+
 
 }
 /********************************

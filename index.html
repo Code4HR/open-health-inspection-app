@@ -12,33 +12,39 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
   </head>
   <body>
 
     <header>
-      <div class="main-content">
-        <div class="container">
-          
-          <div class="col-sm-8">
-            <h1 class="col-sm-11 pull-right">Open Health Inspection App</h1>
-            <img src="img/logoplaceholder.png" class="col-sm-1 pull-left img-circle">
-            <p class="col-sm-11 pull-right">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <div class="container">
+        
+        <div class="row">
+          <div class="col-xs-10 col-sm-9">
+            <a href="#/"><h1>Open Health Inspection App</h1></a>
           </div>
 
-          <input class="col-sm-4" type="text" placeholder="Search"></input>
-        
+          <div class="col-sm-3">
+            <form action="#" id="search" method="get" name="search">
+              <label for="s" id="search-label"><span class="glyphicon glyphicon-search"></span></label>
+              <input id="s" name="s" placeholder="Search" type="text"/></input>
+            </form>
+
+          </div>
+
         </div>
+      
       </div>
     </header>
 
     <div id="main" class="container">
-
-      <div class="row" ng-view></div>
-
+      <div ng-view></div>
     </div>
 
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/production.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular-route.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular-animate.min.js"></script>

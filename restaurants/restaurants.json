@@ -6,7 +6,11 @@
  "inspections": "10",
  "last_inspection_date": "22-Oct-2013",
  "address": "201 E Berkely Plaza #J",
- "city":"Norfolk"
+ "city":"Norfolk",
+ "center": {
+    "latitude": 36.8315849  ,
+    "longitude": -76.2819519  
+ }
 },
 {
   "id": "2",
@@ -16,7 +20,11 @@
   "inspections": "4",
   "last_inspection_date": "30-Oct-2013",
   "address": "150 W. Main St #100",
-  "city":"Norfolk"
+  "city":"Norfolk",
+  "center": {
+    "latitude": 36.8471527,
+    "longitude": -76.2931824   
+  }
 },
 {
   "id": "3",
@@ -26,5 +34,51 @@
   "inspections": "5",
   "last_inspection_date": "15-Oct-2013",
   "address": "1205 N Military Highway",
-  "city":"Norfolk"
+  "city":"Norfolk",
+  "center": {
+    "latitude": 36.863647,
+    "longitude": -76.2106267
+  }
+},
+{
+ "id": "4",
+ "name": "Boulevard Pizza",
+ "safeName": "boulevard-pizza",
+ "score": "99",
+ "inspections": "10",
+ "last_inspection_date": "22-Oct-2013",
+ "address": "201 E Berkely Plaza #J",
+ "city":"Norfolk",
+ "center": {
+    "latitude": 36.8315849  ,
+    "longitude": -76.2819519  
+ }
+},
+{
+ "id": "5",
+ "name": "Boulevard Pizza",
+ "safeName": "boulevard-pizza",
+ "score": "99",
+ "inspections": "10",
+ "last_inspection_date": "22-Oct-2013",
+ "address": "201 E Berkely Plaza #J",
+ "city":"Norfolk",
+ "center": {
+    "latitude": 36.8315849  ,
+    "longitude": -76.2819519  
+ }
+},
+{
+ "id": "6",
+ "name": "Boulevard Pizza",
+ "safeName": "boulevard-pizza",
+ "score": "99",
+ "inspections": "10",
+ "last_inspection_date": "22-Oct-2013",
+ "address": "201 E Berkely Plaza #J",
+ "city":"Norfolk",
+ "center": {
+    "latitude": 36.8315849  ,
+    "longitude": -76.2819519  
+ }
 }]
