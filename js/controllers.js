@@ -6,7 +6,7 @@ var openHealthDataAppControllers = angular.module('openHealthDataAppControllers'
 
 openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http',
   function($scope, $http) {
-    $http.jsonp('http://api.ttavenner.com/vendors').success(function(data) {
+    $http.jsonp('http://api.ttavenner.com/vendors?callback=JSON_CALLBACK').success(function(data) {
       $scope.restaurants = data;
       console.log($scope.restaurants);
 		});
@@ -66,13 +66,12 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http'
       
     };
 
-
-
   }]);
 
 openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', '$http',
   function($scope, $routeParams, $http) {
-  	$http.get('restaurants/' + $routeParams.id + '.json').success(function(data) {
+
+  	$http.jsonp('http://api.ttavenner.com/inspections/' + $routeParams.id + '?callback=JSON_CALLBACK').success(function(data) {
       $scope.restaurant = data;
       $scope.map.center = $scope.restaurant.center;
     });
