@@ -11,7 +11,7 @@ openHealthDataApp.config(['$routeProvider',
         templateUrl: 'partials/listView.html',
         controller: 'restaurantListCtrl'
       }).
-      when('/restaurants/:id', {
+      when('/vendor/:id', {
         templateUrl: 'partials/restaurantDetailView.html',
         controller: 'restaurantDetailCtrl'
       }).
@@ -27,7 +27,7 @@ var openHealthDataAppControllers = angular.module('openHealthDataAppControllers'
 
 openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http',
   function($scope, $http) {
-    $http.get('restaurants/restaurants.json').success(function(data) {
+    $http.jsonp('http://api.ttavenner.com/vendors').success(function(data) {
       $scope.restaurants = data;
 		});
 

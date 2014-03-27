@@ -11,7 +11,7 @@ openHealthDataApp.config(['$routeProvider',
         templateUrl: 'partials/listView.html',
         controller: 'restaurantListCtrl'
       }).
-      when('/restaurants/:id', {
+      when('/vendor/:id', {
         templateUrl: 'partials/restaurantDetailView.html',
         controller: 'restaurantDetailCtrl'
       }).

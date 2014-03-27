@@ -11,8 +11,9 @@
 	</google-map>
 
 	<ul class="col-sm-3 col-sm-offset-9">
+
 	    <li ng-repeat="restaurant in restaurants">
-		  <a href="#/restaurants/{{restaurant.safeName}}">
+		  <a href="#{{restaurant.url}}">
 	          <div class="col-xs-9">
 	          	<p class="restaurant-name">{{restaurant.name}}</p>
 	          	<p class="distance">{{distanceCalculation(restaurant.center) | number:2}} Miles Away</p>
