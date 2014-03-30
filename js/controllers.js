@@ -4,11 +4,10 @@ Controllers
 
 var openHealthDataAppControllers = angular.module('openHealthDataAppControllers', []);
 
-openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http',
-  function($scope, $http) {
-    $http.jsonp('http://api.ttavenner.com/vendors?callback=JSON_CALLBACK').success(function(data) {
-      $scope.restaurants = data;
-		});
+openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', 'Vendor',
+  function($scope, Vendor) {
+
+    $scope.restaurants = Vendor.query();
 
     $scope.map = {
         center: {
