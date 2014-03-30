@@ -25,6 +25,11 @@ Tablet and Small Screen Styles here.
         
     }
 
+    #listView > ul {
+        height: 500px;
+        overflow-y: scroll;
+    }
+
     #main.container {
         padding-top: 2em;
     }

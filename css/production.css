@@ -107,9 +107,10 @@ header {
 			}
 			#listView ul li .restaurant-name {
 				font-size: 1.25em;
-				line-height: .85em;
+				line-height: .95em;
 				font-weight: 600;
 				margin-bottom: 0;
+				clear: both;
 			}
 			#listView ul li .restaurant-score {
 				font-size: 3em;
@@ -152,6 +153,11 @@ Tablet and Small Screen Styles here.
     
     #listView {
         
+    }
+
+    #listView > ul {
+        height: 500px;
+        overflow-y: scroll;
     }
 
     #main.container {
