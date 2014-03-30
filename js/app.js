@@ -2,6 +2,8 @@
 App.js
 ****************/
 
+"use strict";
+
 var openHealthDataApp = angular.module('openHealthDataApp', ['ngRoute', 'openHealthDataAppControllers', 'ngAnimate', 'google-maps']);
 
 openHealthDataApp.config(['$routeProvider',
@@ -11,7 +13,7 @@ openHealthDataApp.config(['$routeProvider',
         templateUrl: 'partials/listView.html',
         controller: 'restaurantListCtrl'
       }).
-      when('/restaurants/:id', {
+      when('/vendor/:id', {
         templateUrl: 'partials/restaurantDetailView.html',
         controller: 'restaurantDetailCtrl'
       }).

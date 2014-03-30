@@ -1,29 +1,38 @@
 <article id="restaurantDetailView">
 
+	<google-map center="map.center" zoom="18" options="{'disableDefaultUI':'true'}" draggable="false">
+		<marker coords="map.center"></marker>
+	</google-map>
+
 	<section id="restuarant-info" class="col-sm-3">
 
-		<google-map center="map.center" zoom="18" options="{'disableDefaultUI':'true'}" draggable="false">
-		    <marker coords="map.center"></marker>
-		</google-map>
-
-		<h1>{{restaurant.name}}</h1>
-		<ul>
-			<li>Address: {{restaurant.address}}</li>
-			<li>Last Inspection Date: {{restaurant.last_inspection_date}}</li>
-			<li>Number of Inspections: {{restaurant.inspections.length }}</li>
+		<ul ng-repeat="restaurant in restaurants">
+			<li>{{restaurant.name}}</li>
+			<li>{{restaurant.address}}</li>
+			<li>{{restaurant.last_inspection_date}}</li>
 		</ul>
+
 	</section>
 
-	<ul class="col-sm-9">
-		<li ng-repeat="inspection in restaurant.inspections">
-			{{inspection.date}}
+	<section id="inspections" class="col-sm-9" ng-repeat="restaurant in restaurants">
+
+		<ul ng-repeat="inspection in restaurant.inspections">
+			<li>{{inspection.date}}</li>
+			<li>{{inspection.type}}</li>
 			<ul>
 				<li ng-repeat="violation in inspection.violations">
 					{{violation.code}}
-					{{violation.observations}} 	
+					{{violation.observation}}
+					{{violation.correction}}
+					{{violation.corrected}}
+					{{violation.critical}}
+					{{violation.repeat}}
 				</li>
 			</ul>
-		</li>
-	</ul>
+		</ul>
+
+	</section>
+
+	
 
 </article>

@@ -2,6 +2,8 @@
 App.js
 ****************/
 
+"use strict";
+
 var openHealthDataApp = angular.module('openHealthDataApp', ['ngRoute', 'openHealthDataAppControllers', 'ngAnimate', 'google-maps']);
 
 openHealthDataApp.config(['$routeProvider',
@@ -11,7 +13,7 @@ openHealthDataApp.config(['$routeProvider',
         templateUrl: 'partials/listView.html',
         controller: 'restaurantListCtrl'
       }).
-      when('/restaurants/:id', {
+      when('/vendor/:id', {
         templateUrl: 'partials/restaurantDetailView.html',
         controller: 'restaurantDetailCtrl'
       }).
@@ -27,7 +29,7 @@ var openHealthDataAppControllers = angular.module('openHealthDataAppControllers'
 
 openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http',
   function($scope, $http) {
-    $http.get('restaurants/restaurants.json').success(function(data) {
+    $http.jsonp('http://api.ttavenner.com/vendors?callback=JSON_CALLBACK').success(function(data) {
       $scope.restaurants = data;
 		});
 
@@ -66,8 +68,10 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http'
 
     $scope.distanceCalculation = function(input) {
 
-      var lat2 = input.latitude;
-      var lon2 = input.longitude;
+      //var lat2 = input.latitude;
+      //var lon2 = input.longitude;
+      var lat2 = input[0];
+      var lon2 = input[1];
       var lat1 = $scope.map.center.latitude;
       var lon1 = $scope.map.center.longitude;
 
@@ -90,9 +94,12 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http'
 
 openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', '$http',
   function($scope, $routeParams, $http) {
-  	$http.get('restaurants/' + $routeParams.id + '.json').success(function(data) {
-      $scope.restaurant = data;
-      $scope.map.center = $scope.restaurant.center;
+
+  	$http.jsonp('http://api.ttavenner.com/inspections/' + $routeParams.id + '?callback=JSON_CALLBACK').success(function(data) {
+      $scope.restaurants = data;
+
+      //console.log( $routeParams.id);
+      console.log( $scope.restaurants);
     });
 
     $scope.map = {
@@ -108,6 +115,7 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$rou
 /******************
 Models
 ******************/
+
 
 /******************
 Views
