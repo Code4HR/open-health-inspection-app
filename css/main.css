@@ -16,11 +16,19 @@ header {
 	border-bottom:1px solid #ccc;
 	text-align: center;
 	min-height: 60px;
-}
-	header h1 {
+} 
+	header a {
+		color: inherit;
+		text-decoration: none;
+	} 
+		header a:hover, header a:focus {
+			color: inherit;
+			text-decoration: none;
+		}
+		header a h1 {
 		margin: .5em 0;
-		font-size: 1em;
-		line-height: 3em;
+		font-size: 1.2em;
+		line-height: 2.5em;
 		font-weight: 900;
 		text-align: left;
 		text-transform: uppercase;
@@ -45,7 +53,6 @@ header {
 			right:0;
 			margin-left:5px;
 			text-indent:10px;
-			border-radius: 22.5px 0 0 22.5px;
 		}
 			header form#search input:focus {
 				width: 100%; /* You can change this to the desired width */
@@ -70,6 +77,10 @@ header {
 				right:0;
 				cursor:pointer
 			}		
+			#search-label .glyphicon {
+				top: 3px;
+			}
+
 				#search-label:hover {
 					background:#e74c3c
 				}
@@ -96,9 +107,10 @@ header {
 			}
 			#listView ul li .restaurant-name {
 				font-size: 1.25em;
-				line-height: .85em;
+				line-height: .95em;
 				font-weight: 600;
 				margin-bottom: 0;
+				clear: both;
 			}
 			#listView ul li .restaurant-score {
 				font-size: 3em;
