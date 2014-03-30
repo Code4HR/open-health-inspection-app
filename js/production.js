@@ -32,6 +32,8 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', 'Vendor
 
     $scope.restaurants = Vendor.query();
 
+    console.log($scope.restaurants);
+
     $scope.map = {
         center: {
             latitude: 36.847010,
@@ -122,8 +124,8 @@ Services
 var openHealthDataAppServices = angular.module('openHealthDataAppServices', ['ngResource']);
      
 openHealthDataAppServices.factory('Vendor', ['$resource', function($resource){
-	return $resource('http://api.ttavenner.com/', {}, {
-		query: {method:'GET', isArray:true}
+	return $resource('http://api.ttavenner.com/vendors', {}, {
+		query: { method:'JSONP', params: {callback: 'JSON_CALLBACK'} }
 	});
 }]);
 /******************

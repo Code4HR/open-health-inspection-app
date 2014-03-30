@@ -9,6 +9,8 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', 'Vendor
 
     $scope.restaurants = Vendor.query();
 
+    console.log($scope.restaurants);
+
     $scope.map = {
         center: {
             latitude: 36.847010,
