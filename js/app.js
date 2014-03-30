@@ -2,6 +2,8 @@
 App.js
 ****************/
 
+"use strict";
+
 var openHealthDataApp = angular.module('openHealthDataApp', ['ngRoute', 'openHealthDataAppControllers', 'ngAnimate', 'google-maps']);
 
 openHealthDataApp.config(['$routeProvider',

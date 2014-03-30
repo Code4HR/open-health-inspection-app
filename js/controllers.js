@@ -8,7 +8,6 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http'
   function($scope, $http) {
     $http.jsonp('http://api.ttavenner.com/vendors?callback=JSON_CALLBACK').success(function(data) {
       $scope.restaurants = data;
-      console.log($scope.restaurants);
 		});
 
     $scope.map = {
@@ -46,8 +45,10 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http'
 
     $scope.distanceCalculation = function(input) {
 
-      var lat2 = input.latitude;
-      var lon2 = input.longitude;
+      //var lat2 = input.latitude;
+      //var lon2 = input.longitude;
+      var lat2 = input[0];
+      var lon2 = input[1];
       var lat1 = $scope.map.center.latitude;
       var lon1 = $scope.map.center.longitude;
 
@@ -72,8 +73,10 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$rou
   function($scope, $routeParams, $http) {
 
   	$http.jsonp('http://api.ttavenner.com/inspections/' + $routeParams.id + '?callback=JSON_CALLBACK').success(function(data) {
-      $scope.restaurant = data;
-      $scope.map.center = $scope.restaurant.center;
+      $scope.restaurants = data;
+
+      //console.log( $routeParams.id);
+      console.log( $scope.restaurants);
     });
 
     $scope.map = {

@@ -4,7 +4,6 @@ Tablet and Small Screen Styles here.
 
 @media screen and (min-width: 776px) {
 
-    .angular-google-map-container { height:100%; width:100%; position:absolute; top:0; left:0; }
     
     header {
         text-align: left;   
@@ -21,19 +20,19 @@ Tablet and Small Screen Styles here.
             
         }
     
-    #listView {
-        
-    }
-
-    #listView > ul {
-        height: 500px;
-        overflow-y: scroll;
-    }
-
     #main.container {
         padding-top: 2em;
     }
-    
+
+    #listView {
+        
+    }
+        #listView .angular-google-map-container { height:100%; width:100%; position:absolute; top:0; left:0; }
+        #listView > ul {
+            height: 500px;
+            overflow-y: scroll;
+        }
+
 	#restuarantDetailView {
         
     }
