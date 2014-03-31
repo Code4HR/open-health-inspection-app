@@ -27,12 +27,10 @@ Controllers
 
 var openHealthDataAppControllers = angular.module('openHealthDataAppControllers', []);
 
-openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', 'Vendor',
-  function($scope, Vendor) {
+openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', 'Vendors',
+  function($scope, Vendors) {
 
-    $scope.restaurants = Vendor.query();
-
-    console.log($scope.restaurants);
+    $scope.restaurants = Vendors.query();
 
     $scope.map = {
         center: {
@@ -93,15 +91,10 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', 'Vendor
 
   }]);
 
-openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', '$http',
-  function($scope, $routeParams, $http) {
+openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', 'Vendor',
+  function($scope, $routeParams, Vendor) {
 
-  	$http.jsonp('http://api.ttavenner.com/inspections/' + $routeParams.id + '?callback=JSON_CALLBACK').success(function(data) {
-      $scope.restaurants = data;
-
-      //console.log( $routeParams.id);
-      console.log( $scope.restaurants);
-    });
+    $scope.restaurant = Vendor.query({vendor_id: $routeParams.id});
 
     $scope.map = {
         center: {
@@ -110,7 +103,6 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$rou
         },
         zoom: 18
     };
-
 
   }]);
 /******************
@@ -123,9 +115,15 @@ Services
 
 var openHealthDataAppServices = angular.module('openHealthDataAppServices', ['ngResource']);
      
-openHealthDataAppServices.factory('Vendor', ['$resource', function($resource){
-	return $resource('http://api.ttavenner.com/vendors', {}, {
-		query: { method:'JSONP', params: {callback: 'JSON_CALLBACK'} }
+openHealthDataAppServices.factory('Vendors', ['$resource', '$routeParams', function($resource){
+	return $resource('http://api.ttavenner.com/vendors/', {}, {
+		query: { method:'JSONP', params: {callback: 'JSON_CALLBACK'} },
+	});
+}]);
+
+openHealthDataAppServices.factory('Vendor', ['$resource', '$routeParams', function($resource){
+	return $resource('http://api.ttavenner.com/vendor/:vendor_id', {}, {
+		query: { method:'JSONP', params: {vendor_id: '/', callback: 'JSON_CALLBACK'} },
 	});
 }]);
 /******************
