@@ -44,10 +44,10 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', 'Vendor
 
     $scope.distanceCalculation = function(input) {
 
-      //var lat2 = input.latitude;
-      //var lon2 = input.longitude;
-      var lat2 = input[0];
-      var lon2 = input[1];
+      var lat2 = input.latitude;
+      var lon2 = input.longitude;
+      //var lat2 = input[0];
+      //var lon2 = input[1];
       var lat1 = $scope.map.center.latitude;
       var lon1 = $scope.map.center.longitude;
 
@@ -71,7 +71,7 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', 'Vendor
 openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', 'Vendor',
   function($scope, $routeParams, Vendor) {
 
-    $scope.restaurant = Vendor.query({vendor_id: $routeParams.id});
+    $scope.restaurants = Vendor.query({vendor_id: $routeParams.id});
 
     $scope.map = {
         center: {

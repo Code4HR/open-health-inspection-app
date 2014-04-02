@@ -67,10 +67,10 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', 'Vendor
 
     $scope.distanceCalculation = function(input) {
 
-      //var lat2 = input.latitude;
-      //var lon2 = input.longitude;
-      var lat2 = input[0];
-      var lon2 = input[1];
+      var lat2 = input.latitude;
+      var lon2 = input.longitude;
+      //var lat2 = input[0];
+      //var lon2 = input[1];
       var lat1 = $scope.map.center.latitude;
       var lon1 = $scope.map.center.longitude;
 
@@ -94,7 +94,7 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', 'Vendor
 openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', 'Vendor',
   function($scope, $routeParams, Vendor) {
 
-    $scope.restaurant = Vendor.query({vendor_id: $routeParams.id});
+    $scope.restaurants = Vendor.query({vendor_id: $routeParams.id});
 
     $scope.map = {
         center: {
@@ -114,16 +114,39 @@ Services
 ******************/
 
 var openHealthDataAppServices = angular.module('openHealthDataAppServices', ['ngResource']);
-     
+ 
+//Get a list of all vendors     
 openHealthDataAppServices.factory('Vendors', ['$resource', '$routeParams', function($resource){
 	return $resource('http://api.ttavenner.com/vendors/', {}, {
 		query: { method:'JSONP', params: {callback: 'JSON_CALLBACK'} },
 	});
 }]);
 
+//get violation information specific to a vendor
 openHealthDataAppServices.factory('Vendor', ['$resource', '$routeParams', function($resource){
 	return $resource('http://api.ttavenner.com/vendor/:vendor_id', {}, {
 		query: { method:'JSONP', params: {vendor_id: '/', callback: 'JSON_CALLBACK'} },
+	});
+}]);
+
+//make search by search string
+openHealthDataAppServices.factory('Search', ['$resource', '$routeParams', function($resource){
+	return $resource('http://api.ttavenner.com/vendors/:search_string', {}, {
+		query: { method:'JSONP', params: {search_string: '/', callback: 'JSON_CALLBACK'} },
+	});
+}]);
+
+//get inspections by vendor.
+openHealthDataAppServices.factory('Inspections', ['$resource', '$routeParams', function($resource){
+	return $resource('http://api.ttavenner.com/inspections/:vendor_id', {}, {
+		query: { method:'JSONP', params: {vendor_id: '/', callback: 'JSON_CALLBACK'} },
+	});
+}]);
+
+//get inspections by location.
+openHealthDataAppServices.factory('Geosearch', ['$resource', '$routeParams', function($resource){
+	return $resource('http://api.ttavenner.com/vendors/geosearch/:lng/:lat/:dist', {}, {
+		query: { method:'JSONP', params: {lat: '36.847010', lng: '-76.292430', dist: '5000', callback: 'JSON_CALLBACK'} },
 	});
 }]);
 /******************
