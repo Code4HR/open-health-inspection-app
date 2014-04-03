@@ -4,11 +4,10 @@ Controllers
 
 var openHealthDataAppControllers = angular.module('openHealthDataAppControllers', []);
 
-openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http',
-  function($scope, $http) {
-    $http.get('restaurants/restaurants.json').success(function(data) {
-      $scope.restaurants = data;
-		});
+openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', 'Vendors',
+  function($scope, Vendors) {
+
+    $scope.restaurants = Vendors.query();
 
     $scope.map = {
         center: {
@@ -47,6 +46,8 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http'
 
       var lat2 = input.latitude;
       var lon2 = input.longitude;
+      //var lat2 = input[0];
+      //var lon2 = input[1];
       var lat1 = $scope.map.center.latitude;
       var lon1 = $scope.map.center.longitude;
 
@@ -67,12 +68,10 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http'
 
   }]);
 
-openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', '$http',
-  function($scope, $routeParams, $http) {
-  	$http.get('restaurants/' + $routeParams.id + '.json').success(function(data) {
-      $scope.restaurant = data;
-      $scope.map.center = $scope.restaurant.center;
-    });
+openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', 'Vendor',
+  function($scope, $routeParams, Vendor) {
+
+    $scope.restaurants = Vendor.query({vendor_id: $routeParams.id});
 
     $scope.map = {
         center: {
@@ -81,6 +80,5 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$rou
         },
         zoom: 18
     };
-
 
   }]);
