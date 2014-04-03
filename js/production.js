@@ -2,7 +2,9 @@
 App.js
 ****************/
 
-var openHealthDataApp = angular.module('openHealthDataApp', ['ngRoute', 'openHealthDataAppControllers', 'ngAnimate', 'google-maps']);
+"use strict";
+
+var openHealthDataApp = angular.module('openHealthDataApp', ['ngRoute', 'openHealthDataAppControllers', 'openHealthDataAppServices', 'ngAnimate', 'google-maps']);
 
 openHealthDataApp.config(['$routeProvider',
   function($routeProvider) {
@@ -11,7 +13,7 @@ openHealthDataApp.config(['$routeProvider',
         templateUrl: 'partials/listView.html',
         controller: 'restaurantListCtrl'
       }).
-      when('/restaurants/:id', {
+      when('/vendor/:id', {
         templateUrl: 'partials/restaurantDetailView.html',
         controller: 'restaurantDetailCtrl'
       }).
@@ -25,11 +27,10 @@ Controllers
 
 var openHealthDataAppControllers = angular.module('openHealthDataAppControllers', []);
 
-openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http',
-  function($scope, $http) {
-    $http.get('restaurants/restaurants.json').success(function(data) {
-      $scope.restaurants = data;
-		});
+openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', 'Vendors',
+  function($scope, Vendors) {
+
+    $scope.restaurants = Vendors.query();
 
     $scope.map = {
         center: {
@@ -68,6 +69,8 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http'
 
       var lat2 = input.latitude;
       var lon2 = input.longitude;
+      //var lat2 = input[0];
+      //var lon2 = input[1];
       var lat1 = $scope.map.center.latitude;
       var lon1 = $scope.map.center.longitude;
 
@@ -88,12 +91,10 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http'
 
   }]);
 
-openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', '$http',
-  function($scope, $routeParams, $http) {
-  	$http.get('restaurants/' + $routeParams.id + '.json').success(function(data) {
-      $scope.restaurant = data;
-      $scope.map.center = $scope.restaurant.center;
-    });
+openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', 'Vendor',
+  function($scope, $routeParams, Vendor) {
+
+    $scope.restaurants = Vendor.query({vendor_id: $routeParams.id});
 
     $scope.map = {
         center: {
@@ -103,12 +104,51 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$rou
         zoom: 18
     };
 
-
   }]);
 /******************
 Models
 ******************/
 
+/******************
+Services
+******************/
+
+var openHealthDataAppServices = angular.module('openHealthDataAppServices', ['ngResource']);
+ 
+//Get a list of all vendors     
+openHealthDataAppServices.factory('Vendors', ['$resource', '$routeParams', function($resource){
+	return $resource('http://api.ttavenner.com/vendors/', {}, {
+		query: { method:'JSONP', params: {callback: 'JSON_CALLBACK'} },
+	});
+}]);
+
+//get violation information specific to a vendor
+openHealthDataAppServices.factory('Vendor', ['$resource', '$routeParams', function($resource){
+	return $resource('http://api.ttavenner.com/vendor/:vendor_id', {}, {
+		query: { method:'JSONP', params: {vendor_id: '/', callback: 'JSON_CALLBACK'} },
+	});
+}]);
+
+//make search by search string
+openHealthDataAppServices.factory('Search', ['$resource', '$routeParams', function($resource){
+	return $resource('http://api.ttavenner.com/vendors/:search_string', {}, {
+		query: { method:'JSONP', params: {search_string: '/', callback: 'JSON_CALLBACK'} },
+	});
+}]);
+
+//get inspections by vendor.
+openHealthDataAppServices.factory('Inspections', ['$resource', '$routeParams', function($resource){
+	return $resource('http://api.ttavenner.com/inspections/:vendor_id', {}, {
+		query: { method:'JSONP', params: {vendor_id: '/', callback: 'JSON_CALLBACK'} },
+	});
+}]);
+
+//get inspections by location.
+openHealthDataAppServices.factory('Geosearch', ['$resource', '$routeParams', function($resource){
+	return $resource('http://api.ttavenner.com/vendors/geosearch/:lng/:lat/:dist', {}, {
+		query: { method:'JSONP', params: {lat: '36.847010', lng: '-76.292430', dist: '5000', callback: 'JSON_CALLBACK'} },
+	});
+}]);
 /******************
 Views
 ******************/
