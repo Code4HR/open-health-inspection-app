@@ -10,6 +10,6 @@ openHealthDataServices.factory('Vendors', ['$resource',
 openHealthDataServices.factory('Geosearch', ['$resource',
   function($resource) {
     return $resource('http://api.ttavenner.com/vendors/geosearch/:lat/:lon/:dist', {}, {
-      query: { method: 'JSONP', params: {lat: '36', lon: '-23', dist: '1000', callback: 'JSON_CALLBACK'} }
+      query: { method: 'JSONP', params: {lat: '36', lon: '-72', dist: '1000', callback: 'JSON_CALLBACK'} }
     });
   }]);

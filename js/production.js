@@ -63,38 +63,6 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http'
     $scope.getLocation(function(){
       $scope.restaurants = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: 1000});
     });
-    
-    //distance calculation
-
-    $scope.toRad = function(Value) {
-       return Value * Math.PI / 180;
-    };
-
-    $scope.distanceCalculation = function(input) {
-
-      var lat2 = input.latitude;
-      var lon2 = input.longitude;
-      //var lat2 = input[0];
-      //var lon2 = input[1];
-      var lat1 = $scope.map.center.latitude;
-      var lon1 = $scope.map.center.longitude;
-
-      var R = 6371; // km
-      var dLat = $scope.toRad(lat2-lat1);
-      var dLon = $scope.toRad(lon2-lon1);
-      lat1 = $scope.toRad(lat1);
-      lat2 = $scope.toRad(lat2);
-
-      var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-              Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
-      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-      var d = R * c;
-
-      return d * 0.62137;
-
-
-      
-    };
 
   }]);
 
@@ -146,7 +114,7 @@ openHealthDataServices.factory('Vendors', ['$resource',
 openHealthDataServices.factory('Geosearch', ['$resource',
   function($resource) {
     return $resource('http://api.ttavenner.com/vendors/geosearch/:lat/:lon/:dist', {}, {
-      query: { method: 'JSONP', params: {lat: '36', lon: '-23', dist: '1000', callback: 'JSON_CALLBACK'} }
+      query: { method: 'JSONP', params: {lat: '36', lon: '-72', dist: '1000', callback: 'JSON_CALLBACK'} }
     });
   }]);
 /******************
