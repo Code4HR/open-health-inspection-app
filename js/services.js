@@ -8,8 +8,8 @@ openHealthDataServices.factory('Vendors', ['$resource',
   }]);
 
 openHealthDataServices.factory('Geosearch', ['$resource',
-  function($resource){
-    return $resource('http://api.ttavenner.com/vendors/geosearch/:lng/:lat/:dist', {}, {
-      query: { method: 'JSONP', params: {lng: '36', lat: '-76', dist: '5000', callback: 'JSON_CALLBACK'} }
+  function($resource) {
+    return $resource('http://api.ttavenner.com/vendors/geosearch/:lat/:lon/:dist', {}, {
+      query: { method: 'JSONP', params: {lat: '36', lon: '-23', dist: '1000', callback: 'JSON_CALLBACK'} }
     });
   }]);

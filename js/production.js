@@ -42,8 +42,6 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http'
         zoom: 17
     };
 
-    $scope.restaurants = Geosearch.query({lat: $scope.map.center.latitude, lng: $scope.map.center.longitude, dist: 5000});
-
     $scope.showPosition = function(position) {
       $scope.map.center.latitude = position.coords.latitude;
       $scope.map.center.longitude = position.coords.longitude;
@@ -53,16 +51,19 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http'
       console.log("error");
     }
 
-    $scope.getLocation = function(){
+    $scope.getLocation = function(callback){
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition($scope.showPosition, $scope.showError)
+        navigator.geolocation.getCurrentPosition($scope.showPosition, $scope.showError);
       } else {
         $scope.error = "Geolocation is not supported by this browser.";
       }
+      callback();
     }
 
-    $scope.getLocation();
-
+    $scope.getLocation(function(){
+      $scope.restaurants = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: 1000});
+    });
+    
     //distance calculation
 
     $scope.toRad = function(Value) {
@@ -143,9 +144,9 @@ openHealthDataServices.factory('Vendors', ['$resource',
   }]);
 
 openHealthDataServices.factory('Geosearch', ['$resource',
-  function($resource){
-    return $resource('http://api.ttavenner.com/vendors/geosearch/:lng/:lat/:dist', {}, {
-      query: { method: 'JSONP', params: {lng: '36', lat: '-76', dist: '5000', callback: 'JSON_CALLBACK'} }
+  function($resource) {
+    return $resource('http://api.ttavenner.com/vendors/geosearch/:lat/:lon/:dist', {}, {
+      query: { method: 'JSONP', params: {lat: '36', lon: '-23', dist: '1000', callback: 'JSON_CALLBACK'} }
     });
   }]);
 /******************
