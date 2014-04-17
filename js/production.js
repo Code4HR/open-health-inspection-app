@@ -4,7 +4,7 @@ App.js
 
 "use strict";
 
-var openHealthDataApp = angular.module('openHealthDataApp', ['ngRoute', 'openHealthDataAppControllers', 'ngAnimate', 'google-maps']);
+var openHealthDataApp = angular.module('openHealthDataApp', ['ngRoute', 'openHealthDataAppControllers', 'ngAnimate', 'openHealthDataServices', 'google-maps']);
 
 openHealthDataApp.config(['$routeProvider',
   function($routeProvider) {
@@ -87,6 +87,8 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http'
       var d = R * c;
 
       return d * 0.62137;
+
+
       
     };
 
@@ -112,9 +114,29 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$rou
 
 
   }]);
+
+openHealthDataAppControllers.controller('searchCtrl', ['$scope',
+  function($scope){
+
+    $scope.nameSearch = function() {
+      alert("Searching for " + $scope.query + ".");
+      
+    }
+
+  }]);
 /******************
 Models
 ******************/
+
+var openHealthDataServices = angular.module('openHealthDataServices', ['ngResource']);
+ 
+openHealthDataServices.factory('Vendor', ['$resource',
+  function($resource){
+    return $resource('http://api.ttavenner.com/vendors', {}, {
+      query: { method: 'JSONP', params: {callback: 'JSON_CALLBACK'} }
+    });
+  }]);
+
 
 /******************
 Views

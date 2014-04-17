@@ -64,6 +64,8 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http'
       var d = R * c;
 
       return d * 0.62137;
+
+
       
     };
 
@@ -87,5 +89,15 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$rou
         zoom: 18
     };
 
+
+  }]);
+
+openHealthDataAppControllers.controller('searchCtrl', ['$scope',
+  function($scope){
+
+    $scope.nameSearch = function() {
+      alert("Searching for " + $scope.query + ".");
+      
+    }
 
   }]);
