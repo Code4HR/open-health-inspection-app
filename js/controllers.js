@@ -4,11 +4,12 @@ Controllers
 
 var openHealthDataAppControllers = angular.module('openHealthDataAppControllers', []);
 
-openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http',
-  function($scope, $http) {
-    $http.jsonp('http://api.ttavenner.com/vendors?callback=JSON_CALLBACK').success(function(data) {
+openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http', 'Geosearch',
+  function($scope, $http, Geosearch) {
+    
+    /*$http.jsonp('http://api.ttavenner.com/vendors?callback=JSON_CALLBACK').success(function(data) {
       $scope.restaurants = data;
-		});
+		});*/
 
     $scope.map = {
         center: {
@@ -17,6 +18,8 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http'
         },
         zoom: 17
     };
+
+    $scope.restaurants = Geosearch.query({lat: $scope.map.center.latitude, lng: $scope.map.center.longitude, dist: 5000});
 
     $scope.showPosition = function(position) {
       $scope.map.center.latitude = position.coords.latitude;
@@ -97,7 +100,9 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope',
 
     $scope.nameSearch = function() {
       alert("Searching for " + $scope.query + ".");
-      
+
+
+
     }
 
   }]);
