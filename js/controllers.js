@@ -64,14 +64,13 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$rou
 
   }]);
 
-openHealthDataAppControllers.controller('searchCtrl', ['$scope',
-  function($scope){
+openHealthDataAppControllers.controller('searchCtrl', ['$scope', 'Search',
+  function($scope, Search){
 
     $scope.nameSearch = function() {
-      alert("Searching for " + $scope.query + ".");
-
-
-
+      console.log("Searching for " + $scope.query + ".");
+      var searchResults = Search.query({searchString: $scope.query});
+      console.log(searchResults);
     }
 
   }]);
