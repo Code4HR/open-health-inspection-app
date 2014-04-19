@@ -20,3 +20,9 @@ openHealthDataServices.factory('Search', ['$resource',
       query: { method: 'JSONP', params: {searchString: '', callback: 'JSON_CALLBACK'} }
     });
   }]);
+
+
+openHealthDataServices.factory('Data', ['$resource',
+  function($resource) {
+    return {query: "I'm data from a service."}
+  }]);

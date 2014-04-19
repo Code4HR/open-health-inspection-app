@@ -4,12 +4,10 @@ Controllers
 
 var openHealthDataAppControllers = angular.module('openHealthDataAppControllers', []);
 
-openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http', 'Geosearch',
-  function($scope, $http, Geosearch) {
-    
-    /*$http.jsonp('http://api.ttavenner.com/vendors?callback=JSON_CALLBACK').success(function(data) {
-      $scope.restaurants = data;
-		});*/
+openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http', 'Geosearch', 'Data',
+  function($scope, $http, Geosearch, Data) {
+
+    $scope.query = Data;
 
     $scope.map = {
         center: {
@@ -64,13 +62,15 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$rou
 
   }]);
 
-openHealthDataAppControllers.controller('searchCtrl', ['$scope', 'Search',
-  function($scope, Search){
+openHealthDataAppControllers.controller('searchCtrl', ['$scope', 'Search', 'Data'
+  function($scope, Search, Data){
 
     $scope.nameSearch = function() {
       console.log("Searching for " + $scope.query + ".");
       var searchResults = Search.query({searchString: $scope.query});
       console.log(searchResults);
     }
+
+    $scope.query = Data;
 
   }]);
