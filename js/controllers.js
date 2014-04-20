@@ -42,7 +42,8 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$rootS
     $rootScope.$on('searchFire', function(){
       console.log('searchFire heard.');
       //$scope.query = "searchFire information here."
-      $scope.query = Data.query;
+      //$rootScope.query = Data.query;
+      $scope.restaurants = Data.query;
     })
 
   }]);
@@ -73,6 +74,8 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
 
     $scope.nameSearch = function() {
       console.log("Searching for " + $scope.query + ".");
+      //$scope.query = Data.query;
+      Data.query = $scope.query;
       $rootScope.$broadcast('searchFire');
     }
 
