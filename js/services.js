@@ -21,7 +21,6 @@ openHealthDataServices.factory('Search', ['$resource',
     });
   }]);
 
-
 openHealthDataServices.factory('Data', ['$resource',
   function($resource) {
     return {query: "I'm data from a service."}
