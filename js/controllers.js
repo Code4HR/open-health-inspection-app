@@ -4,10 +4,10 @@ Controllers
 
 var openHealthDataAppControllers = angular.module('openHealthDataAppControllers', []);
 
-openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http', 'Geosearch', 'Data',
-  function($scope, $http, Geosearch, Data) {
+openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$rootScope', '$http', 'Geosearch', 'Data',
+  function($scope, $rootScope, $http, Geosearch, Data) {
 
-    $scope.query = Data;
+    $scope.query = Data.query;
 
     $scope.map = {
         center: {
@@ -39,6 +39,12 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http'
       $scope.restaurants = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: 1000});
     });
 
+    $rootScope.$on('searchFire', function(){
+      console.log('searchFire heard.');
+      //$scope.query = "searchFire information here."
+      $scope.query = Data.query;
+    })
+
   }]);
 
 openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', '$http',
@@ -62,15 +68,14 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$rou
 
   }]);
 
-openHealthDataAppControllers.controller('searchCtrl', ['$scope', 'Search', 'Data'
-  function($scope, Search, Data){
+openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', 'Search', 'Data',
+  function($scope, $rootScope, Search, Data){
 
     $scope.nameSearch = function() {
       console.log("Searching for " + $scope.query + ".");
-      var searchResults = Search.query({searchString: $scope.query});
-      console.log(searchResults);
+      $rootScope.$broadcast('searchFire');
     }
 
-    $scope.query = Data;
+    $scope.query = Data.query;
 
   }]);
