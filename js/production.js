@@ -58,19 +58,16 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$rootS
       callback();
     }
 
-    $scope.getLocation(function(){
-      $scope.restaurants = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: 1000});
-    });
+    $scope.getLocation(function(){});
+
+    $scope.restaurants = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: 1000});
+
 
     $rootScope.$on('searchFire', function(){
       console.log('searchFire heard.');
-      //$scope.query = "searchFire information here."
-      //$rootScope.query = Data.query;
-      //$scope.query = Data.query;
       console.log('Searching for ' + Data.query);
-      $scope.query = Search.query({searchString: Data.query});
-
-    })
+      $scope.restaurants = Search.query({searchString: Data.query});
+    });
 
   }]);
 
@@ -100,7 +97,6 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
 
     $scope.nameSearch = function() {
       console.log("Searching for " + $scope.query + ".");
-      //$scope.query = Data.query;
       Data.query = $scope.query;
       $rootScope.$broadcast('searchFire');
     }
