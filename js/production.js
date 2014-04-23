@@ -4,7 +4,7 @@ App.js
 
 "use strict";
 
-var openHealthDataApp = angular.module('openHealthDataApp', ['ngRoute', 'openHealthDataAppControllers', 'ngAnimate', 'google-maps']);
+var openHealthDataApp = angular.module('openHealthDataApp', ['ngRoute', 'openHealthDataAppControllers', 'ngAnimate', 'openHealthDataServices', 'google-maps']);
 
 openHealthDataApp.config(['$routeProvider',
   function($routeProvider) {
@@ -27,11 +27,10 @@ Controllers
 
 var openHealthDataAppControllers = angular.module('openHealthDataAppControllers', []);
 
-openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http',
-  function($scope, $http) {
-    $http.jsonp('http://api.ttavenner.com/vendors?callback=JSON_CALLBACK').success(function(data) {
-      $scope.restaurants = data;
-		});
+openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$rootScope', '$http', 'Geosearch', 'Data', 'Search',
+  function($scope, $rootScope, $http, Geosearch, Data, Search) {
+
+    $scope.query = Data.query;
 
     $scope.map = {
         center: {
@@ -50,45 +49,25 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$http'
       console.log("error");
     }
 
-    $scope.getLocation = function(){
+    $scope.getLocation = function(callback){
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition($scope.showPosition, $scope.showError)
+        navigator.geolocation.getCurrentPosition($scope.showPosition, $scope.showError);
       } else {
         $scope.error = "Geolocation is not supported by this browser.";
       }
+      callback();
     }
 
-    $scope.getLocation();
+    $scope.getLocation(function(){});
 
-    //distance calculation
+    $scope.restaurants = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: 1000});
 
-    $scope.toRad = function(Value) {
-       return Value * Math.PI / 180;
-    };
 
-    $scope.distanceCalculation = function(input) {
-
-      var lat2 = input.latitude;
-      var lon2 = input.longitude;
-      //var lat2 = input[0];
-      //var lon2 = input[1];
-      var lat1 = $scope.map.center.latitude;
-      var lon1 = $scope.map.center.longitude;
-
-      var R = 6371; // km
-      var dLat = $scope.toRad(lat2-lat1);
-      var dLon = $scope.toRad(lon2-lon1);
-      lat1 = $scope.toRad(lat1);
-      lat2 = $scope.toRad(lat2);
-
-      var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-              Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
-      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-      var d = R * c;
-
-      return d * 0.62137;
-      
-    };
+    $rootScope.$on('searchFire', function(){
+      console.log('searchFire heard.');
+      console.log('Searching for ' + Data.query);
+      $scope.restaurants = Search.query({searchString: Data.query});
+    });
 
   }]);
 
@@ -112,10 +91,50 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$rou
 
 
   }]);
+
+openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', 'Search', 'Data',
+  function($scope, $rootScope, Search, Data){
+
+    $scope.nameSearch = function() {
+      console.log("Searching for " + $scope.query + ".");
+      Data.query = $scope.query;
+      $rootScope.$broadcast('searchFire');
+    }
+
+    $scope.query = Data.query;
+
+  }]);
 /******************
 Models
 ******************/
 
+var openHealthDataServices = angular.module('openHealthDataServices', ['ngResource']);
+ 
+openHealthDataServices.factory('Vendors', ['$resource',
+  function($resource){
+    return $resource('http://api.ttavenner.com/vendors', {}, {
+      query: { method: 'JSONP', params: {callback: 'JSON_CALLBACK'} }
+    });
+  }]);
+
+openHealthDataServices.factory('Geosearch', ['$resource',
+  function($resource) {
+    return $resource('http://api.ttavenner.com/vendors/geosearch/:lat/:lon/:dist', {}, {
+      query: { method: 'JSONP', params: {lat: '36', lon: '-72', dist: '1000', callback: 'JSON_CALLBACK'} }
+    });
+  }]);
+
+openHealthDataServices.factory('Search', ['$resource',
+  function($resource) {
+    return $resource('http://api.ttavenner.com/vendors/textsearch/:searchString', {}, {
+      query: { method: 'JSONP', params: {searchString: '', callback: 'JSON_CALLBACK'} }
+    });
+  }]);
+
+openHealthDataServices.factory('Data', ['$resource',
+  function($resource) {
+    return {query: "I'm data from a service."}
+  }]);
 /******************
 Views
 ******************/
