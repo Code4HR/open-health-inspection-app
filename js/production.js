@@ -49,15 +49,18 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$rootS
       console.log("error");
     }
 
-    $scope.getLocation = function(){
+    $scope.getLocation = function(callback){
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition($scope.showPosition, $scope.showError);
       } else {
         $scope.error = "Geolocation is not supported by this browser.";
       }
+      callback();
     }
 
-    $scope.getLocation();
+    $scope.getLocation(function(){
+          $scope.restaurants = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: 1000});
+    });
     
     $scope.toRad = function(Value) {
         return Value * Math.PI / 180;
@@ -71,7 +74,7 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$rootS
       var lat1 = $scope.map.center.latitude;
       var lon1 = $scope.map.center.longitude;
 
-      var R = 6371; // km
+      var R = 6378.137; // km
       var dLat = $scope.toRad(lat2-lat1);
       var dLon = $scope.toRad(lon2-lon1);
       lat1 = $scope.toRad(lat1);
@@ -86,11 +89,8 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$rootS
       
     };
 
-    $scope.restaurants = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: 1000});
 
     $rootScope.$on('searchFire', function(){
-      console.log('searchFire heard.');
-      console.log('Searching for ' + Data.query);
       $scope.restaurants = Search.query({searchString: Data.query});
     });
 
