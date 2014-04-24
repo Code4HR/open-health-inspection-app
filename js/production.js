@@ -49,19 +49,44 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$rootS
       console.log("error");
     }
 
-    $scope.getLocation = function(callback){
+    $scope.getLocation = function(){
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition($scope.showPosition, $scope.showError);
       } else {
         $scope.error = "Geolocation is not supported by this browser.";
       }
-      callback();
     }
 
-    $scope.getLocation(function(){});
+    $scope.getLocation();
+    
+    $scope.toRad = function(Value) {
+        return Value * Math.PI / 180;
+    };
+
+    $scope.distanceCalculation = function(input) {
+
+      var lat2 = input.latitude;
+      var lon2 = input.longitude;
+
+      var lat1 = $scope.map.center.latitude;
+      var lon1 = $scope.map.center.longitude;
+
+      var R = 6371; // km
+      var dLat = $scope.toRad(lat2-lat1);
+      var dLon = $scope.toRad(lon2-lon1);
+      lat1 = $scope.toRad(lat1);
+      lat2 = $scope.toRad(lat2);
+
+      var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+              Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+      var d = R * c;
+
+      return d * 0.62137;
+      
+    };
 
     $scope.restaurants = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: 1000});
-
 
     $rootScope.$on('searchFire', function(){
       console.log('searchFire heard.');
@@ -89,7 +114,6 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$rou
         zoom: 18
     };
 
-
   }]);
 
 openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', 'Search', 'Data',
@@ -104,6 +128,16 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
     $scope.query = Data.query;
 
   }]);
+openHealthDataApp.directive('bindOnce', function() {
+    return {
+        scope: true,
+        link: function( $scope, $element ) {
+            setTimeout(function() {
+                $scope.$destroy();
+            }, 0);
+        }
+    }
+});
 /******************
 Models
 ******************/
@@ -133,7 +167,7 @@ openHealthDataServices.factory('Search', ['$resource',
 
 openHealthDataServices.factory('Data', ['$resource',
   function($resource) {
-    return {query: "I'm data from a service."}
+    return {query: "Search for a restaurant."}
   }]);
 /******************
 Views
