@@ -20,12 +20,12 @@
 			<li class="date">{{inspection.date}}</li>
 			<li class="type">{{inspection.type}}</li>
 			<ul class="violations" ng-repeat="violation in inspection.violations">
-				<li class="code">{{violation.code}}</li>
-				<li class="observation">{{violation.observation}}</li>
 				<li class="correction">{{violation.correction}}</li>
 				<li class="violation">{{violation.corrected}}</li>
-				<li class="critcal">{{violation.critical}}</li>
+				<li class="critical">{{violation.critical}}</li>
 				<li class="repeat">{{violation.repeat}}</li>
+				<li class="code">{{violation.code}}</li>
+				<li class="observation">{{violation.observation}}</li>
 			</ul>
 		</ul>
 

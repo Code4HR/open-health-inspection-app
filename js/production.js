@@ -59,7 +59,7 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$rootS
     }
 
     $scope.getLocation(function(){
-          $scope.restaurants = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: 1000});
+          $scope.restaurants = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: 500});
     });
     
     $scope.toRad = function(Value) {
