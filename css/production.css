@@ -86,6 +86,10 @@ header {
 				}
 
 #main {}
+	#main ul {
+		padding: 0;
+		list-style-type: none;
+	}
 
 #main.container {
 	padding: 0 0 0 0;
@@ -97,8 +101,7 @@ header {
 
 #listView {}
 	#listView ul {
-		padding: 0;
-		list-style-type: none;
+
 	}
 		#listView ul li{
 			padding: 10px 0;
@@ -129,6 +132,24 @@ header {
 			#listView ul li:nth-child(even){
 				background-color:#eee;
 			}
+
+#restaurantDetailView {}
+
+	#restaurantDetailView #restaurant-info {
+		
+	}
+
+	#restaurantDetailView #inspections {}
+
+		#restaurantDetailView .inspection {
+			padding: .5em;
+			margin-bottom: 1em;
+			border: 1px solid #dfdfdf;
+		}
+
+		#restaurantDetailView .violations {
+			margin-bottom: 1em;
+		} 
 
 
 
