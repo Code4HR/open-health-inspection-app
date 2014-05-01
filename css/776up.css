@@ -34,9 +34,13 @@ Tablet and Small Screen Styles here.
         #listView .angular-google-map-container { height:100%; width:100%; position:absolute; top:0; left:0; }
         #listView ul {}
 
-	#restuarantDetailView {
-        
-    }
+	#restuarantDetailView {}
+
+        #restaurantDetailView #inspections {}
+
+        #restaurantDetailView ul.violations {
+ 
+        }
 
 
 }

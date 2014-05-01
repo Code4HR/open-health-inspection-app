@@ -145,10 +145,45 @@ header {
 			padding: .5em;
 			margin-bottom: 1em;
 			border: 1px solid #dfdfdf;
+			padding: 1em;
 		}
 
-		#restaurantDetailView .violations {
+		#restaurantDetailView .inspection h2 {
+			margin: 0;
+		}
+
+		#restaurantDetailView .inspection .date {
+			font-size: 1.25em;
+			color: #777;
+		}
+
+		#restaurantDetailView ul.violations {
 			margin-bottom: 1em;
+			display: inline-block;
+			vertical-align: top;
+
 		} 
+			#restaurantDetailView li.violation,
+			#restaurantDetailView li.critical,
+			#restaurantDetailView li.repeat {
+				display: inline-block;
+				margin: .5em 0em;
+				margin-right: .25em;
+				border-radius: 100%;
+				background: #dfdfdf;
+				height: 3em;
+				width: 3em;
+				line-height: 3em;
+				text-align: center;
+			} 
+
+			#restaurantDetailView li.code {
+				font-size: 1.25em;
+				font-weight: 700;
+			}
+
+			#restaurantDetailView li.observation {
+				width: 90%;
+			}
 
 

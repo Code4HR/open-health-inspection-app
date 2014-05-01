@@ -7,26 +7,28 @@
 		</google-map>
 
 		<ul ng-repeat="restaurant in restaurants">
-			<li class="name">{{restaurant.name}}</li>
-			<li class="address">{{restaurant.address}}</li>
-			<li class="inspection-date">{{restaurant.last_inspection_date}}</li>
+			<li class="name"><h1>{{restaurant.name}}</h1></li>
+			<li class="address"><i class="fa fa-map-marker"></i><i>Address: </i><br>{{restaurant.address}}</li>
+			<li class="inspection-date"><i class="fa fa-calendar"></i><i>Last Inspection: </i><br>{{restaurant.last_inspection_date}}</li>
 		</ul>
 
 	</section>
 
 	<section id="inspections" class="col-sm-9" ng-repeat="restaurant in restaurants">
 
-		<ul class="inspection" ng-repeat="inspection in restaurant.inspections">
+		<ul class="inspection row" ng-repeat="inspection in restaurant.inspections">
+			<li class="type"><h2>{{inspection.type}}</h2></li>
 			<li class="date">{{inspection.date}}</li>
-			<li class="type">{{inspection.type}}</li>
-			<ul class="violations" ng-repeat="violation in inspection.violations">
-				<li class="correction">{{violation.correction}}</li>
-				<li class="violation">{{violation.corrected}}</li>
-				<li class="critical">{{violation.critical}}</li>
-				<li class="repeat">{{violation.repeat}}</li>
-				<li class="code">{{violation.code}}</li>
-				<li class="observation">{{violation.observation}}</li>
-			</ul>
+			<li class=""><h3>Observations</h3>
+				<ul class="violations col-sm-6 col-md-4" ng-repeat="violation in inspection.violations">
+					<li class="correction">{{violation.correction}}</li>
+					<li class="violation">{{violation.corrected}}</li>
+					<li class="critical">{{violation.critical}}</li>
+					<li class="repeat">{{violation.repeat}}</li>
+					<li class="code">{{violation.code}}</li>
+					<li class="observation">{{violation.observation}}</li>
+				</ul>
+			</li>
 		</ul>
 
 	</section>

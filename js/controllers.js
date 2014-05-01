@@ -14,7 +14,7 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$rootS
             latitude: 36.847010,
             longitude: -76.292430
         },
-        zoom: 17
+        zoom: 18
     };
 
     $scope.showPosition = function(position) {
