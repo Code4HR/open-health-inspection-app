@@ -4,7 +4,7 @@ App.js
 
 "use strict";
 
-var openHealthDataApp = angular.module('openHealthDataApp', ['ngRoute', 'openHealthDataAppControllers', 'ngAnimate', 'openHealthDataServices', 'google-maps']);
+var openHealthDataApp = angular.module('openHealthDataApp', ['ngRoute', 'openHealthDataAppControllers', 'ngAnimate', 'openHealthDataServices', 'openHealthDataAppFilters', 'google-maps']);
 
 openHealthDataApp.config(['$routeProvider',
   function($routeProvider) {
@@ -137,6 +137,11 @@ openHealthDataApp.directive('bindOnce', function() {
             }, 0);
         }
     }
+});
+angular.module('openHealthDataAppFilters', []).filter('checkmark', function() {
+	return function(input) {
+		return input ? '\u2713' : '\u2718';
+	}
 });
 /******************
 Models
