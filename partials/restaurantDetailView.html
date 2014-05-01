@@ -15,18 +15,21 @@
 	</section>
 
 	<section id="inspections" class="col-sm-9" ng-repeat="restaurant in restaurants">	
-
-		<ul class="inspection row" ng-repeat="inspection in restaurant.inspections">
+	
+		<ul class="inspection row"  ng-repeat="inspection in restaurant.inspections">
 			<li class="type"><h2>{{inspection.type}}</h2></li>
 			<li class="date">{{inspection.date}}</li>
 			<li class=""><h3>Observations</h3>
-				<ul class="violations col-sm-6 col-md-4" ng-repeat="violation in inspection.violations">
+				
+
+				<ul class="violations col-sm-6 col-md-4" ng-if="restaurant.inspections.length > 0" ng-repeat="violation in inspection.violations">
 					<li class="violation">{{violation.corrected | checkmark }}</li>
 					<li class="critical">{{violation.critical | checkmark}}</li>
-					<li class="repeat">{{violation.repeat |checkmark}}</li>
+					<li class="repeat">{{violation.repeat | checkmark}}</li>
 					<li class="code">{{violation.code}}</li>
 					<li class="observation">{{violation.observation}}</li>
 				</ul>
+				<li ng-if="restaurant.inspections.length === 0">No violations!</li>
 			</li>
 		</ul>
 

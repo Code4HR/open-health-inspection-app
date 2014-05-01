@@ -171,10 +171,11 @@ header {
 				margin-right: .25em;
 				border-radius: 100%;
 				background: #dfdfdf;
-				height: 3em;
-				width: 3em;
-				line-height: 3em;
+				height: 1.5em;
+				width: 1.5em;
+				line-height: 1.5em;
 				text-align: center;
+				font-size: 2em;
 			} 
 
 			#restaurantDetailView li.code {
