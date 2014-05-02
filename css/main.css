@@ -136,11 +136,27 @@ header {
 #restaurantDetailView {}
 
 	#restaurant-info {}
+
+		#restaurantInfo h1 {
+			margin-bottom: 0;
+		}
 	
 	 	#violationKey {
 			padding: .75em;
 			border: 1px solid #dfdfdf;
 		}
+
+			#violationKey h4 {
+				margin: 0;
+			}
+
+			#violationKey ul {
+				margin: .5em 0 0 0;
+			}
+
+			#violationKey i {
+				margin-right: .5em;
+			}
 
 	#inspections {}
 
