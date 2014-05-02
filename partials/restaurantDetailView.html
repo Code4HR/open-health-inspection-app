@@ -1,12 +1,12 @@
 <article id="restaurantDetailView">
 
-	<section id="restuarant-info" class="col-sm-3">
+	<section id="restuarant-info" class="col-sm-3" ng-repeat="restaurant in restaurants">
 
-		<google-map center="map.center" zoom="18" options="{'disableDefaultUI':'true'}" draggable="false">
-			<marker coords="map.center"></marker>
+		<google-map center="restaurant.coordinates" zoom="18" options="{'disableDefaultUI':'true'}" draggable="false">
+			<marker coords="restaurant.coordinates"></marker>
 		</google-map>
 
-		<ul ng-repeat="restaurant in restaurants">
+		<ul>
 			<li class="name"><h1>{{restaurant.name}}</h1></li>
 			<li class="address"><i class="fa fa-map-marker"></i><i>Address: </i><br>{{restaurant.address}}</li>
 			<li class="inspection-date"><i class="fa fa-calendar"></i><i>Last Inspection: </i><br>{{restaurant.last_inspection_date}}</li>
