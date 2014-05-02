@@ -4,7 +4,7 @@ App.js
 
 "use strict";
 
-var openHealthDataApp = angular.module('openHealthDataApp', ['ngRoute', 'openHealthDataAppControllers', 'ngAnimate', 'openHealthDataServices', 'google-maps']);
+var openHealthDataApp = angular.module('openHealthDataApp', ['ngRoute', 'openHealthDataAppControllers', 'ngAnimate', 'openHealthDataServices', 'openHealthDataAppFilters', 'google-maps']);
 
 openHealthDataApp.config(['$routeProvider',
   function($routeProvider) {
@@ -37,7 +37,7 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$rootS
             latitude: 36.847010,
             longitude: -76.292430
         },
-        zoom: 17
+        zoom: 18
     };
 
     $scope.showPosition = function(position) {
@@ -59,7 +59,7 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$rootS
     }
 
     $scope.getLocation(function(){
-          $scope.restaurants = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: 1000});
+          $scope.restaurants = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: 500});
     });
     
     $scope.toRad = function(Value) {
@@ -137,6 +137,11 @@ openHealthDataApp.directive('bindOnce', function() {
             }, 0);
         }
     }
+});
+angular.module('openHealthDataAppFilters', []).filter('was', function() {
+	return function(input) {
+		return input ? 'was' : 'wasn\'t';
+	}
 });
 /******************
 Models
