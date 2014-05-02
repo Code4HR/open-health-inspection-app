@@ -169,14 +169,30 @@ header {
 				display: inline-block;
 				margin: .5em 0em;
 				margin-right: .25em;
-				border-radius: 100%;
-				background: #dfdfdf;
-				height: 1.5em;
-				width: 1.5em;
-				line-height: 1.5em;
+				color: #ffffff;
+			}
+
+			#restaurantDetailView li.violation i,
+			#restaurantDetailView li.critical i,
+			#restaurantDetailView li.repeat i {
+				height: 2em;
+				width: 2em;
+				line-height: 2em;
 				text-align: center;
-				font-size: 2em;
-			} 
+				font-size: 1.5em;
+				border-radius: 100%;
+				background: #efefef;
+			}
+
+			#restaurantDetailView li.violation.active {
+				color: green;
+			}
+			#restaurantDetailView li.critical.active {
+				color: red;
+			}
+			#restaurantDetailView li.repeat.active {
+				color: green;
+			}
 
 			#restaurantDetailView li.code {
 				font-size: 1.25em;
