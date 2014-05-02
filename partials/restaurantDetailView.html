@@ -6,11 +6,20 @@
 			<marker coords="restaurant.coordinates"></marker>
 		</google-map>
 
-		<ul>
+		<ul id="restaurantInfo">
 			<li class="name"><h1>{{restaurant.name}}</h1></li>
 			<li class="address"><i class="fa fa-map-marker"></i><i>Address: </i><br>{{restaurant.address}}</li>
 			<li class="inspection-date"><i class="fa fa-calendar"></i><i>Last Inspection: </i><br>{{restaurant.last_inspection_date}}</li>
 		</ul>
+	
+		<section id="violationKey">
+			<h4>Symbol Key</h4>
+			<ul>
+				<li><i class="glyphicon glyphicon-ok"></i>Corrected During Inspection</li>
+				<li><i class="glyphicon glyphicon-warning-sign"></i>Critical Violation</li>
+				<li><i class="glyphicon glyphicon-repeat"></i>Repeat Violation</li>
+			</ul>
+		</section>
 
 	</section>
 

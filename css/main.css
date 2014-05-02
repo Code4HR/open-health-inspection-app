@@ -135,75 +135,77 @@ header {
 
 #restaurantDetailView {}
 
-	#restaurantDetailView #restaurant-info {
-		
-	}
+	#restaurant-info {}
+	
+	 	#violationKey {
+			padding: .75em;
+			border: 1px solid #dfdfdf;
+		}
 
-	#restaurantDetailView #inspections {}
+	#inspections {}
 
-		#restaurantDetailView .inspection {
+		#inspections .inspection {
 			padding: .5em;
 			margin-bottom: 1em;
 			border: 1px solid #dfdfdf;
 			padding: 1em;
 		}
 
-		#restaurantDetailView .inspection h2 {
-			margin: 0;
-		}
+			.inspection h2 {
+				margin: 0;
+			}
 
-		#restaurantDetailView .inspection .date {
+		.inspection .date {
 			font-size: 1.25em;
 			color: #777;
 		}
 
-		#restaurantDetailView ul.violations {
-			margin-bottom: 1em;
-			display: inline-block;
-			vertical-align: top;
-
-		} 
-			#restaurantDetailView li.violation,
-			#restaurantDetailView li.critical,
-			#restaurantDetailView li.repeat {
+			ul.violations {
+				margin-bottom: 1em;
 				display: inline-block;
-				margin: .5em 0em;
-				margin-right: .25em;
-				color: #ffffff;
-			}
+				vertical-align: top;
+			} 
+				li.violation,
+			    li.critical,
+				li.repeat {
+					display: inline-block;
+					margin: .5em 0em;
+					margin-right: .25em;
+					color: #ffffff;
+				}
 
-			#restaurantDetailView li.violation i,
-			#restaurantDetailView li.critical i,
-			#restaurantDetailView li.repeat i {
-				height: 2em;
-				width: 2em;
-				line-height: 2em;
-				text-align: center;
-				font-size: 1.5em;
-				border-radius: 100%;
-				background: #efefef;
-			}
+					li.violation i,
+					li.critical i,
+					li.repeat i {
+						height: 2em;
+						width: 2em;
+						line-height: 2em;
+						text-align: center;
+						font-size: 1.5em;
+						border-radius: 100%;
+						background: #efefef;
+					}
 
-			#restaurantDetailView li.violation.active i {
-				color: green;
-				background: lightgreen;
-			}
-			#restaurantDetailView li.critical.active i {
-				color: red;
-				background: darksalmon;
-			}
-			#restaurantDetailView li.repeat.active i {
-				color: red;
-				background: darksalmon;
-			}
+					li.violation.active i {
+						color: green;
+						background: lightgreen;
+					}
+					li.critical.active i {
+						color: red;
+						background: darksalmon;
+					}
+					li.repeat.active i {
+						color: red;
+						background: darksalmon;
+					}
 
-			#restaurantDetailView li.code {
-				font-size: 1.25em;
-				font-weight: 700;
-			}
+					li.code {
+						font-size: 1.25em;
+						font-weight: 700;
+					}
 
-			#restaurantDetailView li.observation {
-				width: 90%;
-			}
+					li.observation {
+						width: 90%;
+					}
 
 
