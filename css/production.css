@@ -184,14 +184,17 @@ header {
 				background: #efefef;
 			}
 
-			#restaurantDetailView li.violation.active {
+			#restaurantDetailView li.violation.active i {
 				color: green;
+				background: lightgreen;
 			}
-			#restaurantDetailView li.critical.active {
+			#restaurantDetailView li.critical.active i {
 				color: red;
+				background: darksalmon;
 			}
-			#restaurantDetailView li.repeat.active {
-				color: green;
+			#restaurantDetailView li.repeat.active i {
+				color: red;
+				background: darksalmon;
 			}
 
 			#restaurantDetailView li.code {

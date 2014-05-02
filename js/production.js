@@ -138,9 +138,9 @@ openHealthDataApp.directive('bindOnce', function() {
         }
     }
 });
-angular.module('openHealthDataAppFilters', []).filter('checkmark', function() {
+angular.module('openHealthDataAppFilters', []).filter('was', function() {
 	return function(input) {
-		return input ? '\u2713' : '\u2718';
+		return input ? 'was' : 'wasn\'t';
 	}
 });
 /******************

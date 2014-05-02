@@ -23,9 +23,9 @@
 				<h3>Observations</h3>
 				<h4 ng-if="inspection.violations.length === 0">No violations!</h4>
 				<ul class="violations col-sm-6 col-md-4" ng-repeat="violation in inspection.violations">
-					<li ng-class="{'active': violation.corrected}" class="violation"><i class="glyphicon glyphicon-ok"></i></li>
-					<li ng-class="{'active': violation.critical}" class="critical"><i class="glyphicon glyphicon-warning-sign"></i></li>
-					<li ng-class="{'active': violation.repeat}" class="repeat"><i class="glyphicon glyphicon-repeat"></i></li>
+					<li title="This violation {{violation.corrected | was}} corrected during the inspection." ng-class="{'active': violation.corrected}" class="violation"><i class="glyphicon glyphicon-ok"></i></li>
+					<li title="This {{violation.critical | was}} a critical violation." ng-class="{'active': violation.critical}" class="critical"><i class="glyphicon glyphicon-warning-sign"></i></li>
+					<li title="This {{violation.repeat | was}} a repeat violation." ng-class="{'active': violation.repeat}" class="repeat"><i class="glyphicon glyphicon-repeat"></i></li>
 					<li class="code">{{violation.code}}</li>
 					<li class="observation">{{violation.observation}}</li>
 				</ul>
