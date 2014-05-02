@@ -39,7 +39,7 @@ Tablet and Small Screen Styles here.
     }
 
         #restaurantDetailView .angular-google-map-container {
-            height: 300px;
+            height: 250px;
         }
 
         #restaurantDetailView #inspections {}

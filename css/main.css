@@ -154,9 +154,16 @@ header {
 				margin: .5em 0 0 0;
 			}
 
-			#violationKey i {
-				margin-right: .5em;
-			}
+				#violationKey li {
+					position: relative;
+					padding-left: 1.5em;
+				}
+
+					#violationKey i {
+						position: absolute;
+						top: 3px;
+						left: 0;
+					}
 
 	#inspections {}
 
