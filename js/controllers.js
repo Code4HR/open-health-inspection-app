@@ -4,8 +4,8 @@ Controllers
 
 var openHealthDataAppControllers = angular.module('openHealthDataAppControllers', []);
 
-openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$rootScope', '$http', 'Geosearch', 'Data', 'Search',
-  function($scope, $rootScope, $http, Geosearch, Data, Search) {
+openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$rootScope', '$http', '$q', 'Geosearch', 'Data', 'Search',
+  function($scope, $rootScope, $http, $q, Geosearch, Data, Search) {
 
     $scope.query = Data.query;
 
@@ -20,24 +20,22 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$rootS
     $scope.showPosition = function(position) {
       $scope.map.center.latitude = position.coords.latitude;
       $scope.map.center.longitude = position.coords.longitude;
+      $scope.restaurants = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: 500});
     }
 
     $scope.showError = function() {
       console.log("error");
     }
 
-    $scope.getLocation = function(callback){
+    $scope.getLocation = function(){
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition($scope.showPosition, $scope.showError);
       } else {
         $scope.error = "Geolocation is not supported by this browser.";
       }
-      callback();
     }
 
-    $scope.getLocation(function(){
-          $scope.restaurants = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: 500});
-    });
+    $scope.getLocation();
     
     $scope.toRad = function(Value) {
         return Value * Math.PI / 180;
@@ -65,7 +63,6 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$rootS
       return d * 0.62137;
       
     };
-
 
     $rootScope.$on('searchFire', function(){
       $scope.restaurants = Search.query({searchString: Data.query});
