@@ -31,7 +31,7 @@ header {
 		line-height: 2.5em;
 		font-weight: 900;
 		text-align: left;
-		text-transform: uppercase;
+		text-transform: uppercase;.
 	}
 	header form#search {
 		position: relative;
@@ -91,7 +91,7 @@ header {
 		list-style-type: none;
 	}
 
-#main.container {
+#main.container, #main.container-fluid {
 	padding: 0 0 0 0;
 }
 
