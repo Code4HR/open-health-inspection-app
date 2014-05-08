@@ -140,7 +140,7 @@ header {
 }
 	
 	#restuarant-info {
-		position: fixed !important;
+		
 	}
 
 		#restaurantInfo h1 {
@@ -277,6 +277,10 @@ Tablet and Small Screen Styles here.
 
 	#restuarantDetailView {
         position: relative;
+    }
+
+    #restuarant-info {
+        position: fixed;
     }
 
         #restaurantDetailView .angular-google-map-container {
