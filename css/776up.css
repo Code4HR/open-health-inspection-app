@@ -38,6 +38,10 @@ Tablet and Small Screen Styles here.
         position: relative;
     }
 
+    #restuarant-info {
+        position: fixed;
+    }
+
         #restaurantDetailView .angular-google-map-container {
             height: 250px;
         }
