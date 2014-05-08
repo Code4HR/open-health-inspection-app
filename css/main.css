@@ -31,7 +31,7 @@ header {
 		line-height: 2.5em;
 		font-weight: 900;
 		text-align: left;
-		text-transform: uppercase;
+		text-transform: uppercase;.
 	}
 	header form#search {
 		position: relative;
@@ -85,13 +85,15 @@ header {
 					background:#e74c3c
 				}
 
-#main {}
+#main {
+	margin-top: 60px;
+}
 	#main ul {
 		padding: 0;
 		list-style-type: none;
 	}
 
-#main.container {
+#main.container, #main.container-fluid {
 	padding: 0 0 0 0;
 }
 
@@ -133,9 +135,13 @@ header {
 				background-color:#eee;
 			}
 
-#restaurantDetailView {}
-
-	#restaurant-info {}
+#restaurantDetailView {
+	padding-top: 1em;
+}
+	
+	#restuarant-info {
+		position: fixed !important;
+	}
 
 		#restaurantInfo h1 {
 			margin-bottom: 0;
