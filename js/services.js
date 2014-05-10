@@ -9,14 +9,14 @@ openHealthDataServices.factory('Vendors', ['$resource',
 
 openHealthDataServices.factory('Geosearch', ['$resource',
   function($resource) {
-    return $resource('http://api.ttavenner.com/vendors/geosearch/:lat/:lon/:dist', {}, {
+    return $resource('http://api.ttavenner.com/vendors?lat=:lat&lng=:lon&dist=:dist', {}, {
       query: { method: 'JSONP', params: {lat: '36', lon: '-72', dist: '1000', callback: 'JSON_CALLBACK'} }
     });
   }]);
 
 openHealthDataServices.factory('Search', ['$resource',
   function($resource) {
-    return $resource('http://api.ttavenner.com/vendors/textsearch/:searchString', {}, {
+    return $resource('http://api.ttavenner.com/vendors?name=:searchString', {}, {
       query: { method: 'JSONP', params: {searchString: '', callback: 'JSON_CALLBACK'} }
     });
   }]);

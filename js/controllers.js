@@ -17,10 +17,12 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$rootS
         zoom: 18
     };
 
+    $scope.dist = 500;
+
     $scope.showPosition = function(position) {
       $scope.map.center.latitude = position.coords.latitude;
       $scope.map.center.longitude = position.coords.longitude;
-      $scope.restaurants = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: 500});
+      $scope.restaurants = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: $scope.dist});
       console.log( $('#results').height() );
       console.log( $(window).height() );
       $('#results').height( $(window).height() - $('header').height() );
