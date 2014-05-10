@@ -40,10 +40,12 @@ openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$rootS
         zoom: 18
     };
 
+    $scope.dist = 500;
+
     $scope.showPosition = function(position) {
       $scope.map.center.latitude = position.coords.latitude;
       $scope.map.center.longitude = position.coords.longitude;
-      $scope.restaurants = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: 500});
+      $scope.restaurants = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: $scope.dist});
       console.log( $('#results').height() );
       console.log( $(window).height() );
       $('#results').height( $(window).height() - $('header').height() );
@@ -158,14 +160,14 @@ openHealthDataServices.factory('Vendors', ['$resource',
 
 openHealthDataServices.factory('Geosearch', ['$resource',
   function($resource) {
-    return $resource('http://api.ttavenner.com/vendors/geosearch/:lat/:lon/:dist', {}, {
+    return $resource('http://api.ttavenner.com/vendors?lat=:lat&lng=:lon&dist=:dist', {}, {
       query: { method: 'JSONP', params: {lat: '36', lon: '-72', dist: '1000', callback: 'JSON_CALLBACK'} }
     });
   }]);
 
 openHealthDataServices.factory('Search', ['$resource',
   function($resource) {
-    return $resource('http://api.ttavenner.com/vendors/textsearch/:searchString', {}, {
+    return $resource('http://api.ttavenner.com/vendors?name=:searchString', {}, {
       query: { method: 'JSONP', params: {searchString: '', callback: 'JSON_CALLBACK'} }
     });
   }]);
@@ -174,6 +176,7 @@ openHealthDataServices.factory('Data', ['$resource',
   function($resource) {
     return {query: "Search for a restaurant."}
   }]);
+
 /******************
 Views
 ******************/
