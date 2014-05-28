@@ -1,0 +1,143 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1141" measuredH="485" mockupW="1112" mockupH="470">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::Map" x="55" y="28" w="200" h="151" measuredW="252" measuredH="222" zOrder="2" locked="false" isInGroup="-1"/>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::Canvas" x="29" y="15" w="252" h="470" measuredW="100" measuredH="70" zOrder="1" locked="false" isInGroup="-1"/>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Paragraph" x="55" y="249" w="163" h="47" measuredW="200" measuredH="80" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>13</size>
+        <text>2819%20General%20Booth%20Blvd%0AVirginia%20Beach%2C%20VA%2023456</text>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::Canvas" x="312" y="15" w="395" h="105" measuredW="100" measuredH="70" zOrder="4" locked="false" isInGroup="-1"/>
+    <control controlID="17" controlTypeID="com.balsamiq.mockups::Paragraph" x="327" y="77" w="365" h="29" measuredW="200" measuredH="80" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Employees%20wear%20proper%20uniform%20including%20proper%20shoes</text>
+      </controlProperties>
+    </control>
+    <control controlID="27" controlTypeID="com.balsamiq.mockups::Paragraph" x="327" y="217" w="365" h="48" measuredW="200" measuredH="80" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Eating%2C%20Drinking%2C%20or%20chewing%20gum%20are%20observed%20only%20in%20designated%20areas%20away%20from%20work%20areas</text>
+      </controlProperties>
+    </control>
+    <control controlID="28" controlTypeID="com.balsamiq.mockups::Label" x="624" y="160" w="-1" h="-1" measuredW="66" measuredH="20" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>12</size>
+        <text>Apr%206%2C%202014</text>
+      </controlProperties>
+    </control>
+    <control controlID="31" controlTypeID="com.balsamiq.mockups::Canvas" x="743" y="15" w="396" h="105" measuredW="100" measuredH="70" zOrder="8" locked="false" isInGroup="-1"/>
+    <control controlID="33" controlTypeID="com.balsamiq.mockups::Label" x="1051" y="28" w="-1" h="-1" measuredW="66" measuredH="20" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>12</size>
+        <text>Apr%206%2C%202014</text>
+      </controlProperties>
+    </control>
+    <control controlID="37" controlTypeID="com.balsamiq.mockups::Canvas" x="745" y="145" w="396" h="137" measuredW="100" measuredH="70" zOrder="10" locked="false" isInGroup="-1"/>
+    <control controlID="39" controlTypeID="com.balsamiq.mockups::Label" x="1051" y="164" w="-1" h="-1" measuredW="71" measuredH="21" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Apr%206%2C%202014</text>
+      </controlProperties>
+    </control>
+    <control controlID="46" controlTypeID="com.balsamiq.mockups::IconLabel" x="57" y="304" w="-1" h="-1" measuredW="188" measuredH="21" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>CheckMarkIcon%7Cxsmall</icon>
+        <labelPosition>right</labelPosition>
+        <text>Corrected%20During%20Inspection</text>
+      </controlProperties>
+    </control>
+    <control controlID="47" controlTypeID="com.balsamiq.mockups::IconLabel" x="55" y="332" w="-1" h="-1" measuredW="212" measuredH="21" zOrder="13" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>GeoLocationIcon%7Cxsmall</icon>
+        <labelPosition>right</labelPosition>
+        <text>Not%20Corrected%20During%20Inspection</text>
+      </controlProperties>
+    </control>
+    <control controlID="48" controlTypeID="com.balsamiq.mockups::IconLabel" x="56" y="395" w="-1" h="-1" measuredW="113" measuredH="21" zOrder="14" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>ReloadIcon%7Cxsmall</icon>
+        <labelPosition>right</labelPosition>
+        <text>Repeat%20Offense</text>
+      </controlProperties>
+    </control>
+    <control controlID="54" controlTypeID="com.balsamiq.mockups::Paragraph" x="760" y="78" w="366" h="22" measuredW="200" measuredH="80" zOrder="15" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Temperature%20is%20between%2050%BA%20F%20and%2070%BA%20F</text>
+      </controlProperties>
+    </control>
+    <control controlID="55" controlTypeID="com.balsamiq.mockups::Paragraph" x="760" y="216" w="364" h="19" measuredW="200" measuredH="80" zOrder="16" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Food%20is%20not%20allowed%20to%20become%20cross-contaminated</text>
+      </controlProperties>
+    </control>
+    <control controlID="62" controlTypeID="com.balsamiq.mockups::Icon" x="332" y="34" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="17" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>CheckMarkIcon%7Csmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="64" controlTypeID="com.balsamiq.mockups::Icon" x="384" y="34" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="18" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>ReloadIcon%7Csmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="65" controlTypeID="com.balsamiq.mockups::Tooltip" x="330" y="36" w="156" h="45" measuredW="155" measuredH="0" zOrder="20" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Corrected%20During%20Inspection</text>
+      </controlProperties>
+    </control>
+    <control controlID="66" controlTypeID="com.balsamiq.mockups::Label" x="626" y="28" w="-1" h="-1" measuredW="66" measuredH="20" zOrder="19" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>12</size>
+        <text>Apr%206%2C%202014</text>
+      </controlProperties>
+    </control>
+    <control controlID="67" controlTypeID="com.balsamiq.mockups::Icon" x="820" y="36" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="21" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>AsteriskIcon%7Csmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="68" controlTypeID="com.balsamiq.mockups::Icon" x="762" y="36" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="22" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>CheckMarkIcon%7Csmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="71" controlTypeID="com.balsamiq.mockups::Icon" x="384" y="167" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="23" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>ReloadIcon%7Csmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="72" controlTypeID="com.balsamiq.mockups::Icon" x="327" y="167" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="24" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>GeoLocationIcon%7Csmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="73" controlTypeID="com.balsamiq.mockups::IconLabel" x="55" y="364" w="-1" h="-1" measuredW="114" measuredH="21" zOrder="25" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>AsteriskIcon%7Cxsmall</icon>
+        <labelPosition>right</labelPosition>
+        <text>Critical%20Violation</text>
+      </controlProperties>
+    </control>
+    <control controlID="74" controlTypeID="com.balsamiq.mockups::Icon" x="816" y="162" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="26" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>AsteriskIcon%7Csmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="75" controlTypeID="com.balsamiq.mockups::Icon" x="762" y="162" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="27" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>CheckMarkIcon%7Csmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="77" controlTypeID="com.balsamiq.mockups::Paragraph" x="55" y="199" w="200" h="52" measuredW="200" measuredH="80" zOrder="28" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>true</bold>
+        <size>20</size>
+        <text>Chick-fil-A%20Health%20Inspection%20Violations</text>
+      </controlProperties>
+    </control>
+    <control controlID="78" controlTypeID="com.balsamiq.mockups::Canvas" x="312" y="143" w="395" h="139" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="-1"/>
+  </controls>
+</mockup>

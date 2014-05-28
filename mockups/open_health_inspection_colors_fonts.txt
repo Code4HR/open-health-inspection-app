@@ -1,0 +1,10 @@
+Google fonts:
+Serif: Bitter
+Sans Serif: Source Sans Pro
+
+Off-white title, "OPEN HEALTH INSPECTION APP": #ECF0F1
+dark blue header: #2C3E50
+blue for search bar bg : #3A546D
+search bar left border 1px: #43617E
+light blue links: #3498DB
+search bar color: #e83624
