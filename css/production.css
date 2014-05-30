@@ -148,11 +148,14 @@ header {
 }
 	
 	#restuarant-info {
-		
+		font-family: "Bitter";
 	}
 
 		#restaurantInfo h1 {
 			margin-bottom: 0;
+		}
+		#restaurantInfo .address {
+			color: #666666;
 		}
 	
 	 	#violationKey {
@@ -287,9 +290,9 @@ Tablet and Small Screen Styles here.
         position: relative;
     }
 
-    #restuarant-info {
+/*    #restuarant-info {
         position: fixed;
-    }
+    }*/
 
         #restaurantDetailView .angular-google-map-container {
             height: 250px;

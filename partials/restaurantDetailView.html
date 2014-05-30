@@ -1,56 +1,54 @@
 <article id="restaurantDetailView">
 
-	<section id="restuarant-info" class="col-sm-3" ng-repeat="restaurant in restaurants">
+	<div class="container-fluid">
 
-		<google-map center="restaurant.coordinates" zoom="18" options="{'disableDefaultUI':'true'}" draggable="false">
-			<marker coords="restaurant.coordinates"></marker>
-		</google-map>
+		<section id="restuarant-info" class="col-xs-12" ng-repeat="restaurant in restaurants">
 
-		<ul id="restaurantInfo">
-			<li class="name"><h1>{{restaurant.name}}</h1></li>
-			<li class="address">{{restaurant.address}}</li>
-		</ul>
-	
-		<section id="violationKey">
-			<h4>Symbol Key</h4>
-			<ul>
-				<li><i class="glyphicon glyphicon-ok"></i>Violation Corrected During Inspection</li>
-				<li><i class="glyphicon glyphicon-warning-sign"></i>Critical Violation</li>
-				<li><i class="glyphicon glyphicon-repeat"></i>Repeat Violation</li>
+			<ul id="restaurantInfo">
+				<li class="name"><h1>{{restaurant.name}}</h1></li>
+				<li class="address">{{restaurant.address}}</li>
 			</ul>
+		
+		<!-- 	<section id="violationKey">
+				<h4>Symbol Key</h4>
+				<ul>
+					<li><i class="glyphicon glyphicon-ok"></i>Violation Corrected During Inspection</li>
+					<li><i class="glyphicon glyphicon-warning-sign"></i>Critical Violation</li>
+					<li><i class="glyphicon glyphicon-repeat"></i>Repeat Violation</li>
+				</ul>
+			</section> -->
+
 		</section>
 
-	</section>
-
-	<section id="inspections" class="col-sm-9 col-sm-offset-3" ng-repeat="restaurant in restaurants">	
-	
-		<ul class="inspection row"  ng-repeat="inspection in restaurant.inspections">
-			<li class="type"><h2>{{inspection.type}}</h2></li>
-			<li class="date">{{inspection.date}}</li>
-			<li class="">
-				<h3>Observations</h3>
-				<h4 ng-if="inspection.violations.length === 0">No violations!</h4>
-				
-				<div ng-repeat="violation in inspection.violations">
-				
-					<div ng-if="$index % 3 === 0" class="clearfix"></div>
-					
-					<ul class="violations col-sm-6 col-md-4" >
-						<li title="This violation {{violation.corrected | was}} corrected during the inspection." ng-class="{'active': violation.corrected}" class="violation"><i class="glyphicon glyphicon-ok"></i></li>
-						<li title="This {{violation.critical | was}} a critical violation." ng-class="{'active': violation.critical}" class="critical"><i class="glyphicon glyphicon-warning-sign"></i></li>
-						<li title="This {{violation.repeat | was}} a repeat violation." ng-class="{'active': violation.repeat}" class="repeat"><i class="glyphicon glyphicon-repeat"></i></li>
-						<li class="code">{{violation.code}}</li>
-						<li class="observation">{{violation.observation}}</li>
-					</ul>
-
-				</div>
-				
-				<li ng-if="restaurant.inspections.length === 0">No violations!</li>
-			</li>
-		</ul>
+		<section id="inspections" class="col-xs-12" ng-repeat="restaurant in restaurants">	
 		
-	</section>
+			<ul class="inspection row"  ng-repeat="inspection in restaurant.inspections">
+				<li class="type"><h2>{{inspection.type}}</h2></li>
+				<li class="date">{{inspection.date}}</li>
+				<li class="">
+					<h3>Observations</h3>
+					<h4 ng-if="inspection.violations.length === 0">No violations!</h4>
+					
+					<div ng-repeat="violation in inspection.violations">
+					
+						<div ng-if="$index % 3 === 0" class="clearfix"></div>
+						
+						<ul class="violations col-sm-6 col-md-4" >
+							<li title="This violation {{violation.corrected | was}} corrected during the inspection." ng-class="{'active': violation.corrected}" class="violation"><i class="glyphicon glyphicon-ok"></i></li>
+							<li title="This {{violation.critical | was}} a critical violation." ng-class="{'active': violation.critical}" class="critical"><i class="glyphicon glyphicon-warning-sign"></i></li>
+							<li title="This {{violation.repeat | was}} a repeat violation." ng-class="{'active': violation.repeat}" class="repeat"><i class="glyphicon glyphicon-repeat"></i></li>
+							<li class="code">{{violation.code}}</li>
+							<li class="observation">{{violation.observation}}</li>
+						</ul>
 
-	
+					</div>
+					
+					<li ng-if="restaurant.inspections.length === 0">No violations!</li>
+				</li>
+			</ul>
+			
+		</section>
+
+	</div>
 
 </article>
