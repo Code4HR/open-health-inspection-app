@@ -12,12 +12,12 @@
 
 	<section id="results">
 
-		<ul class="col-sm-2">
+		<ul class="col-sm-3 col-sm-offset-9">
 		    <li ng-repeat="restaurant in restaurants | orderBy:dist" class="clearfix">
 			  <a href="#{{restaurant.url}}">
 		          <div class="col-xs-9">
 		          	<p class="restaurant-name">{{restaurant.name}}</p>
-	       	 		<p bind-once>{{distanceCalculation(restaurant.coordinates) | number:2}} Miles Away</p>		          
+	       	 		<p bind-once class="distance">{{distanceCalculation(restaurant.coordinates) | number:2}} Miles Away</p>		          
 	       	 	  </div>
 				  <div class="col-xs-3 restaurant-score">{{restaurant.score}}</div> 
 			  </a>
