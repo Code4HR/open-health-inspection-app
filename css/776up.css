@@ -30,17 +30,14 @@ Tablet and Small Screen Styles here.
         position: fixed;
         top: 60px;
         right: 0;
-        height: 500px;
+        max-height: 500px;
         z-index: 100;
-    }
-
-    #listView {
-        
-}
-        #searchResults {
-            height: 500px;
-            overflow-y: scroll;
+        overflow-y: scroll;
+    } 
+        #searchResults .row {
+            margin-bottom: 0;
         }
+
         #listView ul {}
 
 	#restuarantDetailView {
