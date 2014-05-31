@@ -22,6 +22,13 @@ Tablet and Small Screen Styles here.
     
     #main.container {
         padding-top: 2em;
+    } 
+
+
+    .angular-google-map-container { height:100%; width:100%; position:absolute; top:0; left:0; }
+
+    #searchResults {
+        height: 500px;
     }
 
     #listView {
@@ -31,7 +38,6 @@ Tablet and Small Screen Styles here.
             height: 500px;
             overflow-y: scroll;
         }
-        #listView .angular-google-map-container { height:100%; width:100%; position:absolute; top:0; left:0; }
         #listView ul {}
 
 	#restuarantDetailView {

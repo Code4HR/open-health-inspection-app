@@ -4,7 +4,7 @@ Controllers
 
 var openHealthDataAppControllers = angular.module('openHealthDataAppControllers', []);
 
-openHealthDataAppControllers.controller('restaurantListCtrl', ['$scope', '$rootScope', '$http', '$q', 'Geosearch', 'Data', 'Search',
+openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$http', '$q', 'Geosearch', 'Data', 'Search',
   function($scope, $rootScope, $http, $q, Geosearch, Data, Search) {
 
     $scope.query = Data.query;
@@ -102,8 +102,18 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
       console.log("Searching for " + $scope.query + ".");
       Data.query = $scope.query;
       $rootScope.$broadcast('searchFire');
-    }
+      
+    };
 
-    $scope.query = Data.query;
+  }]);
 
+
+openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootScope', 'Search', 'Data',
+  function($scope, $rootScope, Search, Data){
+
+    $rootScope.$on('searchFire', function(){
+      console.log('searchFire heard');
+      console.log(Data.query);
+    });
+    
   }]);

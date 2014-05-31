@@ -9,10 +9,6 @@ var openHealthDataApp = angular.module('openHealthDataApp', ['ngRoute', 'openHea
 openHealthDataApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
-      when('/', {
-        templateUrl: 'partials/listView.html',
-        controller: 'restaurantListCtrl'
-      }).
       when('/vendor/:id', {
         templateUrl: 'partials/restaurantDetailView.html',
         controller: 'restaurantDetailCtrl'

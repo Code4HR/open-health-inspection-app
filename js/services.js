@@ -16,8 +16,8 @@ openHealthDataServices.factory('Geosearch', ['$resource',
 
 openHealthDataServices.factory('Search', ['$resource',
   function($resource) {
-    return $resource('http://api.ttavenner.com/vendors?name=:searchString', {}, {
-      query: { method: 'JSONP', params: {searchString: '', callback: 'JSON_CALLBACK'} }
+    return $resource('http://api.ttavenner.com/vendors', {}, {
+      query: { method: 'JSONP', params: {callback: 'JSON_CALLBACK'} }
     });
   }]);
 

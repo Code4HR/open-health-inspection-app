@@ -24,10 +24,16 @@
             <a href="#/"><h1>Open Health Inspection App</h1></a>
           </div>
 
-          <div id="searchbar" class="col-sm-3 clearfix">
-            <form id="search" name="search" ng-controller="searchCtrl" ng-submit="nameSearch()" novalidate>
+          <div id="searchbar" class="col-sm-3 clearfix" ng-controller="searchCtrl">
+          
+           <!--  <form id="search" name="search" ng-controller="searchCtrl" ng-submit="nameSearch()" novalidate>
               <label for="s" id="search-label"><span class="glyphicon glyphicon-search"></span></label>
               <input id="s" name="s" placeholder="Search" type="text" ng-model="query">
+            </form> -->
+
+            <form id="search" name="search" ng-submit="nameSearch()" novalidate>
+              <input class="col-sm-9" id="s" name="s" placeholder="Search" type="text" ng-model="query">
+              <button class="col-sm-3">Submit</button>
             </form>
 
           </div>
@@ -38,7 +44,26 @@
     </header>
 
     <div id="main" class="container-fluid">
+    
+      <section ng-controller="mapCtrl">
+
+        <google-map center="map.center" zoom="map.zoom" draggable="true">  
+          <marker ng-repeat="restaurant in restaurants" coords="restaurant.coordinates">
+            <window show="markerShow" closeClick="true">
+              <h3>{{restaurant.name}}</h3>
+              <h4>{{restaurant.score}}</h4>
+              <p><a href="#{{restaurant.url}}">Learn More</a></p>
+            </window>
+          </marker>
+        </google-map>
+
+      </section>
+
+      <section class="col-sm-3 col-sm-offset-9" id="searchResults" ng-controller="searchResultsCtrl">
+      </section>
+
       <div ng-view></div>
+
     </div>
 
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
