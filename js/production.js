@@ -110,7 +110,7 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
 
     $scope.nameSearch = function() {
       console.log("Searching for " + $scope.query + ".");
-      Search.results = Search.query({searchString: $scope.query});
+      Search.results = Search.query({name: $scope.query});
       $rootScope.$broadcast('searchFire');
       
     };
@@ -125,7 +125,15 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootSc
       console.log('searchFire heard');
       console.log(Search.results);
       $scope.results = Search.results;
+      $scope.toggleVisibility();
     });
+
+    $scope.isVisible = false;
+
+    $scope.toggleVisibility = function(){
+      $scope.isVisible = true;
+    };
+
     
   }]);
 openHealthDataApp.directive('bindOnce', function() {

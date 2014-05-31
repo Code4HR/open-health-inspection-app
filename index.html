@@ -54,8 +54,8 @@
 
       </section>
 
-      <section class="col-sm-3 col-sm-offset-9" id="searchResults" ng-controller="searchResultsCtrl">
-        <ul>
+      <section class="col-sm-3 col-sm-offset-9" id="searchResults" ng-controller="searchResultsCtrl" ng-show="isVisible">
+        <ul class="row">
           <li ng-repeat="restaurant in results | orderBy:dist" class="clearfix">
           <a href="#{{restaurant.url}}">
                 <div class="col-xs-9">
