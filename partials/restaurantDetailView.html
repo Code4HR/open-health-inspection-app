@@ -23,27 +23,33 @@
 		<section id="inspections" class="col-xs-12" ng-repeat="restaurant in restaurants">	
 		
 			<ul class="inspection row"  ng-repeat="inspection in restaurant.inspections">
-				<li class="type"><h2>{{inspection.type}}</h2></li>
-				<li class="date">{{inspection.date}}</li>
-				<li class="">
-					<h3>Observations</h3>
-					<h4 ng-if="inspection.violations.length === 0">No violations!</h4>
+				<!-- <li class="type"><h2>{{inspection.type}}</h2></li>
+				<li class="date">{{inspection.date}}</li> -->
+				<li class="row">
 					
-					<div ng-repeat="violation in inspection.violations">
-					
-						<div ng-if="$index % 3 === 0" class="clearfix"></div>
-						
-						<ul class="violations col-sm-6 col-md-4" >
-							<li title="This violation {{violation.corrected | was}} corrected during the inspection." ng-class="{'active': violation.corrected}" class="violation"><i class="glyphicon glyphicon-ok"></i></li>
-							<li title="This {{violation.critical | was}} a critical violation." ng-class="{'active': violation.critical}" class="critical"><i class="glyphicon glyphicon-warning-sign"></i></li>
-							<li title="This {{violation.repeat | was}} a repeat violation." ng-class="{'active': violation.repeat}" class="repeat"><i class="glyphicon glyphicon-repeat"></i></li>
-							<li class="code">{{violation.code}}</li>
-							<li class="observation">{{violation.observation}}</li>
-						</ul>
+					<p class="col-xs-1">Date: {{inspection.date}}</p>
 
+					<div class="col-xs-11">
+						<h3>Observations</h3>
+						<h4 class="no-violations" ng-if="inspection.violations.length === 0">No violations! :)</h4>
+					
+						<div ng-repeat="violation in inspection.violations">
+							<div ng-if="$index % 4 === 0" class="clearfix"></div>
+							
+							<ul class="violations col-sm-6 col-md-3" >
+								<li title="This violation {{violation.corrected | was}} corrected during the inspection." ng-class="{'active': violation.corrected}" class="violation"><i class="glyphicon glyphicon-ok"></i></li>
+								<li title="This {{violation.critical | was}} a critical violation." ng-class="{'active': violation.critical}" class="critical"><i class="glyphicon glyphicon-warning-sign"></i></li>
+								<li title="This {{violation.repeat | was}} a repeat violation." ng-class="{'active': violation.repeat}" class="repeat"><i class="glyphicon glyphicon-repeat"></i></li>
+								<li class="code">{{violation.code}}</li>
+								<li class="observation">{{violation.observation}}</li>
+							</ul>
+
+						</div>
 					</div>
 					
 					<li ng-if="restaurant.inspections.length === 0">No violations!</li>
+
+
 				</li>
 			</ul>
 			

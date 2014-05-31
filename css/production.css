@@ -289,6 +289,15 @@ Tablet and Small Screen Styles here.
 	#restuarantDetailView {
         position: relative;
     }
+        .inspection h3 {
+            margin-top: 2px;
+            font-size: 1.25em;
+            color: gray;
+            font-family: "Bitter";
+        }
+        .inspection h4 {
+            color: green;
+        }
 
 /*    #restuarant-info {
         position: fixed;
