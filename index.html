@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" ng-app="openHealthDataApp">
   <head>
     <meta charset="utf-8">
@@ -20,14 +20,13 @@
       <div class="container-fluid">
         
         <div class="row">
-          <div class="col-xs-10 col-sm-9">
+          <div class="col-xs-7  col-sm-7">
             <a href="#/"><h1>Open Health Inspection App</h1></a>
           </div>
-
-          <div id="searchbar" class="col-sm-3 clearfix">
+          <div id="searchbar" class="col-xs-2 col-sm-3 clearfix">
             <form id="search" name="search" ng-controller="searchCtrl" ng-submit="nameSearch()" novalidate>
               <label for="s" id="search-label"><span class="glyphicon glyphicon-search"></span></label>
-              <input id="s" name="s" placeholder="Search" type="text" ng-model="query">
+              <input id="s" name="s" placeholder="Search for a restaurant" type="text" ng-model="query">
             </form>
 
           </div>
