@@ -65,33 +65,33 @@ header {
 	#listView ul {
 
 	}
-		#listView ul li{
+		#searchResults ul li{
 			padding: 10px 0;
 			min-height:60px;
 			border-bottom:1px solid #ccc;
 			background: white;
 		}
-			#listView ul li a {
+			#searchResults ul li a {
 				color: #3498DB;
 			}
-			#listView ul li a:active, #listView ul li a:focus {
+			#searchResults ul li a:active, #listView ul li a:focus {
 				background: #eee;
 			}
-			#listView ul li .restaurant-name {
+			#searchResults ul li .restaurant-name {
 				font-size: 1.25em;
 				line-height: .95em;
 				font-weight: 600;
 				margin: 0;
 				clear: both;
 			}
-			#listView ul li .restaurant-score {
+			#searchResults ul li .restaurant-score {
 				font-size: 3em;
 				line-height: .75em;
 				font-weight: 400;
 				color: #666;
 				text-align: right;
 			}
-			#listView .distance {
+			#searchResults .distance {
 				color: #999999 !important;
 				margin: 0;
 			}
@@ -239,7 +239,7 @@ Tablet and Small Screen Styles here.
     #listView {
         
 }
-        #listView #results {
+        #searchResults {
             height: 500px;
             overflow-y: scroll;
         }

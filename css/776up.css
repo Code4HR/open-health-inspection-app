@@ -34,7 +34,7 @@ Tablet and Small Screen Styles here.
     #listView {
         
 }
-        #listView #results {
+        #searchResults {
             height: 500px;
             overflow-y: scroll;
         }
