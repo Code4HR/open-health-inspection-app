@@ -134,6 +134,10 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootSc
       $scope.isVisible = true;
     };
 
+    $scope.hasFocus = function(){
+      console.log('has focus');
+    }
+
     
   }]);
 openHealthDataApp.directive('bindOnce', function() {

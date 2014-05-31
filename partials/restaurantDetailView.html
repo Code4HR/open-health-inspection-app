@@ -23,13 +23,14 @@
 		<section id="inspections" class="col-xs-12" ng-repeat="restaurant in restaurants">	
 		
 			<ul class="inspection row"  ng-repeat="inspection in restaurant.inspections">
-				<!-- <li class="type"><h2>{{inspection.type}}</h2></li>
-				<li class="date">{{inspection.date}}</li> -->
 				<li class="row">
 					
-					<p class="col-xs-1">Date: {{inspection.date}}</p>
+					<div class="col-xs-1">
+						<p>{{inspection.date}}</p>
+					</div>
 
 					<div class="col-xs-11">
+						<h2>{{inspection.type}}</h2>
 						<h3>Observations</h3>
 						<h4 class="no-violations" ng-if="inspection.violations.length === 0">No violations! :)</h4>
 					

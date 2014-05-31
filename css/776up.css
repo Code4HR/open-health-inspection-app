@@ -43,9 +43,13 @@ Tablet and Small Screen Styles here.
 	#restuarantDetailView {
         position: relative;
     }
+        .inspection h2 {
+            font-family: "Bitter";
+            font-size: 1.5em;
+        }
         .inspection h3 {
             margin-top: 2px;
-            font-size: 1.25em;
+            font-size: 1em;
             color: gray;
             font-family: "Bitter";
         }
