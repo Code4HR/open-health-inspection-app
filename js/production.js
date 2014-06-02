@@ -126,17 +126,20 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootSc
       console.log(Search.results);
       $scope.results = Search.results;
       $scope.toggleVisibility();
+      angular.element('#nottalink').trigger('focus');
+
     });
 
     $scope.isVisible = false;
 
     $scope.toggleVisibility = function(){
-      $scope.isVisible = true;
+      console.log('lost focus');
+      $scope.isVisible = false;
     };
 
     $scope.hasFocus = function(){
       console.log('has focus');
-    }
+    };
 
     
   }]);

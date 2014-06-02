@@ -54,7 +54,8 @@
 
       </section>
 
-      <section class="col-sm-3 col-sm-offset-9" id="searchResults" ng-controller="searchResultsCtrl" ng-show="isVisible" ng-focus="hasFocus()">
+      <section class="col-sm-3 col-sm-offset-9" id="searchResults" ng-controller="searchResultsCtrl" ng-blur="toggleVisibilty" ng-show="isVisible">
+        <a id="nottalink" href="#">Link</a>
         <ul class="row">
           <li ng-repeat="restaurant in results | orderBy:dist" class="clearfix">
           <a href="#{{restaurant.url}}">
@@ -77,12 +78,12 @@
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,300italic,400italic,700,700italic,900italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Bitter:400,700,400italic' rel='stylesheet' type='text/css'>
 
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-resource.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular-route.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular-animate.min.js"></script>
     <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
     <script src="js/production.js"></script>
     <script src="js/libs/angular-google-maps.min.js"></script>

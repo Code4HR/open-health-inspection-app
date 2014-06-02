@@ -61,6 +61,15 @@ header {
 	background: white;
 }
 
+#nottalink {
+/*	position: absolute;
+	left: -9999px;*/
+}
+
+#nottalink:focus {
+	background: orange;
+}
+
 #listView {}
 	#listView ul {
 
@@ -74,8 +83,9 @@ header {
 			#searchResults ul li a {
 				color: #3498DB;
 			}
+
 			#searchResults ul li a:active, #listView ul li a:focus {
-				background: #eee;
+				background: orange;
 			}
 			#searchResults ul li .restaurant-name {
 				font-size: 1.25em;
