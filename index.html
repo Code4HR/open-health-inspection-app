@@ -54,9 +54,9 @@
 
       </section>
 
-      <section class="col-sm-3 col-sm-offset-9" id="searchResults" ng-controller="searchResultsCtrl" ng-blur="toggleVisibilty" ng-show="isVisible">
-        <a id="nottalink" href="#">Link</a>
-        <ul class="row">
+      <section class="col-sm-3 col-sm-offset-9" id="searchResults" ng-controller="searchResultsCtrl">
+        <a ng-blur="lostFocus()" id="nottalink" href="#">Link</a>
+        <ul class="row" ng-show="isVisible">
           <li ng-repeat="restaurant in results | orderBy:dist" class="clearfix">
           <a href="#{{restaurant.url}}">
                 <div class="col-xs-9">

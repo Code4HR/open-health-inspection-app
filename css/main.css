@@ -62,8 +62,8 @@ header {
 }
 
 #nottalink {
-/*	position: absolute;
-	left: -9999px;*/
+	position: absolute;
+	left: -9999px;
 }
 
 #nottalink:focus {
