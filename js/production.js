@@ -125,12 +125,12 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootSc
       console.log('searchFire heard');
       console.log(Search.results);
       $scope.results = Search.results;
-      $scope.isVisible = true;
+      $rootScope.isVisible = true;
       angular.element('#nottalink').trigger('focus');
 
     });
 
-    $scope.isVisible = false;
+    $rootScope.isVisible = false;
 
     $scope.hasFocus = function(){
       console.log('has focus');
@@ -138,7 +138,12 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootSc
 
     $scope.lostFocus = function() {
       console.log('lost focus');
-      $scope.isVisible = false;
+      setTimeout( function(){
+        console.log('waiting to turn off dropdown');
+        $rootScope.isVisible = false;
+        console.log($rootScope.isVisible);
+        $scope.$apply();
+      }, 100);
     };
 
     
