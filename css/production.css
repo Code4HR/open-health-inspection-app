@@ -95,9 +95,8 @@ header form#search {
 					background:#e74c3c
 				}
 	
-
 #main {
-	margin-top: 60px;
+	margin-top: 9.75em;
 }
 	#main ul {
 		padding: 0;
@@ -163,10 +162,12 @@ header form#search {
 
 #restaurantDetailView {
 	padding-top: 1em;
+
 }
 	
 	#restuarant-info {
 		font-family: "Bitter";
+		background-color: rgba(255,255,255,.75);
 	}
 
 		#restaurantInfo h1 {
@@ -266,8 +267,6 @@ header form#search {
 					li.observation {
 						width: 90%;
 					}
-
-
 
 /***********************************
 Tablet and Small Screen Styles here.
