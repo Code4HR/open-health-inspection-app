@@ -26,6 +26,7 @@ var openHealthDataAppControllers = angular.module('openHealthDataAppControllers'
 openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$http', '$q', 'Geosearch', 'Search',
   function($scope, $rootScope, $http, $q, Geosearch, Search) {
 
+    Geosearch.map =
     $scope.map = {
         center: {
             latitude: 36.847010,
@@ -34,11 +35,15 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
         zoom: 18
     };
 
+    console.log(Geosearch.map);
+
     $scope.dist = 500;
 
     $scope.showPosition = function(position) {
       $scope.map.center.latitude = position.coords.latitude;
       $scope.map.center.longitude = position.coords.longitude;
+      Geosearch.map.center.latitude = position.coords.latitude;
+      Geosearch.map.center.longitude = position.coords.longitude;
       $scope.restaurants = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: $scope.dist});
     }
 
@@ -56,11 +61,11 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
 
     $scope.getLocation();
     
-    $scope.toRad = function(Value) {
+    $rootScope.toRad = function(Value) {
         return Value * Math.PI / 180;
     };
 
-    $scope.distanceCalculation = function(input) {
+    $rootScope.distanceCalculation = function(input) {
 
       var lat2 = input.latitude;
       var lon2 = input.longitude;
@@ -127,8 +132,11 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootSc
       $scope.results = Search.results;
       $rootScope.isVisible = true;
       angular.element('#nottalink').trigger('focus');
-
     });
+
+    $scope.map = Geosearch.map;
+
+    console.log("Geosearch map in search results" + Geosearch.map)
 
     $rootScope.isVisible = false;
 
