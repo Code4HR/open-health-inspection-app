@@ -26,9 +26,9 @@
 
           <div id="searchbar" class="col-sm-3 clearfix" ng-controller="searchCtrl">
 
-            <form id="search" name="search" ng-submit="nameSearch()" novalidate>
-              <input class="col-sm-9" id="s" name="s" placeholder="Search" type="text" ng-model="query">
-              <button class="col-sm-3">Submit</button>
+            <form id="search" name="search" ng-controller="searchCtrl" ng-submit="nameSearch()" novalidate>
+              <label for="s" id="search-label"><span class="glyphicon glyphicon-search"></span></label>
+              <input id="s" name="s" placeholder="Search" type="text" ng-model="query">
             </form>
 
           </div>
