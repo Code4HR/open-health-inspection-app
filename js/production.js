@@ -26,8 +26,8 @@ var openHealthDataAppControllers = angular.module('openHealthDataAppControllers'
 openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$http', '$q', 'Geosearch', 'Search',
   function($scope, $rootScope, $http, $q, Geosearch, Search) {
 
-    Geosearch.map =
-    $scope.map = {
+    $scope.map =
+    Geosearch.map = {
         center: {
             latitude: 36.847010,
             longitude: -76.292430
@@ -40,11 +40,9 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
     $scope.dist = 500;
 
     $scope.showPosition = function(position) {
-      $scope.map.center.latitude = position.coords.latitude;
-      $scope.map.center.longitude = position.coords.longitude;
       Geosearch.map.center.latitude = position.coords.latitude;
       Geosearch.map.center.longitude = position.coords.longitude;
-      $scope.restaurants = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: $scope.dist});
+      $scope.results = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: $scope.dist});
     }
 
     $scope.showError = function() {
@@ -90,23 +88,31 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
 
   }]);
 
-openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', '$http',
-  function($scope, $routeParams, $http) {
+openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', '$http', 'Geosearch',
+  function($scope, $routeParams, $http, Geosearch) {
 
   	$http.jsonp('http://api.ttavenner.com/inspections/' + $routeParams.id + '?callback=JSON_CALLBACK').success(function(data) {
-      $scope.restaurants = data;
+      $scope.results = data;
 
-      //console.log( $routeParams.id);
-      console.log( $scope.restaurants);
+      console.log($scope.results);
+
+    for (var key in $scope.results) {
+      if ($scope.results.hasOwnProperty(key)) {
+        // console.log(key + " -> " + $scope.results[key]);
+        // console.log($scope.results[key].coordinates);
+        console.log('Map Center');
+        console.log(Geosearch.map.center);
+        console.log('Reported Restaurant Center');
+        console.log($scope.results[key].coordinates);
+
+        Geosearch.map.center = $scope.results[key].coordinates;
+
+        // Geosearch.map = $scope.results[key].coordinates;
+
+      }
+    }
+
     });
-
-    $scope.map = {
-        center: {
-            latitude: 90.847010,
-            longitude: 90.292430
-        },
-        zoom: 18
-    };
 
   }]);
 
