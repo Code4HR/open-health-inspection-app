@@ -65,7 +65,9 @@ header form#search {
 				width: 100%; /* You can change this to the desired width */
 				box-shadow:inset -44px 0 0 #e74c3c
 			}	
-
+			#s {
+				height: 45px;
+			}
 			#search-label {
 				border-radius: 100%;
 				outline:none;
@@ -81,8 +83,9 @@ header form#search {
 				text-align:center;
 				position:absolute;
 				top:.5em;
-				right:0;
-				cursor:pointer
+				right: 0;
+				cursor: pointer;
+				margin-bottom: 0;
 			}		
 			#search-label .glyphicon {
 				top: 3px;
