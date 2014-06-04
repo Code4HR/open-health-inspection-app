@@ -99,8 +99,8 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
   }]);
 
 
-openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootScope', 'Search',
-  function($scope, $rootScope, Search, Data){
+openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootScope', 'Search', 'Geosearch',
+  function($scope, $rootScope, Search, Geosearch){
 
     $rootScope.$on('searchFire', function(){
       console.log('searchFire heard');
