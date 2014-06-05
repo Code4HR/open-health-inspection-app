@@ -1,7 +1,7 @@
 open-health-inspection-app
 ==========================
 
-The frontend for Code for Hampton Roads' Open Health Inspection Data app.  Built using Angular, Bootstrap, and jQuery.
+The frontend for Code for Hampton Roads' Open Health Inspection Data app.  Built using AngularJS and Bootstrap.
 
 __How to contribute__
 * You'll need to install NodeJS, which can be found [here](nodejs.org).  
@@ -13,8 +13,9 @@ __How to contribute__
 
 Now when you make edits to CSS or JS in css/ and js/ folders, they are automatically concatenated and minified in css/build/ and js/build/, respectively.  Images placed in img folder are losslessly optimized and saved to img/build/. 
 
-live demo
-=====
-a live demo of the app 
+__Other Stuff__
+* gh-pages is the live site.  When issuing a pull request, please ask to merge with the develop branch.
 
-http://c4hrva.github.io/open-health-inspection-app/
+live demo
+=========
+http://openhealthinspection.com/
