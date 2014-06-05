@@ -18,3 +18,16 @@ live demo
 a live demo of the app 
 
 http://c4hrva.github.io/open-health-inspection-app/
+
+
+Installation
+---
+
+```
+git clone git@github.com:c4hrva/open-health-inspection-app.git
+npm install -g grunt-cli
+npm install 
+grunt watch&
+python -m SimpleHTTPServer 7777
+#go to to http://localhost:7777
+```
