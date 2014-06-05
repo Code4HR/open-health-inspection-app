@@ -1,6 +1,9 @@
 /************************
 Base / Mobile Styles here.
 *************************/
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
 
 .angular-google-map-container { height:100%; width:100%; position:absolute; top:0; left:0; }
 
