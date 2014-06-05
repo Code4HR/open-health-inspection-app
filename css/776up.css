@@ -1,0 +1,75 @@
+/***********************************
+Tablet and Small Screen Styles here.
+***********************************/
+
+@media screen and (min-width: 776px) {
+
+    
+    header {
+        text-align: left;   
+    }
+    	header h1 {
+    		font-size: 2em;
+            line-height: 60px;
+            margin: 0;
+    	}
+        header img {
+            margin-top: 1em;
+        }
+        form {
+            
+        }
+    
+    #main.container {
+        padding-top: 2em;
+    } 
+
+    .angular-google-map-container { height:100%; width:100%; position:absolute; top:0; left:0; }
+
+    #searchResults {
+        position: fixed;
+        top: 60px;
+        right: 0;
+        max-height: 500px;
+        z-index: 100;
+        overflow-y: scroll;
+    } 
+        #searchResults .row {
+            margin-bottom: 0;
+        }
+
+        #listView ul {}
+
+	#restuarantDetailView {
+        position: relative;
+    }
+        .inspection h2 {
+            font-family: "Bitter";
+            font-size: 1.5em;
+        }
+        .inspection h3 {
+            margin-top: 2px;
+            font-size: 1em;
+            color: gray;
+            font-family: "Bitter";
+        }
+        .inspection h4 {
+            color: green;
+        }
+
+/*    #restuarant-info {
+        position: fixed;
+    }*/
+
+        #restaurantDetailView .angular-google-map-container {
+            height: 250px;
+        }
+
+        #restaurantDetailView #inspections {}
+
+        #restaurantDetailView ul.violations {
+ 
+        }
+
+
+}

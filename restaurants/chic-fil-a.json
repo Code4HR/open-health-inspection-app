@@ -1,0 +1,230 @@
+{
+    "inspections" : [ 
+        {
+            "date" : "  15-Oct-2013",
+            "violations" : [],
+            "type" : "Routine Inspection"
+        }, 
+        {
+            "date" : "  22-Jul-2013",
+            "violations" : [ 
+                {
+                    "code" : "Code",
+                    "observations" : [ 
+                        "Observation / Corrective Action"
+                    ]
+                }, 
+                {
+                    "code" : "3-501.16 (A) (2)  ",
+                    "observations" : [ 
+                        "Corrected During Inspection", 
+                        " ", 
+                        "Priority Item  ", 
+                        "coleslaw & chicken salad cold holding at improper temperatures", 
+                        "Discard the food and ensure that potentially hazardous foods for cold holding are maintained at 41°F or below to inhibit the growth of harmful bacteria."
+                    ]
+                }, 
+                {
+                    "code" : "6-501.16  ",
+                    "observations" : [ 
+                        "Corrected During Inspection", 
+                        " ", 
+                        "Core Item  ", 
+                        "Mops and brooms not hung up to air dry.", 
+                        "Wet use maintenance items such as mops must be hung in a position that allows them to air dry so they are not allowed to grow contamination which can then be spread through the establishment at the next use."
+                    ]
+                }
+            ],
+            "type" : "Routine Inspection"
+        }, 
+        {
+            "date" : "  21-Feb-2013",
+            "violations" : [ 
+                {
+                    "code" : "Code",
+                    "observations" : [ 
+                        "Observation / Corrective Action"
+                    ]
+                }, 
+                {
+                    "code" : "4-602.11  ",
+                    "observations" : [ 
+                        " ", 
+                        "Priority Item  ", 
+                        "The cleaning schedule for ice machine is not approved based on the amount of growth accumulation.", 
+                        "The person in charge must develop a cleaning regimen that is based on the soil that may accumulate in the ice machine."
+                    ]
+                }, 
+                {
+                    "code" : "3-305.11  ",
+                    "observations" : [ 
+                        "Corrected During Inspection", 
+                        " ", 
+                        "Core Item  ", 
+                        "Food stored on the floor.", 
+                        "Elevate food storage onto approved shelving with minimum 6\"\" legs or casters."
+                    ]
+                }, 
+                {
+                    "code" : "3-304.12  ",
+                    "observations" : [ 
+                        "Corrected During Inspection", 
+                        " ", 
+                        "Core Item  ", 
+                        "In-use utensils improperly stored between use.", 
+                        "Store in-use utensils or dispensing utensils in one of the following manners: 1) In the food with their handles above the top of the food and the container. 2) In food that is not potentially hazardous with their handles above the top of the food within containers or equipment that can be closed. 3) On a clean portion of the food preparation table or cooking equipment only if the in-use utensil and the food-contact surface of the food preparation table or cooking equipment are cleaned and sanitized every 4 hours. 4) In running water of sufficient velocity to flush particulates to the drain. 5) In a clean, protected location if the utensils are used only with a food that is not potentially hazardous. 6) In a container of water if the water is maintained at a temperature of at least 140°F and the container."
+                    ]
+                }, 
+                {
+                    "code" : "4-901.11  ",
+                    "observations" : [ 
+                        "Corrected During Inspection", 
+                        " ", 
+                        "Core Item  ", 
+                        "Metal pans were found stacked while wet after cleaning and chemical sanitization.", 
+                        "Items must be allowed to drain and air-dry before being stacked or stored to allow evaporation of chemical sanitizer and moisture that may encourage microbial growth."
+                    ]
+                }, 
+                {
+                    "code" : "4-903.11  ",
+                    "observations" : [ 
+                        "Corrected During Inspection", 
+                        " ", 
+                        "Core Item  ", 
+                        "Single Service items were found stored with personal items.", 
+                        "Store single service items in a clean, dry location where not exposed to splash, dust or other contamination at least 6 inches above the floor."
+                    ]
+                }, 
+                {
+                    "code" : "4-502.13  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item  ", 
+                        "The bulk ice dream container tube was observed not cut on the diagonal (45 degree angle).", 
+                        "The bulk ice dream container tube shall be cut on the diagonal to extend no more than 1 inch from the dispensing head to prevent contamination and to allow drainage of the tube."
+                    ]
+                }, 
+                {
+                    "code" : "5-501.115  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item Repeat ", 
+                        "Trash and litter were observed adjacent to the refuse container outside the facility.", 
+                        "The refuse container storage area and grounds adjacent to the container are to be maintained clean and sanitary."
+                    ]
+                }, 
+                {
+                    "code" : "6-303.11  ",
+                    "observations" : [ 
+                        "Corrected During Inspection", 
+                        " ", 
+                        "Core Item  ", 
+                        "Less than 10 foot candles of light was noted in the Reach-in cooler.", 
+                        "Provide at least 10 foot candles at a distance of 30 inches from the floor in the walk-in refrigeration units and dry storage areas and in other areas and rooms during periods of cleaning."
+                    ]
+                }
+            ],
+            "type" : "Routine Inspection"
+        }, 
+        {
+            "date" : "  15-Oct-2012",
+            "violations" : [ 
+                {
+                    "code" : "Code",
+                    "observations" : [ 
+                        "Observation / Corrective Action"
+                    ]
+                }, 
+                {
+                    "code" : "4-204.112  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item  ", 
+                        "There was no temperature measuring device located in three refrigerator units.", 
+                        "Provide a temperature measuring device in all hot or cold holding equipment used to store potentially hazardous foods so that employees can routinely monitor the ambient air temperature."
+                    ]
+                }, 
+                {
+                    "code" : "4-501.11  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item  ", 
+                        "One of the Prep. units was observed in a state of disrepair and damaged. The unit has a broken door.", 
+                        "Repair the @EQUIPMENT@ to restore a state of condition that allows for proper operation, accuracy, functioning, maintenance, and cleanability per Part IV, Article 1 and 2 of this chapter. If unable to repair the @EQUIPMENT@, replace it with one that meets the specifications of Part IV, Article 1 and 2 of this chapter."
+                    ]
+                }, 
+                {
+                    "code" : "5-501.113  ",
+                    "observations" : [ 
+                        "Corrected During Inspection", 
+                        " ", 
+                        "Core Item Repeat ", 
+                        "Outside refuse container was uncovered.", 
+                        "Cover all waste containers when not in continuous use."
+                    ]
+                }, 
+                {
+                    "code" : "6-501.12  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item  ", 
+                        "Physical structure, floor in the dry storage area  noted in need of cleaning.", 
+                        "All floors, walls, and ceilings must be cleaned as often as necessary to keep them clean. Cleaning of the physical facilities is an important measure in ensuring the protection and sanitary preparation of food. A regular cleaning schedule should be established and followed to maintain the facility in a clean and sanitary manner."
+                    ]
+                }
+            ],
+            "type" : "Routine Inspection"
+        }, 
+        {
+            "date" : "  20-Mar-2012",
+            "violations" : [ 
+                {
+                    "code" : "Code",
+                    "observations" : [ 
+                        "Observation / Corrective Action"
+                    ]
+                }, 
+                {
+                    "code" : "3-501.16 (A) (2)  ",
+                    "observations" : [ 
+                        " ", 
+                        "Priority Item  ", 
+                        "Tray of chicken strips (on top of prep. unit 48.5 degrees Fahrenheit) Cold holding at improper temperatures", 
+                        "Cold hold potentially hazardous food at 41°F or below to inhibit the growth of harmful bacteria."
+                    ]
+                }, 
+                {
+                    "code" : "4-601.11a  ",
+                    "observations" : [ 
+                        " ", 
+                        "Priority Item  ", 
+                        "Observed accumulations of grime and debris on the following food contact surfaces: Door grove of ice machine.", 
+                        "Clean and sanitize these surfaces for food contact."
+                    ]
+                }, 
+                {
+                    "code" : "5-501.113  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item  ", 
+                        "Outside refuse container was uncovered.", 
+                        "Cover all waste containers when not in continuous use."
+                    ]
+                }, 
+                {
+                    "code" : "5-501.115  ",
+                    "observations" : [ 
+                        " ", 
+                        "Core Item  ", 
+                        "Trash and litter were observed adjacent to the refuse container outside the facility.", 
+                        "The refuse container storage area and grounds adjacent to the container are to be maintained clean and sanitary."
+                    ]
+                }
+            ],
+            "type" : "Routine Inspection"
+        }
+    ],
+    "last_inspection_date" : "  15-Oct-2013",
+    "name" : "'Chick Fil-A",
+    "address" : " 1205 N Military Highway"
+}

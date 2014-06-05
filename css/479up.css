@@ -1,0 +1,15 @@
+/*************************************************
+Landscape Orientation iPhone and other Big Phones.
+*************************************************/
+
+@media screen and (min-width: 479px) {
+
+	#restuarantDetailView {}
+
+        #restaurantDetailView #inspections {}
+
+        #restaurantDetailView ul.violations {
+        
+        }
+
+}
