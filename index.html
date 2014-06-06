@@ -46,7 +46,7 @@
     
       <section ng-controller="mapCtrl">
 
-        <google-map center="map.center" zoom="map.zoom" draggable="true">  
+        <google-map center="map.center" zoom="map.zoom" pan="true" draggable="true" events="[[drag, console.log('ping')]]">  
           <marker ng-repeat="restaurant in results" coords="restaurant.coordinates">
             <window show="markerShow" closeClick="true">
               <h3>{{restaurant.name}}</h3>
