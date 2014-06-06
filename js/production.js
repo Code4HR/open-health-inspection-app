@@ -88,8 +88,8 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
 
   }]);
 
-openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', '$http', 'Geosearch',
-  function($scope, $routeParams, $http, Geosearch) {
+openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', '$http', '$location', 'Geosearch',
+  function($scope, $routeParams, $http, $location, Geosearch) {
 
   	$http.jsonp('http://api.ttavenner.com/inspections/' + $routeParams.id + '?callback=JSON_CALLBACK').success(function(data) {
       $scope.results = data;
@@ -98,19 +98,22 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$rou
 
     for (var key in $scope.results) {
       if ($scope.results.hasOwnProperty(key)) {
-        // console.log(key + " -> " + $scope.results[key]);
-        // console.log($scope.results[key].coordinates);
-        console.log('Map Center');
-        console.log(Geosearch.map.center);
-        console.log('Reported Restaurant Center');
-        console.log($scope.results[key].coordinates);
 
         Geosearch.map.center = $scope.results[key].coordinates;
+        setTimeout(function(){
 
-        // Geosearch.map = $scope.results[key].coordinates;
+        $scope.$watch(Geosearch.map.center, function(e){
+            // console.log('hey, something changed');
+            // console.log($location.path());
+            $location.path('/#')
+          }, true);
+
+        }, 1000); 
 
       }
     }
+
+    
 
     });
 
@@ -123,6 +126,8 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
       console.log("Searching for " + $scope.query + ".");
       Search.results = Search.query({name: $scope.query});
       $rootScope.$broadcast('searchFire');
+
+
       
     };
 
