@@ -31,7 +31,7 @@ Tablet and Small Screen Styles here.
         top: 60px;
         right: 0;
         max-height: 500px;
-        z-index: 100;
+        z-index: 9999;
         overflow-y: scroll;
     } 
         #searchResults .row {

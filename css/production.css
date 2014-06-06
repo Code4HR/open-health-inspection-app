@@ -5,6 +5,8 @@ Base / Mobile Styles here.
   display: none !important;
 }
 
+textarea, input { outline: none; }
+
 .angular-google-map-container { height:100%; width:100%; position:absolute; top:0; left:0; }
 
 body{
@@ -76,6 +78,7 @@ header {
 
 #searchResults {
 	background: white;
+
 }
 
 #nottalink {
@@ -129,6 +132,7 @@ header {
 	position: fixed;
 	bottom: 8px;
 	overflow-y: scroll;
+	z-index: 1;
 }
 	
 	#restuarant-info {
@@ -269,7 +273,7 @@ Tablet and Small Screen Styles here.
         top: 60px;
         right: 0;
         max-height: 500px;
-        z-index: 100;
+        z-index: 9999;
         overflow-y: scroll;
     } 
         #searchResults .row {
