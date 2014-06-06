@@ -89,7 +89,7 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$rou
             $location.path('/#')
           }, true);
 
-        }, 500); 
+        }, 1000); 
 
       }
     }
