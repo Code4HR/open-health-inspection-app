@@ -37,7 +37,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
 
     console.log(Geosearch.map);
 
-    $scope.dist = 500;
+    $scope.dist = 1000;
 
     $scope.showPosition = function(position) {
       Geosearch.map.center.latitude = position.coords.latitude;
