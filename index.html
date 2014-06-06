@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	  <META NAME="description" CONTENT="Easily get public health inspection data for eateries near you.">
     <meta name="keywords" content="inspection, health inspection, dining, restaurant, cafeteria, open data, open government data, Code for America, Code for America Brigade, cfabrigade, mobile, HTML5, app, open source, Code for Hampton Roads, volunteers, volunteering, civic, civic engagement, public service">
-    <meta property="og:image" content="img/build/preview.jpg" />
+    <meta property="og:image" content="img/build/preview." />
 
     <title>Open Health Inspection App</title>
 
@@ -51,9 +51,11 @@
         <google-map center="map.center" zoom="map.zoom" pan="true" draggable="true" events="[['center_changed', console.log('ping') ]]">  
           <marker ng-repeat="restaurant in results" coords="restaurant.coordinates">
             <window show="markerShow" closeClick="true">
-              <h3>{{restaurant.name}}</h3>
-              <h4>{{restaurant.score}}</h4>
-              <p><a href="#{{restaurant.url}}">Learn More</a></p>
+              <center>
+                <h4>{{restaurant.name}}</h4>
+                <h4>{{restaurant.score}}</h4>
+                <p><a class="btn btn-info" href="#{{restaurant.url}}">Learn More</a></p>
+              </center>
             </window>
           </marker>
         </google-map>
