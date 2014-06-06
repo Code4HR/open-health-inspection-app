@@ -22,17 +22,19 @@
       <div class="container-fluid">
         
         <div class="row">
-          <div class="col-xs-10 col-sm-9">
-            <a href="#/"><h1>Open Health Inspection App</h1></a>
+          <div class="hidden-xs col-xs-2 col-sm-9">
+            <a href="#/">
+              <h1 >Open Health Inspection App</h1>
+            </a>
           </div>
 
           <div id="searchbar" class="col-sm-3 clearfix" ng-controller="searchCtrl">
-
-            <form id="search" name="search" ng-controller="searchCtrl" ng-submit="nameSearch()" novalidate>
-              <label for="s" id="search-label"><span class="glyphicon glyphicon-search"></span></label>
-              <input id="s" name="s" placeholder="Search" type="text" ng-model="query">
+            <form id="search" ng-controller="searchCtrl" ng-submit="nameSearch()" novalidate>
+              <input class="col-xs-10" type="search" ng-model="query" placeholder="Search for a restaurant">
+              <button class="col-xs-2 btn btn-info">
+                <span class="glyphicon glyphicon-search"></span>
+              </button>
             </form>
-
           </div>
 
         </div>
