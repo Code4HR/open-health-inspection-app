@@ -40,6 +40,17 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
     $scope.dist = 1000;
 
     $scope.showPosition = function(position) {
+
+      //some kind of virginia specific location checking needs to go here.
+      //if outside the lat/lon bounds of Virginia, display a modal notifying 
+      //the user that Hatch will be the starting point.
+
+      // - Latitude 36° 32′ N to 39° 28′ N
+      // - Longitude 75° 15′ W to 83° 41′ W
+
+      console.log("latitude: " + position.coords.latitude);
+      console.log("longitude: " + position.coords.longitude);
+
       Geosearch.map.center.latitude = position.coords.latitude;
       Geosearch.map.center.longitude = position.coords.longitude;
       $scope.results = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: $scope.dist});
@@ -81,7 +92,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
               Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
       var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
       var d = R * c;
-
+ 
       return d * 0.62137;
       
     };
