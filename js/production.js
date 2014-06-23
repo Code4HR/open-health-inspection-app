@@ -88,43 +88,46 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
 
   }]);
 
-openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', '$http', '$location', 'Geosearch',
-  function($scope, $routeParams, $http, $location, Geosearch) {
+openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', '$http', '$location', 'Geosearch', 'Inspections', 
+  function($scope, $routeParams, $http, $location, Geosearch, Inspections) {
 
-  	$http.jsonp('http://api.ttavenner.com/inspections/' + $routeParams.id + '?callback=JSON_CALLBACK').success(function(data) {
-      $scope.results = data;
+    // $http.jsonp('http://api.ttavenner.com/inspections/' + $routeParams.id + '?callback=JSON_CALLBACK').success(function(data) { 
+   //    $scope.results = data;
 
-      console.log($scope.results);
+   //    console.log($scope.results);
 
-    for (var key in $scope.results) {
-      if ($scope.results.hasOwnProperty(key)) {
+   //  for (var key in $scope.results) {
+   //    if ($scope.results.hasOwnProperty(key)) {
 
-        Geosearch.map.center = $scope.results[key].coordinates;
-        setTimeout(function(){
+   //      Geosearch.map.center = $scope.results[key].coordinates;
+   //      setTimeout(function(){
 
-        $scope.$watch(Geosearch.map.center, function(e){
-            // console.log('hey, something changed');
-            // console.log($location.path());
-            $location.path('/#')
-          }, true);
+   //      $scope.$watch(Geosearch.map.center, function(e){
+   //          $location.path('/#')
+   //        }, true);
 
-        }, 1000); 
+   //      }, 1000); 
 
-      }
-    }
+   //    }
+   //  }
 
-    
-
+    $scope.results = Inspections.query({vendorid: $routeParams.id}, function(){
+      var key = $scope.results[_.keys($scope.results)[0]].coordinates;
+      Geosearch.map.center = $scope.results[key].coordinates;
     });
 
-  }]);
+}]);
 
 openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', 'Search',
   function($scope, $rootScope, Search){
 
     $scope.nameSearch = function() {
       console.log("Searching for " + $scope.query + ".");
-      Search.results = Search.query({name: $scope.query});
+      Search.results = Search.query({name: $scope.query}, function(){
+        Search.results.forEach(function(el, index){
+            
+        });
+      });
       $rootScope.$broadcast('searchFire');
 
 
@@ -152,7 +155,7 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootSc
     $rootScope.isVisible = false;
 
     $scope.hasFocus = function(){
-      console.log('has focus');
+      co.nsole.log('has focus');
     };
 
     $scope.lostFocus = function() {
@@ -188,23 +191,23 @@ Models
 
 var openHealthDataServices = angular.module('openHealthDataServices', ['ngResource']);
  
-openHealthDataServices.factory('Vendors', ['$resource',
+openHealthDataServices.factory('Inspections', ['$resource',
   function($resource){
-    return $resource('http://api.ttavenner.com/vendors', {}, {
-      query: { method: 'JSONP', params: {callback: 'JSON_CALLBACK'} }
+    return $resource('http://api-dev.ttavenner.com/inspections?vendorid=:vendorid', {}, {
+      query: { method: 'JSONP', params: {vendorid: '', callback: 'JSON_CALLBACK'} }
     });
   }]);
 
 openHealthDataServices.factory('Geosearch', ['$resource',
   function($resource) {
-    return $resource('http://api.ttavenner.com/vendors?lat=:lat&lng=:lon&dist=:dist', {}, {
+    return $resource('http://api-dev.ttavenner.com/vendors?lat=:lat&lng=:lon&dist=:dist', {}, {
       query: { method: 'JSONP', params: {lat: '36', lon: '-72', dist: '1000', callback: 'JSON_CALLBACK'} }
     });
   }]);
 
 openHealthDataServices.factory('Search', ['$resource',
   function($resource) {
-    return $resource('http://api.ttavenner.com/vendors', {}, {
+    return $resource('http://api-dev.ttavenner.com/vendors', {}, {
       query: { method: 'JSONP', params: {callback: 'JSON_CALLBACK'} }
     });
   }]);
