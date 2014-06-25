@@ -4,8 +4,8 @@ Controllers
 
 var openHealthDataAppControllers = angular.module('openHealthDataAppControllers', []);
 
-openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$http', '$q', 'Geosearch', 'Search',
-  function($scope, $rootScope, $http, $q, Geosearch, Search) {
+openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$http', '$q', 'Geosearch', 'Search', '$filter',
+  function($scope, $rootScope, $http, $q, Geosearch, Search, $filter) {
 
     $scope.map =
     Geosearch.map = {
@@ -25,6 +25,8 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
       Geosearch.map.center.longitude = position.coords.longitude;
       $scope.results = 
       Geosearch.results = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: $scope.dist}, function(){
+        Geosearch.results = _.values(Geosearch.results);
+        Geosearch.results = $filter('orderBy')(Geosearch.results, 'dist');
         $rootScope.$broadcast('geosearchFire');
       });
     }
