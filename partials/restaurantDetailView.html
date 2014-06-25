@@ -38,8 +38,8 @@
 					
 						<div ng-repeat="violation in inspection.violations">
 							
-							<div ng-if="$index % 4 === 0" class="visible-md clearfix"></div>
-							<div ng-if="$index % 3 === 0" class="visible-sm clearfix"></div>
+							<div ng-if="$index % 2 === 0" class="visible-sm clearfix"></div>
+							<div ng-if="$index % 4 === 0" class="visible-md visible-lg clearfix"></div>
 
 							
 							<ul class="violations col-sm-6 col-md-3" >
