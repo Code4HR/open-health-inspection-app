@@ -37,7 +37,10 @@
 						<h4 class="no-violations" ng-if="inspection.violations.length === 0">No violations! :)</h4>
 					
 						<div ng-repeat="violation in inspection.violations">
-							<div ng-if="$index % 4 === 0" class="clearfix"></div>
+							
+							<div ng-if="$index % 4 === 0" class="visible-md clearfix"></div>
+							<div ng-if="$index % 3 === 0" class="visible-sm clearfix"></div>
+
 							
 							<ul class="violations col-sm-6 col-md-3" >
 								<li title="This violation {{violation.corrected | was}} corrected during the inspection." ng-class="{'active': violation.corrected}" class="violation"><i class="glyphicon glyphicon-ok"></i></li>

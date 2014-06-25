@@ -68,12 +68,12 @@
       <section class="col-sm-3 col-sm-offset-9" id="searchResults" ng-controller="searchResultsCtrl">
         <a ng-blur="lostFocus()" id="nottalink" href="#">Link</a>
         <ul class="row" ng-hide="!isVisible">
-          <li ng-repeat="restaurant in results | orderBy:dist" class="clearfix">
+          <li ng-repeat="restaurant in results" class="clearfix">
           <a href="#{{restaurant.url}}">
-                <div class="col-xs-9">
-                  <p class="restaurant-name">{{restaurant.name}}</p>
-                <p bind-once class="distance">{{distanceCalculation(restaurant.coordinates) | number:2}} Miles Away</p>             
-                </div>
+            <div class="col-xs-9">
+              <p class="restaurant-name">{{restaurant.name}}</p>
+            <p bind-once class="distance">{{restaurant.dist | number:2}} Miles Away</p>             
+            </div>
             <div class="col-xs-3 restaurant-score">{{restaurant.score}}</div> 
           </a>
           </li>
