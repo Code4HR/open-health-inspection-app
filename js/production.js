@@ -42,7 +42,9 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
     $scope.showPosition = function(position) {
       Geosearch.map.center.latitude = position.coords.latitude;
       Geosearch.map.center.longitude = position.coords.longitude;
-      $scope.results = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: $scope.dist});
+      $scope.results = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: $scope.dist}, function(){
+        $rootScope.isVisible = true;
+      });
     }
 
     $scope.showError = function() {
@@ -180,21 +182,21 @@ var openHealthDataServices = angular.module('openHealthDataServices', ['ngResour
  
 openHealthDataServices.factory('Inspections', ['$resource',
   function($resource){
-    return $resource('http://api-dev.ttavenner.com/inspections?vendorid=:vendorid', {}, {
+    return $resource('http://api.openhealthinspection.com/inspections?vendorid=:vendorid', {}, {
       query: { method: 'JSONP', params: {vendorid: '', callback: 'JSON_CALLBACK'} }
     });
   }]);
 
 openHealthDataServices.factory('Geosearch', ['$resource',
   function($resource) {
-    return $resource('http://api-dev.ttavenner.com/vendors?lat=:lat&lng=:lon&dist=:dist', {}, {
+    return $resource('http://api.openhealthinspection.com/vendors?lat=:lat&lng=:lon&dist=:dist', {}, {
       query: { method: 'JSONP', params: {lat: '36', lon: '-72', dist: '1000', callback: 'JSON_CALLBACK'} }
     });
   }]);
 
 openHealthDataServices.factory('Search', ['$resource',
   function($resource) {
-    return $resource('http://api-dev.ttavenner.com/vendors', {}, {
+    return $resource('http://api.openhealthinspection.com/vendors', {}, {
       query: { method: 'JSONP', params: {callback: 'JSON_CALLBACK'} }
     });
   }]);
