@@ -91,47 +91,34 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
 openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', '$http', '$location', 'Geosearch', 'Inspections', 
   function($scope, $routeParams, $http, $location, Geosearch, Inspections) {
 
-    // $http.jsonp('http://api.ttavenner.com/inspections/' + $routeParams.id + '?callback=JSON_CALLBACK').success(function(data) { 
-   //    $scope.results = data;
-
-   //    console.log($scope.results);
-
-   //  for (var key in $scope.results) {
-   //    if ($scope.results.hasOwnProperty(key)) {
-
-   //      Geosearch.map.center = $scope.results[key].coordinates;
-   //      setTimeout(function(){
-
-   //      $scope.$watch(Geosearch.map.center, function(e){
-   //          $location.path('/#')
-   //        }, true);
-
-   //      }, 1000); 
-
-   //    }
-   //  }
-
     $scope.results = Inspections.query({vendorid: $routeParams.id}, function(){
-      var key = $scope.results[_.keys($scope.results)[0]].coordinates;
-      Geosearch.map.center = $scope.results[key].coordinates;
+      Geosearch.map.center = $scope.results[$routeParams.id].coordinates;
+      setTimeout(function(){
+        $scope.$watch(Geosearch.map.center, function(e){
+            $location.path('/#');
+          }, true);
+        }, 1000); 
     });
 
 }]);
 
-openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', 'Search',
-  function($scope, $rootScope, Search){
+openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', 'Search', '$filter',
+  function($scope, $rootScope, Search, $filter){
 
     $scope.nameSearch = function() {
       console.log("Searching for " + $scope.query + ".");
       Search.results = Search.query({name: $scope.query}, function(){
+        Search.results = _.values(Search.results);
         Search.results.forEach(function(el, index){
-            
+          if (!_.isUndefined(el.coordinates)) {
+            el.dist = $rootScope.distanceCalculation(el.coordinates);
+          } else {
+            Search.results.splice(index,1);
+          }
         });
+        Search.results = $filter('orderBy')(Search.results, 'dist');
+        $rootScope.$broadcast('searchFire');
       });
-      $rootScope.$broadcast('searchFire');
-
-
-      
     };
 
   }]);
@@ -150,18 +137,18 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootSc
 
     $scope.map = Geosearch.map;
 
-    console.log("Geosearch map in search results" + Geosearch.map)
+    // console.log("Geosearch map in search results" + Geosearch.map)
 
     $rootScope.isVisible = false;
 
     $scope.hasFocus = function(){
-      co.nsole.log('has focus');
+      // co.nsole.log('has focus');
     };
 
     $scope.lostFocus = function() {
-      console.log('lost focus');
+      // console.log('lost focus');
       setTimeout( function(){
-        console.log('waiting to turn off dropdown');
+        // console.log('waiting to turn off dropdown');
         $rootScope.isVisible = false;
         console.log($rootScope.isVisible);
         $scope.$apply();
