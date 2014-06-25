@@ -41,7 +41,6 @@
 							<div ng-if="$index % 4 === 0" class="visible-md clearfix"></div>
 							<div ng-if="$index % 3 === 0" class="visible-sm clearfix"></div>
 
-							
 							<ul class="violations col-sm-6 col-md-3" >
 								<li title="This violation {{violation.corrected | was}} corrected during the inspection." ng-class="{'active': violation.corrected}" class="violation"><i class="glyphicon glyphicon-ok"></i></li>
 								<li title="This {{violation.critical | was}} a critical violation." ng-class="{'active': violation.critical}" class="critical"><i class="glyphicon glyphicon-warning-sign"></i></li>

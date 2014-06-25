@@ -23,8 +23,9 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
     $scope.showPosition = function(position) {
       Geosearch.map.center.latitude = position.coords.latitude;
       Geosearch.map.center.longitude = position.coords.longitude;
-      $scope.results = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: $scope.dist}, function(){
-        $rootScope.isVisible = true;
+      $scope.results = 
+      Geosearch.results = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: $scope.dist}, function(){
+        $rootScope.$broadcast('geosearchFire');
       });
     }
 
@@ -118,6 +119,14 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootSc
       angular.element('#nottalink').trigger('focus');
     });
 
+    $rootScope.$on('geosearchFire', function(){
+      console.log('geosearchFire heard');
+      console.log(Geosearch.results);
+      $scope.results = Geosearch.results;
+      $rootScope.isVisible = true;
+      angular.element('#nottalink').trigger('focus');
+    });
+
     $scope.map = Geosearch.map;
 
     // console.log("Geosearch map in search results" + Geosearch.map)
@@ -125,7 +134,7 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootSc
     $rootScope.isVisible = false;
 
     $scope.hasFocus = function(){
-      // co.nsole.log('has focus');
+
     };
 
     $scope.lostFocus = function() {
