@@ -19,7 +19,7 @@ openHealthDataApp.config(['$routeProvider',
   }]);
 /******************
 Controllers
-******************/ 
+******************/	
 
 var openHealthDataAppControllers = angular.module('openHealthDataAppControllers', []);
 
@@ -214,6 +214,7 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootSc
 
     
   }]);
+
 openHealthDataApp.directive('bindOnce', function() {
     return {
         scope: true,
@@ -225,9 +226,9 @@ openHealthDataApp.directive('bindOnce', function() {
     }
 });
 angular.module('openHealthDataAppFilters', []).filter('was', function() {
-    return function(input) {
-        return input ? 'was' : 'wasn\'t';
-    }
+	return function(input) {
+		return input ? 'was' : 'wasn\'t';
+	}
 });
 /******************
 Models
