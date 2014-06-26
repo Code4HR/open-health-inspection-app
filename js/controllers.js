@@ -4,8 +4,8 @@ Controllers
 
 var openHealthDataAppControllers = angular.module('openHealthDataAppControllers', []);
 
-openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$http', '$q', 'Geosearch', 'Search',
-  function($scope, $rootScope, $http, $q, Geosearch, Search) {
+openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$http', '$q', 'Geosearch', 'Search', '$filter',
+  function($scope, $rootScope, $http, $q, Geosearch, Search, $filter) {
 
     $scope.map =
     Geosearch.map = {
@@ -20,11 +20,18 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
 
     $scope.dist = 1000;
 
-    $scope.showPosition = function(position) {
+    $rootScope.showPosition = function(position) {
       Geosearch.map.center.latitude = position.coords.latitude;
       Geosearch.map.center.longitude = position.coords.longitude;
-      $scope.results = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: $scope.dist}, function(){
-        $rootScope.isVisible = true;
+      $scope.results = 
+      Geosearch.results = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: $scope.dist}, function(){
+        Geosearch.results = _.values(Geosearch.results);
+        Geosearch.results.forEach(function(el, index){ 
+          console.log(el.dist);
+          el.dist = el.dist * 0.000621371
+        });
+        Geosearch.results = $filter('orderBy')(Geosearch.results, 'dist');
+        $rootScope.$broadcast('geosearchFire');
       });
     }
 
@@ -32,7 +39,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
       console.log("error");
     }
 
-    $scope.getLocation = function(){
+    $rootScope.getLocation = function(){
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition($scope.showPosition, $scope.showError);
       } else {
@@ -40,7 +47,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
       }
     }
 
-    $scope.getLocation();
+    $rootScope.getLocation();
     
     $rootScope.toRad = function(Value) {
         return Value * Math.PI / 180;
@@ -71,8 +78,10 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
 
   }]);
 
-openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', '$http', '$location', 'Geosearch', 'Inspections', 
-  function($scope, $routeParams, $http, $location, Geosearch, Inspections) {
+openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', '$http', '$location', '$rootScope', 'Geosearch', 'Inspections', 
+  function($scope, $routeParams, $http, $location, $rootScope, Geosearch, Inspections) {
+
+    $rootScope.isVisible = false;
 
     $scope.results = Inspections.query({vendorid: $routeParams.id}, function(){
       Geosearch.map.center = $scope.results[$routeParams.id].coordinates;
@@ -88,8 +97,27 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$rou
 openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', 'Search', '$filter',
   function($scope, $rootScope, Search, $filter){
 
+    $scope.toggleList = function(){
+      console.log('clicked toggleList');
+      if ($rootScope.isVisible) {
+        $rootScope.isVisible = false;
+      } else {
+        $rootScope.isVisible = true;
+      }
+    };
+
+    $scope.toggleSearchField = function(){
+      console.log('clicked search button');
+      if ($rootScope.isSearchbarVisible) {
+        $rootScope.isSearchbarVisible = false;
+      } else {
+        $rootScope.isSearchbarVisible = true;
+      }
+    };
+
     $scope.nameSearch = function() {
       console.log("Searching for " + $scope.query + ".");
+      $rootScope.isSearchbarVisible = false;
       Search.results = Search.query({name: $scope.query}, function(){
         Search.results = _.values(Search.results);
         Search.results.forEach(function(el, index){
@@ -118,6 +146,14 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootSc
       angular.element('#nottalink').trigger('focus');
     });
 
+    $rootScope.$on('geosearchFire', function(){
+      console.log('geosearchFire heard');
+      console.log(Geosearch.results);
+      $scope.results = Geosearch.results;
+      $rootScope.isVisible = true;
+      angular.element('#nottalink').trigger('focus');
+    });
+
     $scope.map = Geosearch.map;
 
     // console.log("Geosearch map in search results" + Geosearch.map)
@@ -125,7 +161,7 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootSc
     $rootScope.isVisible = false;
 
     $scope.hasFocus = function(){
-      // co.nsole.log('has focus');
+
     };
 
     $scope.lostFocus = function() {

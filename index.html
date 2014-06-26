@@ -27,19 +27,28 @@
       <div class="container-fluid">
         
         <div class="row">
-          <div class="hidden-xs col-xs-2 col-sm-9">
+
+          <div class="hidden-xs col-sm-9">
             <a href="#/">
-              <h1 >Open Health Inspection App</h1>
+              <h1>Open Health Inspection App</h1>
             </a>
           </div>
 
-          <div id="searchbar" class="col-sm-3 clearfix" ng-controller="searchCtrl">
-            <form id="search" ng-controller="searchCtrl" ng-submit="nameSearch()" novalidate>
-              <input class="col-xs-10" type="search" ng-model="query" placeholder="Search for a restaurant">
-              <button class="col-xs-2 btn btn-info">
-                <span class="glyphicon glyphicon-search"></span>
-              </button>
-            </form>
+          <div id="searchbar" class=" col-xs-12 col-sm-3 clearfix" ng-controller="searchCtrl">
+            
+            <div id="search" ng-hide="!isSearchbarVisible" class="row">
+              <form ng-submit="nameSearch()" class="col-xs-12" novalidate>
+                <input class="col-xs-9" type="search" ng-model="query" placeholder="Search for a restaurant">
+                <button class="col-xs-2 btn btn-info">
+                  <span class="glyphicon glyphicon-search"></span>
+                </button>
+                <span id="exitButton" ng-click="toggleSearchField()" class="col-xs-1 listIcon glyphicon glyphicon-remove"></span>
+              </form>
+            </div>
+
+            <span id="geolocateButton" ng-click="toggleSearchField()" class="listIcon glyphicon glyphicon-search"></span>           
+            <span id="geolocateButton" ng-click="getLocation()" class="listIcon glyphicon glyphicon-globe"></span>
+            <span id="listButton" ng-click="toggleList()" class="listIcon glyphicon glyphicon-th-list" class="col-xs-1"></span>
           </div>
 
         </div>

@@ -42,10 +42,37 @@ header {
 		background: #3A546D;
 		border-left: 1px solid #43617E;
 		height: 60px;
+		text-align: right;
+		position: relative;
 	}
-		header #search {
-			margin-top: 12px;
+		header #searchbar .listIcon {
+			color: white;
+			font-size: 2em;
+			margin: 0 .33em;
+			padding: 15px 0;
+			/*line-height: 60px;*/
 		}
+		header #search .listIcon {
+			margin: 0;
+		}
+			header .listIcon:last-of-type {
+				margin-right: 0;
+			}
+		header #search {
+			position: absolute;
+			z-index: 1131;
+			display: block;
+			text-align: right;
+			background: #3A546D;
+			height: 60px;
+			padding: 14px 0;
+			width: 100%;
+		}
+			#exitButton {
+				padding: 8px !important;
+				font-size: 1.5em !important;
+				/*margin: 0 !important;*/
+			}
 			#search input, #search button {
 				height: 36px;
 			}
