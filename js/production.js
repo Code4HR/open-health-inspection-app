@@ -39,7 +39,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
 
     $scope.dist = 1000;
 
-    $scope.showPosition = function(position) {
+    $rootScope.showPosition = function(position) {
       Geosearch.map.center.latitude = position.coords.latitude;
       Geosearch.map.center.longitude = position.coords.longitude;
       $scope.results = 
@@ -58,7 +58,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
       console.log("error");
     }
 
-    $scope.getLocation = function(){
+    $rootScope.getLocation = function(){
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition($scope.showPosition, $scope.showError);
       } else {
@@ -66,7 +66,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
       }
     }
 
-    $scope.getLocation();
+    $rootScope.getLocation();
     
     $rootScope.toRad = function(Value) {
         return Value * Math.PI / 180;
@@ -97,8 +97,10 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
 
   }]);
 
-openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', '$http', '$location', 'Geosearch', 'Inspections', 
-  function($scope, $routeParams, $http, $location, Geosearch, Inspections) {
+openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', '$http', '$location', '$rootScope', 'Geosearch', 'Inspections', 
+  function($scope, $routeParams, $http, $location, $rootScope, Geosearch, Inspections) {
+
+    $rootScope.isVisible = false;
 
     $scope.results = Inspections.query({vendorid: $routeParams.id}, function(){
       Geosearch.map.center = $scope.results[$routeParams.id].coordinates;
@@ -114,8 +116,27 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$rou
 openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', 'Search', '$filter',
   function($scope, $rootScope, Search, $filter){
 
+    $scope.toggleList = function(){
+      console.log('clicked toggleList');
+      if ($rootScope.isVisible) {
+        $rootScope.isVisible = false;
+      } else {
+        $rootScope.isVisible = true;
+      }
+    };
+
+    $scope.toggleSearchField = function(){
+      console.log('clicked search button');
+      if ($rootScope.isSearchbarVisible) {
+        $rootScope.isSearchbarVisible = false;
+      } else {
+        $rootScope.isSearchbarVisible = true;
+      }
+    };
+
     $scope.nameSearch = function() {
       console.log("Searching for " + $scope.query + ".");
+      $rootScope.isSearchbarVisible = false;
       Search.results = Search.query({name: $scope.query}, function(){
         Search.results = _.values(Search.results);
         Search.results.forEach(function(el, index){
