@@ -1,6 +1,6 @@
 module.exports = function(grunt) {
 
-    // 1. All configuration goes here 
+    // 1. All configuration goes here
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
@@ -10,14 +10,14 @@ module.exports = function(grunt) {
     		  src: [
     		    'js/*.js', '!js/production.js', '!js/production.min.js'
     		  ],
-    		    dest: 'js/production.js',
+    		    dest: 'dist/production.js',
     	    },
             styles: {
               src: [
                 'css/main.css', 'css/776up.css', 'css/992up.css', 'css/1200up.css', '!css/production.css', '!css/production.min.css'
               ],
               dest: 'css/production.css'
-            }	
+            }
         },
 
         uglify: {
@@ -85,4 +85,3 @@ module.exports = function(grunt) {
     grunt.registerTask('default', ['concat', 'uglify', 'cssmin', 'imagemin']);
 
 };
-
