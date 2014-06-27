@@ -85,7 +85,10 @@ header {
 		}
 			#exitButton {
 				padding: 8px !important;
+				position: relative;
+				right: .5em;
 				font-size: 1.5em !important;
+				color: white;
 				/*margin: 0 !important;*/
 			}
 			#search input, #search button {
