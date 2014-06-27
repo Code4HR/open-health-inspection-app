@@ -43,7 +43,6 @@ header {
 		border-left: 1px solid #43617E;
 		height: 60px;
 		text-align: right;
-		position: relative;
 	}
 		header #searchbar .listIcon {
 			color: white;
@@ -54,6 +53,22 @@ header {
 		}
 		header #search .listIcon {
 			margin: 0;
+		}
+		#geolocateButton {
+			position: fixed;
+			top: auto;
+			left: auto;
+			bottom: .5em;
+			right: .5em;
+			height: 2em;
+			width: 2em;
+			border-radius: 100%;
+			text-align: center;
+			line-height: 2em;
+			font-size: 2em;
+			color: white;
+			z-index: 1030;
+			background: #3A546D;
 		}
 			header .listIcon:last-of-type {
 				margin-right: 0;

@@ -46,8 +46,7 @@
               </form>
             </div>
 
-            <span id="geolocateButton" ng-click="toggleSearchField()" class="listIcon glyphicon glyphicon-search"></span>           
-            <span id="geolocateButton" ng-click="getLocation()" class="listIcon glyphicon glyphicon-globe"></span>
+            <span id="searchButton" ng-click="toggleSearchField()" class="listIcon glyphicon glyphicon-search"></span>           
             <span id="listButton" ng-click="toggleList()" class="listIcon glyphicon glyphicon-th-list" class="col-xs-1"></span>
           </div>
 
@@ -90,6 +89,8 @@
       </section>
 
       <div ng-view></div>
+
+      <span id="geolocateButton" ng-click="getLocation()" class="listIcon glyphicon glyphicon-globe"></span>
 
     </div>
 
