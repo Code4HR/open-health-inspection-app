@@ -37,12 +37,12 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
             streetViewControl: false,
             panControl: true,
             panControlOptions: {
-                position: google.maps.ControlPosition.LEFT_CENTER
+                position: google.maps.ControlPosition.LEFT_BOTTOM
             },
             zoomControl: true,
             zoomControlOptions: {
                 style: google.maps.ZoomControlStyle.LARGE,
-                position: google.maps.ControlPosition.LEFT_CENTER
+                position: google.maps.ControlPosition.LEFT_BOTTOM
             },
             styles: [{
                 "featureType": "poi",
