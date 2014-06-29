@@ -6,12 +6,12 @@ module.exports = function(grunt) {
 
         concat: {
             // 2. Configuration for concatinating files goes here.
-    	    dist: {
-    		  src: [
-    		    'js/*.js', '!js/production.js', '!js/production.min.js'
-    		  ],
-    		    dest: 'dist/production.js',
-    	    },
+          dist: {
+          src: [
+            'js/*.js', '!js/production.js', '!js/production.min.js'
+          ],
+            dest: 'dist/production.js',
+          },
             styles: {
               src: [
                 'css/main.css', 'css/776up.css', 'css/992up.css', 'css/1200up.css', '!css/production.css', '!css/production.min.css'
@@ -70,8 +70,17 @@ module.exports = function(grunt) {
                     spawn: false,
                 }
             }
+        },
+        connect: {
+          server : {
+            options : {
+              port : 9090,
+              keepalive : true
+            }
+          },
+          keepalive : true,
+          livereload : true
         }
-
     });
 
     // 3. Where we tell Grunt we plan to use this plug-in.
@@ -80,8 +89,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-contrib-connect');
+
 
     // 4. Where we tell Grunt what to do when we type "grunt" into the terminal.
     grunt.registerTask('default', ['concat', 'uglify', 'cssmin', 'imagemin']);
+    grunt.registerTask('server', ['connect']);
 
 };
