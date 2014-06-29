@@ -25,7 +25,7 @@
 
     <header class="navbar-fixed-top">
       <div class="container-fluid">
-        
+
         <div class="row">
 
           <div class="hidden-xs col-sm-9">
@@ -35,7 +35,7 @@
           </div>
 
           <div id="searchbar" class=" col-xs-12 col-sm-3 clearfix" ng-controller="searchCtrl">
-            
+
             <div id="search" ng-hide="!isSearchbarVisible" class="row">
               <form ng-submit="nameSearch()" class="col-xs-12" novalidate>
                 <span id="exitButton" ng-click="toggleSearchField()" class="col-xs-1 listIcon glyphicon glyphicon-chevron-left"></span>
@@ -46,20 +46,20 @@
               </form>
             </div>
 
-            <span id="searchButton" ng-click="toggleSearchField()" class="listIcon glyphicon glyphicon-search"></span>           
+            <span id="searchButton" ng-click="toggleSearchField()" class="listIcon glyphicon glyphicon-search"></span>
             <span id="listButton" ng-click="toggleList()" class="listIcon glyphicon glyphicon-th-list" class="col-xs-1"></span>
           </div>
 
         </div>
-      
+
       </div>
     </header>
 
     <div id="main" class="container-fluid ng-cloak">
-    
+
       <section ng-controller="mapCtrl">
 
-        <google-map center="map.center" zoom="map.zoom" pan="true" draggable="true" options="map.options" events="[['center_changed', console.log('ping') ]]">  
+        <google-map center="map.center" zoom="map.zoom" pan="true" draggable="true" options="map.options" events="[['center_changed', console.log('ping') ]]">
           <marker ng-repeat="restaurant in results" coords="restaurant.coordinates">
             <window show="markerShow" closeClick="true">
               <center>
@@ -80,9 +80,9 @@
           <a href="#{{restaurant.url}}">
             <div class="col-xs-9">
               <p class="restaurant-name">{{restaurant.name}}</p>
-            <p bind-once class="distance">{{restaurant.dist | number:2}} Miles Away</p>             
+            <p bind-once class="distance">{{restaurant.dist | number:2}} Miles Away</p>
             </div>
-            <div class="col-xs-3 restaurant-score">{{restaurant.score}}</div> 
+            <div class="col-xs-3 restaurant-score">{{restaurant.score}}</div>
           </a>
           </li>
         </ul>
@@ -103,9 +103,10 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular-animate.min.js"></script>
     <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
-    <script src="js/production.js"></script>
+    <script src="dist/production.js"></script>
     <script src="js/libs/angular-google-maps.min.js"></script>
 
 
     </body>
 </html>
+>>>>>>> upstream/gh-pages
