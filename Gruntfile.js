@@ -80,6 +80,12 @@ module.exports = function(grunt) {
           },
           keepalive : true,
           livereload : true
+        },
+        open: {
+          dev: {
+            // Gets the port from the connect configuration
+            path: 'http://localhost:<%= connect.all.options.port%>'
+          }
         }
     });
 
@@ -90,10 +96,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-open');
 
 
     // 4. Where we tell Grunt what to do when we type "grunt" into the terminal.
     grunt.registerTask('default', ['concat', 'uglify', 'cssmin', 'imagemin']);
-    grunt.registerTask('server', ['connect']);
+    grunt.registerTask('server', ['connect','open:dev','watch']);
 
 };
