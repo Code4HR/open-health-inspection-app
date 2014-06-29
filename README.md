@@ -27,6 +27,7 @@ Installation
 git clone git@github.com:c4hrva/open-health-inspection-app.git
 npm install -g grunt-cli
 npm install
-grunt server
-#navigate to http://localhost:9090
+grunt watch&
+python -m SimpleHTTPServer 7777
+#go to to http://localhost:7777
 ```
