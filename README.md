@@ -17,8 +17,7 @@ live demo
 =====
 a live demo of the app
 
-http://c4hrva.github.io/open-health-inspection-app/
-
+http://openhealthinspection.com/
 
 Installation
 ---
