@@ -4,7 +4,7 @@ App.js
 
 "use strict";
 
-var openHealthDataApp = angular.module('openHealthDataApp', ['ngRoute', 'openHealthDataAppControllers', 'ngAnimate', 'openHealthDataServices', 'openHealthDataAppFilters', 'google-maps']);
+var openHealthDataApp = angular.module('openHealthDataApp', ['ngRoute', 'ui.bootstrap', 'openHealthDataAppControllers', 'ngAnimate', 'openHealthDataServices', 'openHealthDataAppFilters', 'google-maps']);
 
 openHealthDataApp.config(['$routeProvider',
   function($routeProvider) {
@@ -23,14 +23,15 @@ Controllers
 
 var openHealthDataAppControllers = angular.module('openHealthDataAppControllers', []);
 
-openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$http', '$q', 'Geosearch', 'Search', '$filter',
-  function($scope, $rootScope, $http, $q, Geosearch, Search, $filter) {
+openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$http', '$q', 'Geosearch', 'Search', '$filter', '$modal',
+  function($scope, $rootScope, $http, $q, Geosearch, Search, $filter, $modal) {
 
     $scope.map =
     Geosearch.map = {
         center: {
             latitude: 36.847010,
-            longitude: -76.292430
+            longitude: -76.292430,
+            icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
         },
         zoom: 18, 
         options: { 
@@ -64,7 +65,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
         Geosearch.map.center.latitude = position.coords.latitude;
         Geosearch.map.center.longitude = position.coords.longitude;
       } 
-      
+
       $scope.results = 
       Geosearch.results = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: $scope.dist}, function(){
         Geosearch.results = _.values(Geosearch.results);
@@ -116,6 +117,28 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
 
       return d * 0.62137;
       
+    };
+
+    $scope.open = function (size) {
+
+      console.log('open modal');
+      var modalInstance = $modal.open({
+        templateUrl: 'myModalContent.html',
+        // controller: mapCtrl,
+        size: size,
+        backdrop: true,
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        // $log.info('Modal dismissed at: ' + new Date());
+      });
     };
 
   }]);

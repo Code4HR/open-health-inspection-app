@@ -4,8 +4,8 @@ Controllers
 
 var openHealthDataAppControllers = angular.module('openHealthDataAppControllers', []);
 
-openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$http', '$q', 'Geosearch', 'Search', '$filter',
-  function($scope, $rootScope, $http, $q, Geosearch, Search, $filter) {
+openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$http', '$q', 'Geosearch', 'Search', '$filter', '$modal',
+  function($scope, $rootScope, $http, $q, Geosearch, Search, $filter, $modal) {
 
     $scope.map =
     Geosearch.map = {
@@ -98,6 +98,28 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
 
       return d * 0.62137;
       
+    };
+
+    $scope.open = function (size) {
+
+      console.log('open modal');
+      var modalInstance = $modal.open({
+        templateUrl: 'myModalContent.html',
+        // controller: mapCtrl,
+        size: size,
+        backdrop: true,
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        // $log.info('Modal dismissed at: ' + new Date());
+      });
     };
 
   }]);
