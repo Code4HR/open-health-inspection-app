@@ -59,8 +59,12 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
     $scope.dist = 1000;
 
     $rootScope.showPosition = function(position) {
-      Geosearch.map.center.latitude = position.coords.latitude;
-      Geosearch.map.center.longitude = position.coords.longitude;
+
+      if (!_.isUndefined(position)) {
+        Geosearch.map.center.latitude = position.coords.latitude;
+        Geosearch.map.center.longitude = position.coords.longitude;
+      } 
+      
       $scope.results = 
       Geosearch.results = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: $scope.dist}, function(){
         Geosearch.results = _.values(Geosearch.results);

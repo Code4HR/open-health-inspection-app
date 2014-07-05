@@ -11,7 +11,8 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
     Geosearch.map = {
         center: {
             latitude: 36.847010,
-            longitude: -76.292430
+            longitude: -76.292430,
+            icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
         },
         zoom: 18, 
         options: { 
@@ -40,8 +41,12 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
     $scope.dist = 1000;
 
     $rootScope.showPosition = function(position) {
-      Geosearch.map.center.latitude = position.coords.latitude;
-      Geosearch.map.center.longitude = position.coords.longitude;
+
+      if (!_.isUndefined(position)) {
+        Geosearch.map.center.latitude = position.coords.latitude;
+        Geosearch.map.center.longitude = position.coords.longitude;
+      } 
+
       $scope.results = 
       Geosearch.results = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: $scope.dist}, function(){
         Geosearch.results = _.values(Geosearch.results);
