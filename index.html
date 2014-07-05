@@ -59,7 +59,10 @@
 
       <section ng-controller="mapCtrl">
 
-        <google-map center="map.center" zoom="map.zoom" pan="true" draggable="true" options="map.options" events="[['center_changed', console.log('ping') ]]">
+        <!-- <div style="z-index: 9999; background: white; position: fixed; top: 70px; left: 0;">{{map.center}}</div> -->
+
+        <google-map center="map.center" zoom="map.zoom" pan="true" draggable="true" options="map.options">
+          <marker coords="map.center" icon="'img/build/male.png'"></marker>
           <marker ng-repeat="restaurant in results" coords="restaurant.coordinates">
             <window show="markerShow" closeClick="true">
               <center>
@@ -90,10 +93,10 @@
 
       <div ng-view></div>
 
-      <span id="geolocateButton" ng-click="getLocation()" class="listIcon glyphicon glyphicon-map-marker"></span>
+      <span id="geolocateButton" ng-click="showPosition()" class="listIcon glyphicon glyphicon-map-marker"></span>
 
     </div>
-    
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-resource.min.js"></script>
