@@ -21,11 +21,15 @@ header {
 	border-bottom:1px solid #ccc;
 	text-align: center;
 	min-height: 60px;
-} 
+}
+
+center {
+  padding:10px;
+}
 	header a {
 		color: #ECF0F1;
 		text-decoration: none;
-	} 
+	}
 		header a:hover, header a:focus {
 			color: #ECF0F1;
 			text-decoration: none;
@@ -104,7 +108,7 @@ header {
 				border-bottom-left-radius: 0;
 			}
 
-	
+
 #main {
 	margin-top: 60px;
 }
@@ -179,7 +183,7 @@ header {
 	overflow-y: scroll;
 	z-index: 1;
 }
-	
+
 	#restuarant-info {
 		font-family: "Bitter";
 		background-color: rgba(255,255,255,.75);
@@ -204,7 +208,7 @@ header {
 		#restaurantInfo .address {
 			color: #666666;
 		}
-	
+
 	 	#violationKey {
 			padding: .75em;
 			border: 1px solid #dfdfdf;
@@ -254,7 +258,7 @@ header {
 				margin-bottom: 1em;
 				display: inline-block;
 				vertical-align: top;
-			} 
+			}
 				li.violation,
 			    li.critical,
 				li.repeat {
