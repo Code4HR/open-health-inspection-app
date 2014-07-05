@@ -32,7 +32,26 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
             latitude: 36.847010,
             longitude: -76.292430
         },
-        zoom: 18
+        zoom: 18, 
+        options: { 
+            streetViewControl: false,
+            panControl: true,
+            panControlOptions: {
+                position: google.maps.ControlPosition.LEFT_BOTTOM
+            },
+            zoomControl: true,
+            zoomControlOptions: {
+                style: google.maps.ZoomControlStyle.LARGE,
+                position: google.maps.ControlPosition.LEFT_BOTTOM
+            },
+            styles: [{
+                "featureType": "poi",
+                "stylers": [{ "visibility": "off" }]
+            },{
+                "featureType": "transit",
+                "stylers": [{ "visibility": "off" }]
+            }]
+        }
     };
 
     console.log(Geosearch.map);
@@ -195,6 +214,7 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootSc
 
     
   }]);
+
 openHealthDataApp.directive('bindOnce', function() {
     return {
         scope: true,
