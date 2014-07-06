@@ -37,7 +37,7 @@ body{
 	}
 	.modalContainer dl {
 		/*padding: .5em .25em;*/
-		margin: .25em;
+		margin: .25em 0;
 	}
 		.modalContainer dt {
 			font-size: 1.5em;
@@ -69,6 +69,19 @@ header {
 		color: #ECF0F1;
 		text-decoration: none;
 	} 
+		header #logo {
+			display: inline-block;
+			text-align: left;
+			margin: 0;
+			margin-right: .5em;
+		}
+		header .minilogo {
+			background: blue;
+			text-align: left;
+		}
+			header .minilogo img {
+				display: inline-block;
+			}
 		header a:hover, header a:focus {
 			color: #ECF0F1;
 			text-decoration: none;
@@ -80,6 +93,8 @@ header {
 		font-weight: 900;
 		text-align: left;
 		text-transform: uppercase;
+		display: inline-block;
+		text-align: left;
 	}
 	header #searchbar {
 		background: #3A546D;

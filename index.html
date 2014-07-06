@@ -30,12 +30,13 @@
 
           <div class="hidden-xs col-sm-9">
             <a href="#/">
-              <h1>Open Health Inspection App</h1>
+              <img id="logo" src="img/build/logo.png" alt="Open Health Inspection Logo">
+              <h1>Open Health Inspection</h1>
             </a>
           </div>
 
           <div id="searchbar" class=" col-xs-12 col-sm-3 clearfix" ng-controller="searchCtrl">
-
+      
             <div id="search" ng-hide="!isSearchbarVisible" class="row">
               <form ng-submit="nameSearch()" class="col-xs-12" novalidate>
                 <span id="exitButton" ng-click="toggleSearchField()" class="col-xs-1 listIcon glyphicon glyphicon-chevron-left"></span>
