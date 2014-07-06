@@ -6,7 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	  <META NAME="description" CONTENT="Easily get public health inspection data for eateries near you.">
     <meta name="keywords" content="inspection, health inspection, dining, restaurant, cafeteria, open data, open government data, Code for America, Code for America Brigade, cfabrigade, mobile, HTML5, app, open source, Code for Hampton Roads, volunteers, volunteering, civic, civic engagement, public service">
-    <meta property="og:image" content="img/build/preview." />
+    <meta property="og:image" content="img/build/preview.jpg" />
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="img/build/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="img/build/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="img/build/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="img/build/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="img/build/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="img/build/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="img/build/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="img/build/apple-touch-icon-152x152.png" />
 
     <title>Open Health Inspection App</title>
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
@@ -30,12 +39,13 @@
 
           <div class="hidden-xs col-sm-9">
             <a href="#/">
-              <h1>Open Health Inspection App</h1>
+              <img id="logo" src="img/build/logo.png" alt="Open Health Inspection Logo">
+              <h1>Open Health Inspection</h1>
             </a>
           </div>
 
           <div id="searchbar" class=" col-xs-12 col-sm-3 clearfix" ng-controller="searchCtrl">
-
+      
             <div id="search" ng-hide="!isSearchbarVisible" class="row">
               <form ng-submit="nameSearch()" class="col-xs-12" novalidate>
                 <span id="exitButton" ng-click="toggleSearchField()" class="col-xs-1 listIcon glyphicon glyphicon-chevron-left"></span>
