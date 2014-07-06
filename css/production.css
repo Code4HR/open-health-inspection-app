@@ -14,6 +14,49 @@ body{
 	font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Arial", "sans";
 }
 
+.modalContainer {
+	top: 70px;
+}
+
+	.modalContainer h5, .modal-title {
+		font-family: "Source Sans Pro";
+		text-transform: uppercase;
+		font-weight: 700;
+	}
+	.modal-title {
+		font-size: 1.25em;
+		margin: 0;
+	}
+	.modal-subtitle {
+		font-size: 1.125em;
+		margin: 0;
+	}
+	.modalContainer .defWrapper {
+		background: #efefef;
+		margin: 0 0 1em 0;
+	}
+	.modalContainer dl {
+		/*padding: .5em .25em;*/
+		margin: .25em;
+	}
+		.modalContainer dt {
+			font-size: 1.5em;
+			line-height: 1.5em;
+			display: inline;
+			margin-right: .25em;
+		}
+		.modalContainer dd {
+			line-height: 1.5em;
+			display: inline;
+		}
+
+	.modal-footer form {
+		text-align: left;
+	}
+		.modal-footer form input {
+			margin-right: .5em;
+		}
+
 header {
 	background: #2C3E50;
 	position: relative;
@@ -71,7 +114,7 @@ center {
 			line-height: 2em;
 			font-size: 2em;
 			color: white;
-			z-index: 1030;
+			z-index: 1;
 			background: #3A546D;
 		}
 			header .listIcon:last-of-type {
@@ -127,6 +170,7 @@ center {
 
 #searchResults {
 	background: white;
+	z-index: 10;
 
 }
 
@@ -335,7 +379,7 @@ Tablet and Small Screen Styles here.
         top: 60px;
         right: 0;
         max-height: 500px;
-        z-index: 9999;
+        z-index: 1029;
         overflow-y: scroll;
     } 
         #searchResults .row {
