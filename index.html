@@ -58,31 +58,6 @@
     <div id="main" class="container-fluid ng-cloak">
 
       <section ng-controller="mapCtrl">
-          
-          <div style="z-index: 9999; background: white; position: fixed; top: 0; left: 0;" class="clearfix">
-            <script type="text/ng-template" id="myModalContent.html">
-                <div class="modal-header">
-                    <h3 class="modal-title">A modal!</h3>
-                </div>
-                <div class="modal-body">
-                    <ul>
-                        <li ng-repeat="item in items">
-                            <a ng-click="selected.item = item">{{ item }}</a>
-                        </li>
-                    </ul>
-                    Selected: <b>{{ selected.item }}</b>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary" ng-click="ok()">OK</button>
-                    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-                </div>
-            </script>
-          </div>
-
-          <button class="btn btn-default" ng-click="open()">Open me!</button>
-          <button class="btn btn-default" ng-click="open('lg')">Large modal</button>
-          <button class="btn btn-default" ng-click="open('sm')">Small modal</button>
-          <div ng-show="selected">Selection from a modal: {{ selected }}</div>
 
         <google-map center="map.center" zoom="map.zoom" pan="true" draggable="true" options="map.options">
           <marker coords="map.center" icon="'img/build/male.png'"></marker>
@@ -130,5 +105,7 @@
     <script src="dist/production.js"></script>
     <script src="js/libs/angular-google-maps.min.js"></script>
     <script src="js/libs/ui-bootstrap-tpls-0.11.0.min.js"></script>
+    <script src="js/libs/angular-local-storage.js"></script>
+
     </body>
 </html>

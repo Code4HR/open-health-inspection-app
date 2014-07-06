@@ -4,7 +4,7 @@ App.js
 
 "use strict";
 
-var openHealthDataApp = angular.module('openHealthDataApp', ['ngRoute', 'ui.bootstrap', 'openHealthDataAppControllers', 'ngAnimate', 'openHealthDataServices', 'openHealthDataAppFilters', 'google-maps']);
+var openHealthDataApp = angular.module('openHealthDataApp', ['ngRoute', 'ui.bootstrap', 'openHealthDataAppControllers', 'ngAnimate', 'openHealthDataServices', 'openHealthDataAppFilters', 'google-maps', 'LocalStorageModule']);
 
 openHealthDataApp.config(['$routeProvider',
   function($routeProvider) {
@@ -23,8 +23,8 @@ Controllers
 
 var openHealthDataAppControllers = angular.module('openHealthDataAppControllers', []);
 
-openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$http', '$q', 'Geosearch', 'Search', '$filter', '$modal',
-  function($scope, $rootScope, $http, $q, Geosearch, Search, $filter, $modal) {
+openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$http', '$q', 'Geosearch', 'Search', '$filter', '$modal', 'localStorageService',
+  function($scope, $rootScope, $http, $q, Geosearch, Search, $filter, $modal, localStorageService) {
 
     $scope.map =
     Geosearch.map = {
@@ -119,13 +119,14 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
       
     };
 
-    $scope.open = function (size) {
+    $rootScope.open = function (size) {
 
       console.log('open modal');
       var modalInstance = $modal.open({
-        templateUrl: 'myModalContent.html',
-        // controller: mapCtrl,
+        templateUrl: 'partials/modal.html',
+        controller: ModalInstanceCtrl,
         size: size,
+        windowClass: 'modalContainer',
         backdrop: true,
         resolve: {
           items: function () {
@@ -135,13 +136,36 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
       });
 
       modalInstance.result.then(function (selectedItem) {
-        $scope.selected = selectedItem;
+        $rootScope.close = function(){
+          modalInstance.close();
+        }
       }, function () {
         // $log.info('Modal dismissed at: ' + new Date());
       });
     };
 
+    if (localStorageService.get('Has Read') !== 'true') {
+      $scope.open();
+    }
+
   }]);
+
+var ModalInstanceCtrl = function ($rootScope, $scope, $modalInstance, items, localStorageService) {
+
+  $scope.ok = function () {
+
+    if ($rootScope.dontshow ) {
+      localStorageService.set('Has Read', 'true');
+      console.log(localStorageService.get('Has Read'));
+    }
+    $modalInstance.close();
+
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+};
 
 openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', '$http', '$location', '$rootScope', 'Geosearch', 'Inspections', 
   function($scope, $routeParams, $http, $location, $rootScope, Geosearch, Inspections) {
