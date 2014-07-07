@@ -45,7 +45,23 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
       if (!_.isUndefined(position)) {
         Geosearch.map.center.latitude = position.coords.latitude;
         Geosearch.map.center.longitude = position.coords.longitude;
-      } 
+      }
+
+        //outside Virginia check.
+        //- Latitude  36° 32′ N to 39° 28′ N
+        // 36.533333 - 39.466667
+        //- Longitude  75° 15′ W to 83° 41′ W
+        // 75.25 - 83.683333
+        
+      if ( (!position.coords.latitude < 36.533333 ) &&
+           (!position.coords.latitude > 39.466667 ) ) {
+        console.log('latitude pass');
+      }
+
+      if ( (!position.coords.longitude < 75.25 ) &&
+           (!position.coords.longitude > 83.683333 ) ) {
+        console.log('longitude pass');
+      }
 
       $scope.results = 
       Geosearch.results = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: $scope.dist}, function(){
