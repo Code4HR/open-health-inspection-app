@@ -36,7 +36,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
         }
     };
 
-    console.log(Geosearch.map);
+    // console.log(Geosearch.map);
 
     $scope.dist = 1000;
 
@@ -51,8 +51,8 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
       if ( ((position.coords.latitude > 36.533333 ) &&
            (position.coords.latitude < 39.466667 ) )
           &&
-          ((position.coords.longitude > 75.25 ) &&
-           (position.coords.longitude < 83.683333 ) ) ) {
+          ((position.coords.longitude < -75.25 ) &&
+           (position.coords.longitude > -83.683333 ))) {
         
         console.log('coordinates are within Virgina');
 
@@ -62,7 +62,8 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
         }
 
       } else {
-        console.log('out of state');
+        console.log('Coming from out of state, so falling back to Norfolk.');
+
       }
 
       $scope.results = 
@@ -121,7 +122,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
 
     $rootScope.open = function (size) {
 
-      console.log('open modal');
+      // console.log('open modal');
       var modalInstance = $modal.open({
         templateUrl: 'partials/modal.html',
         controller: ModalInstanceCtrl,
