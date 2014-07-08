@@ -11,9 +11,8 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
     Geosearch.map = {
         center: {
             latitude: 36.847010,
-            longitude: -76.292430,
-            icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
-        },
+            longitude: -76.292430        
+          },
         zoom: 18, 
         options: { 
             streetViewControl: false,
@@ -47,22 +46,29 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
         // 36.533333 - 39.466667
         //- Longitude  75° 15′ W to 83° 41′ W
         // 75.25 - 83.683333
-        
-      if ( ((position.coords.latitude > 36.533333 ) &&
-           (position.coords.latitude < 39.466667 ) )
-          &&
-          ((position.coords.longitude < -75.25 ) &&
-           (position.coords.longitude > -83.683333 ))) {
-        
-        console.log('coordinates are within Virgina');
 
-        if (!_.isUndefined(position)) {
-          Geosearch.map.center.latitude = position.coords.latitude;
-          Geosearch.map.center.longitude = position.coords.longitude;
-        }
+      if (_.isUndefined(position)) {
+
+        console.log('Geolocation unavailable');
 
       } else {
-        console.log('Coming from out of state, so falling back to Norfolk.');
+        
+        if ( ((position.coords.latitude > 36.533333 ) &&
+             (position.coords.latitude < 39.466667 ) )
+            &&
+            ((position.coords.longitude < -75.25 ) &&
+             (position.coords.longitude > -83.683333 ))) {
+          
+          console.log('coordinates are within Virgina');
+
+          if (!_.isUndefined(position)) {
+            Geosearch.map.center.latitude = position.coords.latitude;
+            Geosearch.map.center.longitude = position.coords.longitude;
+          }
+
+        } else {
+          console.log('Coming from out of state, so falling back to Norfolk.');
+        }
 
       }
 
@@ -80,8 +86,9 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
 
     $scope.showError = function() {
       console.log("Geolocation is not supported by this browser. Fallback to Norfolk");
+      $rootScope.showPosition();
 
-    }
+      }
 
     $rootScope.getLocation = function(){
       if (navigator.geolocation) {
