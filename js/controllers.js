@@ -11,9 +11,8 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
     Geosearch.map = {
         center: {
             latitude: 36.847010,
-            longitude: -76.292430,
-            icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
-        },
+            longitude: -76.292430        
+          },
         zoom: 18, 
         options: { 
             streetViewControl: false,
@@ -36,22 +35,48 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
         }
     };
 
-    console.log(Geosearch.map);
+    // console.log(Geosearch.map);
 
     $scope.dist = 1000;
 
     $rootScope.showPosition = function(position) {
 
-      if (!_.isUndefined(position)) {
-        Geosearch.map.center.latitude = position.coords.latitude;
-        Geosearch.map.center.longitude = position.coords.longitude;
-      } 
+        //outside Virginia check.
+        //- Latitude  36° 32′ N to 39° 28′ N
+        // 36.533333 - 39.466667
+        //- Longitude  75° 15′ W to 83° 41′ W
+        // 75.25 - 83.683333
+
+      if (_.isUndefined(position)) {
+
+        console.log('Geolocation unavailable');
+
+      } else {
+        
+        if ( ((position.coords.latitude > 36.533333 ) &&
+             (position.coords.latitude < 39.466667 ) )
+            &&
+            ((position.coords.longitude < -75.25 ) &&
+             (position.coords.longitude > -83.683333 ))) {
+          
+          console.log('coordinates are within Virgina');
+
+          if (!_.isUndefined(position)) {
+            Geosearch.map.center.latitude = position.coords.latitude;
+            Geosearch.map.center.longitude = position.coords.longitude;
+          }
+
+        } else {
+          console.log('Coming from out of state, so falling back to Norfolk.');
+        }
+
+      }
 
       $scope.results = 
       Geosearch.results = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: $scope.dist}, function(){
         Geosearch.results = _.values(Geosearch.results);
         Geosearch.results.forEach(function(el, index){ 
-          console.log(el.dist);
+          // console.log(el.dist);
           el.dist = el.dist * 0.000621371;
         });
         Geosearch.results = $filter('orderBy')(Geosearch.results, 'dist');
@@ -60,8 +85,10 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
     }
 
     $scope.showError = function() {
-      console.log("error");
-    }
+      console.log("Geolocation is not supported by this browser. Fallback to Norfolk");
+      $rootScope.showPosition();
+
+      }
 
     $rootScope.getLocation = function(){
       if (navigator.geolocation) {
@@ -102,7 +129,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
 
     $rootScope.open = function (size) {
 
-      console.log('open modal');
+      // console.log('open modal');
       var modalInstance = $modal.open({
         templateUrl: 'partials/modal.html',
         controller: ModalInstanceCtrl,
@@ -209,16 +236,16 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootSc
   function($scope, $rootScope, Search, Geosearch){
 
     $rootScope.$on('searchFire', function(){
-      console.log('searchFire heard');
-      console.log(Search.results);
+      // console.log('searchFire heard');
+      // console.log(Search.results);
       $scope.results = Search.results;
       $rootScope.isVisible = true;
       angular.element('#nottalink').trigger('focus');
     });
 
     $rootScope.$on('geosearchFire', function(){
-      console.log('geosearchFire heard');
-      console.log(Geosearch.results);
+      // console.log('geosearchFire heard');
+      // console.log(Geosearch.results);
       $scope.results = Geosearch.results;
       $rootScope.isVisible = true;
       angular.element('#nottalink').trigger('focus');
