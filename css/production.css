@@ -14,10 +14,6 @@ body{
 	font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Arial", "sans";
 }
 
-.modalContainer {
-	top: 70px;
-}
-
 	.modalContainer h5, .modal-title {
 		font-family: "Source Sans Pro";
 		text-transform: uppercase;
@@ -120,8 +116,8 @@ center {
 			position: fixed;
 			top: auto;
 			left: auto;
-			bottom: .5em;
-			right: .5em;
+			bottom: 1em;
+			right: 1em;
 			height: 2em;
 			width: 2em;
 			border-radius: 100%;
@@ -234,62 +230,76 @@ center {
 				margin: 0;
 			}
 
+a.close {
+	position: fixed;
+	top: 20%;
+	right: .75em;
+	font-size: 2em;
+	height: 1em;
+	width: 1em;
+	border-radius: 100%;
+	color: red;
+	background: white;
+	z-index: 9;
+	opacity: 1;
+}
+
 #restaurantDetailView {
-	height: 75%;
+	height: 80%;
 	width: 100%;
+	/*padding-top: 2em;*/
 	position: fixed;
 	bottom: 8px;
 	overflow-y: scroll;
-	z-index: 1;
+	z-index: 2;
 }
+	
 
 	#restuarant-info {
 		font-family: "Bitter";
-		background-color: rgba(255,255,255,.75);
+		background-color: rgba(255,255,255,.85);
 		position: relative;
 	}
-		a.close {
-			position: absolute;
-			top: .5em;
-			right: .5em;
-			font-size: 2em;
-			color: red;
-		}
 
 		#restaurantInfo {
 			position: relative;
 		}
 
-
 		#restaurantInfo h1 {
 			margin-bottom: 0;
+			font-size: 1.75em;
 		}
+
 		#restaurantInfo .address {
 			color: #666666;
 		}
 
 	 	#violationKey {
-			padding: .75em;
-			border: 1px solid #dfdfdf;
+	 		/*margin-top: 20px;*/
 		}
 
 			#violationKey h4 {
 				margin: 0;
+				font-size: 14px;
 			}
 
 			#violationKey ul {
-				margin: .5em 0 0 0;
+				/*margin: .5em 0 0 0;*/
 			}
 
 				#violationKey li {
 					position: relative;
 					padding-left: 1.5em;
+					line-height: 2em;
+          padding-left: 1.75em;
 				}
 
 					#violationKey i {
 						position: absolute;
 						top: 3px;
 						left: 0;
+						font-size: 1.25em;
+            line-height: 1.25em;
 					}
 
 	#inspections {
@@ -308,10 +318,26 @@ center {
 				margin: 0;
 			}
 
-		.inspection .date {
-			font-size: 1.25em;
-			color: #777;
-		}
+			.inspection .date {
+				font-size: 1.25em;
+				color: #777;
+			}
+
+			.inspection h2 {
+	      font-family: "Bitter";
+        font-size: 1.5em;
+      }
+
+	    .inspection h3 {
+	        margin-top: 2px;
+	        font-size: 1em;
+	        color: gray;
+	        font-family: "Bitter";
+	    }
+
+	    .inspection h4 {
+	        color: green;
+	    }
 
 			ul.violations {
 				margin-bottom: 1em;
@@ -367,7 +393,10 @@ Tablet and Small Screen Styles here.
 
 @media screen and (min-width: 776px) {
 
-    
+    .modalContainer {
+        top: 70px;
+    }
+
     header {
         text-align: left;   
     }
@@ -406,29 +435,23 @@ Tablet and Small Screen Styles here.
 	#restuarantDetailView {
         position: relative;
     }
-        .inspection h2 {
-            font-family: "Bitter";
-            font-size: 1.5em;
-        }
-        .inspection h3 {
-            margin-top: 2px;
-            font-size: 1em;
-            color: gray;
-            font-family: "Bitter";
-        }
-        .inspection h4 {
-            color: green;
-        }
-
-/*    #restuarant-info {
-        position: fixed;
-    }*/
 
         #restaurantDetailView .angular-google-map-container {
             height: 250px;
         }
 
         #restaurantDetailView #inspections {}
+
+        #restaurantDetailView #violationKey ul li {
+            display: inline-block;
+            margin: .25em .5em .25em 0;
+            /*line-height: 1.25em;*/
+            padding-left: 1.75em;
+        }
+
+        #restaurantDetailView #violationKey ul li i {
+    
+        }
 
         #restaurantDetailView ul.violations {
  

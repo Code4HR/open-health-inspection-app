@@ -1,24 +1,27 @@
+<a href="#" class="close"><span class="glyphicon glyphicon-remove-circle"></span></a>
+
 <article id="restaurantDetailView">
 
 	<div class="container-fluid">
 
 		<section id="restuarant-info" class="col-xs-12" ng-repeat="restaurant in results">
+			<div class="">
 
-			<ul id="restaurantInfo" class="">
-				<li class="name"><h1>{{restaurant.name}}</h1></li>
-				<li class="address">{{restaurant.address}}</li>
-			</ul>
-
-			<a href="#" class="close"><span class="glyphicon glyphicon-remove-circle"></span></a>
-		
-		<!-- 	<section id="violationKey">
-				<h4>Symbol Key</h4>
-				<ul>
-					<li><i class="glyphicon glyphicon-ok"></i>Violation Corrected During Inspection</li>
-					<li><i class="glyphicon glyphicon-warning-sign"></i>Critical Violation</li>
-					<li><i class="glyphicon glyphicon-repeat"></i>Repeat Violation</li>
+				<ul id="restaurantInfo" class="">
+					<li class="name"><h1>{{restaurant.name}}</h1></li>
+					<li class="address">{{restaurant.address}}</li>
 				</ul>
-			</section> -->
+
+				<section id="violationKey" class="">
+					<h4>Symbol Key</h4>
+					<ul>
+						<li><i class="glyphicon glyphicon-ok"></i>Violation Corrected During Inspection</li>
+						<li><i class="glyphicon glyphicon-warning-sign"></i>Critical Violation</li>
+						<li><i class="glyphicon glyphicon-repeat"></i>Repeat Violation</li>
+					</ul>
+				</section>
+
+			</div>
 
 		</section>
 
@@ -44,7 +47,7 @@
 							<ul class="violations col-sm-6 col-md-3" >
 								<li title="This violation {{violation.corrected | was}} corrected during the inspection." ng-class="{'active': violation.corrected}" class="violation"><i class="glyphicon glyphicon-ok"></i></li>
 								<li title="This {{violation.critical | was}} a critical violation." ng-class="{'active': violation.critical}" class="critical"><i class="glyphicon glyphicon-warning-sign"></i></li>
-								<li title="This {{violation.repeat | was}} a repeat violation." ng-class="{'active': violation.repeat}" class="repeat"><i class="glyphicon glyphicon-repeat"></i></li>
+								<li title="This {{violation.repeat | was}} a repeat violation." ng-class="{'active': violation.repeat}" class="repeat"><i class="glyphicon glyphicon-repeat"></i></li> 
 								<li class="code">{{violation.code}}</li>
 								<li class="observation">{{violation.observation}}</li>
 							</ul>
