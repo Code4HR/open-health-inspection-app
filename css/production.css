@@ -62,14 +62,20 @@ header {
 	min-height: 60px;
 }
 
+	header #logoWrapper {
+		text-align: left;
+		line-height: 60px;
+	}
+
 center {
   padding:10px;
 }
 	header a {
 		color: #ECF0F1;
 		text-decoration: none;
+		text-align: left;
 	}
-		header #logo {
+		header #logo {ear
 			display: inline-block;
 			text-align: left;
 			margin: 0;
@@ -101,7 +107,17 @@ center {
 		border-left: 1px solid #43617E;
 		height: 60px;
 		text-align: right;
+		position: relative;
 	}
+		header #searchbar .logo {
+			display: inline-block;
+			position: absolute;
+			left: 6px;
+			top: 6px;
+			height: 48px;
+			width: 48px;
+
+		}
 		header #searchbar .listIcon {
 			color: white;
 			font-size: 2em;
@@ -145,6 +161,7 @@ center {
 				padding: 8px !important;
 				position: relative;
 				right: .5em;
+				bottom: .25px;
 				font-size: 1.5em !important;
 				color: white;
 				/*margin: 0 !important;*/
@@ -181,7 +198,7 @@ center {
 
 #searchResults {
 	background: white;
-	z-index: 10;
+	z-index: 999;
 
 }
 
