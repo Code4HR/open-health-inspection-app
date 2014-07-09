@@ -182,11 +182,11 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$rou
 
     $scope.results = Inspections.query({vendorid: $routeParams.id}, function(){
       Geosearch.map.center = $scope.results[$routeParams.id].coordinates;
-      setTimeout(function(){
-        $scope.$watch(Geosearch.map.center, function(e){
-            $location.path('/#');
-          }, true);
-        }, 1000); 
+      // setTimeout(function(){
+      //   $scope.$watch(Geosearch.map.center, function(e){
+      //       $location.path('/#');
+      //     }, true);
+      //   }, 1000); 
     });
 
 }]);
