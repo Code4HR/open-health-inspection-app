@@ -50,10 +50,21 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
             },{
                 "featureType": "transit",
                 "stylers": [{ "visibility": "off" }]
-            }]
+            }],
+            mapTypeId: "OSM",
+	        mapTypeControlOptions: {
+	            mapTypeIds: mapTypeIds
+	        }
         }
     };
-
+	Geosearch.map.mapTypes.set("OSM", new google.maps.ImageMapType({
+	        getTileUrl: function(coord, zoom) {
+	            return "http://tile.openstreetmap.org/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
+	        },
+	        tileSize: new google.maps.Size(256, 256),
+	        name: "OpenStreetMap",
+	        maxZoom: 18
+    	}));
     console.log(Geosearch.map);
 
     $scope.dist = 1000;
