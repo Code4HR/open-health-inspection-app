@@ -48,18 +48,22 @@
       
             <div id="search" ng-show="isSearchbarVisible" class="row">
               <form ng-submit="nameSearch()" class="col-xs-12" novalidate>
-                <span id="exitButton" ng-click="toggleSearchField()" class="col-xs-1 listIcon glyphicon glyphicon-chevron-left"></span>
+                <span id="exitButton" ng-click="toggleSearchField()" class="col-xs-1 glyphicon glyphicon-chevron-left"></span>
                 <input class="col-xs-9" type="search" ng-model="query" placeholder="Search for a restaurant">
                 <button class="col-xs-2 btn btn-info">
                   <span class="glyphicon glyphicon-search"></span>
                 </button>
               </form>
             </div>
-            <a href="#/" class="visible-xs">
+            <a href="#/" class="visible-xs" class="clearfix">
               <img class="logo" src="img/build/logo.png" height="36px" width="36px" alt="logo">
             </a>
-            <span id="searchButton" ng-click="toggleSearchField()" class="listIcon glyphicon glyphicon-search"></span>
-            <span id="listButton" ng-click="toggleList()" class="listIcon glyphicon glyphicon-th-list" class="col-xs-1"></span>
+            <a ng-click="toggleSearchField()" class="listIcon clearfix">
+              <span id="searchButton" class="glyphicon glyphicon-search"></span>
+            </a>
+            <a ng-click="toggleList()" class="listIcon"> 
+              <span id="listButton"  class="glyphicon glyphicon-th-list" class="col-xs-1"></span>
+            </a>
           </div>
 
         </div>
