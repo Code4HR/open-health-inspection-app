@@ -95,11 +95,10 @@
         <ul class="row" ng-hide="!isVisible">
           <li ng-repeat="restaurant in results" class="clearfix">
           <a href="#{{restaurant.url}}">
-            <div class="col-xs-9">
+            <div class="col-xs-12">
               <p class="restaurant-name">{{restaurant.name}}</p>
             <p bind-once class="distance">{{restaurant.dist | number:2}} Miles Away</p>
             </div>
-            <div class="col-xs-3 restaurant-score">{{restaurant.score}}</div>
           </a>
           </li>
         </ul>
