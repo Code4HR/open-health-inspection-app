@@ -22,6 +22,8 @@
     <link href="css/production.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,300italic,400italic,700,700italic,900italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Bitter:400,700,400italic' rel='stylesheet' type='text/css'>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -95,8 +97,8 @@
         <ul class="row" ng-hide="!isVisible">
           <li ng-repeat="restaurant in results" class="restaurant-container clearfix">
           <a href="#{{restaurant.url}}">
-            <span>{{restaurant.category | category}}</span>
-            <ul class="restaurant-info">
+            <i class="{{restaurant.category | categoryIcon }} col-xs-2 category-icon"></i>
+            <ul class="col-xs-10 restaurant-info">
               <li class="restaurant-name">{{restaurant.name}}</li>
               <li class="address">{{restaurant.address}}</li>
               <li bind-once class="distance">{{restaurant.dist | number:2}} Miles Away</li>

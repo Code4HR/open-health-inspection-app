@@ -309,27 +309,30 @@ angular.module('openHealthDataAppFilters', [])
   		return input ? 'was' : 'wasn\'t';
   	}
   })
-  .filter('category', function(){
+  .filter('categoryIcon', function(){
     return function(input) {
-      return "Duh";
-    }
-    // return function(input) {
-    //   switch (expr) {
-    //     case "Seasonal Fast Food Restaurant":
-    //       return "Restaurant";
-    //     case "Fast Food Restaurant":
-    //       return "Restaurant";
-    //     case "Full Service Restaurant":
-    //       return "Restaurant";
-    //     case "Public Middle or High School Food Service":
-    //       return "Education";
-    //     case "Mobile Food Unit":
-    //       return "Mobile Food";
-    //     default:
-    //       return "Other";
-    //   }
-    });
-
+      switch (input) {
+        case "Education":
+          return "fa fa-graduation-cap";
+        case "Hospitality":
+          return "fa fa-building";
+        case "Restaurant":
+          return "fa fa-cutlery";
+        case "Grocery":
+          return "fa fa-shopping-cart";
+        case "Government":
+          return "fa fa-university";
+        case "Medical":
+          return "fa fa-plus-square";
+        case "Mobile Food":
+          return "fa fa-truck";
+        case "Other":
+          return "fa fa-spoon";
+        default:
+          return "fa fa-cutlery";
+      }
+    };
+  });
 /******************
 Models
 ******************/
