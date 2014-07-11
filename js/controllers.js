@@ -135,7 +135,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
         controller: ModalInstanceCtrl,
         size: size,
         windowClass: 'modalContainer',
-        backdrop: true,
+        backdrop: false,
         resolve: {
           items: function () {
             return $scope.items;
