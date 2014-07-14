@@ -98,10 +98,10 @@
           <li ng-repeat="restaurant in results" class="restaurant-container clearfix">
           <a href="#{{restaurant.url}}">
             <i class="{{restaurant.category | categoryIcon }} col-xs-2 category-icon"></i>
-            <ul class="col-xs-10 restaurant-info">
-              <li class="restaurant-name">{{restaurant.name}}</li>
-              <li class="address">{{restaurant.address}}</li>
-              <li bind-once class="distance">{{restaurant.dist | number:2}} Miles Away</li>
+            <ul class="col-xs-10 row restaurant-info">
+              <li class="restaurant-name col-xs-12">{{restaurant.name}}</li>
+              <li class="address col-xs-8">{{restaurant.address}}</li>
+              <li bind-once class="distance col-xs-4">{{restaurant.dist | number:2}} Miles</li>
             </ul>
           </a>
           </li>
