@@ -23,9 +23,13 @@ Controllers
 
 var openHealthDataAppControllers = angular.module('openHealthDataAppControllers', []);
 
-openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$http', '$q', 'Geosearch', 'Search', '$filter', '$modal', 'localStorageService',
-  function($scope, $rootScope, $http, $q, Geosearch, Search, $filter, $modal, localStorageService) {
+openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$http', '$location', '$q', 'Geosearch', 'Search', '$filter', '$modal', 'localStorageService',
+  function($scope, $rootScope, $http, $location, $q, Geosearch, Search, $filter, $modal, localStorageService) {
 
+    $rootScope.$on('$locationChangeSuccess', function() {
+        ga('send', 'pageview', $location.path());
+    });
+    
     $scope.map =
     Geosearch.map = {
         center: {
