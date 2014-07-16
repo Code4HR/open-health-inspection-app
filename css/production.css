@@ -250,6 +250,7 @@ center {
 			#searchResults .category-icon {
 				font-size: 2.25em;
 				color: #ccc !important;
+				text-align: center;
 			}
 
 			#searchResults ul li .restaurant-name {
