@@ -51,7 +51,7 @@
             <div id="search" ng-show="isSearchbarVisible" class="row">
               <form ng-submit="nameSearch()" class="col-xs-12" novalidate>
                 <span id="exitButton" ng-click="toggleSearchField()" class="col-xs-1 glyphicon glyphicon-chevron-left"></span>
-                <input class="col-xs-9" type="search" ng-model="query" placeholder="Search for a restaurant">
+                <input id="searchField" class="col-xs-9" type="search" ng-model="query" placeholder="Search for a restaurant" focus-me="{{onSearchClick}}">
                 <button class="col-xs-2 btn btn-info">
                   <span class="glyphicon glyphicon-search"></span>
                 </button>
@@ -99,9 +99,8 @@
           <a href="#{{restaurant.url}}">
             <i class="{{restaurant.category | categoryIcon }} col-xs-2 category-icon"></i>
             <ul class="col-xs-10 row restaurant-info">
-              <li class="restaurant-name col-xs-12">{{restaurant.name}}</li>
-              <li class="address col-xs-8">{{restaurant.address}}</li>
-              <li bind-once class="distance col-xs-4">{{restaurant.dist | number:2}} Miles</li>
+              <li class="restaurant-name">{{restaurant.name}}</li>
+              <li class="address">{{restaurant.address}}</li>
             </ul>
           </a>
           </li>

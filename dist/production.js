@@ -232,8 +232,9 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
         $rootScope.isSearchbarVisible = false;
       } else {
         $rootScope.isSearchbarVisible = true;
+        console.log(angular.element('#searchField'));
       }
-    };2
+    };
 
     $scope.nameSearch = function() {
       console.log("Searching for " + $scope.query + ".");
