@@ -87,13 +87,13 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
           $rootScope.$broadcast('geosearchFire');
 
       });
-    }
+    };
 
     $scope.showError = function() {
       console.log("Geolocation is not supported by this browser. Fallback to Norfolk");
       $rootScope.showPosition();
 
-    }
+    };
 
     $rootScope.getLocation = function(){
       if (navigator.geolocation) {
@@ -101,7 +101,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
       } else {
         $scope.error = "Geolocation is not supported by this browser.";
       }
-    }
+    };
 
     $rootScope.getLocation();
     
