@@ -30,10 +30,10 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
     Geosearch.map = {
         center: {
             latitude: 36.847010,
-            longitude: -76.292430        
+            longitude: -76.292430
           },
-        zoom: 18, 
-        options: { 
+        zoom: 18,
+        options: {
             streetViewControl: false,
             panControl: true,
             panControlOptions: {
@@ -93,13 +93,18 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
 
       $scope.results = 
       Geosearch.results = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: $scope.dist}, function(){
-        Geosearch.results = _.values(Geosearch.results);
-        Geosearch.results.forEach(function(el, index){ 
-          // console.log(el.dist);
-          el.dist = el.dist * 0.000621371;
-        });
-        Geosearch.results = $filter('orderBy')(Geosearch.results, 'dist');
-        $rootScope.$broadcast('geosearchFire');
+
+          Geosearch.results = _.values(_.reject(Geosearch.results, function(el){
+            return _.isUndefined(el.name);
+          }));
+
+          Geosearch.results.forEach(function(el, index){
+            el.dist = el.dist * 0.000621371;
+          });
+
+          Geosearch.results = $filter('orderBy')(Geosearch.results, 'dist');
+          $rootScope.$broadcast('geosearchFire');
+
       });
     }
 
@@ -107,7 +112,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
       console.log("Geolocation is not supported by this browser. Fallback to Norfolk");
       $rootScope.showPosition();
 
-      }
+    }
 
     $rootScope.getLocation = function(){
       if (navigator.geolocation) {
@@ -200,12 +205,7 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$rou
     $rootScope.isVisible = false;
 
     $scope.results = Inspections.query({vendorid: $routeParams.id}, function(){
-      Geosearch.map.center = $scope.results[$routeParams.id].coordinates;
-      // setTimeout(function(){
-      //   $scope.$watch(Geosearch.map.center, function(e){
-      //       $location.path('/#');
-      //     }, true);
-      //   }, 1000); 
+      Geosearch.map.center = $scope.results[$routeParams.id].coordinates; 
     });
 
 }]);
@@ -229,13 +229,18 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
       } else {
         $rootScope.isSearchbarVisible = true;
       }
-    };
+    };2
 
     $scope.nameSearch = function() {
       console.log("Searching for " + $scope.query + ".");
       $rootScope.isSearchbarVisible = false;
+      
       Search.results = Search.query({name: $scope.query}, function(){
-        Search.results = _.values(Search.results);
+        
+        Search.results = _.values(_.reject(Search.results, function(el){
+          return _.isUndefined(el.name);
+        }));
+        
         Search.results.forEach(function(el, index){
           if (!_.isUndefined(el.coordinates)) {
             el.dist = $rootScope.distanceCalculation(el.coordinates);
@@ -243,9 +248,12 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
             Search.results.splice(index,1);
           }
         });
+        
         Search.results = $filter('orderBy')(Search.results, 'dist');
         $rootScope.$broadcast('searchFire');
+
       });
+
     };
 
   }]);
