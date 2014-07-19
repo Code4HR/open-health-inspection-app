@@ -295,7 +295,7 @@ a.close {
 	height: 1em;
 	width: 1em;
 	border-radius: 100%;
-	color: red;
+	color: #f18775;
 	background: white;
 	z-index: 9;
 	opacity: 1;
@@ -393,7 +393,7 @@ a.close {
 	    }
 
 	    .inspection h4 {
-	        color: green;
+	        color: #3c9542;
 	    }
 
 			ul.violations {
@@ -423,16 +423,16 @@ a.close {
 					}
 
 					li.violation.active i {
-						color: green;
-						background: lightgreen;
+						color: #3c9542;
+						background:  #8dcc8d;
 					}
 					li.critical.active i {
-						color: red;
-						background: darksalmon;
+						color:  #cf2f36;
+						background: #f18775;
 					}
 					li.repeat.active i {
-						color: red;
-						background: darksalmon;
+						color:  #cf2f36;
+						background: #f18775;
 					}
 
 					li.code {
