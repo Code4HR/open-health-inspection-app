@@ -218,20 +218,10 @@ center {
 }
 
 #searchResults {
-	background: white;
+	background: transparent;
 	z-index: 999;
-
 }
 
-#nottalink {
-	position: absolute;
-	left: -9999px;
-}
-
-#nottalink:focus {
-	background: orange;
-}
-ƒs
 #listView {}
 	#listView ul {
 

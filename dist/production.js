@@ -217,7 +217,7 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$rou
 openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', 'Search', '$filter',
   function($scope, $rootScope, Search, $filter){
 
-    $scope.toggleList = function(){
+    $rootScope.toggleList = function(){
       console.log('clicked toggleList');
       if ($rootScope.isVisible) {
         $rootScope.isVisible = false;
@@ -226,14 +226,9 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
       }
     };
 
-    $scope.toggleSearchField = function(){
+    $rootScope.toggleSearchField = function(){
       console.log('clicked search button');
-      if ($rootScope.isSearchbarVisible) {
-        $rootScope.isSearchbarVisible = false;
-      } else {
-        $rootScope.isSearchbarVisible = true;
-        console.log(angular.element('#searchField'));
-      }
+      $rootScope.isSearchbarVisible = !$rootScope.isSearchbarVisible;
     };
 
     $scope.nameSearch = function() {
@@ -268,19 +263,13 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootSc
   function($scope, $rootScope, Search, Geosearch){
 
     $rootScope.$on('searchFire', function(){
-      // console.log('searchFire heard');
-      // console.log(Search.results);
       $scope.results = Search.results;
       $rootScope.isVisible = true;
-      angular.element('#nottalink').trigger('focus');
     });
 
     $rootScope.$on('geosearchFire', function(){
-      // console.log('geosearchFire heard');
-      // console.log(Geosearch.results);
       $scope.results = Geosearch.results;
       $rootScope.isVisible = true;
-      angular.element('#nottalink').trigger('focus');
     });
 
     $scope.map = Geosearch.map;
@@ -289,21 +278,6 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootSc
 
     $rootScope.isVisible = false;
 
-    $scope.hasFocus = function(){
-
-    };
-
-    $scope.lostFocus = function() {
-      // console.log('lost focus');
-      setTimeout( function(){
-        // console.log('waiting to turn off dropdown');
-        $rootScope.isVisible = false;
-        console.log($rootScope.isVisible);
-        $scope.$apply();
-      }, 100);
-    };
-
-    
   }]);
 
 openHealthDataApp.directive('bindOnce', function() {
@@ -315,6 +289,20 @@ openHealthDataApp.directive('bindOnce', function() {
             }, 0);
         }
     }
+}).directive('focusMe', function($timeout, $parse) {
+  return {
+    link: function(scope, element, attrs) {
+      var model = $parse(attrs.focusMe);
+      scope.$watch(model, function(value) {
+        console.log('value=',value);
+        if(value === true) { 
+          $timeout(function() {
+            element[0].focus(); 
+          });
+        }
+      });
+    }
+  };
 });
 angular.module('openHealthDataAppFilters', [])
   .filter('was', function() {
