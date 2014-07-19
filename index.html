@@ -92,7 +92,8 @@
 
       </section>
 
-      <section class="col-sm-3 col-sm-offset-9" id="searchResults" ng-controller="searchResultsCtrl">
+      <section class="col-sm-3 col-sm-offset-9" id="searchResults" class="clearfix" ng-controller="searchResultsCtrl">
+        <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
         <ul class="row" ng-show="isVisible">
           <li ng-repeat="restaurant in results" class="restaurant-container clearfix">
           <a href="#{{restaurant.url}}">

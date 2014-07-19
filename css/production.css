@@ -234,6 +234,10 @@ center {
 	z-index: 999;
 }
 
+	#searchResults .alert {
+		margin: 1em 0;
+	}
+
 #listView {}
 	#listView ul {
 

@@ -221,6 +221,10 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
         Search.results = _.values(_.reject(Search.results, function(el){
           return _.isUndefined(el.name);
         }));
+
+        if (Search.results.length === 0) {
+          $rootScope.alerts.push({type:'danger', msg:'Couldn\'t find any results!'});
+        }
         
         Search.results.forEach(function(el, index){
           if (!_.isUndefined(el.coordinates)) {
@@ -248,9 +252,14 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootSc
       $rootScope.isVisible = true;
     });
 
+    $rootScope.alerts = [];
+
+    $rootScope.closeAlert = function(index) {
+      $scope.alerts.splice(index, 1);
+    };
+
     $rootScope.$on('geosearchFire', function(){
-      $scope.results = Geosearch.results;
-      
+      $scope.results = Geosearch.results;      
       if ($location.url() === '/') {
         $rootScope.isVisible = true;
       }
