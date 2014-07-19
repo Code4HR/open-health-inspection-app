@@ -51,7 +51,7 @@
             <div id="search" ng-show="isSearchbarVisible" class="row">
               <form ng-submit="nameSearch()" class="col-xs-12" novalidate>
                 <span id="exitButton" ng-click="toggleSearchField()" class="col-xs-1 glyphicon glyphicon-chevron-left"></span>
-                <input id="searchField" class="col-xs-9" type="search" ng-model="query" placeholder="Search for a restaurant" focus-me="{{onSearchClick}}">
+                <input id="searchField" class="col-xs-9" type="search" ng-model="query" placeholder="Search for a restaurant" focus-me="isSearchbarVisible" ng-blur="toggleSearchField()">
                 <button class="col-xs-2 btn btn-info">
                   <span class="glyphicon glyphicon-search"></span>
                 </button>
@@ -93,8 +93,7 @@
       </section>
 
       <section class="col-sm-3 col-sm-offset-9" id="searchResults" ng-controller="searchResultsCtrl">
-        <a ng-blur="lostFocus()" id="nottalink" href="#">Link</a>
-        <ul class="row" ng-hide="!isVisible">
+        <ul class="row" ng-show="isVisible">
           <li ng-repeat="restaurant in results" class="restaurant-container clearfix">
           <a href="#{{restaurant.url}}">
             <i class="{{restaurant.category | categoryIcon }} col-xs-2 category-icon"></i>
