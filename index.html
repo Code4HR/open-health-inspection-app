@@ -60,10 +60,10 @@
             <a href="#/" class="visible-xs" class="clearfix">
               <img class="logo" src="img/build/logo.png" height="36px" width="36px" alt="logo">
             </a>
-            <a ng-click="toggleSearchField()" class="listIcon clearfix">
+            <a ng-click="toggleSearchField()"  class="listIcon clearfix">
               <span id="searchButton" class="glyphicon glyphicon-search"></span>
             </a>
-            <a ng-click="toggleList()" class="listIcon"> 
+            <a ng-click="toggleList()" ng-class="{'active-button': isVisible}" class="listIcon"> 
               <span id="listButton"  class="glyphicon glyphicon-th-list" class="col-xs-1"></span>
             </a>
           </div>
