@@ -363,6 +363,23 @@ a.close {
             line-height: 1.25em;
 					}
 
+	#noResults {
+		padding: 2em 0;
+	}
+		#noResults span {
+			text-align: center;
+			display: block;
+		}
+		#noResults i {
+			text-align: center;
+			margin-bottom: .5em;
+			font-size: 3em;
+			color: #aaaaaa;
+		}
+		#noResults .report {
+
+		}
+
 	#inspections {
 
 	}
