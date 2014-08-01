@@ -209,7 +209,9 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$rou
     $rootScope.isVisible = false;
 
     $scope.results = Inspections.query({vendorid: $routeParams.id}, function(){
-      Geosearch.map.center = $scope.results[$routeParams.id].coordinates; 
+      Geosearch.map.center = $scope.results[$routeParams.id].coordinates;
+      $rootScope.restaurantName = $scope.results[$routeParams.id].name;
+      $rootScope.restaurantPermalink = $location.absUrl();
     });
 
 }]);
@@ -322,7 +324,24 @@ openHealthDataApp.directive('bindOnce', function() {
       });
     }
   };
-});
+}).directive('twitter', [
+  function() {
+    return {
+      link: function(scope, element, attr) {
+        setTimeout(function() {
+            twttr.widgets.createShareButton(
+            attr.url,
+            element[0],
+            function(el) {}, {
+              count: 'none',
+              text: attr.text
+            }
+          );
+        });
+      }
+    }
+  }
+]);
 angular.module('openHealthDataAppFilters', [])
   .filter('was', function() {
   	return function(input) {
