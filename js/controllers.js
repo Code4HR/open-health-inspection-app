@@ -197,6 +197,18 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$rou
 
 }]);
 
+openHealthDataAppControllers.controller('cityJumpCtrl', ['$scope', '$rootScope', '$http',
+  function($scope, $rootScope, $http){
+
+    $http.get('js/libs/cityReference.json').success(function(data){
+
+      $scope.cities = data;
+      $scope.isCityJumpVisible = true;
+
+    });
+
+}])
+
 openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '$timeout', 'Search', '$filter',
   function($scope, $rootScope, $timeout, Search, $filter){
 

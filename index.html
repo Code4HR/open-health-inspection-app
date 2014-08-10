@@ -114,6 +114,17 @@
         </ul>
       </section>
 
+      <section class="col-sm-3 col-sm-offset-9 clearfix" id="cityJump" ng-controller=
+      "cityJumpCtrl">
+
+        <ul ng-show="isCityJumpVisible">
+          <li ng-repeat="city in cities">
+            {{city.name}}
+          </li>
+        </ul>
+
+      </section>
+
       <div ng-view></div>
 
       <span id="geolocateButton" ng-click="showPosition()" class="listIcon glyphicon glyphicon-map-marker"></span>
