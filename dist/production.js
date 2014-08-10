@@ -216,8 +216,8 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$rou
 
 }]);
 
-openHealthDataAppControllers.controller('cityJumpCtrl', ['$scope', '$rootScope', '$http',
-  function($scope, $rootScope, $http){
+openHealthDataAppControllers.controller('cityJumpCtrl', ['$scope', '$rootScope', 'Geosearch', '$http', 
+  function($scope, $rootScope, Geosearch, $http){
 
     $http.get('js/libs/cityReference.json').success(function(data){
 
@@ -225,6 +225,11 @@ openHealthDataAppControllers.controller('cityJumpCtrl', ['$scope', '$rootScope',
       $scope.isCityJumpVisible = true;
 
     });
+
+    $scope.cityJump = function(center) {
+      console.log('city center is ', center);
+      Geosearch.map.center = center;
+    }
 
 }])
 

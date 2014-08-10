@@ -114,12 +114,13 @@
         </ul>
       </section>
 
-      <section class="col-sm-3 col-sm-offset-9 clearfix" id="cityJump" ng-controller=
-      "cityJumpCtrl">
+      <section class="col-sm-3 col-sm-offset-9 clearfix" id="cityJump" ng-controller="cityJumpCtrl">
 
         <ul ng-show="isCityJumpVisible">
           <li ng-repeat="city in cities">
+            <a ng-click="cityJump(city.center)">
             {{city.name}}
+            </a>
           </li>
         </ul>
 
