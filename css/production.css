@@ -14,6 +14,52 @@ body{
 	font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Arial", "sans";
 }
 
+	.modalContainer h5, .modal-title {
+		font-family: "Source Sans Pro";
+		text-transform: uppercase;
+		font-weight: 700;
+	}
+	.modal-title {
+		font-size: 1.25em;
+		margin: 0;
+	}
+	.modal-subtitle {
+		font-size: 1.125em;
+		margin: 0;
+	}
+	.modalContainer .defWrapper {
+		background: #efefef;
+		margin: 0 0 1em 0;
+	}
+	.modalContainer dl {
+		/*padding: .5em .25em;*/
+		margin: .25em 0;
+	}
+		.modalContainer dt {
+			font-size: 1.5em;
+			line-height: 1.5em;
+			display: inline;
+			margin-right: .25em;
+		}
+		.modalContainer dd {
+			line-height: 1.5em;
+			display: inline;
+		}
+  .modal-footer button{
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 2em;
+    display: block;
+    padding-left: 1em;
+    padding-right: 1em;
+    }
+	.modal-footer form {
+		text-align: left;
+	}
+		.modal-footer form input {
+			margin-right: .5em;
+		}
+
 header {
 	background: #2C3E50;
 	position: relative;
@@ -21,11 +67,34 @@ header {
 	border-bottom:1px solid #ccc;
 	text-align: center;
 	min-height: 60px;
-} 
+}
+
+	header #logoWrapper {
+		text-align: left;
+		line-height: 60px;
+	}
+
+center {
+  padding:10px;
+}
 	header a {
 		color: #ECF0F1;
 		text-decoration: none;
-	} 
+		text-align: left;
+	}
+		header #logo {
+			display: inline-block;
+			text-align: left;
+			margin: 0;
+			margin-right: .25em;
+		}
+		header .minilogo {
+			background: blue;
+			text-align: left;
+		}
+			header .minilogo img {
+				display: inline-block;
+			}
 		header a:hover, header a:focus {
 			color: #ECF0F1;
 			text-decoration: none;
@@ -37,15 +106,99 @@ header {
 		font-weight: 900;
 		text-align: left;
 		text-transform: uppercase;
+		display: inline-block;
+		text-align: left;
 	}
 	header #searchbar {
 		background: #3A546D;
 		border-left: 1px solid #43617E;
 		height: 60px;
+		text-align: right;
+		position: relative;
 	}
-		header #search {
-			margin-top: 12px;
+		header #searchbar .logo {
+			display: inline-block;
+			position: absolute;
+			left: 6px;
+			top: 6px;
+			height: 48px;
+			width: 48px;
+
 		}
+		header #searchbar .listIcon {
+			color: white;
+			font-size: 2em;
+			margin: 0;
+			line-height: 60px;
+			cursor: pointer;
+			padding: 0 .5em;
+			/*padding: 15px 0;*/
+			display: inline-block;
+			/*line-height: 60px;*/
+		}
+			.listIcon:hover {
+				background: #2C3E50;
+				color: white !important;
+			}
+
+			#geolocateButton.listIcon:hover {
+				box-shadow: inset 0 0 0 3px #3A546D;
+			}
+			.active-button {
+				background: white ;
+				color: #3A546D !important;
+			}
+		header #search .listIcon {
+			margin: 0;
+		}
+		#geolocateButton {
+			position: fixed;
+			top: auto;
+			left: auto;
+			bottom: 1em;
+			right: 1em;
+			height: 2em;
+			width: 2em;
+			border-radius: 100%;
+			text-align: center;
+			line-height: 2em;
+			font-size: 2em;
+			color: white;
+			z-index: 1;
+			background: #3A546D;
+		}
+			#geolocateButton:hover {
+				background: #2C3E50;
+			}
+			header .listIcon:last-of-type {
+				margin-right: 0;
+			}
+
+			header .active-button.listIcon:hover {
+				background: white;
+				color: #3A546D !important;
+			}
+
+		header #search {
+			position: absolute;
+			z-index: 1131;
+			display: block;
+			text-align: right;
+			background: #3A546D;
+			height: 60px;
+			padding: 14px 0;
+			width: 100%;
+		}
+			#exitButton {
+				padding: 0;
+				margin: 0;
+				color: white;
+				font-size: 1.5em;
+				line-height: 36px;
+				position: relative;
+				right: .5em;
+
+			}
 			#search input, #search button {
 				height: 36px;
 			}
@@ -59,7 +212,7 @@ header {
 				border-bottom-left-radius: 0;
 			}
 
-	
+
 #main {
 	margin-top: 60px;
 }
@@ -77,112 +230,183 @@ header {
 }
 
 #searchResults {
-	background: white;
-
+	background: transparent;
+	z-index: 999;
 }
 
-#nottalink {
-	position: absolute;
-	left: -9999px;
-}
+	#searchResults .alert {
+		margin: 1em 0;
+	}
 
-#nottalink:focus {
-	background: orange;
-}
-ƒs
 #listView {}
 	#listView ul {
 
 	}
-		#searchResults ul li{
+		ul li.list-container {
 			padding: 10px 0;
 			min-height:60px;
 			border-bottom:1px solid #ccc;
 			background: white;
+			position: relative;
 		}
-			#searchResults ul li a {
-				color: #3498DB;
-			}
-
-			#searchResults ul li a:active, #listView ul li a:focus {
-				background: orange;
-			}
-			#searchResults ul li .restaurant-name {
+			.city-container {
+				padding: 0 10px 3px 10px;
 				font-size: 1.25em;
 				line-height: .95em;
 				font-weight: 600;
-				margin: 0;
+				clear: both;
+				position: absolute;
+				height: 100%;
+				width: 100%;
+			}
+
+			ul li a {
+				color: #3498DB;
+			}
+
+			ul li a:hover {
+				text-decoration: none;
+			}
+
+			.info {
+				padding: 0 10px !important;
+			}
+
+			.category-icon {
+				font-size: 2.25em;
+				color: #ccc !important;
+				text-align: center;
+			}
+
+			ul li .name {
+				font-size: 1.25em;
+				line-height: .95em;
+				font-weight: 600;
+				margin: 0 0 3px 0;
 				clear: both;
 			}
-			#searchResults ul li .restaurant-score {
+			ul li .score {
 				font-size: 3em;
 				line-height: .75em;
 				font-weight: 400;
 				color: #666;
 				text-align: right;
 			}
-			#searchResults .distance {
+			.address {
+				display: inline-block;
+				color: #999999 !important;
+			}
+			.distance {
+				display: inline-block;
 				color: #999999 !important;
 				margin: 0;
+				float: right;
 			}
 
+a.close {
+	position: fixed;
+	top: 20%;
+	right: .75em;
+	font-size: 2em;
+	height: 1em;
+	width: 1em;
+	border-radius: 100%;
+	color: #f18775;
+	background: white;
+	z-index: 9;
+	opacity: 1;
+}
+
 #restaurantDetailView {
-	height: 75%;
+	height: 80%;
 	width: 100%;
+	/*padding-top: 2em;*/
 	position: fixed;
 	bottom: 8px;
 	overflow-y: scroll;
-	z-index: 1;
+	z-index: 2;
 }
-	
+
 	#restuarant-info {
 		font-family: "Bitter";
-		background-color: rgba(255,255,255,.75);
+		background-color: rgba(255,255,255,.85);
 		position: relative;
 	}
-		a.close {
-			position: absolute;
-			top: .5em;
-			right: .5em;
-			font-size: 2em;
-			color: red;
-		}
 
 		#restaurantInfo {
 			position: relative;
 		}
 
-
 		#restaurantInfo h1 {
 			margin-bottom: 0;
+			font-size: 1.75em;
 		}
+
 		#restaurantInfo .address {
 			color: #666666;
 		}
-	
+
 	 	#violationKey {
-			padding: .75em;
-			border: 1px solid #dfdfdf;
+	 		/*margin-top: 20px;*/
 		}
 
 			#violationKey h4 {
 				margin: 0;
+				font-size: 14px;
 			}
 
 			#violationKey ul {
-				margin: .5em 0 0 0;
+				/*margin: .5em 0 0 0;*/
 			}
 
 				#violationKey li {
 					position: relative;
 					padding-left: 1.5em;
+					line-height: 2em;
+          padding-left: 1.75em;
 				}
 
 					#violationKey i {
 						position: absolute;
 						top: 3px;
 						left: 0;
+						font-size: 1.25em;
+            line-height: 1.25em;
 					}
+
+	.twitter-share-button {
+		margin-bottom: 1em;
+		vertical-align: middle;
+		line-height: 1em;
+	}
+
+		.twiter-share-button i {
+			display: inline-block;
+			line-height: 1em;
+			margin-right: .5em;
+		}
+
+		.twitter-share-button span {
+			display: inline-block;
+			line-height: 1em;
+		}
+
+	#noResults {
+		padding: 2em 0;
+	}
+		#noResults span {
+			text-align: center;
+			display: block;
+		}
+		#noResults i {
+			text-align: center;
+			margin-bottom: .5em;
+			font-size: 3em;
+			color: #aaaaaa;
+		}
+		#noResults .report {
+
+		}
 
 	#inspections {
 
@@ -200,16 +424,32 @@ header {
 				margin: 0;
 			}
 
-		.inspection .date {
-			font-size: 1.25em;
-			color: #777;
-		}
+			.inspection .date {
+				font-size: 1.25em;
+				color: #777;
+			}
+
+			.inspection h2 {
+	      font-family: "Bitter";
+        font-size: 1.5em;
+      }
+
+	    .inspection h3 {
+	        margin-top: 2px;
+	        font-size: 1em;
+	        color: gray;
+	        font-family: "Bitter";
+	    }
+
+	    .inspection h4 {
+	        color: #3c9542;
+	    }
 
 			ul.violations {
 				margin-bottom: 1em;
 				display: inline-block;
 				vertical-align: top;
-			} 
+			}
 				li.violation,
 			    li.critical,
 				li.repeat {
@@ -232,16 +472,16 @@ header {
 					}
 
 					li.violation.active i {
-						color: green;
-						background: lightgreen;
+						color: #3c9542;
+						background:  #8dcc8d;
 					}
 					li.critical.active i {
-						color: red;
-						background: darksalmon;
+						color:  #cf2f36;
+						background: #f18775;
 					}
 					li.repeat.active i {
-						color: red;
-						background: darksalmon;
+						color:  #cf2f36;
+						background: #f18775;
 					}
 
 					li.code {
@@ -259,7 +499,10 @@ Tablet and Small Screen Styles here.
 
 @media screen and (min-width: 776px) {
 
-    
+    .modalContainer {
+        top: 70px;
+    }
+
     header {
         text-align: left;   
     }
@@ -281,12 +524,12 @@ Tablet and Small Screen Styles here.
 
     .angular-google-map-container { height:100%; width:100%; position:absolute; top:0; left:0; }
 
-    #searchResults {
+    .results {
         position: fixed;
         top: 60px;
         right: 0;
         max-height: 500px;
-        z-index: 9999;
+        z-index: 1029;
         overflow-y: scroll;
     } 
         #searchResults .row {
@@ -298,23 +541,6 @@ Tablet and Small Screen Styles here.
 	#restuarantDetailView {
         position: relative;
     }
-        .inspection h2 {
-            font-family: "Bitter";
-            font-size: 1.5em;
-        }
-        .inspection h3 {
-            margin-top: 2px;
-            font-size: 1em;
-            color: gray;
-            font-family: "Bitter";
-        }
-        .inspection h4 {
-            color: green;
-        }
-
-/*    #restuarant-info {
-        position: fixed;
-    }*/
 
         #restaurantDetailView .angular-google-map-container {
             height: 250px;
@@ -322,8 +548,36 @@ Tablet and Small Screen Styles here.
 
         #restaurantDetailView #inspections {}
 
+        #restaurantDetailView #violationKey ul li {
+            display: inline-block;
+            margin: .25em .5em .25em 0;
+            /*line-height: 1.25em;*/
+            padding-left: 1.75em;
+        }
+
+        #restaurantDetailView #violationKey ul li i {
+    
+        }
+
         #restaurantDetailView ul.violations {
  
+        }
+
+    #noResults {
+        padding: 2em 0;
+    }
+        #noResults span {
+            display: inline-block;
+        }
+        #noResults i {
+            vertical-align: top;
+            font-size: 2em;
+            margin-right: .5em;
+            color: #aaaaaa;
+        }
+        #noResults .report {
+            display: inline-block;
+            vertical-align: top;
         }
 
 

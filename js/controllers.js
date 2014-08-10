@@ -4,41 +4,111 @@ Controllers
 
 var openHealthDataAppControllers = angular.module('openHealthDataAppControllers', []);
 
-openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$http', '$q', 'Geosearch', 'Search',
-  function($scope, $rootScope, $http, $q, Geosearch, Search) {
+openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$http', '$location', '$q', 'Geosearch', 'Search', '$filter', '$modal', 'localStorageService',
+  function($scope, $rootScope, $http, $location, $q, Geosearch, Search, $filter, $modal, localStorageService) {
 
+    $rootScope.$on('$locationChangeSuccess', function() {
+        ga('send', 'pageview', $location.path());
+    });
+    
     $scope.map =
     Geosearch.map = {
         center: {
             latitude: 36.847010,
             longitude: -76.292430
-        },
-        zoom: 18
+          },
+        zoom: 18,
+        options: {
+            streetViewControl: false,
+            panControl: true,
+            panControlOptions: {
+                position: google.maps.ControlPosition.LEFT_BOTTOM
+            },
+            zoomControl: true,
+            zoomControlOptions: {
+                style: google.maps.ZoomControlStyle.LARGE,
+                position: google.maps.ControlPosition.LEFT_BOTTOM
+            },
+            styles: [{
+                "featureType": "poi",
+                "stylers": [{ "visibility": "off" }]
+            },{
+                "featureType": "transit",
+                "stylers": [{ "visibility": "off" }]
+            }]
+        }
     };
 
-    console.log(Geosearch.map);
+    // console.log(Geosearch.map);
 
     $scope.dist = 1000;
 
-    $scope.showPosition = function(position) {
-      Geosearch.map.center.latitude = position.coords.latitude;
-      Geosearch.map.center.longitude = position.coords.longitude;
-      $scope.results = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: $scope.dist});
-    }
+    $rootScope.showPosition = function(position) {
+
+        //outside Virginia check.
+        //- Latitude  36° 32′ N to 39° 28′ N
+        // 36.533333 - 39.466667
+        //- Longitude  75° 15′ W to 83° 41′ W
+        // 75.25 - 83.683333
+
+      if (_.isUndefined(position)) {
+
+        console.log('Geolocation unavailable');
+
+      } else {
+        
+        if ( ((position.coords.latitude > 36.533333 ) &&
+             (position.coords.latitude < 39.466667 ) )
+            &&
+            ((position.coords.longitude < -75.25 ) &&
+             (position.coords.longitude > -83.683333 ))) {
+          
+          console.log('coordinates are within Virgina');
+
+          if (!_.isUndefined(position)) {
+            Geosearch.map.center.latitude = position.coords.latitude;
+            Geosearch.map.center.longitude = position.coords.longitude;
+          }
+
+        } else {
+          console.log('Coming from out of state, so falling back to Norfolk.');
+        }
+
+      }
+
+      $scope.results = 
+      Geosearch.results = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: $scope.dist}, function(){
+
+          Geosearch.results = _.values(_.reject(Geosearch.results, function(el){
+            return _.isUndefined(el.name);
+          }));
+
+          Geosearch.results.forEach(function(el, index){
+            el.dist = el.dist * 0.000621371;
+          });
+
+          Geosearch.results = $filter('orderBy')(Geosearch.results, 'dist');
+          $rootScope.$broadcast('geosearchFire');
+
+      });
+
+    };
 
     $scope.showError = function() {
-      console.log("error");
-    }
+      console.log("Geolocation is not supported by this browser. Fallback to Norfolk");
+      $rootScope.showPosition();
 
-    $scope.getLocation = function(){
+    };
+
+    $rootScope.getLocation = function(){
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition($scope.showPosition, $scope.showError);
       } else {
         $scope.error = "Geolocation is not supported by this browser.";
       }
-    }
+    };
 
-    $scope.getLocation();
+    $rootScope.getLocation();
     
     $rootScope.toRad = function(Value) {
         return Value * Math.PI / 180;
@@ -67,84 +137,173 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
       
     };
 
-  }]);
+    $rootScope.open = function (size) {
 
-openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', '$http', '$location', 'Geosearch',
-  function($scope, $routeParams, $http, $location, Geosearch) {
+      // console.log('open modal');
+      var modalInstance = $modal.open({
+        templateUrl: 'partials/modal.html',
+        controller: ModalInstanceCtrl,
+        size: size,
+        windowClass: 'modalContainer',
+        backdrop: false,
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
 
-  	$http.jsonp('http://api.ttavenner.com/inspections/' + $routeParams.id + '?callback=JSON_CALLBACK').success(function(data) {
-      $scope.results = data;
+      modalInstance.result.then(function (selectedItem) {
+        $rootScope.close = function(){
+          modalInstance.close();
+        }
+      }, function () {
+        // $log.info('Modal dismissed at: ' + new Date());
+      });
+    };
 
-      console.log($scope.results);
-
-    for (var key in $scope.results) {
-      if ($scope.results.hasOwnProperty(key)) {
-
-        Geosearch.map.center = $scope.results[key].coordinates;
-        setTimeout(function(){
-
-        $scope.$watch(Geosearch.map.center, function(e){
-            // console.log('hey, something changed');
-            // console.log($location.path());
-            $location.path('/#')
-          }, true);
-
-        }, 1000); 
-
-      }
+    if ($location.url() === '/') {
+      $scope.open();
     }
 
-    
-
-    });
-
   }]);
 
-openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', 'Search',
-  function($scope, $rootScope, Search){
+var ModalInstanceCtrl = function ($rootScope, $scope, $modalInstance, items, localStorageService) {
+
+  $scope.ok = function () {
+
+    if ($rootScope.dontshow ) {
+      localStorageService.set('Has Read', 'true');
+      console.log(localStorageService.get('Has Read'));
+    }
+    $modalInstance.close();
+
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+};
+
+openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', '$http', '$location', '$rootScope', 'Geosearch', 'Inspections', 
+  function($scope, $routeParams, $http, $location, $rootScope, Geosearch, Inspections) {
+
+    $rootScope.isVisible = false;
+
+    $scope.results = Inspections.query({vendorid: $routeParams.id}, function(){
+      Geosearch.map.center = $scope.results[$routeParams.id].coordinates;
+      $rootScope.restaurantName = $scope.results[$routeParams.id].name;
+      $rootScope.restaurantPermalink = $location.absUrl();
+    });
+
+}]);
+
+openHealthDataAppControllers.controller('cityJumpCtrl', ['$scope', '$rootScope', 'Geosearch', '$http', 
+  function($scope, $rootScope, Geosearch, $http){
+
+    $rootScope.isCityJumpVisible = false;
+
+    $http.get('js/libs/cityReference.json').success(function(data){
+      $scope.cities = data;
+    });
+
+    $scope.cityJump = function(center) {
+      console.log('city center is ', center);
+      Geosearch.map.center = center;
+      $rootScope.isCityJumpVisible = false;
+      $rootScope.showPosition();
+    }
+
+}])
+
+openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '$timeout', 'Search', '$filter',
+  function($scope, $rootScope, $timeout, Search, $filter){
+
+    $rootScope.toggleList = function(){
+      console.log('clicked toggleList');
+      if ($rootScope.isVisible) {
+        $rootScope.isVisible = false;
+      } else {
+        $rootScope.isVisible = true;
+      }
+    };
+
+    $rootScope.toggleSearchField = function(){
+      console.log('clicked search button');
+      $rootScope.isSearchbarVisible = !$rootScope.isSearchbarVisible;
+    };
+
+    $rootScope.toggleCityJump = function() {
+      console.log('clicked city jump button');
+      $rootScope.isSearchbarVisible = false;
+      $rootScope.isVisible = false;
+      $rootScope.isCityJumpVisible = !$rootScope.isCityJumpVisible;
+    }
 
     $scope.nameSearch = function() {
       console.log("Searching for " + $scope.query + ".");
-      Search.results = Search.query({name: $scope.query});
-      $rootScope.$broadcast('searchFire');
-
-
+      $rootScope.isSearchbarVisible = false;
       
+      Search.results = Search.query({name: $scope.query}, function(){
+        
+        Search.results = _.values(_.reject(Search.results, function(el){
+          return _.isUndefined(el.name);
+        }));
+
+        if (Search.results.length === 0) {
+          $rootScope.alerts.push({type:'danger', msg:'Couldn\'t find any results!'});
+          $timeout(function(){
+            $rootScope.alerts.pop();
+          }, 3000, true);
+        }
+        
+        Search.results.forEach(function(el, index){
+          if (!_.isUndefined(el.coordinates)) {
+            el.dist = $rootScope.distanceCalculation(el.coordinates);
+          } else {
+            Search.results.splice(index,1);
+          }
+        });
+        
+        Search.results = $filter('orderBy')(Search.results, 'dist');
+        $rootScope.$broadcast('searchFire');
+
+      });
+
     };
 
   }]);
 
 
-openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootScope', 'Search', 'Geosearch',
-  function($scope, $rootScope, Search, Geosearch){
+openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootScope', '$location', 'Search', 'Geosearch',
+  function($scope, $rootScope, $location, Search, Geosearch){
 
     $rootScope.$on('searchFire', function(){
-      console.log('searchFire heard');
-      console.log(Search.results);
       $scope.results = Search.results;
       $rootScope.isVisible = true;
-      angular.element('#nottalink').trigger('focus');
+
+      console.log($rootScope.alerts.length);
+
+    });
+
+    $rootScope.alerts = [];
+
+    $rootScope.closeAlert = function(index) {
+      $scope.alerts.splice(index, 1);
+    };
+
+    $rootScope.$on('geosearchFire', function(){
+      $scope.results = Geosearch.results;      
+      if ($location.url() === '/') {
+        $rootScope.isVisible = true;
+      }
+
     });
 
     $scope.map = Geosearch.map;
 
-    console.log("Geosearch map in search results" + Geosearch.map)
+    // console.log("Geosearch map in search results" + Geosearch.map)
 
     $rootScope.isVisible = false;
 
-    $scope.hasFocus = function(){
-      console.log('has focus');
-    };
-
-    $scope.lostFocus = function() {
-      console.log('lost focus');
-      setTimeout( function(){
-        console.log('waiting to turn off dropdown');
-        $rootScope.isVisible = false;
-        console.log($rootScope.isVisible);
-        $scope.$apply();
-      }, 100);
-    };
-
-    
   }]);
