@@ -4,7 +4,10 @@ Tablet and Small Screen Styles here.
 
 @media screen and (min-width: 776px) {
 
-    
+    .modalContainer {
+        top: 70px;
+    }
+
     header {
         text-align: left;   
     }
@@ -31,7 +34,7 @@ Tablet and Small Screen Styles here.
         top: 60px;
         right: 0;
         max-height: 500px;
-        z-index: 9999;
+        z-index: 1029;
         overflow-y: scroll;
     } 
         #searchResults .row {
@@ -43,23 +46,6 @@ Tablet and Small Screen Styles here.
 	#restuarantDetailView {
         position: relative;
     }
-        .inspection h2 {
-            font-family: "Bitter";
-            font-size: 1.5em;
-        }
-        .inspection h3 {
-            margin-top: 2px;
-            font-size: 1em;
-            color: gray;
-            font-family: "Bitter";
-        }
-        .inspection h4 {
-            color: green;
-        }
-
-/*    #restuarant-info {
-        position: fixed;
-    }*/
 
         #restaurantDetailView .angular-google-map-container {
             height: 250px;
@@ -67,8 +53,36 @@ Tablet and Small Screen Styles here.
 
         #restaurantDetailView #inspections {}
 
+        #restaurantDetailView #violationKey ul li {
+            display: inline-block;
+            margin: .25em .5em .25em 0;
+            /*line-height: 1.25em;*/
+            padding-left: 1.75em;
+        }
+
+        #restaurantDetailView #violationKey ul li i {
+    
+        }
+
         #restaurantDetailView ul.violations {
  
+        }
+
+    #noResults {
+        padding: 2em 0;
+    }
+        #noResults span {
+            display: inline-block;
+        }
+        #noResults i {
+            vertical-align: top;
+            font-size: 2em;
+            margin-right: .5em;
+            color: #aaaaaa;
+        }
+        #noResults .report {
+            display: inline-block;
+            vertical-align: top;
         }
 
 
