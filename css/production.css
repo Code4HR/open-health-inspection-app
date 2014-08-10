@@ -242,49 +242,61 @@ center {
 	#listView ul {
 
 	}
-		#searchResults ul li.restaurant-container {
+		ul li.list-container {
 			padding: 10px 0;
 			min-height:60px;
 			border-bottom:1px solid #ccc;
 			background: white;
+			position: relative;
 		}
-			#searchResults ul li a {
+			.city-container {
+				padding: 0 10px 3px 10px;
+				font-size: 1.25em;
+				line-height: .95em;
+				font-weight: 600;
+				clear: both;
+				position: absolute;
+				height: 100%;
+				width: 100%;
+			}
+
+			ul li a {
 				color: #3498DB;
 			}
 
-			#searchResults ul li a:active, #listView ul li a:focus {
-				background: orange;
+			ul li a:hover {
+				text-decoration: none;
 			}
 
-			#searchResults ul.restaurant-info {
+			.info {
 				padding: 0 10px !important;
 			}
 
-			#searchResults .category-icon {
+			.category-icon {
 				font-size: 2.25em;
 				color: #ccc !important;
 				text-align: center;
 			}
 
-			#searchResults ul li .restaurant-name {
+			ul li .name {
 				font-size: 1.25em;
 				line-height: .95em;
 				font-weight: 600;
 				margin: 0 0 3px 0;
 				clear: both;
 			}
-			#searchResults ul li .restaurant-score {
+			ul li .score {
 				font-size: 3em;
 				line-height: .75em;
 				font-weight: 400;
 				color: #666;
 				text-align: right;
 			}
-			#searchResults .address {
+			.address {
 				display: inline-block;
 				color: #999999 !important;
 			}
-			#searchResults .distance {
+			.distance {
 				display: inline-block;
 				color: #999999 !important;
 				margin: 0;
@@ -512,7 +524,7 @@ Tablet and Small Screen Styles here.
 
     .angular-google-map-container { height:100%; width:100%; position:absolute; top:0; left:0; }
 
-    #searchResults {
+    .results {
         position: fixed;
         top: 60px;
         right: 0;

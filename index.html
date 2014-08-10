@@ -67,6 +67,9 @@
             <a href="#/" class="visible-xs" class="clearfix">
               <img class="logo" src="img/build/logo.png" height="36px" width="36px" alt="logo">
             </a>
+            <a ng-click="toggleCityJump()" class="listIcon clearfix">
+              <i class="fa fa-building"></i>            
+            </a>
             <a ng-click="toggleSearchField()"  class="listIcon clearfix">
               <span id="searchButton" class="glyphicon glyphicon-search"></span>
             </a>
@@ -99,14 +102,14 @@
 
       </section>
 
-      <section class="col-sm-3 col-sm-offset-9" id="searchResults" class="clearfix" ng-controller="searchResultsCtrl">
+      <section class="col-sm-3 col-sm-offset-9 results" id="searchResults" class="clearfix" ng-controller="searchResultsCtrl">
         <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
         <ul class="row" ng-show="isVisible">
-          <li ng-repeat="restaurant in results" class="restaurant-container clearfix">
+          <li ng-repeat="restaurant in results" class="list-container clearfix">
           <a href="#{{restaurant.url}}">
             <i class="{{restaurant.category | categoryIcon }} col-xs-2 category-icon"></i>
-            <ul class="col-xs-10 row restaurant-info">
-              <li class="restaurant-name">{{restaurant.name}}</li>
+            <ul class="col-xs-10 row info">
+              <li class="name">{{restaurant.name}}</li>
               <li class="address">{{restaurant.address}}</li>
             </ul>
           </a>
@@ -114,13 +117,11 @@
         </ul>
       </section>
 
-      <section class="col-sm-3 col-sm-offset-9 clearfix" id="cityJump" ng-controller="cityJumpCtrl">
+      <section class="col-sm-3 col-sm-offset-9 results clearfix" id="cityJump" ng-controller="cityJumpCtrl">
 
-        <ul ng-show="isCityJumpVisible">
-          <li ng-repeat="city in cities">
-            <a ng-click="cityJump(city.center)">
-            {{city.name}}
-            </a>
+        <ul class="row" ng-show="isCityJumpVisible">
+          <li class="list-container clearfix" ng-repeat="city in cities">
+            <a class="city-container" ng-click="cityJump(city.center)">{{city.name}}</a>
           </li>
         </ul>
 
