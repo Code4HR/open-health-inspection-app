@@ -472,8 +472,8 @@ a.close {
 					}
 
 					li.violation.active i {
-						color: #3c9542;
-						background:  #8dcc8d;
+						color: #B28C04;
+						background:  #FAAA0C;
 					}
 					li.critical.active i {
 						color:  #cf2f36;
