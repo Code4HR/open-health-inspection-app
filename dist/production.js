@@ -231,6 +231,7 @@ openHealthDataAppControllers.controller('cityJumpCtrl', ['$scope', '$rootScope',
       Geosearch.map.center = center;
       $rootScope.isCityJumpVisible = false;
       $rootScope.showPosition();
+      $rootScope.fireEvent('')
     }
 
 }])
@@ -257,6 +258,7 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
       $rootScope.isSearchbarVisible = false;
       $rootScope.isVisible = false;
       $rootScope.isCityJumpVisible = !$rootScope.isCityJumpVisible;
+      $rootScope.resultsType = "Look at another city's inspections.";
     }
 
     $scope.nameSearch = function() {
@@ -298,11 +300,9 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootSc
   function($scope, $rootScope, $location, Search, Geosearch){
 
     $rootScope.$on('searchFire', function(){
+      $scope.resultsType = "Displaying search results for: "
       $scope.results = Search.results;
       $rootScope.isVisible = true;
-
-      console.log($rootScope.alerts.length);
-
     });
 
     $rootScope.alerts = [];
@@ -312,6 +312,7 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootSc
     };
 
     $rootScope.$on('geosearchFire', function(){
+      $scope.resultsType = "Displaying results near you.";
       $scope.results = Geosearch.results;      
       if ($location.url() === '/') {
         $rootScope.isVisible = true;

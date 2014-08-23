@@ -230,9 +230,18 @@ center {
 }
 
 #searchResults {
-	background: transparent;
+	background: white;
 	z-index: 999;
 }
+
+	.resultsDescription {
+		font-family: 'Bitter';
+		margin: 0 -1em;
+		line-height: 1em;
+		padding: .5em 0;
+		text-indent: 1em;
+		background: #efefef;
+	}
 
 	#searchResults .alert {
 		margin: 1em 0;
