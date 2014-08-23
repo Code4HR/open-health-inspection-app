@@ -244,6 +244,7 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
       if ($rootScope.isVisible) {
         $rootScope.isVisible = false;
       } else {
+        $rootScope.isCityJumpVisible = false;
         $rootScope.isVisible = true;
       }
     };
