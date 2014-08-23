@@ -105,7 +105,7 @@
       <section class="col-sm-3 col-sm-offset-9 results" id="searchResults" class="clearfix" ng-controller="searchResultsCtrl">
         <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
         <section id="searchResultsDetail" ng-show="isVisible">
-          <p class="resultsDescription">Results from...</p>
+          <p class="resultsDescription">{{resultsType}}</p>
           <ul class="row">
             <li ng-repeat="restaurant in results" class="list-container clearfix">
             <a href="#{{restaurant.url}}">
@@ -121,13 +121,15 @@
       </section>
 
       <section class="col-sm-3 col-sm-offset-9 results clearfix" id="cityJump" ng-controller="cityJumpCtrl">
-
-        <ul class="row" ng-show="isCityJumpVisible">
-          <li class="list-container clearfix" ng-repeat="city in cities">
-            <a class="city-container" ng-click="cityJump(city.center)">{{city.name}}</a>
-          </li>
-        </ul>
-
+        <section ng-show="isCityJumpVisible">
+          <p class="resultsDescription">{{resultsType}}</p>
+          <ul class="row" >
+            <li class="list-container clearfix" ng-repeat="city in cities">
+              <a class="city-container" ng-click="cityJump(city.center)">{{city.name}}</a>
+            </li>
+          </ul>
+        </section>
+                
       </section>
 
       <div ng-view></div>
