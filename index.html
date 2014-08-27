@@ -58,12 +58,13 @@
             <div id="search" ng-show="isSearchbarVisible" class="row">
               <form ng-submit="nameSearch()" class="col-xs-12" novalidate>
                 <span id="exitButton" ng-click="toggleSearchField()" class="col-xs-1 glyphicon glyphicon-chevron-left"></span>
-                <input id="searchField" class="col-xs-9" type="search" ng-model="query" placeholder="Search for a restaurant" focus-me="isSearchbarVisible" ng-blur="toggleSearchField()">
-                <button class="col-xs-2 btn btn-info">
-                  <span class="glyphicon glyphicon-search"></span>
+                <input id="searchField" class="col-xs-9" type="search" ng-model="query" placeholder="Search for a restaurant" focus-me="isSearchbarVisible"/>
+                <button class="btn btn-info col-xs-2">              
+                  <span id="searchButton" class="glyphicon glyphicon-search"/>
                 </button>
               </form>
             </div>
+
             <a href="#/" class="visible-xs" class="clearfix">
               <img class="logo" src="img/build/logo.png" height="36px" width="36px" alt="logo">
             </a>
