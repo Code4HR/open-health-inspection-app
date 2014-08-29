@@ -295,17 +295,17 @@ center {
 				clear: both;
 			}
 			.score {
-				font-size: 3em;
+				font-size: 2em;
 				line-height: .75em;
 				font-weight: 400;
 				color: #666;
 				text-align: center;
 			}
-			.address {
+			#listView .address {
 				display: inline-block;
 				color: #999999 !important;
 			}
-			.distance {
+			#listView .distance {
 				display: inline-block;
 				color: #999999 !important;
 				margin: 0;
@@ -342,9 +342,44 @@ a.close {
 		position: relative;
 	}
 
+		#restaurant-info a {
+			display: inline-block;
+		}
+
+		#restuarant-info .score {
+			font-size: 3em;
+			vertical-align: top;
+			margin: .25em .25em 0 0;
+			background: white;
+			padding: 10px 0;
+			border: 1px solid #efefef;
+		}
+
+			#restuarant-info .score span {
+				display: block;
+				font-size: .25em;
+				line-height: 1.25em;
+				padding: 0 .5em;
+			}
+
 		#restaurantInfo {
 			position: relative;
+			vertical-align: top;
+			margin-bottom: .75em;
 		}
+
+			#restaurantInfo ul {
+				display: inline-block;
+			}
+
+			#restaurantInfo .score {
+				display: inline-block;
+			}
+
+			#restaurantInfo a {
+				margin-top: 20px;
+				float: right;
+			}
 
 		#restaurantInfo h1 {
 			margin-bottom: 0;
@@ -356,7 +391,7 @@ a.close {
 		}
 
 	 	#violationKey {
-	 		/*margin-top: 20px;*/
+	 		margin-top: 20px;
 		}
 
 			#violationKey h4 {

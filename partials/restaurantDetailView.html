@@ -4,15 +4,27 @@
 
 	<div class="container-fluid">
 
-		<section id="restuarant-info" class="col-xs-12" ng-repeat="restaurant in results">
-			<div class="">
+		<section id="restuarant-info" class="col-md-12" ng-repeat="restaurant in results">
 
-				<ul id="restaurantInfo" class="">
-					<li class="name"><h1>{{restaurant.name}}</h1></li>
-					<li class="address">{{restaurant.address}}, {{restaurant.city}}</li>
-				</ul>
+			<div class="row">
 
-				<section id="violationKey" class="">
+				<section id="restaurantInfo" class="col-md-5">				
+
+					<h2 class="score">
+						{{restaurant.score}}
+						<span>Our Rating</span>
+					</h2>
+					
+					<ul>
+						<li class="name"><h1>{{restaurant.name}}</h1></li>
+						<li class="address">{{restaurant.address}}, {{restaurant.city}}</li>
+					</ul>
+
+					<a twitter data-text="Check out the health inspection report for {{restaurantName}}!" data-url="{{restaurantPermalink}}"></a>
+					
+				</section>
+
+				<section id="violationKey" class="col-md-7">
 					<h4>Symbol Key</h4>
 					<ul>
 						<li class="violation active"><i class="glyphicon glyphicon-ok"></i><span>Violation Corrected During Inspection</span></li>
@@ -21,7 +33,7 @@
 					</ul>
 				</section>
 
-				<a twitter data-text="Check out the health inspection report for {{restaurantName}}!" data-url="{{restaurantPermalink}}"></a>
+	
 
 			</div>
 

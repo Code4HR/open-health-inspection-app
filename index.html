@@ -111,11 +111,11 @@
             <li ng-repeat="restaurant in results" class="list-container clearfix">
             <a href="#{{restaurant.url}}">
               <i class="{{restaurant.category | categoryIcon }} col-xs-2 category-icon"></i>
-              <ul class="col-xs-8 row info">
+              <ul class="col-xs-7 info">
                 <li class="name">{{restaurant.name}}</li>
                 <li class="address">{{restaurant.address}}</li>
               </ul>
-              <p class="score">{{restaurant.score}}</p>
+              <p class="score col-xs-3">{{restaurant.score}}</p>
             </a>
             </li>
           </ul>

@@ -104,7 +104,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
 
           Geosearch.results.forEach(function(el, index){
             el.dist = el.dist * 0.000621371;
-            el.score = Math.round(el.score);
+            el.score = el.score? Math.round(el.score) : "n/a";
           });
 
           Geosearch.results = $filter('orderBy')(Geosearch.results, 'dist');
@@ -211,8 +211,10 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$rou
     $rootScope.isVisible = false;
 
     $scope.results = Inspections.query({vendorid: $routeParams.id}, function(){
-      Geosearch.map.center = $scope.results[$routeParams.id].coordinates;
-      $rootScope.restaurantName = $scope.results[$routeParams.id].name;
+      var restaurant = $scope.results[$routeParams.id];
+      Geosearch.map.center = restaurant.coordinates;
+      $rootScope.restaurantName = restaurant.name;
+      restaurant.score = Math.round(restaurant.score);
       $rootScope.restaurantPermalink = $location.absUrl();
     });
 
@@ -283,6 +285,7 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
         Search.results.forEach(function(el, index){
           if (!_.isUndefined(el.coordinates)) {
             el.dist = $rootScope.distanceCalculation(el.coordinates);
+            el.score = el.score? Math.round(el.score) : "n/a";
           } else {
             Search.results.splice(index,1);
           }
