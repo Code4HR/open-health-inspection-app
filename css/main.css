@@ -377,8 +377,10 @@ a.close {
 			}
 
 			#restaurantInfo a {
-				margin-top: 20px;
-				float: right;
+				/*margin-top: 20px;*/
+				position: relative;
+				top: 3px;
+				margin-left: 9px;
 			}
 
 		#restaurantInfo h1 {
@@ -391,7 +393,8 @@ a.close {
 		}
 
 	 	#violationKey {
-	 		margin-top: 20px;
+	 		margin-top: 10px;
+
 		}
 
 			#violationKey h4 {
@@ -401,6 +404,7 @@ a.close {
 
 			#violationKey ul {
 				/*margin: .5em 0 0 0;*/
+				display: inline-block;
 			}
 
 				#violationKey li {
