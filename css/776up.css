@@ -57,7 +57,8 @@ Tablet and Small Screen Styles here.
             display: inline-block;
             margin: .25em .5em .25em 0;
             /*line-height: 1.25em;*/
-            padding-left: 1.75em;
+            padding-left: 3em;
+            line-height: 3em;
         }
 
         #restaurantDetailView #violationKey ul li i {

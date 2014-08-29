@@ -85,6 +85,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
 
           Geosearch.results.forEach(function(el, index){
             el.dist = el.dist * 0.000621371;
+            el.score = Math.round(el.score);
           });
 
           Geosearch.results = $filter('orderBy')(Geosearch.results, 'dist');

@@ -294,12 +294,12 @@ center {
 				margin: 0 0 3px 0;
 				clear: both;
 			}
-			ul li .score {
+			.score {
 				font-size: 3em;
 				line-height: .75em;
 				font-weight: 400;
 				color: #666;
-				text-align: right;
+				text-align: center;
 			}
 			.address {
 				display: inline-block;
@@ -370,9 +370,8 @@ a.close {
 
 				#violationKey li {
 					position: relative;
-					padding-left: 1.5em;
 					line-height: 2em;
-          padding-left: 1.75em;
+          			padding-left: 3em;
 				}
 
 					#violationKey i {
@@ -380,7 +379,6 @@ a.close {
 						top: 3px;
 						left: 0;
 						font-size: 1.25em;
-            line-height: 1.25em;
 					}
 
 	.twitter-share-button {
@@ -484,6 +482,7 @@ a.close {
 						color: #B28C04;
 						background:  #FAAA0C;
 					}
+	
 					li.critical.active i {
 						color:  #cf2f36;
 						background: #f18775;
@@ -502,6 +501,11 @@ a.close {
 						width: 90%;
 					}
 
+					.violation.active span,
+					.critical.active span,
+					.repeat.active span {
+						color: black;
+					}
 /***********************************
 Tablet and Small Screen Styles here.
 ***********************************/
@@ -561,7 +565,8 @@ Tablet and Small Screen Styles here.
             display: inline-block;
             margin: .25em .5em .25em 0;
             /*line-height: 1.25em;*/
-            padding-left: 1.75em;
+            padding-left: 3em;
+            line-height: 3em;
         }
 
         #restaurantDetailView #violationKey ul li i {
