@@ -4,24 +4,45 @@
 
 	<div class="container-fluid">
 
-		<section id="restuarant-info" class="col-xs-12" ng-repeat="restaurant in results">
-			<div class="">
+		<section id="restuarant-info" class="col-md-12" ng-repeat="restaurant in results">
 
-				<ul id="restaurantInfo" class="">
-					<li class="name"><h1>{{restaurant.name}}</h1></li>
-					<li class="address">{{restaurant.address}}, {{restaurant.city}}</li>
-				</ul>
+			<div class="row">
 
-				<section id="violationKey" class="">
-					<h4>Symbol Key</h4>
-					<ul>
-						<li><i class="glyphicon glyphicon-ok"></i>Violation Corrected During Inspection</li>
-						<li><i class="glyphicon glyphicon-warning-sign"></i>Critical Violation</li>
-						<li><i class="glyphicon glyphicon-repeat"></i>Repeat Violation</li>
-					</ul>
+				<section id="restaurantInfo" class="col-xs-12">	
+
+					<div class="row">
+
+						<div class="col-xs-3 col-sm-2 col-md-1" style="padding: 0 7px 0 15px;">
+
+							<h2 class="score medal {{restaurant.score | scoreBadge}}">
+								{{restaurant.score}}
+								<span>Overall Rating</span>
+							</h2>
+
+						</div>
+						
+						<div class="col-xs-9 col-sm-10 col-md-11">
+
+							<ul>
+								<li class="name"><h1>{{restaurant.name}}</h1></li>
+								<li class="address">{{restaurant.address}}, {{restaurant.city}}</li>
+								<li><a twitter data-text="Check out the health inspection report for {{restaurantName}}!" data-url="{{restaurantPermalink}}"></a></li>
+							</ul>
+
+						</div>
+
+					</div>
+					
 				</section>
 
-				<a twitter data-text="Check out the health inspection report for {{restaurantName}}!" data-url="{{restaurantPermalink}}"></a>
+				<section id="violationKey" class="col-xs-12">
+					<h4 class="col-sm-2 col-md-1">Symbol Key</h4>
+					<ul class="col-sm-10 col-md-11">
+						<li class="violation active"><i class="glyphicon glyphicon-ok"></i><span>Violation Corrected During Inspection</span></li>
+						<li class="critical active"><i class="glyphicon glyphicon-warning-sign"></i><span>Critical Violation</span></li>
+						<li class="repeat active"><i class="glyphicon glyphicon-repeat"></i><span>Repeat Violation</span></li>
+					</ul>
+				</section>
 
 			</div>
 
@@ -40,13 +61,14 @@
 			<ul class="inspection row"  ng-repeat="inspection in restaurant.inspections">
 				<li class="row">
 					
-					<div class="col-sm-1">
-						<p>{{inspection.date}}</p>
+					<div class="col-sm-2 col-md-1">
+						<ul class="clearfix">
+							<li class="score col-xs-6 col-sm-12 {{inspection.score | scoreColor}}">{{inspection.score}}<span>This Inspection's Rating</span></li>
+						</ul>
 					</div>
 
-					<div class="col-sm-11">
-						<h2>{{inspection.type}}</h2>
-						<h3>Observations</h3>
+					<div class="col-sm-10 col-md-11">
+						<h3>Observations for <strong>{{inspection.date}}</strong></h3>
 						<h4 class="no-violations" ng-if="inspection.violations.length === 0">No violations! :)</h4>
 					
 						<div ng-repeat="violation in inspection.violations">
@@ -66,7 +88,6 @@
 					</div>
 					
 					<li ng-if="restaurant.inspections.length === 0">No violations!</li>
-
 
 				</li>
 			</ul>
