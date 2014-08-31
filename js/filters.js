@@ -14,7 +14,7 @@ angular.module('openHealthDataAppFilters', [])
         case "Restaurant":
           return "fa fa-cutlery";
         case "Grocery":
-          return "fa fa-shoppin-cart";
+          return "fa fa-shopping-cart";
         case "Government":
           return "fa fa-university";
         case "Medical":
