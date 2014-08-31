@@ -428,7 +428,7 @@ angular.module('openHealthDataAppFilters', [])
   })
   .filter('scoreBadge', function(){
     return function(score){
-      if (score > 90) {
+      if (score >= 90) {
         //Green
         return "greenBadge";
       } else if (score >= 80 && score < 90) {
