@@ -16,25 +16,30 @@
 
 							<h2 class="score">
 								{{restaurant.score}}
-								<span>Overall<br>Rating</span>
+								<span>Overall Rating</span>
 							</h2>
+
+						</div>
+						
+						
+						<div class="col-xs-9 col-sm-10 col-md-11">
+
+							<ul>
+								<li class="name"><h1>{{restaurant.name}}</h1></li>
+								<li class="address">{{restaurant.address}}, {{restaurant.city}}</li>
+							</ul>
 
 							<a twitter data-text="Check out the health inspection report for {{restaurantName}}!" data-url="{{restaurantPermalink}}"></a>
 
 						</div>
-						
-						<ul class="col-xs-9 col-sm-10 col-md-11">
-							<li class="name"><h1>{{restaurant.name}}</h1></li>
-							<li class="address">{{restaurant.address}}, {{restaurant.city}}</li>
-						</ul>
 
 					</div>
 					
 				</section>
 
 				<section id="violationKey" class="col-xs-12">
-					<h4>Symbol Key</h4>
-					<ul>
+					<h4 class="col-sm-2 col-md-1">Symbol Key</h4>
+					<ul class="col-sm-10 col-md-11">
 						<li class="violation active"><i class="glyphicon glyphicon-ok"></i><span>Violation Corrected During Inspection</span></li>
 						<li class="critical active"><i class="glyphicon glyphicon-warning-sign"></i><span>Critical Violation</span></li>
 						<li class="repeat active"><i class="glyphicon glyphicon-repeat"></i><span>Repeat Violation</span></li>
@@ -85,7 +90,6 @@
 					</div>
 					
 					<li ng-if="restaurant.inspections.length === 0">No violations!</li>
-
 
 				</li>
 			</ul>

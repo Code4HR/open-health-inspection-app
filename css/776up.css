@@ -65,33 +65,51 @@ Tablet and Small Screen Styles here.
  
         }
 
-    #inspections {
+        #restaurant-info {}
 
-    }
+            #restaurant-info .score {
+                font-size: 4em;
+            }
 
-        #noResults {
-            padding: 2em 0;
-        }
-            #noResults span {
-                display: inline-block;
-            }
-            #noResults i {
-                vertical-align: top;
-                font-size: 2em;
-                margin-right: .5em;
-                color: #aaaaaa;
-            }
-            #noResults .report {
-                display: inline-block;
-                vertical-align: top;
-            }
-        
+        #inspections {
 
-        #inspections .inspection .date {
-            text-align: left;
-            padding: .25em 0;
         }
 
+            #noResults {
+                padding: 2em 0;
+            }
+                #noResults span {
+                    display: inline-block;
+                }
+                #noResults i {
+                    vertical-align: top;
+                    font-size: 2em;
+                    margin-right: .5em;
+                    color: #aaaaaa;
+                }
+                #noResults .report {
+                    display: inline-block;
+                    vertical-align: top;
+                }
+            
+
+            #inspections .inspection .date {
+                text-align: left;
+                padding: .25em 0;
+            }
+
+        #violationKey h4 {
+            padding: 0;
+        }
+
+        #violationKey ul {
+            margin-bottom: 0;
+        }
+
+            #violationKey ul li {
+                display: inline-block;
+                margin-right: .75em;
+            }
 
 
 }

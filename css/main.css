@@ -346,23 +346,19 @@ a.close {
 		}
 
 		#restuarant-info .score {
-			font-size: 2em;
+			font-size: 3em;
 			vertical-align: top;
-			margin-top: 1em;
-			/*margin: .25em .25em 0 0;*/
-			/*background: white;*/
-			/*padding: .25em;*/
-			/*border: 1px solid #efefef;*/
-			/*padding: .25em 0;*/
+			margin-top: 24px;
 		}
 
 			#restuarant-info .score span {
 				display: block;
-				font-size: .4em;
+				font-size: .33em;
 				line-height: 1.25em;
-				padding: 0 .5em;
 				font-weight: 300;
 				margin-top: .25em;
+				padding: 0;
+				color: #999;
 			}
 
 		#restaurantInfo {
@@ -372,14 +368,15 @@ a.close {
 		}
 
 			#restaurantInfo ul {
-				/*display: inline-block;*/
+				display: inline-block;
+				margin-left: -15px;
 			}
 
 			#restaurantInfo a {
 				/*margin-top: 20px;*/
-				position: relative;
-	/*			top: 3px;
-				margin-left: 9px;*/
+				/*position: relative;*/
+				/*top: 3px;*/
+				margin-left: -15px;
 			}
 
 		#restaurantInfo h1 {
@@ -398,6 +395,8 @@ a.close {
 
 	#violationKey h4 {
 		font-weight: 500;
+		font-size: 1.25em;
+		padding: 0;
 	}
 
 	#violationKey ul li {
@@ -447,6 +446,7 @@ a.close {
 			.inspection .score {
 				text-align: left;
 				font-size: 2em;
+				margin-bottom: .5em;
 				padding: 0;
 				display: inline-block;
 				vertical-align: top;
@@ -457,7 +457,7 @@ a.close {
 					display: block;
 					line-height: 1em;
 					font-size: .5em;
-					color: #ccc;
+					color: #999;
 				}
 
 	    .inspection h3 {
