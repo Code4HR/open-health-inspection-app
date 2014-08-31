@@ -352,6 +352,10 @@ a.close {
 	opacity: 1;
 }
 
+#cityJump {
+	z-index: 1030;
+}
+
 #restaurantDetailView {
 	height: 80%;
 	width: 100%;

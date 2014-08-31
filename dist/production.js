@@ -234,7 +234,6 @@ openHealthDataAppControllers.controller('cityJumpCtrl', ['$scope', '$rootScope',
       Geosearch.map.center = center;
       $rootScope.isCityJumpVisible = false;
       $rootScope.showPosition();
-      $rootScope.fireEvent('')
     }
 
 }])
@@ -285,7 +284,9 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
         Search.results.forEach(function(el, index){
           if (!_.isUndefined(el.coordinates)) {
             el.dist = $rootScope.distanceCalculation(el.coordinates);
-            el.score = el.score? Math.round(el.score) : "n/a";
+            el.score = !_.isUndefined(el.score) &&
+                       !_.isNull(el.score) ?
+                       Math.round(el.score) : "n/a";
           } else {
             Search.results.splice(index,1);
           }
@@ -419,6 +420,8 @@ angular.module('openHealthDataAppFilters', [])
         //Red
         return "redText";
       } else if (score === 'n/a') {
+        return "grayText";
+      } else {
         return "grayText";
       }
     }

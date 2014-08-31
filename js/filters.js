@@ -44,6 +44,8 @@ angular.module('openHealthDataAppFilters', [])
         return "redText";
       } else if (score === 'n/a') {
         return "grayText";
+      } else {
+        return "grayText";
       }
     }
   });
