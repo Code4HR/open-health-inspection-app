@@ -295,6 +295,7 @@ center {
 				clear: both;
 			}
 			.score {
+				font-family: Bitter;
 				font-size: 2em;
 				line-height: .75em;
 				font-weight: 400;
