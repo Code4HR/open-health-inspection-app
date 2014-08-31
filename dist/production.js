@@ -407,7 +407,7 @@ angular.module('openHealthDataAppFilters', [])
   })
   .filter('scoreColor', function(){
     return function(score) {
-      if (score > 90) {
+      if (score >= 90) {
         //Green
         return "greenText";
       } else if (score >= 80 && score < 90) {
