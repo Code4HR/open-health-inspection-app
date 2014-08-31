@@ -115,6 +115,7 @@ center {
 		height: 60px;
 		text-align: right;
 		position: relative;
+		padding-right: 0;
 	}
 		header #searchbar .logo {
 			display: inline-block;
@@ -295,6 +296,7 @@ center {
 				clear: both;
 			}
 			.score {
+				font-family: Bitter;
 				font-size: 2em;
 				line-height: .75em;
 				font-weight: 400;
@@ -346,9 +348,10 @@ a.close {
 		}
 
 		#restuarant-info .score {
-			font-size: 3em;
+			font-size: 2.25em;
 			vertical-align: top;
 			margin-top: 24px;
+			text-align: center;
 		}
 
 			#restuarant-info .score span {
@@ -445,7 +448,7 @@ a.close {
 
 			.inspection .score {
 				text-align: left;
-				font-size: 2em;
+				font-size: 1.25em;
 				margin-bottom: .5em;
 				padding: 0;
 				display: inline-block;
@@ -453,7 +456,7 @@ a.close {
 				font-weight: 500;
 			}
 				.inspection .score span {
-					margin-top: .25em;
+					margin-top: .5em;
 					display: block;
 					line-height: 1em;
 					font-size: .5em;
@@ -596,12 +599,18 @@ Tablet and Small Screen Styles here.
 
         #restaurant-info {}
 
-            #restaurant-info .score {
-                font-size: 4em;
-            }
-
         #inspections {
 
+        }
+
+        #restaurantInfo ul {
+            margin-left: 0 !important;
+        }
+
+        #restaurantInfo a {
+            margin-left: 0 !important;
+            position: relative;
+            top: 6px;
         }
 
             #noResults {
@@ -627,17 +636,20 @@ Tablet and Small Screen Styles here.
                 padding: .25em 0;
             }
 
+
+
         #violationKey h4 {
-            padding: 0;
         }
 
         #violationKey ul {
-            margin-bottom: 0;
+        }
+
+        #violationKey a {
         }
 
             #violationKey ul li {
                 display: inline-block;
-                margin-right: .75em;
+                margin: 8px .75em 0 0;
             }
 
 

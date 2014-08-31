@@ -67,12 +67,18 @@ Tablet and Small Screen Styles here.
 
         #restaurant-info {}
 
-            #restaurant-info .score {
-                font-size: 4em;
-            }
-
         #inspections {
 
+        }
+
+        #restaurantInfo ul {
+            margin-left: 0 !important;
+        }
+
+        #restaurantInfo a {
+            margin-left: 0 !important;
+            position: relative;
+            top: 6px;
         }
 
             #noResults {
@@ -98,17 +104,20 @@ Tablet and Small Screen Styles here.
                 padding: .25em 0;
             }
 
+
+
         #violationKey h4 {
-            padding: 0;
         }
 
         #violationKey ul {
-            margin-bottom: 0;
+        }
+
+        #violationKey a {
         }
 
             #violationKey ul li {
                 display: inline-block;
-                margin-right: .75em;
+                margin: 8px .75em 0 0;
             }
 
 
