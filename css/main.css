@@ -299,7 +299,6 @@ center {
 				line-height: .75em;
 				font-weight: 400;
 				color: #666;
-				text-align: center;
 			}
 			#listView .address {
 				display: inline-block;
@@ -437,10 +436,6 @@ a.close {
 			background: white;
 		}
 
-			.inspection h2 {
-				margin: 0;
-			}
-
 			.inspection .date {
 				/*font-size: 1.25em;*/
 				color: #777;
@@ -452,7 +447,7 @@ a.close {
 			.inspection .score {
 				text-align: left;
 				font-size: 2em;
-				padding: .25em 0;
+				padding: 0;
 				display: inline-block;
 				vertical-align: top;
 				font-weight: 500;
@@ -465,13 +460,8 @@ a.close {
 					color: #ccc;
 				}
 
-			.inspection h2 {
-	      font-family: "Bitter";
-        font-size: 1.5em;
-      }
-
 	    .inspection h3 {
-	        margin-top: 2px;
+	        margin-top: 0px;
 	        font-size: 1em;
 	        color: gray;
 	        font-family: "Bitter";
