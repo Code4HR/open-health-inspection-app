@@ -403,6 +403,23 @@ angular.module('openHealthDataAppFilters', [])
           return "fa fa-cutlery";
       }
     };
+  })
+  .filter('scoreColor', function(){
+    return function(score) {
+      if (score > 90) {
+        //Green
+        return "greenText";
+      } else if (score >= 80 && score < 90) {
+        //Yellow-Green
+        return "yellowGreenText";
+      } else if (score >= 70 && score < 80) {
+        //Yellow
+        return "yellow";
+      } else if (score < 70) {
+        //Red
+        return "redText";
+      }
+    }
   });
 var openHealthDataServices = angular.module('openHealthDataServices', ['ngResource']);
  

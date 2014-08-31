@@ -14,6 +14,26 @@ body{
 	font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Arial", "sans";
 }
 
+/*
+Colors: 
+*/
+
+.greenText {
+	color: #7fcc72;
+}
+
+.yellowGreenText {
+	color: #c6ea88;
+}
+
+.yellow {
+	color: #B28C04;
+}
+
+.red {
+	color: #f18775;
+}
+
 	.modalContainer h5, .modal-title {
 		font-family: "Source Sans Pro";
 		text-transform: uppercase;
@@ -448,7 +468,7 @@ a.close {
 
 			.inspection .score {
 				text-align: left;
-				font-size: 1.25em;
+				font-size: 1.5em;
 				margin-bottom: .5em;
 				padding: 0;
 				display: inline-block;
@@ -458,7 +478,7 @@ a.close {
 				.inspection .score span {
 					margin-top: .5em;
 					display: block;
-					line-height: 1em;
+					line-height: 1.125em;
 					font-size: .5em;
 					color: #999;
 				}
@@ -530,3 +550,4 @@ a.close {
 					.repeat.active span {
 						color: black;
 					}
+
