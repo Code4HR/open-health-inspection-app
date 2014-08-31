@@ -115,7 +115,7 @@
                 <li class="name">{{restaurant.name}}</li>
                 <li class="address">{{restaurant.address}}</li>
               </ul>
-              <p class="score col-xs-3">{{restaurant.score}}</p>
+              <p class="score col-xs-3 {{restaurant.score | scoreColor}}">{{restaurant.score}}</p>
             </a>
             </li>
           </ul>

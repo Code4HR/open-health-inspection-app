@@ -414,7 +414,7 @@ angular.module('openHealthDataAppFilters', [])
         return "yellowGreenText";
       } else if (score >= 70 && score < 80) {
         //Yellow
-        return "yellow";
+        return "yellowText";
       } else if (score < 70) {
         //Red
         return "redText";

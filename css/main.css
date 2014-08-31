@@ -19,18 +19,18 @@ Colors:
 */
 
 .greenText {
-	color: #7fcc72;
+	color: #157F00;
 }
 
 .yellowGreenText {
-	color: #c6ea88;
+	color: #95ED87;
 }
 
-.yellow {
+.yellowText {
 	color: #B28C04;
 }
 
-.red {
+.redText {
 	color: #f18775;
 }
 
@@ -320,7 +320,8 @@ center {
 				font-size: 2em;
 				line-height: .75em;
 				font-weight: 400;
-				color: #666;
+				text-align: center;
+				/*color: #666;*/
 			}
 			#listView .address {
 				display: inline-block;
