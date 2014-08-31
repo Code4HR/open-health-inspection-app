@@ -425,6 +425,27 @@ angular.module('openHealthDataAppFilters', [])
         return "grayText";
       }
     }
+  })
+  .filter('scoreBadge', function(){
+    return function(score){
+      if (score > 90) {
+        //Green
+        return "greenBadge";
+      } else if (score >= 80 && score < 90) {
+        //Yellow-Green
+        return "yellowGreenBadge";
+      } else if (score >= 70 && score < 80) {
+        //Yellow
+        return "yellowBadge";
+      } else if (score < 70) {
+        //Red
+        return "redBadge";
+      } else if (score === 'n/a') {
+        return "grayBadge";
+      } else {
+        return "grayBadge";
+      }
+    }
   });
 var openHealthDataServices = angular.module('openHealthDataServices', ['ngResource']);
  

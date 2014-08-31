@@ -12,9 +12,9 @@
 
 					<div class="row">
 
-						<div class="col-xs-3 col-sm-2 col-md-1">
+						<div class="col-xs-3 col-sm-2 col-md-1" style="padding: 0 7px 0 15px;">
 
-							<h2 class="score {{restaurant.score | scoreColor}}">
+							<h2 class="score medal {{restaurant.score | scoreBadge}}">
 								{{restaurant.score}}
 								<span>Overall Rating</span>
 							</h2>
@@ -26,9 +26,8 @@
 							<ul>
 								<li class="name"><h1>{{restaurant.name}}</h1></li>
 								<li class="address">{{restaurant.address}}, {{restaurant.city}}</li>
+								<li><a twitter data-text="Check out the health inspection report for {{restaurantName}}!" data-url="{{restaurantPermalink}}"></a></li>
 							</ul>
-
-							<a twitter data-text="Check out the health inspection report for {{restaurantName}}!" data-url="{{restaurantPermalink}}"></a>
 
 						</div>
 
@@ -64,7 +63,7 @@
 					
 					<div class="col-sm-2 col-md-1">
 						<ul class="clearfix">
-							<li class="score col-xs-6 col-sm-12 {{inspection.score | scoreColor}}">{{inspection.score}}<span>Inspection Rating</span></li>
+							<li class="score col-xs-6 col-sm-12 {{inspection.score | scoreColor}}">{{inspection.score}}<span>This Inspection's Rating</span></li>
 						</ul>
 					</div>
 
