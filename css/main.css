@@ -347,19 +347,23 @@ a.close {
 		}
 
 		#restuarant-info .score {
-			font-size: 3em;
+			font-size: 2em;
 			vertical-align: top;
+			margin-top: 1em;
 			/*margin: .25em .25em 0 0;*/
-			background: white;
-			padding: 10px 0;
-			border: 1px solid #efefef;
+			/*background: white;*/
+			/*padding: .25em;*/
+			/*border: 1px solid #efefef;*/
+			/*padding: .25em 0;*/
 		}
 
 			#restuarant-info .score span {
 				display: block;
-				font-size: .25em;
+				font-size: .4em;
 				line-height: 1.25em;
 				padding: 0 .5em;
+				font-weight: 300;
+				margin-top: .25em;
 			}
 
 		#restaurantInfo {
@@ -369,12 +373,7 @@ a.close {
 		}
 
 			#restaurantInfo ul {
-				display: inline-block;
-			}
-
-			#restaurantInfo .score {
-				display: inline-block;
-				padding: .25em;
+				/*display: inline-block;*/
 			}
 
 			#restaurantInfo a {
@@ -393,49 +392,22 @@ a.close {
 			color: #666666;
 		}
 
-	 	#violationKey {
-	 		margin-top: 10px;
+	#violationKey {
+		background: white;
 
-		}
-
-			#violationKey h4 {
-				margin: 0;
-				font-size: 14px;
-			}
-
-			#violationKey ul {
-				/*margin: .5em 0 0 0;*/
-				display: inline-block;
-			}
-
-				#violationKey li {
-					position: relative;
-					line-height: 2em;
-          			padding-left: 3em;
-				}
-
-					#violationKey i {
-						position: absolute;
-						top: 3px;
-						left: 0;
-						font-size: 1.25em;
-					}
-
-	.twitter-share-button {
-		margin-bottom: 1em;
-		vertical-align: middle;
-		line-height: 1em;
 	}
 
-		.twiter-share-button i {
-			display: inline-block;
-			line-height: 1em;
-			margin-right: .5em;
-		}
+	#violationKey h4 {
+		font-weight: 500;
+	}
 
-		.twitter-share-button span {
-			display: inline-block;
-			line-height: 1em;
+	#violationKey ul li {
+		font-size: 1em;
+		display: block;
+	}
+		#violationKey i {
+			margin-right: .5em;
+			font-size: .85em;
 		}
 
 	#noResults {
@@ -455,9 +427,7 @@ a.close {
 
 		}
 
-	#inspections {
-
-	}
+	#inspections {}
 
 		#inspections .inspection {
 			padding: .5em;
@@ -479,6 +449,7 @@ a.close {
 			.inspection .score {
 				text-align: left;
 				font-size: 1.5em;
+				padding: .25em 0;
 			}
 				.inspection .score span {
 					margin-top: .25em;
