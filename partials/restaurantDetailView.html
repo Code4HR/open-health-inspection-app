@@ -60,14 +60,14 @@
 			<ul class="inspection row"  ng-repeat="inspection in restaurant.inspections">
 				<li class="row">
 					
-					<div class="col-sm-1">
-						<ul>
-							<li class="date">{{inspection.date}}</li>
-							<li class="score">{{inspection.score}}<span>Inspection Score</span></li>
+					<div class="col-md-1">
+						<ul class="clearfix">
+							<li class="score col-xs-6 col-sm-12">{{inspection.score}}<span>Inspection Rating</span></li>
+							<li class="date col-xs-6 col-sm-12">{{inspection.date}}</li>
 						</ul>
 					</div>
 
-					<div class="col-sm-11">
+					<div class="col-md-11">
 						<h2>{{inspection.type}}</h2>
 						<h3>Observations</h3>
 						<h4 class="no-violations" ng-if="inspection.violations.length === 0">No violations! :)</h4>

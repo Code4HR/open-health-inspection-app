@@ -444,18 +444,25 @@ a.close {
 			.inspection .date {
 				/*font-size: 1.25em;*/
 				color: #777;
+				display: inline-block;
+				vertical-align: top;
+				text-align: right;
 			}
 
 			.inspection .score {
 				text-align: left;
-				font-size: 1.5em;
+				font-size: 2em;
 				padding: .25em 0;
+				display: inline-block;
+				vertical-align: top;
+				font-weight: 500;
 			}
 				.inspection .score span {
 					margin-top: .25em;
 					display: block;
-					font-size: .5em;
 					line-height: 1em;
+					font-size: .5em;
+					color: #ccc;
 				}
 
 			.inspection h2 {
@@ -468,6 +475,8 @@ a.close {
 	        font-size: 1em;
 	        color: gray;
 	        font-family: "Bitter";
+	        border-bottom: 1px dotted #efefef;
+	        padding-bottom: .25em;
 	    }
 
 	    .inspection h4 {
