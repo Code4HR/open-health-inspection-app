@@ -8,19 +8,31 @@
 
 			<div class="row">
 
-				<section id="restaurantInfo" class="col-md-5">				
+				<section id="restaurantInfo" class="col-xs-12 col-md-5">	
 
-					<h2 class="score">
-						{{restaurant.score}}
-						<span>Our Rating</span>
-					</h2>
-					
-					<ul>
-						<li class="name"><h1>{{restaurant.name}}</h1></li>
-						<li class="address">{{restaurant.address}}, {{restaurant.city}}</li>
-					</ul>
+					<div class="row">
 
-					<a twitter data-text="Check out the health inspection report for {{restaurantName}}!" data-url="{{restaurantPermalink}}"></a>
+						<div class="col-xs-3">
+
+							<h2 class="score">
+								{{restaurant.score}}
+								<span>Current<br>Rating</span>
+							</h2>
+
+							<a twitter data-text="Check out the health inspection report for {{restaurantName}}!" data-url="{{restaurantPermalink}}"></a>
+
+						</div>
+
+						<div class="col-xs-9">
+						
+							<ul>
+								<li class="name"><h1>{{restaurant.name}}</h1></li>
+								<li class="address">{{restaurant.address}}, {{restaurant.city}}</li>
+							</ul>
+
+						</div>			
+
+					</div>
 					
 				</section>
 
@@ -53,7 +65,10 @@
 				<li class="row">
 					
 					<div class="col-sm-1">
-						<p>{{inspection.date}}</p>
+						<ul>
+							<li class="date">{{inspection.date}}</li>
+							<li class="score">{{inspection.score}}<span>Inspection Score</span></li>
+						</ul>
 					</div>
 
 					<div class="col-sm-11">
