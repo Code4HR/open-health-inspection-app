@@ -390,7 +390,7 @@ angular.module('openHealthDataAppFilters', [])
         case "Restaurant":
           return "fa fa-cutlery";
         case "Grocery":
-          return "fa fa-shopping-cart";
+          return "fa fa-shoppin-cart";
         case "Government":
           return "fa fa-university";
         case "Medical":
@@ -418,6 +418,8 @@ angular.module('openHealthDataAppFilters', [])
       } else if (score < 70) {
         //Red
         return "redText";
+      } else if (score === 'n/a') {
+        return "grayText";
       }
     }
   });

@@ -18,12 +18,16 @@ body{
 Colors: 
 */
 
+.grayText {
+	color: #cccccc;
+}
+
 .greenText {
 	color: #157F00;
 }
 
 .yellowGreenText {
-	color: #95ED87;
+	color: #A8C433;
 }
 
 .yellowText {
