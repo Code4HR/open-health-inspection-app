@@ -1,3 +1,21 @@
+/*
+    The frontend for Code for Hampton Roads' Open Health Inspection Data.
+    Copyright (C) 2014  Code for Hampton Roads contributors.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 /****************
 App.js
 ****************/
@@ -17,6 +35,25 @@ openHealthDataApp.config(['$routeProvider',
         redirectTo: '/'
       });
   }]);
+
+/*
+    The frontend for Code for Hampton Roads' Open Health Inspection Data.
+    Copyright (C) 2014  Code for Hampton Roads contributors.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 /******************
 Controllers
 ******************/	
@@ -104,9 +141,10 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
 
           Geosearch.results.forEach(function(el, index){
             el.dist = el.dist * 0.000621371;
+            el.score = el.score ? Math.round(el.score) : "n/a";
           });
 
-          Geosearch.results = $filter('orderBy')(Geosearch.results, 'dist');
+          Geosearch.results = $filter('orderBy')(Geosearch.results, 'score', true);
           $rootScope.$broadcast('geosearchFire');
 
       });
@@ -210,8 +248,10 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$rou
     $rootScope.isVisible = false;
 
     $scope.results = Inspections.query({vendorid: $routeParams.id}, function(){
-      Geosearch.map.center = $scope.results[$routeParams.id].coordinates;
-      $rootScope.restaurantName = $scope.results[$routeParams.id].name;
+      var restaurant = $scope.results[$routeParams.id];
+      Geosearch.map.center = restaurant.coordinates;
+      $rootScope.restaurantName = restaurant.name;
+      restaurant.score = restaurant.score ? Math.round(restaurant.score) : 'n/a';
       $rootScope.restaurantPermalink = $location.absUrl();
     });
 
@@ -243,6 +283,7 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
       if ($rootScope.isVisible) {
         $rootScope.isVisible = false;
       } else {
+        $rootScope.isCityJumpVisible = false;
         $rootScope.isVisible = true;
       }
     };
@@ -257,6 +298,7 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
       $rootScope.isSearchbarVisible = false;
       $rootScope.isVisible = false;
       $rootScope.isCityJumpVisible = !$rootScope.isCityJumpVisible;
+      $rootScope.resultsType = "Look at another city's inspections.";
     }
 
     $scope.nameSearch = function() {
@@ -279,12 +321,15 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
         Search.results.forEach(function(el, index){
           if (!_.isUndefined(el.coordinates)) {
             el.dist = $rootScope.distanceCalculation(el.coordinates);
+            el.score = !_.isUndefined(el.score) &&
+                       !_.isNull(el.score) ?
+                       Math.round(el.score) : "n/a";
           } else {
             Search.results.splice(index,1);
           }
         });
         
-        Search.results = $filter('orderBy')(Search.results, 'dist');
+        Search.results = $filter('orderBy')(Search.results, 'score', true);
         $rootScope.$broadcast('searchFire');
 
       });
@@ -298,11 +343,9 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootSc
   function($scope, $rootScope, $location, Search, Geosearch){
 
     $rootScope.$on('searchFire', function(){
+      $scope.resultsType = "Displaying search results for: "
       $scope.results = Search.results;
       $rootScope.isVisible = true;
-
-      console.log($rootScope.alerts.length);
-
     });
 
     $rootScope.alerts = [];
@@ -312,6 +355,7 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootSc
     };
 
     $rootScope.$on('geosearchFire', function(){
+      $scope.resultsType = "Displaying results near you.";
       $scope.results = Geosearch.results;      
       if ($location.url() === '/') {
         $rootScope.isVisible = true;
@@ -326,6 +370,24 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootSc
     $rootScope.isVisible = false;
 
   }]);
+
+/*
+    The frontend for Code for Hampton Roads' Open Health Inspection Data.
+    Copyright (C) 2014  Code for Hampton Roads contributors.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 openHealthDataApp.directive('bindOnce', function() {
     return {
@@ -368,6 +430,25 @@ openHealthDataApp.directive('bindOnce', function() {
     }
   }
 ]);
+
+/*
+    The frontend for Code for Hampton Roads' Open Health Inspection Data.
+    Copyright (C) 2014  Code for Hampton Roads contributors.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 angular.module('openHealthDataAppFilters', [])
   .filter('was', function() {
   	return function(input) {
@@ -397,7 +478,68 @@ angular.module('openHealthDataAppFilters', [])
           return "fa fa-cutlery";
       }
     };
+  })
+  .filter('scoreColor', function(){
+    return function(score) {
+      if (score >= 90) {
+        //Green
+        return "greenText";
+      } else if (score >= 80 && score < 90) {
+        //Yellow-Green
+        return "yellowGreenText";
+      } else if (score >= 70 && score < 80) {
+        //Yellow
+        return "yellowText";
+      } else if (score < 70) {
+        //Red
+        return "redText";
+      } else if (score === 'n/a') {
+        return "grayText";
+      } else {
+        return "grayText";
+      }
+    }
+  })
+  .filter('scoreBadge', function(){
+    return function(score){
+      if (score >= 90) {
+        //Green
+        return "greenBadge";
+      } else if (score >= 80 && score < 90) {
+        //Yellow-Green
+        return "yellowGreenBadge";
+      } else if (score >= 70 && score < 80) {
+        //Yellow
+        return "yellowBadge";
+      } else if (score < 70) {
+        //Red
+        return "redBadge";
+      } else if (score === 'n/a') {
+        return "grayBadge";
+      } else {
+        return "grayBadge";
+      }
+    }
   });
+
+/*
+    The frontend for Code for Hampton Roads' Open Health Inspection Data.
+    Copyright (C) 2014  Code for Hampton Roads contributors.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 var openHealthDataServices = angular.module('openHealthDataServices', ['ngResource']);
  
 openHealthDataServices.factory('Inspections', ['$resource',

@@ -24,7 +24,7 @@
     <link rel="apple-touch-icon" sizes="144x144" href="img/build/apple-touch-icon-144x144.png" />
     <link rel="apple-touch-icon" sizes="152x152" href="img/build/apple-touch-icon-152x152.png" />
 
-    <title class="ng-cloak">Open Health Inspection App {{restaurantName}}</title>
+    <title>Open Health Inspection App</title>
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/production.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,300italic,400italic,700,700italic,900italic' rel='stylesheet' type='text/css'>
@@ -58,12 +58,13 @@
             <div id="search" ng-show="isSearchbarVisible" class="row">
               <form ng-submit="nameSearch()" class="col-xs-12" novalidate>
                 <span id="exitButton" ng-click="toggleSearchField()" class="col-xs-1 glyphicon glyphicon-chevron-left"></span>
-                <input id="searchField" class="col-xs-9" type="search" ng-model="query" placeholder="Search for a restaurant" focus-me="isSearchbarVisible" ng-blur="toggleSearchField()">
-                <button class="col-xs-2 btn btn-info">
-                  <span class="glyphicon glyphicon-search"></span>
+                <input id="searchField" class="col-xs-9" type="search" ng-model="query" placeholder="Search for a restaurant" focus-me="isSearchbarVisible"/>
+                <button class="btn btn-info col-xs-2">              
+                  <span id="searchButton" class="glyphicon glyphicon-search"/>
                 </button>
               </form>
             </div>
+
             <a href="#/" class="visible-xs" class="clearfix">
               <img class="logo" src="img/build/logo.png" height="36px" width="36px" alt="logo">
             </a>
@@ -92,8 +93,7 @@
           <marker ng-repeat="restaurant in results" coords="restaurant.coordinates">
             <window show="markerShow" closeClick="true">
               <center>
-                <h4>{{restaurant.name}}</h4>
-                <h4>{{restaurant.score}}</h4>
+                <h4 style="margin-bottom: 1em;">{{restaurant.name}} <span style="padding: .25em;" class="medal {{restaurant.score | scoreBadge}}">{{restaurant.score}}</span></h4>
                 <p><a class="btn btn-info" href="#{{restaurant.url}}">Learn More</a></p>
               </center>
             </window>
@@ -104,27 +104,33 @@
 
       <section class="col-sm-3 col-sm-offset-9 results" id="searchResults" class="clearfix" ng-controller="searchResultsCtrl">
         <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
-        <ul class="row" ng-show="isVisible">
-          <li ng-repeat="restaurant in results" class="list-container clearfix">
-          <a href="#{{restaurant.url}}">
-            <i class="{{restaurant.category | categoryIcon }} col-xs-2 category-icon"></i>
-            <ul class="col-xs-10 row info">
-              <li class="name">{{restaurant.name}}</li>
-              <li class="address">{{restaurant.address}}</li>
-            </ul>
-          </a>
-          </li>
-        </ul>
+        <section id="searchResultsDetail" ng-show="isVisible">
+          <p class="resultsDescription">{{resultsType}}</p>
+          <ul class="row">
+            <li ng-repeat="restaurant in results" class="list-container clearfix">
+            <a href="#{{restaurant.url}}">
+              <i class="{{restaurant.category | categoryIcon }} col-xs-2 category-icon"></i>
+              <ul class="col-xs-7 info">
+                <li class="name">{{restaurant.name}}</li>
+                <li class="address">{{restaurant.address}}</li>
+              </ul>
+              <p class="score col-xs-3 {{restaurant.score | scoreColor}}">{{restaurant.score}}</p>
+            </a>
+            </li>
+          </ul>
+        </section>
       </section>
 
       <section class="col-sm-3 col-sm-offset-9 results clearfix" id="cityJump" ng-controller="cityJumpCtrl">
-
-        <ul class="row" ng-show="isCityJumpVisible">
-          <li class="list-container clearfix" ng-repeat="city in cities">
-            <a class="city-container" ng-click="cityJump(city.center)">{{city.name}}</a>
-          </li>
-        </ul>
-
+        <section ng-show="isCityJumpVisible">
+          <p class="resultsDescription">{{resultsType}}</p>
+          <ul class="row" >
+            <li class="list-container clearfix" ng-repeat="city in cities">
+              <a class="city-container" ng-click="cityJump(city.center)">{{city.name}}</a>
+            </li>
+          </ul>
+        </section>
+                
       </section>
 
       <div ng-view></div>

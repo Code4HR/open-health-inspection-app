@@ -1,3 +1,21 @@
+/*
+    The frontend for Code for Hampton Roads' Open Health Inspection Data.
+    Copyright (C) 2014  Code for Hampton Roads contributors.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 /***********************************
 Tablet and Small Screen Styles here.
 ***********************************/
@@ -54,10 +72,7 @@ Tablet and Small Screen Styles here.
         #restaurantDetailView #inspections {}
 
         #restaurantDetailView #violationKey ul li {
-            display: inline-block;
-            margin: .25em .5em .25em 0;
-            /*line-height: 1.25em;*/
-            padding-left: 1.75em;
+ 
         }
 
         #restaurantDetailView #violationKey ul li i {
@@ -68,22 +83,60 @@ Tablet and Small Screen Styles here.
  
         }
 
-    #noResults {
-        padding: 2em 0;
-    }
-        #noResults span {
-            display: inline-block;
+        #restaurant-info {}
+
+        #inspections {
+
         }
-        #noResults i {
-            vertical-align: top;
-            font-size: 2em;
-            margin-right: .5em;
-            color: #aaaaaa;
+
+        #restaurantInfo ul {
+            margin-left: 0 !important;
         }
-        #noResults .report {
-            display: inline-block;
-            vertical-align: top;
+
+        #restaurantInfo a {
+            margin-left: 0 !important;
+            position: relative;
+            top: 6px;
         }
+
+            #noResults {
+                padding: 2em 0;
+            }
+                #noResults span {
+                    display: inline-block;
+                }
+                #noResults i {
+                    vertical-align: top;
+                    font-size: 2em;
+                    margin-right: .5em;
+                    color: #aaaaaa;
+                }
+                #noResults .report {
+                    display: inline-block;
+                    vertical-align: top;
+                }
+            
+
+            #inspections .inspection .date {
+                text-align: left;
+                padding: .25em 0;
+            }
+
+
+
+        #violationKey h4 {
+        }
+
+        #violationKey ul {
+        }
+
+        #violationKey a {
+        }
+
+            #violationKey ul li {
+                display: inline-block;
+                margin: 8px .75em 0 0;
+            }
 
 
 }
