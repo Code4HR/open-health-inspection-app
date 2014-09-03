@@ -59,7 +59,7 @@
               <form ng-submit="nameSearch()" class="col-xs-12" novalidate>
                 <span id="exitButton" ng-click="toggleSearchField()" class="col-xs-1 glyphicon glyphicon-chevron-left"></span>
                 <input id="searchField" class="col-xs-9" type="search" ng-model="query" placeholder="Search for a restaurant" focus-me="isSearchbarVisible"/>
-                <button class="btn btn-info col-xs-2">              
+                <button class="btn btn-info col-xs-2">
                   <span id="searchButton" class="glyphicon glyphicon-search"/>
                 </button>
               </form>
@@ -69,12 +69,12 @@
               <img class="logo" src="img/build/logo.png" height="36px" width="36px" alt="logo">
             </a>
             <a ng-click="toggleCityJump()" ng-class="{'active-button': isCityJumpVisible}" class="listIcon clearfix">
-              <i class="fa fa-building"></i>            
+              <i class="fa fa-building"></i>
             </a>
             <a ng-click="toggleSearchField()"  class="listIcon clearfix">
               <span id="searchButton" class="glyphicon glyphicon-search"></span>
             </a>
-            <a ng-click="toggleList()" ng-class="{'active-button': isVisible}" class="listIcon"> 
+            <a ng-click="toggleList()" ng-class="{'active-button': isVisible}" class="listIcon">
               <span id="listButton"  class="glyphicon glyphicon-th-list" class="col-xs-1"></span>
             </a>
           </div>
@@ -126,11 +126,11 @@
           <p class="resultsDescription">{{resultsType}}</p>
           <ul class="row" >
             <li class="list-container clearfix" ng-repeat="city in cities">
-              <a class="city-container" ng-click="cityJump(city.center)">{{city.name}}</a>
+              <a class="city-container" ng-click="cityJump(city)">{{city.name}}</a>
             </li>
           </ul>
         </section>
-                
+
       </section>
 
       <div ng-view></div>
