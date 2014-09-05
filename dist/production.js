@@ -56,7 +56,7 @@ openHealthDataApp.config(['$routeProvider',
 
 /******************
 Controllers
-******************/	
+******************/
 
 var openHealthDataAppControllers = angular.module('openHealthDataAppControllers', []);
 
@@ -66,7 +66,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
     $rootScope.$on('$locationChangeSuccess', function() {
         ga('send', 'pageview', $location.path());
     });
-    
+
     $scope.map =
     Geosearch.map = {
         center: {
@@ -112,13 +112,13 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
         console.log('Geolocation unavailable');
 
       } else {
-        
+
         if ( ((position.coords.latitude > 36.533333 ) &&
              (position.coords.latitude < 39.466667 ) )
             &&
             ((position.coords.longitude < -75.25 ) &&
              (position.coords.longitude > -83.683333 ))) {
-          
+
           console.log('coordinates are within Virgina');
 
           if (!_.isUndefined(position)) {
@@ -132,7 +132,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
 
       }
 
-      $scope.results = 
+      $scope.results =
       Geosearch.results = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: $scope.dist}, function(){
 
           Geosearch.results = _.values(_.reject(Geosearch.results, function(el){
@@ -166,7 +166,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
     };
 
     $rootScope.getLocation();
-    
+
     $rootScope.toRad = function(Value) {
         return Value * Math.PI / 180;
     };
@@ -186,12 +186,12 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
       lat2 = $scope.toRad(lat2);
 
       var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-              Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
-      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+              Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2);
+      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
       var d = R * c;
 
       return d * 0.62137;
-      
+
     };
 
     $rootScope.open = function (size) {
@@ -242,7 +242,7 @@ var ModalInstanceCtrl = function ($rootScope, $scope, $modalInstance, items, loc
   };
 };
 
-openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', '$http', '$location', '$rootScope', 'Geosearch', 'Inspections', 
+openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', '$http', '$location', '$rootScope', 'Geosearch', 'Inspections',
   function($scope, $routeParams, $http, $location, $rootScope, Geosearch, Inspections) {
 
     $rootScope.isVisible = false;
@@ -257,23 +257,26 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$rou
 
 }]);
 
-openHealthDataAppControllers.controller('cityJumpCtrl', ['$scope', '$rootScope', 'Geosearch', '$http', 
+openHealthDataAppControllers.controller('cityJumpCtrl', ['$scope', '$rootScope', 'Geosearch', '$http',
   function($scope, $rootScope, Geosearch, $http){
 
     $rootScope.isCityJumpVisible = false;
 
-    $http.get('js/libs/cityReference.json').success(function(data){
+    $http.get('js/libs/vaPopCities.json').success(function(data){
       $scope.cities = data;
     });
 
-    $scope.cityJump = function(center) {
-      console.log('city center is ', center);
-      Geosearch.map.center = center;
+    $scope.cityJump = function(city) {
+      console.log('city center is ', city);
+      Geosearch.map.center = {
+        "latitude": city.primary_latitude,
+        "longitude": city.primary_longitude
+      };
       $rootScope.isCityJumpVisible = false;
       $rootScope.showPosition();
-    }
+    };
 
-}])
+}]);
 
 openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '$timeout', 'Search', '$filter',
   function($scope, $rootScope, $timeout, Search, $filter){
@@ -304,9 +307,9 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
     $scope.nameSearch = function() {
       console.log("Searching for " + $scope.query + ".");
       $rootScope.isSearchbarVisible = false;
-      
+
       Search.results = Search.query({name: $scope.query}, function(){
-        
+
         Search.results = _.values(_.reject(Search.results, function(el){
           return _.isUndefined(el.name);
         }));
@@ -317,7 +320,7 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
             $rootScope.alerts.pop();
           }, 3000, true);
         }
-        
+
         Search.results.forEach(function(el, index){
           if (!_.isUndefined(el.coordinates)) {
             el.dist = $rootScope.distanceCalculation(el.coordinates);
@@ -328,7 +331,6 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
             Search.results.splice(index,1);
           }
         });
-        
         Search.results = $filter('orderBy')(Search.results, 'score', true);
         $rootScope.$broadcast('searchFire');
 
@@ -356,7 +358,7 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootSc
 
     $rootScope.$on('geosearchFire', function(){
       $scope.resultsType = "Displaying results near you.";
-      $scope.results = Geosearch.results;      
+      $scope.results = Geosearch.results;
       if ($location.url() === '/') {
         $rootScope.isVisible = true;
       }
