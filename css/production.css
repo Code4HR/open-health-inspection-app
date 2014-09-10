@@ -300,6 +300,15 @@ center {
 	background: white;
 	z-index: 999;
 }
+	
+	.results {
+        position: fixed;
+        top: 60px;
+        right: 0;
+        max-height: 500px;
+        z-index: 1029;
+        overflow-y: scroll;
+    } 
 
 	.resultsDescription {
 		font-family: 'Bitter';
