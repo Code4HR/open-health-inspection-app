@@ -96,7 +96,6 @@ Tablet and Small Screen Styles here.
         #restaurantInfo a {
             margin-left: 0 !important;
             position: relative;
-            top: 6px;
         }
 
             #noResults {
