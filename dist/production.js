@@ -345,7 +345,7 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootSc
   function($scope, $rootScope, $location, Search, Geosearch){
 
     $rootScope.$on('searchFire', function(){
-      $scope.resultsType = "Displaying search results for: "
+      $scope.resultsType = "Displaying the results of your search, along with our score."
       $scope.results = Search.results;
       $rootScope.isVisible = true;
     });
@@ -357,7 +357,7 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootSc
     };
 
     $rootScope.$on('geosearchFire', function(){
-      $scope.resultsType = "Displaying results near you.";
+      $scope.resultsType = "Displaying results near you, along with our score.";
       $scope.results = Geosearch.results;
       if ($location.url() === '/') {
         $rootScope.isVisible = true;
