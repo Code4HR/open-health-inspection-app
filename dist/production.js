@@ -144,7 +144,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
             el.score = el.score ? Math.round(el.score) : "n/a";
           });
 
-          Geosearch.results = $filter('orderBy')(Geosearch.results, 'dist', true);
+          Geosearch.results = $filter('orderBy')(Geosearch.results, 'dist', false);
           $rootScope.$broadcast('geosearchFire');
 
       });
@@ -331,7 +331,7 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
             Search.results.splice(index,1);
           }
         });
-        Search.results = $filter('orderBy')(Search.results, 'dist', true);
+        Search.results = $filter('orderBy')(Search.results, 'dist', false);
         $rootScope.$broadcast('searchFire');
 
       });
