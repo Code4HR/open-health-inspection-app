@@ -278,8 +278,8 @@ openHealthDataAppControllers.controller('cityJumpCtrl', ['$scope', '$rootScope',
 
 }]);
 
-openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '$timeout', 'Search', '$filter',
-  function($scope, $rootScope, $timeout, Search, $filter){
+openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '$timeout', 'Search', 'Geosearch', '$filter',
+  function($scope, $rootScope, $timeout, Search, Geosearch, $filter){
 
     $rootScope.toggleList = function(){
       console.log('clicked toggleList');
@@ -308,7 +308,16 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
       console.log("Searching for " + $scope.query + ".");
       $rootScope.isSearchbarVisible = false;
 
-      Search.results = Search.query({name: $scope.query}, function(){
+      alert(Geosearch.map.center.latitude + ',' + Geosearch.map.center.longitude);
+
+      Search.results = Search.query({
+        name: $scope.query,
+        lat: Geosearch.map.center.latitude,
+        lng: Geosearch.map.center.longitude,
+        dist: 10000
+      }, function() {
+
+        console.log(Search.results);
 
         Search.results = _.values(_.reject(Search.results, function(el){
           return _.isUndefined(el.name);
