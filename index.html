@@ -55,17 +55,16 @@
 
           <div id="searchbar" class="col-xs-12 col-sm-5 col-md-4 clearfix" ng-controller="searchCtrl">
 
-            <section id="search" ng-show="isSearchbarVisible" class="navbar-fixed-top">
-              <form ng-submit="nameSearch()" class="col-xs-12 clearfix" novalidate>
+            <section id="search" ng-show="isSearchbarVisible" class="navbar-fixed-top col-xs-12 col-sm-5 col-md-4">
+              <form ng-submit="nameSearch()" class=" clearfix" novalidate>
                 <span id="exitButton" ng-click="toggleSearchField()" class="col-xs-1 glyphicon glyphicon-chevron-left"></span>
                 <input id="searchField" class="col-xs-9" type="search" ng-model="query" placeholder="Search for a restaurant" focus-me="isSearchbarVisible"/>
                 <button class="btn btn-info col-xs-2">
                   <span id="searchButton" class="glyphicon glyphicon-search"/>
                 </button>
               </form>
-              <div class="clearfix"></div>
-              <section class="clearfix" id="searchTray">
-                <ul class="row">
+              <section class="clearfix row" id="searchTray">
+                <ul class="">
                   <li class="col-xs-6 searchDescription">Near Me</li>
                   <li class="col-xs-6 moreButton">More 
                     <i class="fa fa-plus-circle"></i>

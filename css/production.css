@@ -241,7 +241,9 @@ center {
 				color: #3A546D !important;
 			}
 		
-
+		header #search {
+			left: auto;
+		}	
 
 		header #search .listIcon {
 			margin: 0;
