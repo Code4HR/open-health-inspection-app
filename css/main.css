@@ -382,7 +382,7 @@ center {
 
 a.close {
 	position: fixed;
-	top: 20%;
+	top: 2.75em;
 	right: .75em;
 	font-size: 2em;
 	height: 1em;
@@ -399,13 +399,7 @@ a.close {
 }
 
 #restaurantDetailView {
-	height: 80%;
-	width: 100%;
-	/*padding-top: 2em;*/
-	position: fixed;
-	bottom: 8px;
-	overflow-y: scroll;
-	z-index: 2;
+
 }
 
 	#restuarant-info {

@@ -88,18 +88,7 @@
 
       <section ng-controller="mapCtrl">
 
-        <google-map center="map.center" zoom="map.zoom" pan="true" draggable="true" options="map.options">
-          <marker coords="map.center" icon="'img/build/male.png'"></marker>
-          <marker ng-repeat="restaurant in results" coords="restaurant.coordinates">
-            <window show="markerShow" closeClick="true">
-              <center>
-                <h4 style="margin-bottom: 1em;">{{restaurant.name}} <span style="padding: .25em;" class="medal {{restaurant.score | scoreBadge}}">{{restaurant.score}}</span></h4>
-                <p><a class="btn btn-info" href="#{{restaurant.url}}">Learn More</a></p>
-              </center>
-            </window>
-          </marker>
-        </google-map>
-
+  
       </section>
 
       <section class="col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-8 results" id="searchResults" class="clearfix" ng-controller="searchResultsCtrl">
