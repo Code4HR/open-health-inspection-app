@@ -55,21 +55,27 @@
 
           <div id="searchbar" class="col-xs-12 col-sm-5 col-md-4 clearfix" ng-controller="searchCtrl">
 
-            <div id="search" ng-show="isSearchbarVisible" class="row">
-              <form ng-submit="nameSearch()" class="col-xs-12" novalidate>
+            <section id="search" ng-show="isSearchbarVisible" class="navbar-fixed-top">
+              <form ng-submit="nameSearch()" class="col-xs-12 clearfix" novalidate>
                 <span id="exitButton" ng-click="toggleSearchField()" class="col-xs-1 glyphicon glyphicon-chevron-left"></span>
                 <input id="searchField" class="col-xs-9" type="search" ng-model="query" placeholder="Search for a restaurant" focus-me="isSearchbarVisible"/>
                 <button class="btn btn-info col-xs-2">
                   <span id="searchButton" class="glyphicon glyphicon-search"/>
                 </button>
               </form>
-            </div>
+              <div class="clearfix"></div>
+              <section class="clearfix" id="searchTray">
+                <ul class="row">
+                  <li class="col-xs-6 searchDescription">Near Me</li>
+                  <li class="col-xs-6 moreButton">More 
+                    <i class="fa fa-plus-circle"></i>
+                  </li>
+                </ul>
+              </section>
+            </section>
 
             <a href="#/" class="visible-xs" class="clearfix">
               <img class="logo" src="img/build/logo.png" height="36px" width="36px" alt="logo">
-            </a>
-            <a ng-click="toggleCityJump()" ng-class="{'active-button': isCityJumpVisible}" class="listIcon clearfix">
-              <i class="fa fa-building"></i>
             </a>
             <a ng-click="toggleSearchField()"  class="listIcon clearfix">
               <span id="searchButton" class="glyphicon glyphicon-search"></span>
@@ -79,6 +85,9 @@
             </a>
           </div>
 
+
+
+
         </div>
 
       </div>
@@ -86,15 +95,10 @@
 
     <div id="main" class="container-fluid ng-cloak">
 
-      <section ng-controller="mapCtrl">
-
-  
-      </section>
+      <section ng-controller="mapCtrl"></section>
 
       <section class="col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-8 results" id="searchResults" class="clearfix" ng-controller="searchResultsCtrl">
-        <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
         <section id="searchResultsDetail" ng-show="isVisible">
-          <p class="resultsDescription">{{resultsType}}</p>
           <ul class="row">
             <li ng-repeat="restaurant in results" class="list-container clearfix">
             <a href="#{{restaurant.url}}">
@@ -110,7 +114,7 @@
         </section>
       </section>
 
-      <section class="col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-8 results clearfix" id="cityJump" ng-controller="cityJumpCtrl">
+<!--       <section class="col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-8 results clearfix" id="cityJump" ng-controller="cityJumpCtrl">
         <section ng-show="isCityJumpVisible">
           <p class="resultsDescription">{{resultsType}}</p>
           <ul class="row" >
@@ -119,12 +123,9 @@
             </li>
           </ul>
         </section>
-
-      </section>
+      </section> -->
 
       <div ng-view></div>
-
-      <span id="geolocateButton" ng-click="showPosition()" class="listIcon glyphicon glyphicon-map-marker"></span>
 
     </div>
 
