@@ -203,7 +203,7 @@ center {
 			
 		}
 			header #searchTray ul {
-				font-size: 1.25em;
+				font-size: 1.125em;
 				line-height: 2em;
 				padding: 0;
 				margin: 0;
@@ -214,8 +214,20 @@ center {
 				#searchTray .searchDescription {
 					text-align: left;
 					color: #666666;
+					line-height: 1em;
+					padding: .25em 15px;
+					font-size: 1.125em;
 				}
-
+					#searchTray .searchDescription small {
+						font-size: .66em;
+						color: #666;
+						display: block;
+						font-weight: 700;
+						text-transform: uppercase;
+					}
+				#searchTray .moreButton {
+					line-height: 3em;
+				}
 
 		header #searchbar .listIcon {
 			color: white;
@@ -347,7 +359,7 @@ center {
 }
 
 #main.container, #main.container-fluid {
-	padding: 0 0 0 0;
+	padding: 0;
 }
 
 #output {
@@ -460,10 +472,6 @@ a.close {
 	/*z-index: 1;*/
 	margin-top: 2em;
 }
-	#searchTray small {
-		font-size: .75em;
-		color: #666;
-	}
 
 #restaurantDetailView {	
 	margin-top: 0px;

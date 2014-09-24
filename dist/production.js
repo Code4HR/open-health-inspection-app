@@ -281,7 +281,7 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
 
     var searchQuery;
 
-    $scope.searchAreaText = 'my area';
+    $scope.searchAreaText = 'My area';
 
     $rootScope.$on('cityJumpFire', function() {
       $scope.searchAreaText = Search.city.name;

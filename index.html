@@ -65,12 +65,11 @@
               </form>
               <section class="clearfix row" id="searchTray">
                 <ul class="">
-                  <li class="col-xs-8 searchDescription">
-                  <small>Search in:</small> {{searchAreaText}}</li>
-                  <li class="col-xs-4 moreButton">
+                  <li class="col-xs-7 searchDescription">
+                  <small>Search in:</small>{{searchAreaText}}</li>
+                  <li class="col-xs-5 moreButton">
                     <a ng-click="toggleCityJump()">
-                      More 
-                      <i class="fa fa-plus-circle"></i>
+                      More Cities <i class="fa fa-plus-circle"></i>
                     </a>
                   </li>
                 </ul>
@@ -102,7 +101,9 @@
       <section ng-controller="mapCtrl"></section>
 
       <section class="col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-8 results" id="searchResults" class="clearfix" ng-controller="searchResultsCtrl">
+    
         <section id="searchResultsDetail" ng-show="isVisible">
+
           <ul class="row">
             <li ng-repeat="restaurant in results" class="list-container clearfix">
             <a href="#{{restaurant.url}}">
