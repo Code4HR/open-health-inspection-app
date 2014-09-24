@@ -417,7 +417,7 @@ center {
 a.close {
 	position: fixed;
 	top: 2.75em;
-	right: .75em;
+	right: .5em;
 	font-size: 2em;
 	height: 1em;
 	width: 1em;
@@ -433,8 +433,11 @@ a.close {
 }
 
 #restaurantDetailView {	
-	margin-top: .5em;
+	margin-top: 0px;
 }
+	#restaurantDetailView > .container-fluid {
+		padding: 0;
+	}
 
 	#restuarant-info {
 		font-family: "Bitter";
@@ -470,7 +473,7 @@ a.close {
 
 			#restaurantInfo ul {
 				display: inline-block;
-				margin-left: -15px;
+				margin-left: -.75em;
 			}
 
 		#restaurantInfo h1 {
