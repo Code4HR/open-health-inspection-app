@@ -65,8 +65,9 @@
               </form>
               <section class="clearfix row" id="searchTray">
                 <ul class="">
-                  <li class="col-xs-6 searchDescription">{{searchAreaText}}</li>
-                  <li class="col-xs-6 moreButton">
+                  <li class="col-xs-8 searchDescription">
+                  <small>Search in:</small> {{searchAreaText}}</li>
+                  <li class="col-xs-4 moreButton">
                     <a ng-click="toggleCityJump()">
                       More 
                       <i class="fa fa-plus-circle"></i>
@@ -92,6 +93,11 @@
     </header>
 
     <div id="main" class="container-fluid ng-cloak">
+
+      <div class="bglogo hidden-md hidden-lg">
+        <img src="img/build/logo-gray.png" height="70" width="70" alt="logo">
+        <h1>Open<br>Health<br>Inspection</h1>
+      </div>
 
       <section ng-controller="mapCtrl"></section>
 

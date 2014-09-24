@@ -318,6 +318,34 @@ center {
 		list-style-type: none;
 	}
 
+
+#main .bglogo {
+	position: absolute;
+	top: 37%;
+	left: 50%;
+	margin-left: -114px;
+}
+
+#main .bglogo img {
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+	top: 3px;
+	margin-right: 6px;
+}
+
+#main .bglogo h1 {
+	display: inline-block;
+	vertical-align: middle;
+	font-family: Source Sans Pro;
+	font-size: 2em;
+	text-transform: uppercase;
+	font-weight: 700;
+	color: #AAA;
+	line-height: .85em;
+	text-shadow: 1px 1px white;
+}
+
 #main.container, #main.container-fluid {
 	padding: 0 0 0 0;
 }
@@ -428,9 +456,14 @@ a.close {
 	opacity: 1;
 }
 
-#cityJump {
+#cityJump > section {
 	/*z-index: 1;*/
+	margin-top: 2em;
 }
+	#searchTray small {
+		font-size: .75em;
+		color: #666;
+	}
 
 #restaurantDetailView {	
 	margin-top: 0px;
