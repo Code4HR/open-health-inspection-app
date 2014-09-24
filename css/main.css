@@ -325,6 +325,10 @@ center {
 #main {
 	margin-top: 60px;
 }
+	#main.bump {
+		margin-top: 103px;
+	}
+
 	#main ul {
 		padding: 0;
 		list-style-type: none;

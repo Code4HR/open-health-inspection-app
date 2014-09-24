@@ -82,7 +82,7 @@
             <a ng-click="toggleSearchField()"  class="listIcon clearfix">
               <span id="searchButton" class="glyphicon glyphicon-search"></span>
             </a>
-            <a ng-click="toggleList()" ng-class="{'active-button': isVisible}" class="listIcon">
+            <a ng-click="toggleList()" ng-fclass="{'active-button': isVisible}" class="listIcon">
               <span id="listButton"  class="glyphicon glyphicon-th-list" class="col-xs-1"></span>
             </a>
           </div>
@@ -91,7 +91,7 @@
       </div>
     </header>
 
-    <div id="main" class="container-fluid ng-cloak">
+    <div id="main" ng-class="{'bump': isSearchbarVisible}" class="container-fluid ng-cloak">
 
       <div class="bglogo hidden-md hidden-lg">
         <img src="img/build/logo-gray.png" height="70" width="70" alt="logo">
@@ -103,9 +103,6 @@
       <section class="col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-8 results" id="searchResults" class="clearfix" ng-controller="searchResultsCtrl">
     
         <section id="searchResultsDetail" ng-show="isVisible">
-          <section id="noSearchResults" ng-show="{{results.length === 0}}">
-            <p>No results!</p>
-          </section>
           <ul class="row">
             <li ng-repeat="restaurant in results" class="list-container clearfix">
             <a href="#{{restaurant.url}}">
