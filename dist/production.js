@@ -284,7 +284,13 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
     $scope.searchAreaText = 'My area';
 
     $rootScope.$on('cityJumpFire', function() {
-      $scope.searchAreaText = Search.city.name;
+      try {
+        $scope.searchAreaText = Search.city.name;
+      } 
+      catch(e) {
+        $scope.searchAreaText = 'Near me';
+        Search.city = undefined;
+      }
     });
 
     $rootScope.toggleList = function(){
@@ -312,12 +318,13 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
       console.log("Searching for " + $scope.query + ".");
       $rootScope.isSearchbarVisible = false;
 
-      if (Search.city) {
+      if (!_.isUndefined(Search.city)) {
         searchQuery = {
           name: $scope.query,
           city: Search.city.name
         }
       } else {
+        $scope.searchAreaText = 'My area';
         searchQuery = {
           name: $scope.query,
           lat: Geosearch.map.center.latitude,
@@ -335,10 +342,7 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
         }));
 
         if (Search.results.length === 0) {
-          $rootScope.alerts.push({type:'danger', msg:'Couldn\'t find any results!'});
-          $timeout(function(){
-            $rootScope.alerts.pop();
-          }, 3000, true);
+          alert('no results');
         }
 
         Search.results.forEach(function(el, index){
@@ -363,10 +367,12 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
 openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootScope', '$location', 'Search', 'Geosearch',
   function($scope, $rootScope, $location, Search, Geosearch){
 
-    $rootScope.$on('searchFire', function(){
-      $scope.resultsType = "Displaying the results of your search, along with our score."
+    $rootScope.$on('searchFire', function() {
+      console.log("Displaying the results of your search, along with our score.");
       $scope.results = Search.results;
       $rootScope.isVisible = true;
+      $scope.resultsCount = Search.results.length;
+
     });
 
     $rootScope.alerts = [];

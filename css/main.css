@@ -334,33 +334,59 @@ center {
 		list-style-type: none;
 	}
 
+	#main #instructions {
+		position: fixed;
+		top: 75px;
+		right: 0;
+		width: 220px;
+		color: #aaa;
+	}
+		#main #instructions p, #main #instructions .leaderline {
+			display: inline-block;
+		}
+		#main #instructions .leaderline {
+			border-bottom: 1px solid #aaa;
+			border-right: 1px solid #aaa;
+			width: 100px;
+			height: 20px;
+			position: relative;
+			bottom: .25em;
+		}
+			#main #instructions #newSearch {}
+				#instructions #newSearch .leaderline {
+					width: 18px;
+				}
+			#main #instructions #browseList {}
+				#instructions #browseList .leaderline {
+				}
 
-#main .bglogo {
-	position: absolute;
-	top: 37%;
-	left: 50%;
-	margin-left: -114px;
-}
 
-#main .bglogo img {
-	display: inline-block;
-	vertical-align: middle;
-	position: relative;
-	top: 3px;
-	margin-right: 6px;
-}
+	#main .bglogo {
+		position: absolute;
+		top: 37%;
+		left: 50%;
+		margin-left: -114px;
+	}
 
-#main .bglogo h1 {
-	display: inline-block;
-	vertical-align: middle;
-	font-family: Source Sans Pro;
-	font-size: 2em;
-	text-transform: uppercase;
-	font-weight: 700;
-	color: #AAA;
-	line-height: .85em;
-	text-shadow: 1px 1px white;
-}
+		#main .bglogo img {
+			display: inline-block;
+			vertical-align: middle;
+			position: relative;
+			top: 3px;
+			margin-right: 6px;
+		}
+
+		#main .bglogo h1 {
+			display: inline-block;
+			vertical-align: middle;
+			font-family: Source Sans Pro;
+			font-size: 2em;
+			text-transform: uppercase;
+			font-weight: 700;
+			color: #AAA;
+			line-height: .85em;
+			text-shadow: 1px 1px white;
+		}
 
 #main.container, #main.container-fluid {
 	padding: 0;

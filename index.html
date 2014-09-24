@@ -93,6 +93,17 @@
 
     <div id="main" ng-class="{'bump': isSearchbarVisible}" class="container-fluid ng-cloak">
 
+<!--       <section id="instructions">
+        <div id="newSearch">
+          <p>Make a new search!</p>
+          <div class="leaderline"></div>
+        </div>
+        <div id="browseList">
+          <p>Browse results!</p>
+          <div class="leaderline"></div>
+        </div>
+      </section>
+   -->
       <div class="bglogo hidden-md hidden-lg">
         <img src="img/build/logo-gray.png" height="70" width="70" alt="logo">
         <h1>Open<br>Health<br>Inspection</h1>
@@ -103,6 +114,7 @@
       <section class="col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-8 results" id="searchResults" class="clearfix" ng-controller="searchResultsCtrl">
     
         <section id="searchResultsDetail" ng-show="isVisible">
+
           <ul class="row">
             <li ng-repeat="restaurant in results" class="list-container clearfix">
             <a href="#{{restaurant.url}}">
@@ -121,6 +133,8 @@
       <section class="col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-8 results clearfix" id="cityJump" ng-controller="cityJumpCtrl">
         <section ng-show="isCityJumpVisible">
           <ul class="row" >
+            <li class="list-container nearMe">
+              <a class="city-container" ng-click="cityJump()">Near Me</a></li>
             <li class="list-container clearfix" ng-repeat="city in cities">
               <a class="city-container" ng-click="cityJump(city)">{{city.name}}</a>
             </li>
