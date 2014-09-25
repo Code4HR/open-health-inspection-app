@@ -281,7 +281,7 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
 
     var searchQuery;
 
-    $scope.searchAreaText = 'My area';
+    $scope.searchAreaText = 'This area';
 
     $rootScope.$on('cityJumpFire', function() {
       try {
@@ -306,6 +306,9 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
     $rootScope.toggleSearchField = function(){
       console.log('clicked search button');
       $rootScope.isSearchbarVisible = !$rootScope.isSearchbarVisible;
+      if ($rootScope.isSearchbarVisible === false) {
+        $rootScope.isCityJumpVisible = false;
+      }
     };
 
     $rootScope.toggleCityJump = function() {
@@ -324,7 +327,7 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
           city: Search.city.name
         }
       } else {
-        $scope.searchAreaText = 'My area';
+        $scope.searchAreaText = 'This area';
         searchQuery = {
           name: $scope.query,
           lat: Geosearch.map.center.latitude,
