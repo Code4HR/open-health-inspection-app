@@ -95,15 +95,6 @@
               </ul>
             </section>
 
-<!--             <section class="clearfix tray" ng-show="isVisible">
-              <ul>
-                <li class="col-xs-12">
-                  <small>Displaying results for</small>
-                  {{Search.query}}, {{Search.city.name}}
-                </li>
-              </ul>
-            </section> -->
-
           </div>
 
         </div>
@@ -111,7 +102,7 @@
       </div>
     </header>
 
-    <div id="main" class="container-fluid ng-cloak">
+    <div id="main" class="container-fluid ng-cloak" ng-class="{'bump': isSearchbarVisible || isVisible}">
 
 <!--       <section id="instructions">
         <div id="newSearch">
