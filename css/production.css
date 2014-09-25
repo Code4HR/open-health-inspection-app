@@ -198,35 +198,37 @@ center {
 			margin: 12px 0;
 		}
 
-		header #searchbar #searchTray {
+		header .tray {
 			background: #efefef;
 			
 		}
-			header #searchTray ul {
+			header .tray ul {
 				font-size: 1.125em;
 				line-height: 2em;
+				height: 48px;
 				padding: 0;
 				margin: 0;
 			}
-			header #searchTray li {
+			header .tray li {
 				display: inline-block;
+				text-align: left;
 			}
-				#searchTray .searchDescription {
-					text-align: left;
+				.tray li {
 					color: #666666;
 					line-height: 1em;
 					padding: .25em 15px;
 					font-size: 1.125em;
 				}
-					#searchTray .searchDescription small {
+					.tray small {
 						font-size: .66em;
 						color: #666;
 						display: block;
 						font-weight: 700;
 						text-transform: uppercase;
 					}
-				#searchTray .moreButton {
-					line-height: 3em;
+				.tray .moreButton {
+					line-height: 2em;
+					text-align: right;
 				}
 
 		header #searchbar .listIcon {
@@ -323,7 +325,7 @@ center {
 
 
 #main {
-	margin-top: 60px;
+	margin-top: 103px;
 }
 	#main.bump {
 		margin-top: 103px;

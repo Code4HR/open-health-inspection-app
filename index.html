@@ -63,7 +63,7 @@
                   <span id="searchButton" class="glyphicon glyphicon-search"/>
                 </button>
               </form>
-              <section class="clearfix row" id="searchTray">
+              <section class="clearfix row tray">
                 <ul class="">
                   <li class="col-xs-7 searchDescription">
                   <small>Search in:</small>{{searchAreaText}}</li>
@@ -86,9 +86,9 @@
               <span id="listButton"  class="glyphicon glyphicon-th-list" class="col-xs-1"></span>
             </a>
           
-            <section class="clearfix row" id="toast">
+            <section class="clearfix tray" id="toast">
               <ul>
-                <li>
+                <li class="col-xs-12">
                   <small>Displaying results for</small>
                   {{Search.query}}, {{Search.city.name}}
                 </li>
@@ -102,7 +102,7 @@
       </div>
     </header>
 
-    <div id="main" ng-class="{'bump': isSearchbarVisible}" class="container-fluid ng-cloak">
+    <div id="main" class="container-fluid ng-cloak">
 
 <!--       <section id="instructions">
         <div id="newSearch">
