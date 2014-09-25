@@ -85,9 +85,20 @@
             <a ng-click="toggleList()" ng-fclass="{'active-button': isVisible}" class="listIcon">
               <span id="listButton"  class="glyphicon glyphicon-th-list" class="col-xs-1"></span>
             </a>
+          
+            <section class="clearfix row" id="toast">
+              <ul>
+                <li>
+                  <small>Displaying results for</small>
+                  {{Search.query}}, {{Search.city.name}}
+                </li>
+              </ul>
+            </section>
+
           </div>
 
         </div>
+
       </div>
     </header>
 
