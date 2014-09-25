@@ -109,8 +109,6 @@
         <h1>Open<br>Health<br>Inspection</h1>
       </div>
 
-      <div id="viewContainer" ng-class="{'bump': isSearchbarVisible || isVisible}" ng-view></div>
-
       <section ng-controller="mapCtrl"></section>
 
       <section class="results col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-8 results" ng-class="{'bump': isSearchbarVisible || isVisible}"> 
@@ -143,6 +141,8 @@
           </section>
         </section>
       </section>
+
+      <div id="viewContainer" ng-view></div>
 
     </div>
 
