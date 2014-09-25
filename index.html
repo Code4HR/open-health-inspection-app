@@ -86,14 +86,23 @@
               <span id="listButton"  class="glyphicon glyphicon-th-list" class="col-xs-1"></span>
             </a>
           
-            <section class="clearfix tray" id="toast">
+            <section class="clearfix tray" ng-show="isVisible">
+              <ul>
+                <li class="col-xs-12">
+                  <small>Displaying results</small>
+                  {{query}} <span>In</span> {{searchAreaText}}
+                </li>
+              </ul>
+            </section>
+
+<!--             <section class="clearfix tray" ng-show="isVisible">
               <ul>
                 <li class="col-xs-12">
                   <small>Displaying results for</small>
                   {{Search.query}}, {{Search.city.name}}
                 </li>
               </ul>
-            </section>
+            </section> -->
 
           </div>
 

@@ -226,6 +226,12 @@ center {
 						font-weight: 700;
 						text-transform: uppercase;
 					}
+					.tray span {
+						text-transform: uppercase;
+						font-weight: 700;
+						font-size: .75em;
+						color: #aaa;
+					}
 				.tray .moreButton {
 					line-height: 2em;
 					text-align: right;
