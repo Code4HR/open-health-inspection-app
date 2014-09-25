@@ -102,7 +102,7 @@
       </div>
     </header>
 
-    <div id="main" class="container-fluid ng-cloak" ng-class="{'bump': isSearchbarVisible || isVisible}">
+    <div id="main" class="container-fluid ng-cloak" >
 
 <!--       <section id="instructions">
         <div id="newSearch">
@@ -122,35 +122,36 @@
 
       <section ng-controller="mapCtrl"></section>
 
-      <section class="col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-8 results" id="searchResults" class="clearfix" ng-controller="searchResultsCtrl">
-    
-        <section id="searchResultsDetail" ng-show="isVisible">
-
-          <ul class="row">
-            <li ng-repeat="restaurant in results" class="list-container clearfix">
-            <a href="#{{restaurant.url}}">
-              <i class="{{restaurant.category | categoryIcon }} col-xs-2 category-icon"></i>
-              <ul class="col-xs-7 info">
-                <li class="name">{{restaurant.name}}</li>
-                <li class="address">{{restaurant.address}}</li>
-              </ul>
-              <p class="score col-xs-3 {{restaurant.score | scoreColor}}">{{restaurant.score}}</p>
-            </a>
-            </li>
-          </ul>
+      <section class="results col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-8 results" ng-class="{'bump': isSearchbarVisible || isVisible}"> 
+        <section id="searchResults" ng-controller="searchResultsCtrl">
+          <section id="searchResultsDetail" ng-show="isVisible">
+            <ul class="row">
+              <li ng-repeat="restaurant in results" class="list-container clearfix">
+              <a href="#{{restaurant.url}}">
+                <i class="{{restaurant.category | categoryIcon }} col-xs-2 category-icon"></i>
+                <ul class="col-xs-7 info">
+                  <li class="name">{{restaurant.name}}</li>
+                  <li class="address">{{restaurant.address}}</li>
+                </ul>
+                <p class="score col-xs-3 {{restaurant.score | scoreColor}}">{{restaurant.score}}</p>
+              </a>
+              </li>
+            </ul>
+          </section>
         </section>
-      </section>
 
-      <section class="col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-8 results clearfix" id="cityJump" ng-controller="cityJumpCtrl">
-        <section ng-show="isCityJumpVisible">
-          <ul class="row" >
-            <li class="list-container nearMe">
-              <a class="city-container" ng-click="cityJump()">Near Me</a></li>
-            <li class="list-container clearfix" ng-repeat="city in cities">
-              <a class="city-container" ng-click="cityJump(city)">{{city.name}}</a>
-            </li>
-          </ul>
+        <section id="cityJump" ng-controller="cityJumpCtrl">
+          <section ng-show="isCityJumpVisible">
+            <ul class="row" >
+              <li class="list-container nearMe">
+                <a class="city-container" ng-click="cityJump()">Near Me</a></li>
+              <li class="list-container clearfix" ng-repeat="city in cities">
+                <a class="city-container" ng-click="cityJump(city)">{{city.name}}</a>
+              </li>
+            </ul>
+          </section>
         </section>
+
       </section>
 
       <div ng-view></div>

@@ -333,8 +333,8 @@ center {
 #main {
 	margin-top: 60px;
 }
-	#main.bump {
-		margin-top: 103px;
+	.bump {
+		margin-top: 43px;
 	}
 
 	#main ul {
