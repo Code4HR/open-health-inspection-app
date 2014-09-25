@@ -109,7 +109,7 @@
         <h1>Open<br>Health<br>Inspection</h1>
       </div>
 
-      <div ng-view></div>
+      <div ng-class="{'bump': isSearchbarVisible || isVisible}" ng-view></div>
 
       <section ng-controller="mapCtrl"></section>
 
