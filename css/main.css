@@ -29,6 +29,7 @@ textarea, input { outline: none; }
 
 body{
 	color:#494949;
+	background: #f3ece3;
 	font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Arial", "sans";
 }
 
@@ -182,6 +183,7 @@ center {
 		text-align: right;
 		position: relative;
 		padding-right: 0;
+		padding: 0;
 	}
 		header #searchbar .logo {
 			display: inline-block;
@@ -190,8 +192,51 @@ center {
 			top: 6px;
 			height: 48px;
 			width: 48px;
-
 		}
+
+		header #searchbar form {
+			margin: 12px 0;
+		}
+
+		header .tray {
+			background: #efefef;
+			
+		}
+			header .tray ul {
+				font-size: 1.125em;
+				line-height: 2em;
+				height: 48px;
+				padding: 0;
+				margin: 0;
+			}
+			header .tray li {
+				display: inline-block;
+				text-align: left;
+			}
+				.tray li {
+					color: #666666;
+					line-height: 1em;
+					padding: .25em 15px;
+					font-size: 1.125em;
+				}
+					.tray small {
+						font-size: .66em;
+						color: #666;
+						display: block;
+						font-weight: 700;
+						text-transform: uppercase;
+					}
+					.tray span {
+						text-transform: uppercase;
+						font-weight: 700;
+						font-size: .75em;
+						color: #aaa;
+					}
+				.tray .moreButton {
+					line-height: 2em;
+					text-align: right;
+				}
+
 		header #searchbar .listIcon {
 			color: white;
 			font-size: 2em;
@@ -215,6 +260,11 @@ center {
 				background: white ;
 				color: #3A546D !important;
 			}
+		
+		header #search {
+			left: auto;
+		}	
+
 		header #search .listIcon {
 			margin: 0;
 		}
@@ -247,14 +297,14 @@ center {
 			}
 
 		header #search {
-			position: absolute;
+			/*position: absolute;*/
 			z-index: 1131;
-			display: block;
-			text-align: right;
+			/*display: block;*/
+			/*text-align: right;*/
 			background: #3A546D;
-			height: 60px;
-			padding: 14px 0;
-			width: 100%;
+			/*height: 60px;*/
+			/*padding: 14px 0;*/
+			/*width: 100%;*/
 		}
 			#exitButton {
 				padding: 0;
@@ -283,17 +333,79 @@ center {
 #main {
 	margin-top: 60px;
 }
+	.bump {
+		margin-top: 43px;
+	}
+
 	#main ul {
 		padding: 0;
 		list-style-type: none;
 	}
 
+	#main #instructions {
+		position: fixed;
+		top: 75px;
+		right: 0;
+		width: 220px;
+		color: #aaa;
+	}
+		#main #instructions p, #main #instructions .leaderline {
+			display: inline-block;
+		}
+		#main #instructions .leaderline {
+			border-bottom: 1px solid #aaa;
+			border-right: 1px solid #aaa;
+			width: 100px;
+			height: 20px;
+			position: relative;
+			bottom: .25em;
+		}
+			#main #instructions #newSearch {}
+				#instructions #newSearch .leaderline {
+					width: 18px;
+				}
+			#main #instructions #browseList {}
+				#instructions #browseList .leaderline {
+				}
+
+
+	#main .bglogo {
+		position: absolute;
+		top: 37%;
+		left: 50%;
+		margin-left: -114px;
+	}
+
+		#main .bglogo img {
+			display: inline-block;
+			vertical-align: middle;
+			position: relative;
+			top: 3px;
+			margin-right: 6px;
+		}
+
+		#main .bglogo h1 {
+			display: inline-block;
+			vertical-align: middle;
+			font-family: Source Sans Pro;
+			font-size: 2em;
+			text-transform: uppercase;
+			font-weight: 700;
+			color: #AAA;
+			line-height: .85em;
+			text-shadow: 1px 1px white;
+		}
+
 #main.container, #main.container-fluid {
-	padding: 0 0 0 0;
+	padding: 0;
 }
 
 #output {
 	background: white;
+}
+
+#searchResultsDetail ul {
+	margin-bottom: 0;
 }
 
 #searchResults {
@@ -382,8 +494,8 @@ center {
 
 a.close {
 	position: fixed;
-	top: 20%;
-	right: .75em;
+	top: 2.75em;
+	right: .5em;
 	font-size: 2em;
 	height: 1em;
 	width: 1em;
@@ -394,19 +506,17 @@ a.close {
 	opacity: 1;
 }
 
-#cityJump {
-	z-index: 1030;
+#cityJump > section {
+	/*z-index: 1;*/
+	/*margin-top: 2em;*/
 }
 
-#restaurantDetailView {
-	height: 80%;
-	width: 100%;
-	/*padding-top: 2em;*/
-	position: fixed;
-	bottom: 8px;
-	overflow-y: scroll;
-	z-index: 2;
+#restaurantDetailView {	
+	margin-top: 0px;
 }
+	#restaurantDetailView > .container-fluid {
+		padding: 0;
+	}
 
 	#restuarant-info {
 		font-family: "Bitter";
@@ -442,7 +552,8 @@ a.close {
 
 			#restaurantInfo ul {
 				display: inline-block;
-				margin-left: -15px;
+				margin-left: -.75em;
+				padding-right: 2em;
 			}
 
 		#restaurantInfo h1 {
