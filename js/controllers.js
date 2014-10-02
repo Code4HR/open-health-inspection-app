@@ -29,6 +29,11 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
         ga('send', 'pageview', $location.path());
     });
 
+    var calcHeight = angular.element(window).height() - 108;
+    angular.element(".results").css("height" , calcHeight);
+
+    console.log(calcHeight);
+
     $scope.map =
     Geosearch.map = {
         center: {
@@ -202,6 +207,7 @@ var ModalInstanceCtrl = function ($rootScope, $scope, $modalInstance, items, loc
   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };
+
 };
 
 openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', '$http', '$location', '$rootScope', 'Geosearch', 'Inspections',
