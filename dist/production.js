@@ -67,7 +67,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
         ga('send', 'pageview', $location.path());
     });
 
-    var calcHeight = angular.element(window).height() - 108;
+    var calcHeight = angular.element(window).height() - 100;
     angular.element(".results").css("height" , calcHeight);
 
     console.log(calcHeight);
