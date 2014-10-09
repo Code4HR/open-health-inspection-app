@@ -113,7 +113,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
       Geosearch.results = Geosearch.query({
         lat: position.coords.latitude, 
         lon: position.coords.longitude, 
-        dist: 10000
+        dist: 1000
       }, function() {
 
         Geosearch.results = _.values(_.reject(Geosearch.results, function(el){
