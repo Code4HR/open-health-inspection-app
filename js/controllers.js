@@ -29,85 +29,68 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
         ga('send', 'pageview', $location.path());
     });
 
-    $scope.map =
-    Geosearch.map = {
-        center: {
-            latitude: 36.847010,
-            longitude: -76.292430
-          },
-        zoom: 18,
-        options: {
-            streetViewControl: false,
-            panControl: true,
-            panControlOptions: {
-                position: google.maps.ControlPosition.LEFT_BOTTOM
-            },
-            zoomControl: true,
-            zoomControlOptions: {
-                style: google.maps.ZoomControlStyle.LARGE,
-                position: google.maps.ControlPosition.LEFT_BOTTOM
-            },
-            styles: [{
-                "featureType": "poi",
-                "stylers": [{ "visibility": "off" }]
-            },{
-                "featureType": "transit",
-                "stylers": [{ "visibility": "off" }]
-            }]
-        }
+    var calcHeight = angular.element(window).height() - 100;
+    angular.element(".results").css("max-height" , calcHeight);
+
+    $rootScope.getLocation = function() {
+
+      console.log('getting location');
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          $scope.showPosition,
+          $scope.showError
+        );
+      } else {
+        $scope.error = "Geolocation is not supported by this browser.";
+      }
     };
-
-    // console.log(Geosearch.map);
-
-    $scope.dist = 1000;
 
     $rootScope.showPosition = function(position) {
 
-        //outside Virginia check.
-        //- Latitude  36° 32′ N to 39° 28′ N
-        // 36.533333 - 39.466667
-        //- Longitude  75° 15′ W to 83° 41′ W
-        // 75.25 - 83.683333
+      //outside Virginia check.
+      //- Latitude  36° 32′ N to 39° 28′ N
+      // 36.533333 - 39.466667
+      //- Longitude  75° 15′ W to 83° 41′ W
+      // 75.25 - 83.683333
 
-      if (_.isUndefined(position)) {
+      if ( ((position.coords.latitude > 36.533333 ) &&
+           (position.coords.latitude < 39.466667 ) )
+          &&
+          ((position.coords.longitude < -75.25 ) &&
+           (position.coords.longitude > -83.683333 ))) {
 
-        console.log('Geolocation unavailable');
+        console.log('coordinates are within Virgina');
 
       } else {
 
-        if ( ((position.coords.latitude > 36.533333 ) &&
-             (position.coords.latitude < 39.466667 ) )
-            &&
-            ((position.coords.longitude < -75.25 ) &&
-             (position.coords.longitude > -83.683333 ))) {
-
-          console.log('coordinates are within Virgina');
-
-          if (!_.isUndefined(position)) {
-            Geosearch.map.center.latitude = position.coords.latitude;
-            Geosearch.map.center.longitude = position.coords.longitude;
-          }
-
-        } else {
-          console.log('Coming from out of state, so falling back to Norfolk.');
+        console.log('Coming from out of state or geolocation unavailable.');
+        position.coords = {
+          latitude: 36.84687,
+          longitude: -76.29228710000001,
         }
 
       }
 
-      $scope.results =
-      Geosearch.results = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: $scope.dist}, function(){
+      Geosearch.results = Geosearch.query({
+        lat: position.coords.latitude, 
+        lon: position.coords.longitude, 
+        dist: 10000
+      }, function() {
 
-          Geosearch.results = _.values(_.reject(Geosearch.results, function(el){
-            return _.isUndefined(el.name);
-          }));
+        Geosearch.results = _.values(_.reject(Geosearch.results, function(el){
+          return _.isUndefined(el.name);
+        }));
 
-          Geosearch.results.forEach(function(el, index){
-            el.dist = el.dist * 0.000621371;
-            el.score = el.score ? Math.round(el.score) : "n/a";
-          });
+        Geosearch.results.forEach(function(el, index){
+          el.dist = el.dist * 0.000621371;
+          el.score = el.score ? Math.round(el.score) : "n/a";
+        });
 
-          Geosearch.results = $filter('orderBy')(Geosearch.results, 'dist', false);
-          $rootScope.$broadcast('geosearchFire');
+        Geosearch.results = 
+          $filter('orderBy')(Geosearch.results, 'dist', false);
+
+        $rootScope.$broadcast('geosearchFire');
 
       });
 
@@ -116,18 +99,9 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
     $scope.showError = function() {
       console.log("Geolocation is not supported by this browser. Fallback to Norfolk");
       $rootScope.showPosition();
-
     };
 
-    $rootScope.getLocation = function(){
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition($scope.showPosition, $scope.showError);
-      } else {
-        $scope.error = "Geolocation is not supported by this browser.";
-      }
-    };
-
-    $rootScope.getLocation();
+    $scope.getLocation();
 
     $rootScope.toRad = function(Value) {
         return Value * Math.PI / 180;
@@ -138,8 +112,8 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
       var lat2 = input.latitude;
       var lon2 = input.longitude;
 
-      var lat1 = $scope.map.center.latitude;
-      var lon1 = $scope.map.center.longitude;
+      var lat1 = position.coords.latitude;
+      var lon1 = position.coords.longitude;
 
       var R = 6378.137; // km
       var dLat = $scope.toRad(lat2-lat1);
@@ -156,53 +130,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
 
     };
 
-    $rootScope.open = function (size) {
-
-      // console.log('open modal');
-      var modalInstance = $modal.open({
-        templateUrl: 'partials/modal.html',
-        controller: ModalInstanceCtrl,
-        size: size,
-        windowClass: 'modalContainer',
-        backdrop: false,
-        resolve: {
-          items: function () {
-            return $scope.items;
-          }
-        }
-      });
-
-      modalInstance.result.then(function (selectedItem) {
-        $rootScope.close = function(){
-          modalInstance.close();
-        }
-      }, function () {
-        // $log.info('Modal dismissed at: ' + new Date());
-      });
-    };
-
-    if ($location.url() === '/') {
-      $scope.open();
-    }
-
   }]);
-
-var ModalInstanceCtrl = function ($rootScope, $scope, $modalInstance, items, localStorageService) {
-
-  $scope.ok = function () {
-
-    if ($rootScope.dontshow ) {
-      localStorageService.set('Has Read', 'true');
-      console.log(localStorageService.get('Has Read'));
-    }
-    $modalInstance.close();
-
-  };
-
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
-};
 
 openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', '$http', '$location', '$rootScope', 'Geosearch', 'Inspections',
   function($scope, $routeParams, $http, $location, $rootScope, Geosearch, Inspections) {
