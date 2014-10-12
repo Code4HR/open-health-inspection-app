@@ -239,6 +239,17 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
 
   }]);
 
+openHealthDataAppControllers.controller('searchResultsPreview',
+  ['$scope', '$rootScope', 'Geosearch', function($scope, $rootScope, Geosearch){
+
+  $rootScope.$on('geosearchFire', function() {
+    // alert('Geosearch heard');
+    // console.log(Geosearch.results)
+    $scope.restaurants = Geosearch.results.slice(0,6);
+    console.log($scope.restaurants);
+  });
+
+}]);
 
 openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootScope', '$location', 'Search', 'Geosearch',
   function($scope, $rootScope, $location, Search, Geosearch){
@@ -260,9 +271,9 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootSc
     $rootScope.$on('geosearchFire', function(){
       $scope.resultsType = "Displaying results near you, along with our score.";
       $scope.results = Geosearch.results;
-      if ($location.url() === '/') {
-        $rootScope.isVisible = true;
-      }
+      // if ($location.url() === '/') {
+      //   $rootScope.isVisible = true;
+      // }
     });
 
     $scope.map = Geosearch.map;
