@@ -100,6 +100,10 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
 
         console.log('coordinates are within Virgina');
 
+        // Position.coords is only avaible in this scope, share over 
+        // Geosearch service
+        Geosearch.coords = position.coords;
+
       } else {
 
         console.log('Coming from out of state or geolocation unavailable.');
@@ -143,29 +147,6 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
 
     $rootScope.toRad = function(Value) {
         return Value * Math.PI / 180;
-    };
-
-    $rootScope.distanceCalculation = function(input) {
-
-      var lat2 = input.latitude;
-      var lon2 = input.longitude;
-
-      var lat1 = position.coords.latitude;
-      var lon1 = position.coords.longitude;
-
-      var R = 6378.137; // km
-      var dLat = $scope.toRad(lat2-lat1);
-      var dLon = $scope.toRad(lon2-lon1);
-      lat1 = $scope.toRad(lat1);
-      lat2 = $scope.toRad(lat2);
-
-      var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-              Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2);
-      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-      var d = R * c;
-
-      return d * 0.62137;
-
     };
 
   }]);
@@ -258,8 +239,8 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
         $scope.searchAreaText = 'This area';
         searchQuery = {
           name: $scope.query,
-          lat: Geosearch.map.center.latitude,
-          lng: Geosearch.map.center.longitude,
+          lat: Geosearch.coords.latitude,
+          lng: Geosearch.coords.longitude,
           dist: 10000
         }
       }
@@ -278,7 +259,10 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
 
         Search.results.forEach(function(el, index){
           if (!_.isUndefined(el.coordinates)) {
-            el.dist = $rootScope.distanceCalculation(el.coordinates);
+            
+            el.dist = $filter('distanceCalculation')(el.coordinates, Geosearch.coords);
+
+            // el.dist = $rootScope.distanceCalculation(el.coordinates);
             el.score = !_.isUndefined(el.score) &&
                        !_.isNull(el.score) ?
                        Math.round(el.score) : "n/a";
@@ -458,7 +442,7 @@ angular.module('openHealthDataAppFilters', [])
     }
   })
   .filter('scoreBadge', function(){
-    return function(score){
+    return function(score) {
       if (score >= 90) {
         //Green
         return "greenBadge";
@@ -476,6 +460,33 @@ angular.module('openHealthDataAppFilters', [])
       } else {
         return "grayBadge";
       }
+    }
+  }).filter('distanceCalculation', function() {
+
+    function toRad(value, position) {
+      return value * Math.Pi / 180;
+    }
+
+    return function(input) {
+
+      var lat2 = input.latitude;
+      var lon2 = input.longitude;
+
+      var lat1 = position.coords.latitude;
+      var lon1 = position.coords.longitude;
+
+      var R = 6378.137; // km
+      var dLat = toRad(lat2-lat1);
+      var dLon = toRad(lon2-lon1);
+      lat1 = toRad(lat1);
+      lat2 = toRad(lat2);
+
+      var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+              Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2);
+      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+      var d = R * c;
+
+      return d * 0.62137;
     }
   });
 

@@ -341,7 +341,7 @@ center {
 		/*top: 120px;*/
 	}
 	.bump {
-		margin-top: 43px;
+		margin-top: 48px;
 	}
 
 	#main ul {
@@ -795,6 +795,7 @@ Tablet and Small Screen Styles here.
         position: fixed;
         top: 60px;
         right: 0;
+        width: inherit;
         max-height: 500px;
         z-index: 1029;
         overflow-y: scroll;
