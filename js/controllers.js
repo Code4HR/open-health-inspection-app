@@ -120,9 +120,8 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$rou
 
     $scope.results = Inspections.query({vendorid: $routeParams.id}, function(){
       var restaurant = $scope.results[$routeParams.id];
-      Geosearch.map.center = restaurant.coordinates;
       $rootScope.restaurantName = restaurant.name;
-      restaurant.score = restaurant.score ? Math.round(restaurant.score) : 'n/a';
+      restaurant.score = !_.isUndefined(restaurant.score) ? Math.round(restaurant.score) : 'n/a';
       $rootScope.restaurantPermalink = $location.absUrl();
     });
 

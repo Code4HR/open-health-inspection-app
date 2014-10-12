@@ -331,12 +331,14 @@ center {
 
 #main {
 	margin-top: 60px;
+	background: #f3ece3;
+	z-index: 2;
 }
 	.results {
 		position: fixed;
 		width: 100%;
 		overflow-y: scroll;
-		z-index: 2;
+		z-index: 3;
 
 		/*top: 120px;*/
 	}
@@ -381,6 +383,7 @@ center {
 		top: 33%;
 		left: 50%;
 		margin-left: -114px;
+		z-index: -1;
 	}
 
 		#main .bglogo img {
@@ -414,6 +417,7 @@ center {
 			line-height: 1.25em;
 			text-align: center;
 			border-radius: .25em;
+			z-index: -1;
 		}
 			#main #backToMe i {
 				width: 100%;
