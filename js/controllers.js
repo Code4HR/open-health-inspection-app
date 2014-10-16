@@ -249,8 +249,7 @@ openHealthDataAppControllers.controller('searchResultsPreview',
     $scope.restaurants.forEach(function(el) {
       var name = el.url.slice(8);
       return Inspections.query({vendorid: name}, function(vendor){ 
-        console.log(vendor[name].inspections);
-        // return _.extend($scope.restaurants.el, element.inspection);
+        el.inspections = vendor[name].inspections;
       });
     });
 
