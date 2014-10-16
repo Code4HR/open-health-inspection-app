@@ -44,6 +44,9 @@ Colors:
 	background: #cccccc;
 	border-bottom: 2px solid #333;
 }
+.grayBorder {
+	border-top: 3px solid #cccccc;
+}
 
 .greenText {
 	color: #157F00;
@@ -51,6 +54,9 @@ Colors:
 .greenBadge {
 	background: #157F00;
 	border-bottom: 2px solid #333;
+}
+.greenBorder {
+	border-top: 3px solid #157F00;
 }
 
 .yellowGreenText {
@@ -60,6 +66,9 @@ Colors:
 	background: #A8C433;
 	border-bottom: 2px solid #333;
 }
+.yellowGreenBar {
+	border-top: 3px solid #A8C433;
+}
 
 .yellowText {
 	color: #B28C04;
@@ -68,6 +77,9 @@ Colors:
 	background: #B28C04;
 	border-bottom: 2px solid #333;
 }
+.yellowBorder {
+	border-top: 3px solid #B28C04;
+}
 
 .redText {
 	color: #f18775;
@@ -75,9 +87,14 @@ Colors:
 .redBadge {
 	background: #f18775;
 }
+.redBorder {
+	border-top: 3px solid #f18775;
+}
 
 .card {
 	background: #ffffff;
+	margin-bottom: 1.5em;
+	/*border-top: 3px solid #eee;*/
 }
 
 .medal {
@@ -506,7 +523,7 @@ center {
 				text-align: center;
 			}
 
-			ul li .name {
+			.name {
 				font-size: 1.25em;
 				line-height: .95em;
 				font-weight: 600;
@@ -518,14 +535,50 @@ center {
 				font-size: 2em;
 				line-height: .75em;
 				font-weight: 400;
-				text-align: center;
+				text-align: right;
 				/*color: #666;*/
 			}
-			#listView .address {
+
+			.readMore {
+				text-align: right;
+				line-height: 2em;
+			}	
+				.readMore i {
+					color: #999;
+					font-weight: 700;
+				}
+
+			.title {
+				border-bottom: 1px solid #CCC;
+				padding: 1em 0;
+			}
+				.title h3 {
+					margin-top: 0;
+				}
+
+				.title .score {
+					font-size: 3rem;
+				}
+
+				.title .address { 
+					margin-bottom: 0;
+				}
+
+			.address {
 				display: inline-block;
 				color: #999999 !important;
+				/*text-transform: uppercase;*/
+				font-family: Bitter;
 			}
-			#listView .distance {
+
+			.observations {
+				color: #999999;
+				font-size: 1em;
+				font-family: Bitter;
+				/*text-transform: uppercase;*/
+			}
+
+			.distance {
 				display: inline-block;
 				color: #999999 !important;
 				margin: 0;
@@ -701,7 +754,6 @@ a.close {
 					display: inline-block;
 					margin: .5em 0em;
 					margin-right: .25em;
-					color: #ffffff;
 				}
 
 					li.violation i,
@@ -714,6 +766,8 @@ a.close {
 						font-size: 1.5em;
 						border-radius: 100%;
 						background: #efefef;
+						color: #ffffff;
+
 					}
 
 					li.violation.active i {

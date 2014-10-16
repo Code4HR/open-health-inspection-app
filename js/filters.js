@@ -67,6 +67,27 @@ angular.module('openHealthDataAppFilters', [])
       }
     }
   })
+  .filter('scoreBorder', function(){
+    return function(score) {
+      if (score >= 90) {
+        //Green
+        return "greenBorder";
+      } else if (score >= 80 && score < 90) {
+        //Yellow-Green
+        return "yellowGreenBorder";
+      } else if (score >= 70 && score < 80) {
+        //Yellow
+        return "yellowBorder";
+      } else if (score < 70) {
+        //Red
+        return "redBorder";
+      } else if (score === 'n/a') {
+        return "grayBorder";
+      } else {
+        return "grayBorder";
+      }
+    }
+  })
   .filter('scoreBadge', function(){
     return function(score) {
       if (score >= 90) {

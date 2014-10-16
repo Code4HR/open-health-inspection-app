@@ -247,7 +247,7 @@ openHealthDataAppControllers.controller('searchResultsPreview',
     // console.log($scope.restaurants);
 
     $scope.inspectionsCount = 1;
-    $scope.observationsCount = 3;
+    $scope.observationsCount = 2;
 
     $scope.restaurants.forEach(function(el) {
       var name = el.url.slice(8);
