@@ -450,7 +450,7 @@ center {
 			}
 
 #main.container, #main.container-fluid {
-	padding: 0;
+	padding: .5em 0;
 }
 
 #output {
@@ -705,6 +705,11 @@ a.close {
 			background: white;
 		}
 
+			.no-violations {
+				font-size: 1.125em;
+				color: ;
+			}
+
 			.inspection .date {
 				/*font-size: 1.25em;*/
 				color: #777;
@@ -742,6 +747,11 @@ a.close {
 	    .inspection h4 {
 	        color: #3c9542;
 	    }
+
+	    	li.violationBar {
+	    		border-bottom: 1px solid #CCC;
+	    		padding-bottom: 1em;
+	    	}
 
 			ul.violations {
 				margin-bottom: 1em;

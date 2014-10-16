@@ -115,7 +115,7 @@
         </div>
       </section>
 
-      <section class="results col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-8 results" ng-class="{'bump': isSearchbarVisible || isVisible}"> 
+      <section class="col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-8 results" ng-class="{'bump': isSearchbarVisible || isVisible}"> 
         <section id="searchResults" ng-controller="searchResultsCtrl">
           <section id="searchResultsDetail" ng-show="isVisible">
             <ul class="row">
@@ -133,9 +133,9 @@
           </section>
         </section>
 
-        <section id="cityJump" ng-controller="cityJumpCtrl">
+        <section id="cityJump" class="col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-8" ng-controller="cityJumpCtrl">
           <section ng-show="isCityJumpVisible">
-            <ul class="row" >
+            <ul class="row">
               <li class="list-container nearMe">
                 <a class="city-container" ng-click="cityJump()">Near Me</a></li>
               <li class="list-container clearfix" ng-repeat="city in cities">
@@ -147,7 +147,6 @@
       </section>
 
       <div id="viewContainer" ng-view></div>
-
 
     </div>
 

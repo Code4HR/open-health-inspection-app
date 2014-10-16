@@ -79,7 +79,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
       Geosearch.results = Geosearch.query({
         lat: position.coords.latitude, 
         lon: position.coords.longitude, 
-        dist: 1000
+        dist: 300
       }, function() {
 
         Geosearch.results = _.values(_.reject(Geosearch.results, function(el){
@@ -247,12 +247,13 @@ openHealthDataAppControllers.controller('searchResultsPreview',
     // console.log($scope.restaurants);
 
     $scope.inspectionsCount = 1;
-    $scope.observationsCount = 2;
+    $scope.observationsCount = 1;
 
     $scope.restaurants.forEach(function(el) {
       var name = el.url.slice(8);
       return Inspections.query({vendorid: name}, function(vendor){ 
-        el.inspections = vendor[name].inspections;
+        el.inspections = vendor[name].inspections[0];
+        console.log(vendor[name].inspections[0]);
       });
     });
 
