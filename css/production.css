@@ -76,6 +76,10 @@ Colors:
 	background: #f18775;
 }
 
+.card {
+	background: #ffffff;
+}
+
 .medal {
 	color: white !important;
 	padding: .25em 0; 

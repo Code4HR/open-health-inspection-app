@@ -282,13 +282,20 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
   }]);
 
 openHealthDataAppControllers.controller('searchResultsPreview',
-  ['$scope', '$rootScope', 'Geosearch', function($scope, $rootScope, Geosearch){
+  ['$scope', '$rootScope', 'Geosearch', 'Inspections', function($scope, $rootScope, Geosearch, Inspections) {
 
   $rootScope.$on('geosearchFire', function() {
-    // alert('Geosearch heard');
-    // console.log(Geosearch.results)
     $scope.restaurants = Geosearch.results.slice(0,6);
-    console.log($scope.restaurants);
+    // console.log($scope.restaurants);
+
+    $scope.restaurants.forEach(function(el) {
+      var name = el.url.slice(8);
+      return Inspections.query({vendorid: name}, function(vendor){ 
+        console.log(vendor[name].inspections);
+        // return _.extend($scope.restaurants.el, element.inspection);
+      });
+    });
+
   });
 
 }]);
