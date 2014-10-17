@@ -526,7 +526,7 @@ center {
 			.name {
 				font-size: 1.25em;
 				line-height: 1em;
-				font-weight: 600;
+				font-weight: 400;
 				margin: 0 0 3px 0;
 				clear: both;
 				font-family: Bitter;
@@ -709,7 +709,7 @@ a.close {
 
 			.no-violations {
 				font-size: 1.125em;
-				color: ;
+				color: #157F00;
 			}
 
 			.inspection .date {
