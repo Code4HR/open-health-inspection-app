@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-  scale=1, user-scalable=no">    
     <META NAME="description" CONTENT="Easily get public health inspection data for eateries near you.">
     <meta name="keywords" content="inspection, health inspection, dining, restaurant, cafeteria, open data, open government data, Code for America, Code for America Brigade, cfabrigade, mobile, HTML5, app, open source, Code for Hampton Roads, volunteers, volunteering, civic, civic engagement, public service">
     <meta property="og:image" content="img/build/preview.jpg" />
@@ -115,7 +115,7 @@
         </div>
       </section>
 
-      <section class="results col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-8 results" ng-class="{'bump': isSearchbarVisible || isVisible}"> 
+      <section class="col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-8 results" ng-class="{'bump': isSearchbarVisible || isVisible}"> 
         <section id="searchResults" ng-controller="searchResultsCtrl">
           <section id="searchResultsDetail" ng-show="isVisible">
             <ul class="row">
@@ -133,9 +133,9 @@
           </section>
         </section>
 
-        <section id="cityJump" ng-controller="cityJumpCtrl">
+        <section id="cityJump" class="col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-8" ng-controller="cityJumpCtrl">
           <section ng-show="isCityJumpVisible">
-            <ul class="row" >
+            <ul class="row">
               <li class="list-container nearMe">
                 <a class="city-container" ng-click="cityJump()">Near Me</a></li>
               <li class="list-container clearfix" ng-repeat="city in cities">
@@ -148,7 +148,6 @@
 
       <div id="viewContainer" ng-view></div>
 
-
     </div>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -156,10 +155,10 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-resource.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular-route.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular-animate.min.js"></script>
-    <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
+    <!-- <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script> -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
     <script src="dist/production.js"></script>
-    <script src="js/libs/angular-google-maps.min.js"></script>
+    <!-- <script src="js/libs/angular-google-maps.min.js"></script> -->
     <script src="js/libs/ui-bootstrap-tpls-0.11.0.min.js"></script>
     <script src="js/libs/angular-local-storage.js"></script>
     <script src="analytics.js"></script>

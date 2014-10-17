@@ -44,6 +44,9 @@ Colors:
 	background: #cccccc;
 	border-bottom: 2px solid #333;
 }
+.grayBorder {
+	border-top: 3px solid #cccccc;
+}
 
 .greenText {
 	color: #157F00;
@@ -51,6 +54,9 @@ Colors:
 .greenBadge {
 	background: #157F00;
 	border-bottom: 2px solid #333;
+}
+.greenBorder {
+	border-top: 3px solid #157F00;
 }
 
 .yellowGreenText {
@@ -60,6 +66,9 @@ Colors:
 	background: #A8C433;
 	border-bottom: 2px solid #333;
 }
+.yellowGreenBorder {
+	border-top: 3px solid #A8C433;
+}
 
 .yellowText {
 	color: #B28C04;
@@ -68,12 +77,24 @@ Colors:
 	background: #B28C04;
 	border-bottom: 2px solid #333;
 }
+.yellowBorder {
+	border-top: 3px solid #B28C04;
+}
 
 .redText {
 	color: #f18775;
 }
 .redBadge {
 	background: #f18775;
+}
+.redBorder {
+	border-top: 3px solid #f18775;
+}
+
+.card {
+	background: #ffffff;
+	margin: .75em 0;
+	/*border-top: 3px solid #eee;*/
 }
 
 .medal {
@@ -331,17 +352,19 @@ center {
 
 #main {
 	margin-top: 60px;
+	background: #f3ece3;
+	z-index: 2;
 }
 	.results {
 		position: fixed;
 		width: 100%;
 		overflow-y: scroll;
-		z-index: 2;
+		z-index: 3;
 
 		/*top: 120px;*/
 	}
 	.bump {
-		margin-top: 43px;
+		margin-top: 48px;
 	}
 
 	#main ul {
@@ -381,6 +404,7 @@ center {
 		top: 33%;
 		left: 50%;
 		margin-left: -114px;
+		z-index: -1;
 	}
 
 		#main .bglogo img {
@@ -414,6 +438,7 @@ center {
 			line-height: 1.25em;
 			text-align: center;
 			border-radius: .25em;
+			z-index: -1;
 		}
 			#main #backToMe i {
 				width: 100%;
@@ -498,26 +523,64 @@ center {
 				text-align: center;
 			}
 
-			ul li .name {
+			.name {
 				font-size: 1.25em;
-				line-height: .95em;
-				font-weight: 600;
+				line-height: 1em;
+				font-weight: 400;
 				margin: 0 0 3px 0;
 				clear: both;
+				font-family: Bitter;
 			}
 			.score {
 				font-family: Bitter;
 				font-size: 2em;
 				line-height: .75em;
 				font-weight: 400;
-				text-align: center;
+				text-align: right;
 				/*color: #666;*/
 			}
-			#listView .address {
+
+			.readMore {
+				text-align: right;
+				line-height: 2em;
+			}	
+				.readMore i {
+					color: #999;
+					font-weight: 700;
+				}
+
+			.title {
+				border-bottom: 1px solid #CCC;
+				padding: 1em 0;
+			}
+				.title h3 {
+					margin-top: 0;
+				}
+
+				.title .score {
+					font-size: 3rem;
+				}
+
+				.title .address { 
+					margin-bottom: 0;
+				}
+
+			.address {
 				display: inline-block;
 				color: #999999 !important;
+				/*text-transform: uppercase;*/
+				font-family: Bitter;
+				font-weight: 400;
 			}
-			#listView .distance {
+
+			.observations {
+				color: #999999;
+				font-size: 1em;
+				font-family: Bitter;
+				/*text-transform: uppercase;*/
+			}
+
+			.distance {
 				display: inline-block;
 				color: #999999 !important;
 				margin: 0;
@@ -644,6 +707,11 @@ a.close {
 			background: white;
 		}
 
+			.no-violations {
+				font-size: 1.125em;
+				color: #157F00;
+			}
+
 			.inspection .date {
 				/*font-size: 1.25em;*/
 				color: #777;
@@ -682,18 +750,22 @@ a.close {
 	        color: #3c9542;
 	    }
 
+	    	li.violationBar {
+	    		border-bottom: 1px solid #CCC;
+	    		padding-bottom: 1em;
+	    	}
+
 			ul.violations {
 				margin-bottom: 1em;
 				display: inline-block;
 				vertical-align: top;
 			}
 				li.violation,
-			    li.critical,
+			  li.critical,
 				li.repeat {
 					display: inline-block;
 					margin: .5em 0em;
 					margin-right: .25em;
-					color: #ffffff;
 				}
 
 					li.violation i,
@@ -706,6 +778,8 @@ a.close {
 						font-size: 1.5em;
 						border-radius: 100%;
 						background: #efefef;
+						color: #ffffff;
+
 					}
 
 					li.violation.active i {
@@ -781,9 +855,17 @@ Tablet and Small Screen Styles here.
             
         }
     
+    #viewContainer {
+        background: #f3ece3;
+    }
+
     #main.container {
         padding-top: 2em;
     } 
+
+    #main.container-fluid {
+        padding: .5em;
+    }
 
     #main #viewContainer.bump {
         margin-top: 0;
@@ -795,6 +877,7 @@ Tablet and Small Screen Styles here.
         position: fixed;
         top: 60px;
         right: 0;
+        width: inherit;
         max-height: 500px;
         z-index: 1029;
         overflow-y: scroll;
@@ -807,6 +890,7 @@ Tablet and Small Screen Styles here.
 
 	#restuarantDetailView {
         position: relative;
+        background: #f3ece3;
     }
 
         #restaurantDetailView .angular-google-map-container {

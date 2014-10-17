@@ -31,6 +31,10 @@ openHealthDataApp.config(['$routeProvider',
         templateUrl: 'partials/restaurantDetailView.html',
         controller: 'restaurantDetailCtrl'
       }).
+      when('/', {
+        templateUrl: 'partials/searchResultsPreview.html',
+        controller: 'searchResultsPreview'
+      }).
       otherwise({
         redirectTo: '/'
       });
