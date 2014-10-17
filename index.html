@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-  scale=1, user-scalable=no">    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <META NAME="description" CONTENT="Easily get public health inspection data for eateries near you.">
     <meta name="keywords" content="inspection, health inspection, dining, restaurant, cafeteria, open data, open government data, Code for America, Code for America Brigade, cfabrigade, mobile, HTML5, app, open source, Code for Hampton Roads, volunteers, volunteering, civic, civic engagement, public service">
     <meta property="og:image" content="img/build/preview.jpg" />
@@ -55,46 +55,28 @@
 
           <div id="searchbar" class="col-xs-12 col-sm-5 col-md-4 clearfix" ng-controller="searchCtrl">
 
-            <section id="search" ng-show="isSearchbarVisible" class="navbar-fixed-top col-xs-12 col-sm-5 col-md-4">
-              <form ng-submit="nameSearch()" class=" clearfix" novalidate>
+            <div id="search" ng-show="isSearchbarVisible" class="row">
+              <form ng-submit="nameSearch()" class="col-xs-12" novalidate>
                 <span id="exitButton" ng-click="toggleSearchField()" class="col-xs-1 glyphicon glyphicon-chevron-left"></span>
                 <input id="searchField" class="col-xs-9" type="search" ng-model="query" placeholder="Search for a restaurant" focus-me="isSearchbarVisible"/>
                 <button class="btn btn-info col-xs-2">
                   <span id="searchButton" class="glyphicon glyphicon-search"/>
                 </button>
               </form>
-              <section class="clearfix row tray">
-                <ul class="">
-                  <li class="col-xs-7 searchDescription">
-                  <small>Search in:</small>{{searchAreaText}}</li>
-                  <li class="col-xs-5 moreButton">
-                    <a ng-click="toggleCityJump()">
-                      More Cities <i class="fa fa-plus-circle"></i>
-                    </a>
-                  </li>
-                </ul>
-              </section>
-            </section>
+            </div>
 
             <a href="#/" class="visible-xs" class="clearfix">
               <img class="logo" src="img/build/logo.png" height="36px" width="36px" alt="logo">
             </a>
+            <a ng-click="toggleCityJump()" ng-class="{'active-button': isCityJumpVisible}" class="listIcon clearfix">
+              <i class="fa fa-building"></i>
+            </a>
             <a ng-click="toggleSearchField()"  class="listIcon clearfix">
               <span id="searchButton" class="glyphicon glyphicon-search"></span>
             </a>
-            <a ng-click="toggleList()" ng-fclass="{'active-button': isVisible}" class="listIcon">
+            <a ng-click="toggleList()" ng-class="{'active-button': isVisible}" class="listIcon">
               <span id="listButton"  class="glyphicon glyphicon-th-list" class="col-xs-1"></span>
             </a>
-          
-            <section class="clearfix tray" ng-show="isVisible">
-              <ul>
-                <li class="col-xs-12">
-                  <small>Displaying results</small>
-                  {{query}} <span>In</span> {{searchAreaText}}
-                </li>
-              </ul>
-            </section>
-
           </div>
 
         </div>
@@ -102,51 +84,58 @@
       </div>
     </header>
 
-    <div id="main" class="container-fluid ng-cloak" >
+    <div id="main" class="container-fluid ng-cloak">
 
-      <div class="bglogo hidden-md hidden-lg">
-        <img src="img/build/logo-gray.png" height="70" width="70" alt="logo">
-        <h1>Open<br>Health<br>Inspection</h1>
-      </div>
+      <section ng-controller="mapCtrl">
 
-      <section ng-controller="mapCtrl">    
-        <div id="backToMe" ng-click="getLocation()">
-          <i class="fa fa-crosshairs"></i>
-        </div>
+        <google-map center="map.center" zoom="map.zoom" pan="true" draggable="true" options="map.options">
+          <marker coords="map.center" icon="'img/build/male.png'"></marker>
+          <marker ng-repeat="restaurant in results" coords="restaurant.coordinates">
+            <window show="markerShow" closeClick="true">
+              <center>
+                <h4 style="margin-bottom: 1em;">{{restaurant.name}} <span style="padding: .25em;" class="medal {{restaurant.score | scoreBadge}}">{{restaurant.score}}</span></h4>
+                <p><a class="btn btn-info" href="#{{restaurant.url}}">Learn More</a></p>
+              </center>
+            </window>
+          </marker>
+        </google-map>
+
       </section>
 
-      <section class="col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-8 results" ng-class="{'bump': isSearchbarVisible || isVisible}"> 
-        <section id="searchResults" ng-controller="searchResultsCtrl">
-          <section id="searchResultsDetail" ng-show="isVisible">
-            <ul class="row">
-              <li ng-repeat="restaurant in results" class="list-container clearfix">
-              <a href="#{{restaurant.url}}">
-                <i class="{{restaurant.category | categoryIcon }} col-xs-2 category-icon"></i>
-                <ul class="col-xs-7 info">
-                  <li class="name">{{restaurant.name}}</li>
-                  <li class="address">{{restaurant.address}}</li>
-                </ul>
-                <p class="score col-xs-3 {{restaurant.score | scoreColor}}">{{restaurant.score}}</p>
-              </a>
-              </li>
-            </ul>
-          </section>
-        </section>
-
-        <section id="cityJump" class="col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-8" ng-controller="cityJumpCtrl">
-          <section ng-show="isCityJumpVisible">
-            <ul class="row">
-              <li class="list-container nearMe">
-                <a class="city-container" ng-click="cityJump()">Near Me</a></li>
-              <li class="list-container clearfix" ng-repeat="city in cities">
-                <a class="city-container" ng-click="cityJump(city)">{{city.name}}</a>
-              </li>
-            </ul>
-          </section>
+      <section class="col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-8 results" id="searchResults" class="clearfix" ng-controller="searchResultsCtrl">
+        <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+        <section id="searchResultsDetail" ng-show="isVisible">
+          <p class="resultsDescription">{{resultsType}}</p>
+          <ul class="row">
+            <li ng-repeat="restaurant in results" class="list-container clearfix">
+            <a href="#{{restaurant.url}}">
+              <i class="{{restaurant.category | categoryIcon }} col-xs-2 category-icon"></i>
+              <ul class="col-xs-7 info">
+                <li class="name">{{restaurant.name}}</li>
+                <li class="address">{{restaurant.address}}</li>
+              </ul>
+              <p class="score col-xs-3 {{restaurant.score | scoreColor}}">{{restaurant.score}}</p>
+            </a>
+            </li>
+          </ul>
         </section>
       </section>
 
-      <div id="viewContainer" ng-view></div>
+      <section class="col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-8 results clearfix" id="cityJump" ng-controller="cityJumpCtrl">
+        <section ng-show="isCityJumpVisible">
+          <p class="resultsDescription">{{resultsType}}</p>
+          <ul class="row" >
+            <li class="list-container clearfix" ng-repeat="city in cities">
+              <a class="city-container" ng-click="cityJump(city)">{{city.name}}</a>
+            </li>
+          </ul>
+        </section>
+
+      </section>
+
+      <div ng-view></div>
+
+      <span id="geolocateButton" ng-click="showPosition()" class="listIcon glyphicon glyphicon-map-marker"></span>
 
     </div>
 
@@ -155,10 +144,10 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-resource.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular-route.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular-animate.min.js"></script>
-    <!-- <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script> -->
+    <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
     <script src="dist/production.js"></script>
-    <!-- <script src="js/libs/angular-google-maps.min.js"></script> -->
+    <script src="js/libs/angular-google-maps.min.js"></script>
     <script src="js/libs/ui-bootstrap-tpls-0.11.0.min.js"></script>
     <script src="js/libs/angular-local-storage.js"></script>
     <script src="analytics.js"></script>
