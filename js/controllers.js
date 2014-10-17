@@ -223,7 +223,6 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
             
             el.dist = $filter('distanceCalculation')(el.coordinates, Geosearch.coords);
 
-            // el.dist = $rootScope.distanceCalculation(el.coordinates);
             el.score = !_.isUndefined(el.score) &&
                        !_.isNull(el.score) ?
                        Math.round(el.score) : "n/a";
@@ -244,10 +243,9 @@ openHealthDataAppControllers.controller('searchResultsPreview',
 
   $rootScope.$on('geosearchFire', function() {
     $scope.restaurants = Geosearch.results.slice(0,6);
-    // console.log($scope.restaurants);
 
-    $scope.inspectionsCount = 3;
-    $scope.observationsCount = 1;
+    $scope.inspectionsCount = 1;
+    $scope.observationsCount = 3;
 
     $scope.restaurants.forEach(function(el) {
       var name = el.url.slice(8);

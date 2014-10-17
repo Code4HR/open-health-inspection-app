@@ -93,7 +93,7 @@ Colors:
 
 .card {
 	background: #ffffff;
-	margin-bottom: 1.5em;
+	margin: .75em 0;
 	/*border-top: 3px solid #eee;*/
 }
 
@@ -525,7 +525,7 @@ center {
 
 			.name {
 				font-size: 1.25em;
-				line-height: .95em;
+				line-height: 1em;
 				font-weight: 600;
 				margin: 0 0 3px 0;
 				clear: both;
