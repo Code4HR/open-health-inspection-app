@@ -71,6 +71,8 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
         ga('send', 'pageview', $location.path());
     });
 
+    console.log("Screen width", screen.width);
+
     var calcHeight = angular.element(window).height() - 100;
     angular.element(".results").css("max-height" , calcHeight);
 

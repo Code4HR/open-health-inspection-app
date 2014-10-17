@@ -97,6 +97,10 @@ Colors:
 	/*border-top: 3px solid #eee;*/
 }
 
+	.card .inspections {
+		max-height: 300px;
+	}
+
 .medal {
 	color: white !important;
 	padding: .25em 0; 
