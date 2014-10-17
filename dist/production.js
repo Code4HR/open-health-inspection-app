@@ -288,14 +288,13 @@ openHealthDataAppControllers.controller('searchResultsPreview',
     $scope.restaurants = Geosearch.results.slice(0,6);
     // console.log($scope.restaurants);
 
-    $scope.inspectionsCount = 1;
+    $scope.inspectionsCount = 3;
     $scope.observationsCount = 1;
 
     $scope.restaurants.forEach(function(el) {
       var name = el.url.slice(8);
       return Inspections.query({vendorid: name}, function(vendor){ 
-        el.inspections = vendor[name].inspections[0];
-        console.log(vendor[name].inspections[0]);
+        el.inspections = _.toArray(vendor[name].inspections);
       });
     });
 

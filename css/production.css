@@ -66,7 +66,7 @@ Colors:
 	background: #A8C433;
 	border-bottom: 2px solid #333;
 }
-.yellowGreenBar {
+.yellowGreenBorder {
 	border-top: 3px solid #A8C433;
 }
 
@@ -450,7 +450,7 @@ center {
 			}
 
 #main.container, #main.container-fluid {
-	padding: .5em 0;
+	padding: 0;
 }
 
 #output {
@@ -529,6 +529,7 @@ center {
 				font-weight: 600;
 				margin: 0 0 3px 0;
 				clear: both;
+				font-family: Bitter;
 			}
 			.score {
 				font-family: Bitter;
@@ -569,6 +570,7 @@ center {
 				color: #999999 !important;
 				/*text-transform: uppercase;*/
 				font-family: Bitter;
+				font-weight: 400;
 			}
 
 			.observations {
@@ -759,7 +761,7 @@ a.close {
 				vertical-align: top;
 			}
 				li.violation,
-			    li.critical,
+			  li.critical,
 				li.repeat {
 					display: inline-block;
 					margin: .5em 0em;
