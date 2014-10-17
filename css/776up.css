@@ -41,9 +41,21 @@ Tablet and Small Screen Styles here.
             
         }
     
+    #viewContainer {
+        background: #f3ece3;
+    }
+
     #main.container {
         padding-top: 2em;
     } 
+
+    #main.container-fluid {
+        padding: .5em;
+    }
+
+    #main #viewContainer.bump {
+        margin-top: 0;
+    }
 
     .angular-google-map-container { height:100%; width:100%; position:absolute; top:0; left:0; }
 
@@ -51,6 +63,7 @@ Tablet and Small Screen Styles here.
         position: fixed;
         top: 60px;
         right: 0;
+        width: inherit;
         max-height: 500px;
         z-index: 1029;
         overflow-y: scroll;
@@ -63,6 +76,7 @@ Tablet and Small Screen Styles here.
 
 	#restuarantDetailView {
         position: relative;
+        background: #f3ece3;
     }
 
         #restaurantDetailView .angular-google-map-container {

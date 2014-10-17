@@ -29,6 +29,7 @@ textarea, input { outline: none; }
 
 body{
 	color:#494949;
+	background: #f3ece3;
 	font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Arial", "sans";
 }
 
@@ -43,6 +44,9 @@ Colors:
 	background: #cccccc;
 	border-bottom: 2px solid #333;
 }
+.grayBorder {
+	border-top: 3px solid #cccccc;
+}
 
 .greenText {
 	color: #157F00;
@@ -50,6 +54,9 @@ Colors:
 .greenBadge {
 	background: #157F00;
 	border-bottom: 2px solid #333;
+}
+.greenBorder {
+	border-top: 3px solid #157F00;
 }
 
 .yellowGreenText {
@@ -59,6 +66,9 @@ Colors:
 	background: #A8C433;
 	border-bottom: 2px solid #333;
 }
+.yellowGreenBorder {
+	border-top: 3px solid #A8C433;
+}
 
 .yellowText {
 	color: #B28C04;
@@ -67,12 +77,24 @@ Colors:
 	background: #B28C04;
 	border-bottom: 2px solid #333;
 }
+.yellowBorder {
+	border-top: 3px solid #B28C04;
+}
 
 .redText {
 	color: #f18775;
 }
 .redBadge {
 	background: #f18775;
+}
+.redBorder {
+	border-top: 3px solid #f18775;
+}
+
+.card {
+	background: #ffffff;
+	margin: .75em 0;
+	/*border-top: 3px solid #eee;*/
 }
 
 .medal {
@@ -182,6 +204,7 @@ center {
 		text-align: right;
 		position: relative;
 		padding-right: 0;
+		padding: 0;
 	}
 		header #searchbar .logo {
 			display: inline-block;
@@ -190,8 +213,51 @@ center {
 			top: 6px;
 			height: 48px;
 			width: 48px;
-
 		}
+
+		header #searchbar form {
+			margin: 12px 0;
+		}
+
+		header .tray {
+			background: #efefef;
+			
+		}
+			header .tray ul {
+				font-size: 1.125em;
+				line-height: 2em;
+				height: 48px;
+				padding: 0;
+				margin: 0;
+			}
+			header .tray li {
+				display: inline-block;
+				text-align: left;
+			}
+				.tray li {
+					color: #666666;
+					line-height: 1em;
+					padding: .25em 15px;
+					font-size: 1.125em;
+				}
+					.tray small {
+						font-size: .66em;
+						color: #666;
+						display: block;
+						font-weight: 700;
+						text-transform: uppercase;
+					}
+					.tray span {
+						text-transform: uppercase;
+						font-weight: 700;
+						font-size: .75em;
+						color: #aaa;
+					}
+				.tray .moreButton {
+					line-height: 2em;
+					text-align: right;
+				}
+
 		header #searchbar .listIcon {
 			color: white;
 			font-size: 2em;
@@ -215,6 +281,11 @@ center {
 				background: white ;
 				color: #3A546D !important;
 			}
+		
+		header #search {
+			left: auto;
+		}	
+
 		header #search .listIcon {
 			margin: 0;
 		}
@@ -247,14 +318,14 @@ center {
 			}
 
 		header #search {
-			position: absolute;
+			/*position: absolute;*/
 			z-index: 1131;
-			display: block;
-			text-align: right;
+			/*display: block;*/
+			/*text-align: right;*/
 			background: #3A546D;
-			height: 60px;
-			padding: 14px 0;
-			width: 100%;
+			/*height: 60px;*/
+			/*padding: 14px 0;*/
+			/*width: 100%;*/
 		}
 			#exitButton {
 				padding: 0;
@@ -279,21 +350,119 @@ center {
 				border-bottom-left-radius: 0;
 			}
 
-
 #main {
 	margin-top: 60px;
+	background: #f3ece3;
+	z-index: 2;
 }
+	.results {
+		position: fixed;
+		width: 100%;
+		overflow-y: scroll;
+		z-index: 3;
+
+		/*top: 120px;*/
+	}
+	.bump {
+		margin-top: 48px;
+	}
+
 	#main ul {
 		padding: 0;
 		list-style-type: none;
 	}
 
+	#main #instructions {
+		position: fixed;
+		top: 75px;
+		right: 0;
+		width: 220px;
+		color: #aaa;
+	}
+		#main #instructions p, #main #instructions .leaderline {
+			display: inline-block;
+		}
+		#main #instructions .leaderline {
+			border-bottom: 1px solid #aaa;
+			border-right: 1px solid #aaa;
+			width: 100px;
+			height: 20px;
+			position: relative;
+			bottom: .25em;
+		}
+			#main #instructions #newSearch {}
+				#instructions #newSearch .leaderline {
+					width: 18px;
+				}
+			#main #instructions #browseList {}
+				#instructions #browseList .leaderline {
+				}
+
+
+	#main .bglogo {
+		position: fixed;
+		top: 33%;
+		left: 50%;
+		margin-left: -114px;
+		z-index: -1;
+	}
+
+		#main .bglogo img {
+			display: inline-block;
+			vertical-align: middle;
+			position: relative;
+			top: 3px;
+			margin-right: 6px;
+		}
+
+		#main .bglogo h1 {
+			display: inline-block;
+			vertical-align: middle;
+			font-family: Source Sans Pro;
+			font-size: 2em;
+			text-transform: uppercase;
+			font-weight: 700;
+			color: #AAA;
+			line-height: .85em;
+			text-shadow: 1px 1px white;
+		}
+
+		#main #backToMe  {
+			position: fixed;
+			height: 1.25em;
+			width: 1.25em;
+			background: white;
+			bottom: .125em;
+			right: .125em;
+			font-size: 3em;
+			line-height: 1.25em;
+			text-align: center;
+			border-radius: .25em;
+			z-index: -1;
+		}
+			#main #backToMe i {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				line-height: 1.25em;
+			}
+
 #main.container, #main.container-fluid {
-	padding: 0 0 0 0;
+	padding: 0;
 }
 
 #output {
 	background: white;
+}
+
+#viewContainer { 
+	
+}
+
+#searchResultsDetail ul {
+	margin-bottom: 0;
 }
 
 #searchResults {
@@ -354,26 +523,64 @@ center {
 				text-align: center;
 			}
 
-			ul li .name {
+			.name {
 				font-size: 1.25em;
-				line-height: .95em;
-				font-weight: 600;
+				line-height: 1em;
+				font-weight: 400;
 				margin: 0 0 3px 0;
 				clear: both;
+				font-family: Bitter;
 			}
 			.score {
 				font-family: Bitter;
 				font-size: 2em;
 				line-height: .75em;
 				font-weight: 400;
-				text-align: center;
+				text-align: right;
 				/*color: #666;*/
 			}
-			#listView .address {
+
+			.readMore {
+				text-align: right;
+				line-height: 2em;
+			}	
+				.readMore i {
+					color: #999;
+					font-weight: 700;
+				}
+
+			.title {
+				border-bottom: 1px solid #CCC;
+				padding: 1em 0;
+			}
+				.title h3 {
+					margin-top: 0;
+				}
+
+				.title .score {
+					font-size: 3rem;
+				}
+
+				.title .address { 
+					margin-bottom: 0;
+				}
+
+			.address {
 				display: inline-block;
 				color: #999999 !important;
+				/*text-transform: uppercase;*/
+				font-family: Bitter;
+				font-weight: 400;
 			}
-			#listView .distance {
+
+			.observations {
+				color: #999999;
+				font-size: 1em;
+				font-family: Bitter;
+				/*text-transform: uppercase;*/
+			}
+
+			.distance {
 				display: inline-block;
 				color: #999999 !important;
 				margin: 0;
@@ -382,8 +589,8 @@ center {
 
 a.close {
 	position: fixed;
-	top: 20%;
-	right: .75em;
+	top: 2.75em;
+	right: .5em;
 	font-size: 2em;
 	height: 1em;
 	width: 1em;
@@ -394,19 +601,17 @@ a.close {
 	opacity: 1;
 }
 
-#cityJump {
-	z-index: 1030;
+#cityJump > section {
+	/*z-index: 1;*/
+	/*margin-top: 2em;*/
 }
 
-#restaurantDetailView {
-	height: 80%;
-	width: 100%;
-	/*padding-top: 2em;*/
-	position: fixed;
-	bottom: 8px;
-	overflow-y: scroll;
-	z-index: 2;
+#restaurantDetailView {	
+	margin-top: 0px;
 }
+	#restaurantDetailView > .container-fluid {
+		padding: 0;
+	}
 
 	#restuarant-info {
 		font-family: "Bitter";
@@ -442,7 +647,8 @@ a.close {
 
 			#restaurantInfo ul {
 				display: inline-block;
-				margin-left: -15px;
+				margin-left: -.75em;
+				padding-right: 2em;
 			}
 
 		#restaurantInfo h1 {
@@ -501,6 +707,11 @@ a.close {
 			background: white;
 		}
 
+			.no-violations {
+				font-size: 1.125em;
+				color: #157F00;
+			}
+
 			.inspection .date {
 				/*font-size: 1.25em;*/
 				color: #777;
@@ -539,18 +750,22 @@ a.close {
 	        color: #3c9542;
 	    }
 
+	    	li.violationBar {
+	    		border-bottom: 1px solid #CCC;
+	    		padding-bottom: 1em;
+	    	}
+
 			ul.violations {
 				margin-bottom: 1em;
 				display: inline-block;
 				vertical-align: top;
 			}
 				li.violation,
-			    li.critical,
+			  li.critical,
 				li.repeat {
 					display: inline-block;
 					margin: .5em 0em;
 					margin-right: .25em;
-					color: #ffffff;
 				}
 
 					li.violation i,
@@ -563,6 +778,8 @@ a.close {
 						font-size: 1.5em;
 						border-radius: 100%;
 						background: #efefef;
+						color: #ffffff;
+
 					}
 
 					li.violation.active i {
