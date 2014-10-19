@@ -114,13 +114,15 @@ angular.module('openHealthDataAppFilters', [])
       return value * Math.Pi / 180;
     }
 
-    return function(input) {
+    return function(input, position) {
+
+      alert(JSON.stringify(input, position));
 
       var lat2 = input.latitude;
       var lon2 = input.longitude;
 
-      var lat1 = position.coords.latitude;
-      var lon1 = position.coords.longitude;
+      var lat1 = position.latitude;
+      var lon1 = position.longitude;
 
       var R = 6378.137; // km
       var dLat = toRad(lat2-lat1);
