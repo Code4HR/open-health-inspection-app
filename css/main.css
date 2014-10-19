@@ -40,13 +40,6 @@ Colors:
 .grayText {
 	color: #cccccc;
 }
-.grayBadge {
-	background: #cccccc;
-	border-bottom: 2px solid #333;
-}
-.grayBorder {
-	border-top: 3px solid #cccccc;
-}
 
 .greenText {
 	color: #157F00;
@@ -54,9 +47,6 @@ Colors:
 .greenBadge {
 	background: #157F00;
 	border-bottom: 2px solid #333;
-}
-.greenBorder {
-	border-top: 3px solid #157F00;
 }
 
 .yellowGreenText {
@@ -66,9 +56,6 @@ Colors:
 	background: #A8C433;
 	border-bottom: 2px solid #333;
 }
-.yellowGreenBorder {
-	border-top: 3px solid #A8C433;
-}
 
 .yellowText {
 	color: #B28C04;
@@ -77,9 +64,6 @@ Colors:
 	background: #B28C04;
 	border-bottom: 2px solid #333;
 }
-.yellowBorder {
-	border-top: 3px solid #B28C04;
-}
 
 .redText {
 	color: #f18775;
@@ -87,9 +71,7 @@ Colors:
 .redBadge {
 	background: #f18775;
 }
-.redBorder {
-	border-top: 3px solid #f18775;
-}
+
 
 .results {
 	position: fixed;
@@ -98,16 +80,6 @@ Colors:
 	z-index: 1030;
 	overflow: scroll;
 }
-
-.card {
-	background: #ffffff;
-	margin: .75em 0;
-	/*border-top: 3px solid #eee;*/
-}
-
-/*	.card .inspections {
-		max-height: 300px;
-	}*/
 
 .medal {
 	color: white !important;

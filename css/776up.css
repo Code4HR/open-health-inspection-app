@@ -22,6 +22,26 @@ Tablet and Small Screen Styles here.
 
 @media screen and (min-width: 776px) {
 
+    .grayBorder {
+        border-top: 3px solid #cccccc;
+    }
+
+    .greenBorder {
+        border-top: 3px solid #157F00 !important;
+    }
+
+    .yellowGreenBorder {
+        border-top: 3px solid #A8C433;
+    }
+
+    .yellowBorder {
+        border-top: 3px solid #B28C04;
+    }
+    
+    .redBorder {
+       border-top: 3px solid #f18775;
+    }
+
     .modalContainer {
         top: 70px;
     }
@@ -74,8 +94,15 @@ Tablet and Small Screen Styles here.
 
     .list-container .card {
         margin: .25em 0;
-        padding: .5em 0;
-        border: 1px solid #ddd;
+        /*padding: .5em 0;*/
+        /*border: 1px solid #ddd;*/
+        background: white;
+    }
+
+    .readMore {
+        text-align: right;
+        margin-bottom: 0;
+        padding: 0 .5em;
     }
 
     .angular-google-map-container { height:100%; width:100%; position:absolute; top:0; left:0; }

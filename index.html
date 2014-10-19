@@ -122,14 +122,18 @@
               <li ng-if="$index % 2 === 0" class="col-xs-12 visible-sm clearfix">d</li>
               <li ng-if="$index % 3 === 0" class="col-xs-12 visible-md visible-lg clearfix">d</li>
               <li ng-repeat="restaurant in results" class="list-container clearfix col-sm-6 col-md-4">
-                <div class="card clearfix"> 
+                <div class="card clearfix {{restaurant.score | scoreBorder}}"> 
                   <a href="#{{restaurant.url}}">
-                    <i class="{{restaurant.category | categoryIcon }} col-xs-2 category-icon"></i>
-                    <ul class="col-xs-7 info">
-                      <li class="name">{{restaurant.name}}</li>
-                      <li class="address">{{restaurant.address}}</li>
-                    </ul>
-                    <p class="score col-xs-3 {{restaurant.score | scoreColor}}">{{restaurant.score}}</p>
+                    <div class="title clearfix">
+                      <i class="{{restaurant.category | categoryIcon }} col-xs-2 category-icon"></i>
+                      <ul class="col-xs-7 info">
+                        <li class="name">{{restaurant.name}}</li>
+                        <li class="address">{{restaurant.address}}</li>
+                      </ul>
+                      <p class="score col-xs-3 {{restaurant.score | scoreColor}}">{{restaurant.score}}</p>
+                    </div>
+                    <div class="inspections visible-md visible-lg"></div>
+                    <p class="readMore visible-md visible-lg">Read this vendor's full report.</p>
                   </a>
                 </div>
               </li>
