@@ -53,8 +53,16 @@ Tablet and Small Screen Styles here.
         padding: .5em;
     }
 
-    #main #viewContainer.bump {
+    .bump {
         margin-top: 0;
+    }
+
+    .results {
+        position: relative;
+        display: block;
+        overflow: none;
+        top: 0;
+        z-index: 10;
     }
 
     .angular-google-map-container { height:100%; width:100%; position:absolute; top:0; left:0; }

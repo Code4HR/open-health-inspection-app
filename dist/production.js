@@ -31,10 +31,10 @@ openHealthDataApp.config(['$routeProvider',
         templateUrl: 'partials/restaurantDetailView.html',
         controller: 'restaurantDetailCtrl'
       }).
-      when('/', {
-        templateUrl: 'partials/searchResultsPreview.html',
-        controller: 'searchResultsPreview'
-      }).
+      // when('/', {
+      //   templateUrl: 'partials/searchResultsPreview.html',
+      //   controller: 'searchResultsPreview'
+      // }).
       otherwise({
         redirectTo: '/'
       });
@@ -73,9 +73,11 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
 
     console.log("Screen width", screen.width);
 
-    var calcHeight = angular.element(window).height() - 100;
-    angular.element(".results").css("max-height" , calcHeight);
-
+    if (screen.width < 776) {
+      var calcHeight = angular.element(window).height() - 100;
+      angular.element(".results").css("max-height" , calcHeight);
+    }
+    
     $rootScope.getLocation = function() {
 
       console.log('getting location');
