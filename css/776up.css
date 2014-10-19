@@ -65,7 +65,25 @@ Tablet and Small Screen Styles here.
         z-index: 10;
     }
 
+    ul li.list-container {
+        /*border-bottom: none !important;*/
+        /*margin: .5em;*/
+        background: transparent;
+        border-bottom: none;
+    }
+
+    .list-container .card {
+        margin: .25em 0;
+        padding: .5em 0;
+        border: 1px solid #ddd;
+    }
+
     .angular-google-map-container { height:100%; width:100%; position:absolute; top:0; left:0; }
+
+        #searchResults {
+            background: transparent;
+            border: none;
+        }
 
         #searchResults .row {
             margin-bottom: 0;
