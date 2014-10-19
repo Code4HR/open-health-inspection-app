@@ -59,15 +59,6 @@ Tablet and Small Screen Styles here.
 
     .angular-google-map-container { height:100%; width:100%; position:absolute; top:0; left:0; }
 
-    .results {
-        position: fixed;
-        top: 60px;
-        right: 0;
-        width: inherit;
-        max-height: 500px;
-        z-index: 1029;
-        overflow-y: scroll;
-    } 
         #searchResults .row {
             margin-bottom: 0;
         }
