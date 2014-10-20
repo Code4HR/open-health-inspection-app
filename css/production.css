@@ -470,6 +470,11 @@ center {
 			background: white;
 			position: relative;
 		}
+
+			.list-container div.q {
+				background: orange;
+			}
+
 			.city-container {
 				padding: 0 10px 3px 10px;
 				font-size: 1.25em;
@@ -883,7 +888,7 @@ Tablet and Small Screen Styles here.
     }
 
     .list-container .card {
-        margin: .25em 0;
+        margin: .5em 0;
         /*padding: .5em 0;*/
         /*border: 1px solid #ddd;*/
         background: white;

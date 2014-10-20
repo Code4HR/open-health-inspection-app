@@ -119,9 +119,11 @@
         <section id="searchResults" ng-controller="searchResultsCtrl">
           <section id="searchResultsDetail" ng-show="isVisible">
             <ul class="row">
-              <li ng-if="$index % 2 === 0" class="col-xs-12 visible-sm clearfix">d</li>
-              <li ng-if="$index % 3 === 0" class="col-xs-12 visible-md visible-lg clearfix">d</li>
               <li ng-repeat="restaurant in results" class="list-container clearfix col-sm-6 col-md-4">
+                
+                <div ng-if="$index % 2 === 0" class="col-xs-12 visible-sm clearfix q">{{$index}}</div>
+                <div ng-if="$index % 3 === 0" class="col-xs-12 visible-md visible-lg clearfix q">{{$index}}</div>
+                
                 <div class="card clearfix {{restaurant.score | scoreBorder}}"> 
                   <a href="#{{restaurant.url}}">
                     <div class="title clearfix">
