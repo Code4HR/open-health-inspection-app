@@ -471,6 +471,10 @@ center {
 			position: relative;
 		}
 
+			.list-container .card {
+				background: white;
+			}
+
 			.list-container div.q {
 				background: orange;
 			}
@@ -481,7 +485,7 @@ center {
 				line-height: .95em;
 				font-weight: 600;
 				clear: both;
-				position: absolute;
+				/*position: absolute;*/
 				height: 100%;
 				width: 100%;
 			}
@@ -869,7 +873,7 @@ Tablet and Small Screen Styles here.
     }
 
     .bump {
-        margin-top: 0;
+        margin-top: 48px;
     }
 
     .results {
