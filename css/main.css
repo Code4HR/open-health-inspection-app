@@ -40,13 +40,6 @@ Colors:
 .grayText {
 	color: #cccccc;
 }
-.grayBadge {
-	background: #cccccc;
-	border-bottom: 2px solid #333;
-}
-.grayBorder {
-	border-top: 3px solid #cccccc;
-}
 
 .greenText {
 	color: #157F00;
@@ -54,9 +47,6 @@ Colors:
 .greenBadge {
 	background: #157F00;
 	border-bottom: 2px solid #333;
-}
-.greenBorder {
-	border-top: 3px solid #157F00;
 }
 
 .yellowGreenText {
@@ -66,9 +56,6 @@ Colors:
 	background: #A8C433;
 	border-bottom: 2px solid #333;
 }
-.yellowGreenBorder {
-	border-top: 3px solid #A8C433;
-}
 
 .yellowText {
 	color: #B28C04;
@@ -77,9 +64,6 @@ Colors:
 	background: #B28C04;
 	border-bottom: 2px solid #333;
 }
-.yellowBorder {
-	border-top: 3px solid #B28C04;
-}
 
 .redText {
 	color: #f18775;
@@ -87,14 +71,14 @@ Colors:
 .redBadge {
 	background: #f18775;
 }
-.redBorder {
-	border-top: 3px solid #f18775;
-}
 
-.card {
-	background: #ffffff;
-	margin: .75em 0;
-	/*border-top: 3px solid #eee;*/
+.results {
+	position: relative;
+	top: 0;
+	right: 0;
+	z-index: 50;
+	overflow: scroll;
+	width: 100%;
 }
 
 .medal {
@@ -221,6 +205,7 @@ center {
 
 		header .tray {
 			background: #efefef;
+			z-index: 1040;
 			
 		}
 			header .tray ul {
@@ -352,19 +337,11 @@ center {
 
 #main {
 	margin-top: 60px;
-	background: #f3ece3;
+	/*background: #f3ece3;*/
 	z-index: 2;
 }
-	.results {
-		position: fixed;
-		width: 100%;
-		overflow-y: scroll;
-		z-index: 3;
-
-		/*top: 120px;*/
-	}
 	.bump {
-		margin-top: 48px;
+		padding-top: 48px !important;
 	}
 
 	#main ul {
@@ -494,13 +471,22 @@ center {
 			background: white;
 			position: relative;
 		}
+
+			.list-container .card {
+				background: white;
+			}
+
+			.list-container div.q {
+				background: orange;
+			}
+
 			.city-container {
 				padding: 0 10px 3px 10px;
 				font-size: 1.25em;
 				line-height: .95em;
 				font-weight: 600;
 				clear: both;
-				position: absolute;
+				/*position: absolute;*/
 				height: 100%;
 				width: 100%;
 			}
@@ -601,10 +587,23 @@ a.close {
 	opacity: 1;
 }
 
+#cityJump {
+	position: fixed;
+	top: 108px;
+	right: 0;
+	overflow: scroll;
+	/*max-height: 100%;*/
+}
+
 #cityJump > section {
 	/*z-index: 1;*/
 	/*margin-top: 2em;*/
 }
+
+	#cityJump li {
+		padding: inherit 15px;
+		background: white;
+	}
 
 #restaurantDetailView {	
 	margin-top: 0px;

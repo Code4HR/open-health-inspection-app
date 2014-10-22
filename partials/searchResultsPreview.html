@@ -18,7 +18,7 @@
 								<h3 class="score {{restaurant.score | scoreColor}}">{{restaurant.score}}</h3>
 							</div>
 						</div>
-						<div ng-if="$index < reviewCount" class="col-xs-12 clearfix">
+						<div ng-if="$index < reviewCount" class="col-xs-12 clearfix inspections">
 							<h3 class="observations">Latest Observations ({{restaurant.inspections[0].date}})</h3>
 							<ul>
 								<li ng-repeat="inspection in restaurant.inspections | limitTo:inspectionsCount">
@@ -35,7 +35,7 @@
 							</ul>
 						</div>
 						<a class="clearfix col-xs-12 readMore" ng-href="#{{restaurant.url}}">
-							Read More <i class="fa fa-angle-right"></i>
+							Read this vendor's report <i class="fa fa-angle-right"></i>
 						</a>
 					</div>
 				</div>

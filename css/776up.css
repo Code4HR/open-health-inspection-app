@@ -22,6 +22,26 @@ Tablet and Small Screen Styles here.
 
 @media screen and (min-width: 776px) {
 
+    .grayBorder {
+        border-top: 3px solid #cccccc;
+    }
+
+    .greenBorder {
+        border-top: 3px solid #157F00 !important;
+    }
+
+    .yellowGreenBorder {
+        border-top: 3px solid #A8C433;
+    }
+
+    .yellowBorder {
+        border-top: 3px solid #B28C04;
+    }
+    
+    .redBorder {
+       border-top: 3px solid #f18775;
+    }
+
     .modalContainer {
         top: 70px;
     }
@@ -53,21 +73,42 @@ Tablet and Small Screen Styles here.
         padding: .5em;
     }
 
-    #main #viewContainer.bump {
-        margin-top: 0;
+    .results {
+        position: relative;
+        display: block;
+        overflow: none;
+        top: 0;
+        z-index: 10;
+        max-height: auto;
+    }
+
+    ul li.list-container {
+        /*border-bottom: none !important;*/
+        /*margin: .5em;*/
+        background: transparent;
+        border-bottom: none;
+    }
+
+    .list-container .card {
+        margin: .5em 0;
+        /*padding: .5em 0;*/
+        /*border: 1px solid #ddd;*/
+        background: white;
+    }
+
+    .readMore {
+        text-align: right;
+        margin-bottom: 0;
+        padding: 0 .5em;
     }
 
     .angular-google-map-container { height:100%; width:100%; position:absolute; top:0; left:0; }
 
-    .results {
-        position: fixed;
-        top: 60px;
-        right: 0;
-        width: inherit;
-        max-height: 500px;
-        z-index: 1029;
-        overflow-y: scroll;
-    } 
+        #searchResults {
+            background: transparent;
+            border: none;
+        }
+
         #searchResults .row {
             margin-bottom: 0;
         }
