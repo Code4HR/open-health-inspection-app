@@ -32,10 +32,10 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
     console.log("Screen width", screen.width);
 
     if (screen.width < 776) {
-      var calcHeight = angular.element(window).height() - 100;
+      var calcHeight = angular.element(window).height() - 100 + 48;
       angular.element(".results").css("max-height" , calcHeight);
     }
-    
+
     $rootScope.getLocation = function() {
 
       console.log('getting location');

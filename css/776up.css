@@ -74,7 +74,7 @@ Tablet and Small Screen Styles here.
     }
 
     .bump {
-        padding-top: 48px;
+        top: 48px;
     }
 
     .results {

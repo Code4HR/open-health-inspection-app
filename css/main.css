@@ -206,6 +206,7 @@ center {
 
 		header .tray {
 			background: #efefef;
+			z-index: 1040;
 			
 		}
 			header .tray ul {
@@ -341,7 +342,7 @@ center {
 	z-index: 2;
 }
 	.bump {
-		padding-top: 48px;
+		top: 48px !important;
 	}
 
 	#main ul {
