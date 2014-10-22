@@ -115,18 +115,18 @@
         </div>
       </section>
 
-      <section class="col-sm-12 results" ng-class="{'bump': isSearchbarVisible || isVisible}"> 
+      <section class="results" ng-class="{'bump': isSearchbarVisible || isVisible}"> 
         
         <section id="searchResults" ng-controller="searchResultsCtrl">
           <section id="searchResultsDetail" ng-show="isVisible">
-            <ul class="row">
+            <ul class="">
               <li ng-repeat="restaurant in results">
     
                 <div ng-if="$index % 2 === 0" class="col-xs-12 visible-sm clearfix"></div>
                 <div ng-if="$index % 3 === 0" class="col-xs-12 visible-md visible-lg clearfix"></div>
                 
                 <div class="list-container col-sm-6 col-md-4">
-                  <div class="row card clearfix {{restaurant.score | scoreBorder}}"> 
+                  <div class="card clearfix {{restaurant.score | scoreBorder}}"> 
                     <a href="#{{restaurant.url}}">
                       <div class="title clearfix">
                         <i class="{{restaurant.category | categoryIcon }} col-xs-2 category-icon"></i>
@@ -147,10 +147,10 @@
           </section>
         </section>
 
-        <section id="cityJump" class="col-xs-12 col-sm-4 sol-sm-offset-8 col-md-5 col-md-offset-7" ng-controller="cityJumpCtrl">
+        <section id="cityJump" class="col-xs-12 col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-8" ng-controller="cityJumpCtrl">
           <section ng-show="isCityJumpVisible">
             <ul class="row">
-              <li class="row list-container nearMe">
+              <li class="list-container nearMe">
                 <a class="city-container" ng-click="cityJump()">Near Me</a></li>
               <li class="list-container clearfix" ng-repeat="city in cities">
                 <a class="city-container" ng-click="cityJump(city)">{{city.name}}</a>
@@ -165,6 +165,7 @@
 
     </div>
 
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-resource.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular-route.min.js"></script>

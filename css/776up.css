@@ -74,7 +74,7 @@ Tablet and Small Screen Styles here.
     }
 
     .bump {
-        margin-top: 48px;
+        padding-top: 48px;
     }
 
     .results {
@@ -83,6 +83,7 @@ Tablet and Small Screen Styles here.
         overflow: none;
         top: 0;
         z-index: 10;
+        max-height: auto;
     }
 
     ul li.list-container {

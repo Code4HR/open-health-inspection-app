@@ -74,11 +74,12 @@ Colors:
 
 
 .results {
-	position: fixed;
-	top: 60px;
+	position: relative;
+	top: 0;
 	right: 0;
 	z-index: 1030;
 	overflow: scroll;
+	width: 100%;
 }
 
 .medal {
@@ -340,7 +341,7 @@ center {
 	z-index: 2;
 }
 	.bump {
-		margin-top: 48px;
+		padding-top: 48px;
 	}
 
 	#main ul {
@@ -464,7 +465,7 @@ center {
 
 	}
 		ul li.list-container {
-			/*padding: 10px 0;*/
+			padding: 10px 0;
 			min-height:60px;
 			border-bottom:1px solid #ccc;
 			background: white;
@@ -586,10 +587,23 @@ a.close {
 	opacity: 1;
 }
 
+#cityJump {
+	position: fixed;
+	top: 48px;
+	right: 0;
+	overflow: scroll;
+	/*max-height: 100%;*/
+}
+
 #cityJump > section {
 	/*z-index: 1;*/
 	/*margin-top: 2em;*/
 }
+
+	#cityJump li {
+		padding: inherit 15px;
+		background: white;
+	}
 
 #restaurantDetailView {	
 	margin-top: 0px;
@@ -873,7 +887,7 @@ Tablet and Small Screen Styles here.
     }
 
     .bump {
-        margin-top: 48px;
+        padding-top: 48px;
     }
 
     .results {
@@ -882,6 +896,7 @@ Tablet and Small Screen Styles here.
         overflow: none;
         top: 0;
         z-index: 10;
+        max-height: auto;
     }
 
     ul li.list-container {
