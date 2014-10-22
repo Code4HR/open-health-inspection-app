@@ -74,7 +74,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
     console.log("Screen width", screen.width);
 
     if (screen.width < 776) {
-      var calcHeight = angular.element(window).height() - 100 + 48;
+      var calcHeight = angular.element(window).height() - 100 + 64;
       angular.element(".results").css("max-height" , calcHeight);
     }
 
@@ -267,7 +267,7 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
         Search.results.forEach(function(el, index){
           if (!_.isUndefined(el.coordinates)) {
             
-            alert(JSON.stringify(Geosearch.coords));
+            // alert(JSON.stringify(Geosearch.coords));
 
             el.dist = $filter('distanceCalculation')(el.coordinates, Geosearch.coords);
 

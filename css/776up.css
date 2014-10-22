@@ -73,10 +73,6 @@ Tablet and Small Screen Styles here.
         padding: .5em;
     }
 
-    .bump {
-        top: 48px;
-    }
-
     .results {
         position: relative;
         display: block;
