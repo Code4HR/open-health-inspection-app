@@ -72,7 +72,6 @@ Colors:
 	background: #f18775;
 }
 
-
 .results {
 	position: relative;
 	top: 0;
@@ -338,7 +337,7 @@ center {
 
 #main {
 	margin-top: 60px;
-	background: #f3ece3;
+	/*background: #f3ece3;*/
 	z-index: 2;
 }
 	.bump {
@@ -590,7 +589,7 @@ a.close {
 
 #cityJump {
 	position: fixed;
-	top: 48px;
+	top: 108px;
 	right: 0;
 	overflow: scroll;
 	/*max-height: 100%;*/

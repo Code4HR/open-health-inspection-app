@@ -45,7 +45,6 @@
       <div class="container-fluid">
 
         <div class="row">
-
           <div id="logoWrapper" class="hidden-xs col-sm-7 col-md-8">
             <a href="#/" class="clearfix">
               <img id="logo" src="img/build/logo.png" height="48px" width="48px" alt="Open Health Inspection Logo">
@@ -115,8 +114,7 @@
         </div>
       </section>
 
-      <section class="results" ng-class="{'bump': isSearchbarVisible || isVisible}"> 
-        
+      <section class="results" ng-class="{'bump': isSearchbarVisible || isVisible}">    
         <section id="searchResults" ng-controller="searchResultsCtrl">
           <section id="searchResultsDetail" ng-show="isVisible">
             <ul class="">
@@ -146,19 +144,18 @@
             </ul>
           </section>
         </section>
+      </section>
 
-        <section id="cityJump" class="col-xs-12 col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-8" ng-controller="cityJumpCtrl">
-          <section ng-show="isCityJumpVisible">
-            <ul class="row">
-              <li class="list-container nearMe">
-                <a class="city-container" ng-click="cityJump()">Near Me</a></li>
-              <li class="list-container clearfix" ng-repeat="city in cities">
-                <a class="city-container" ng-click="cityJump(city)">{{city.name}}</a>
-              </li>
-            </ul>
-          </section>
+      <section id="cityJump" class="col-xs-12 col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-8 cityResults" ng-controller="cityJumpCtrl">
+        <section ng-show="isCityJumpVisible">
+          <ul class="row">
+            <li class="list-container nearMe">
+              <a class="city-container" ng-click="cityJump()">Near Me</a></li>
+            <li class="list-container clearfix" ng-repeat="city in cities">
+              <a class="city-container" ng-click="cityJump(city)">{{city.name}}</a>
+            </li>
+          </ul>
         </section>
-
       </section>
 
       <div id="viewContainer" ng-view></div>
