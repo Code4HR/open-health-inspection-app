@@ -31,10 +31,10 @@ openHealthDataApp.config(['$routeProvider',
         templateUrl: 'partials/restaurantDetailView.html',
         controller: 'restaurantDetailCtrl'
       }).
-      // when('/', {
-      //   templateUrl: 'partials/searchResultsPreview.html',
-      //   controller: 'searchResultsPreview'
-      // }).
+      when('/', {
+        templateUrl: 'partials/searchResultsPreview.html',
+        controller: 'searchResultsPreview'
+      }).
       otherwise({
         redirectTo: '/'
       });
@@ -290,23 +290,7 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
 openHealthDataAppControllers.controller('searchResultsPreview',
   ['$scope', '$rootScope', 'Geosearch', 'Inspections', function($scope, $rootScope, Geosearch, Inspections) {
 
-  $rootScope.$on('geosearchFire', function() {
-
-    $scope.restaurantsCount = 12;
-    $scope.reviewCount = 3;
-    $scope.inspectionsCount = 1;
-    $scope.observationsCount = 3;
-
-    $scope.restaurants = Geosearch.results.slice(0,$scope.restaurantsCount);
-
-    $scope.restaurants.slice(0, $scope.reviewCount).forEach(function(el) {
-      var name = el.url.slice(8);
-      return Inspections.query({vendorid: name}, function(vendor){ 
-        el.inspections = _.toArray(vendor[name].inspections);
-      });
-    });
-
-  });
+    $rootScope.isVisible = true;    
 
 }]);
 
@@ -521,7 +505,7 @@ angular.module('openHealthDataAppFilters', [])
 
     return function(input, position) {
 
-      alert(JSON.stringify(input, position));
+      // alert(JSON.stringify(input, position));
 
       var lat2 = input.latitude;
       var lon2 = input.longitude;

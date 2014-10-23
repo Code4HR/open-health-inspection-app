@@ -116,7 +116,7 @@ angular.module('openHealthDataAppFilters', [])
 
     return function(input, position) {
 
-      alert(JSON.stringify(input, position));
+      // alert(JSON.stringify(input, position));
 
       var lat2 = input.latitude;
       var lon2 = input.longitude;
