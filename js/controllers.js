@@ -192,6 +192,10 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
       $rootScope.resultsType = "Look at another city's inspections.";
     }
 
+
+    var noResults = false;
+    var searchRadius = 10000;
+
     $scope.nameSearch = function() {
       console.log("Searching for " + $scope.query + ".");
       $rootScope.isSearchbarVisible = false;
@@ -201,13 +205,19 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
           name: $scope.query,
           city: Search.city.name
         }
+      } else if (noResults) {
+        $scope.searchAreaText = 'Virginia';
+        searchQuery = {
+          name: $scope.query
+        }
+        noResults = false;
       } else {
-        $scope.searchAreaText = 'This area';
+        $scope.searchAreaText = '< 3 Miles';
         searchQuery = {
           name: $scope.query,
           lat: Geosearch.coords.latitude,
           lng: Geosearch.coords.longitude,
-          dist: 10000
+          dist: searchRadius
         }
       }
 
@@ -221,6 +231,8 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
 
         if (Search.results.length === 0) {
           alert('no results');
+          noResults = true;
+          return $scope.nameSearch();
         }
 
         Search.results.forEach(function(el, index){
