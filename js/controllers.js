@@ -259,13 +259,10 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
         Search.results.forEach(function(el, index){
           if (!_.isUndefined(el.coordinates)) {
             
-            // alert(JSON.stringify(Geosearch.coords));
-
-            el.dist = $filter('distanceCalculation')(el.coordinates, Geosearch.coords);
-
             el.score = !_.isUndefined(el.score) &&
                        !_.isNull(el.score) ?
                        Math.round(el.score) : "n/a";
+                       
           } else {
             Search.results.splice(index,1);
           }
