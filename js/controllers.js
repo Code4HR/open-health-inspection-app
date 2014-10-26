@@ -53,6 +53,8 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
 
     $rootScope.showPosition = function(position) {
 
+      var searchRadii = [500, 1000, 2000, 4000, 8000, 16000, 320000];
+
       //outside Virginia check.
       //- Latitude  36° 32′ N to 39° 28′ N
       // 36.533333 - 39.466667
@@ -81,27 +83,37 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
 
       }
 
-      Geosearch.results = Geosearch.query({
-        lat: position.coords.latitude, 
-        lon: position.coords.longitude, 
-        dist: 300
-      }, function() {
+      function doSearch(index) {
 
-        Geosearch.results = _.values(_.reject(Geosearch.results, function(el){
-          return _.isUndefined(el.name);
-        }));
+        Geosearch.results = Geosearch.query({
+          lat: position.coords.latitude, 
+          lon: position.coords.longitude, 
+          dist: searchRadii[index]
+        }, function() {
 
-        Geosearch.results.forEach(function(el, index){
-          el.dist = el.dist * 0.000621371;
-          el.score = el.score ? Math.round(el.score) : "n/a";
+          Geosearch.results = _.values(_.reject(Geosearch.results, function(el){
+            return _.isUndefined(el.name);
+          }));
+
+          if (Geosearch.results.length < 20) {
+            alert('Not many results found within ' + searchRadii[index] + ' Expanding search radius');
+            return doSearch(index + 1);
+          }
+
+          Geosearch.results.forEach(function(el, index) { 
+            el.dist = el.dist * 0.000621371;
+            el.score = el.score ? Math.round(el.score) : "n/a";
+          });
+
+          Geosearch.results = 
+            $filter('orderBy')(Geosearch.results, 'dist', false);
+
+          $rootScope.$broadcast('geosearchFire');
+
         });
+      }
 
-        Geosearch.results = 
-          $filter('orderBy')(Geosearch.results, 'dist', false);
-
-        $rootScope.$broadcast('geosearchFire');
-
-      });
+      doSearch(0);
 
     };
 
