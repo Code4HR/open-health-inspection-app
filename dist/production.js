@@ -113,6 +113,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
 
         // Position.coords is only avaible in this scope, share over 
         // Geosearch service
+
         Geosearch.coords = position.coords;
 
       } else {
@@ -126,6 +127,9 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
       }
 
       function doSearch(index) {
+
+        console.log('attempt to get results near ' +
+        position.coords.latitude + ',' + position.coords.longitude);
 
         Geosearch.results = Geosearch.query({
           lat: position.coords.latitude, 
@@ -254,6 +258,11 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
       console.log("Searching for " + $scope.query + ".");
       $rootScope.isSearchbarVisible = false;
 
+      // if ($scope.query.length < 3) {
+      //   alert('Please enter a search term longer than 3 characters.');
+      //   return;
+      // }
+
       if (!_.isUndefined(Search.city)) {
         searchQuery = {
           name: $scope.query,
@@ -266,7 +275,7 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
         }
         noResults = false;
       } else {
-        $scope.searchAreaText = '< 3 Miles';
+        $scope.searchAreaText = 'within 3 Miles';
         searchQuery = {
           name: $scope.query,
           lat: Geosearch.coords.latitude,
