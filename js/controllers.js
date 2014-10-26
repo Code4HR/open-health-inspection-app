@@ -53,6 +53,8 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
 
     $rootScope.showPosition = function(position) {
 
+      var searchRadii = [500, 1000, 2000, 4000, 8000, 16000, 320000];
+
       //outside Virginia check.
       //- Latitude  36° 32′ N to 39° 28′ N
       // 36.533333 - 39.466667
@@ -69,6 +71,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
 
         // Position.coords is only avaible in this scope, share over 
         // Geosearch service
+
         Geosearch.coords = position.coords;
 
       } else {
@@ -81,27 +84,40 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
 
       }
 
-      Geosearch.results = Geosearch.query({
-        lat: position.coords.latitude, 
-        lon: position.coords.longitude, 
-        dist: 300
-      }, function() {
+      function doSearch(index) {
 
-        Geosearch.results = _.values(_.reject(Geosearch.results, function(el){
-          return _.isUndefined(el.name);
-        }));
+        console.log('attempt to get results near ' +
+        position.coords.latitude + ',' + position.coords.longitude);
 
-        Geosearch.results.forEach(function(el, index){
-          el.dist = el.dist * 0.000621371;
-          el.score = el.score ? Math.round(el.score) : "n/a";
+        Geosearch.results = Geosearch.query({
+          lat: position.coords.latitude, 
+          lon: position.coords.longitude, 
+          dist: searchRadii[index]
+        }, function() {
+
+          Geosearch.results = _.values(_.reject(Geosearch.results, function(el){
+            return _.isUndefined(el.name);
+          }));
+
+          if (Geosearch.results.length < 20) {
+            alert('Not many results found within ' + searchRadii[index] + ' Expanding search radius');
+            return doSearch(index + 1);
+          }
+
+          Geosearch.results.forEach(function(el, index) { 
+            el.dist = el.dist * 0.000621371;
+            el.score = el.score ? Math.round(el.score) : "n/a";
+          });
+
+          Geosearch.results = 
+            $filter('orderBy')(Geosearch.results, 'dist', false);
+
+          $rootScope.$broadcast('geosearchFire');
+
         });
+      }
 
-        Geosearch.results = 
-          $filter('orderBy')(Geosearch.results, 'dist', false);
-
-        $rootScope.$broadcast('geosearchFire');
-
-      });
+      doSearch(0);
 
     };
 
@@ -192,22 +208,37 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
       $rootScope.resultsType = "Look at another city's inspections.";
     }
 
+
+    var noResults = false;
+    var searchRadius = 10000;
+
     $scope.nameSearch = function() {
       console.log("Searching for " + $scope.query + ".");
       $rootScope.isSearchbarVisible = false;
+
+      // if ($scope.query.length < 3) {
+      //   alert('Please enter a search term longer than 3 characters.');
+      //   return;
+      // }
 
       if (!_.isUndefined(Search.city)) {
         searchQuery = {
           name: $scope.query,
           city: Search.city.name
         }
+      } else if (noResults) {
+        $scope.searchAreaText = 'Virginia';
+        searchQuery = {
+          name: $scope.query
+        }
+        noResults = false;
       } else {
-        $scope.searchAreaText = 'This area';
+        $scope.searchAreaText = 'within 3 Miles';
         searchQuery = {
           name: $scope.query,
           lat: Geosearch.coords.latitude,
           lng: Geosearch.coords.longitude,
-          dist: 10000
+          dist: searchRadius
         }
       }
 
@@ -221,6 +252,8 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
 
         if (Search.results.length === 0) {
           alert('no results');
+          noResults = true;
+          return $scope.nameSearch();
         }
 
         Search.results.forEach(function(el, index){

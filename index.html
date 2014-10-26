@@ -24,7 +24,7 @@
     <link rel="apple-touch-icon" sizes="144x144" href="img/build/apple-touch-icon-144x144.png" />
     <link rel="apple-touch-icon" sizes="152x152" href="img/build/apple-touch-icon-152x152.png" />
 
-    <title>Open Health Inspection App</title>
+    <title>Open Health Inspection</title>
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/production.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,300italic,400italic,700,700italic,900italic' rel='stylesheet' type='text/css'>
@@ -55,6 +55,7 @@
           <div id="searchbar" class="col-xs-12 col-sm-5 col-md-4 clearfix" ng-controller="searchCtrl">
 
             <section id="search" ng-show="isSearchbarVisible" class="navbar-fixed-top col-xs-12 col-sm-5 col-md-4">
+              
               <form ng-submit="nameSearch()" class=" clearfix" novalidate>
                 <span id="exitButton" ng-click="toggleSearchField()" class="col-xs-1 glyphicon glyphicon-chevron-left"></span>
                 <input id="searchField" class="col-xs-9" type="search" ng-model="query" placeholder="Search for a restaurant" focus-me="isSearchbarVisible"/>
@@ -62,6 +63,7 @@
                   <span id="searchButton" class="glyphicon glyphicon-search"/>
                 </button>
               </form>
+
               <section class="clearfix row tray">
                 <ul class="">
                   <li class="col-xs-7 searchDescription">
@@ -73,14 +75,21 @@
                   </li>
                 </ul>
               </section>
+
             </section>
 
             <a href="#/" class="visible-xs" class="clearfix">
               <img class="logo" src="img/build/logo.png" height="36px" width="36px" alt="logo">
             </a>
+
             <a ng-click="toggleSearchField()"  class="listIcon clearfix">
               <span id="searchButton" class="glyphicon glyphicon-search"></span>
             </a>
+
+            <a id="backToMe" class="listIcon clearfix" ng-click="getLocation()">
+              <span class="fa fa-crosshairs"></span>
+            </a>
+
 <!--             <a ng-click="toggleList()" ng-fclass="{'active-button': isVisible}" class="listIcon">
               <span id="listButton"  class="glyphicon glyphicon-th-list" class="col-xs-1"></span>
             </a> -->
@@ -109,7 +118,7 @@
       </div>
 
       <section ng-controller="mapCtrl">    
-    <!--     <div id="backToMe" ng-click="getLocation()">
+  <!--       <div id="backToMe" ng-click="getLocation()">
           <i class="fa fa-crosshairs"></i>
         </div> -->
       </section>
