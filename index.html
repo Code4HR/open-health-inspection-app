@@ -56,7 +56,7 @@
 
             <section id="search" ng-show="isSearchbarVisible" class="navbar-fixed-top col-xs-12 col-sm-5 col-md-4">
               
-              <form ng-submit="nameSearch()" class=" clearfix" novalidate>
+              <form ng-submit="nameSearch(0)" class=" clearfix" novalidate>
                 <span id="exitButton" ng-click="toggleSearchField()" class="col-xs-1 glyphicon glyphicon-chevron-left"></span>
                 <input id="searchField" class="col-xs-9" type="search" ng-model="query" placeholder="Search for a restaurant" focus-me="isSearchbarVisible"/>
                 <button class="btn btn-info col-xs-2">

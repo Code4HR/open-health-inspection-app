@@ -95,7 +95,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
 
     $rootScope.showPosition = function(position) {
 
-      var searchRadii = [500, 1000, 2000, 4000, 8000, 16000, 320000];
+      var searchRadii = [500, 1000, 2000, 4000, 8000, 16000, 32000];
 
       //outside Virginia check.
       //- Latitude  36° 32′ N to 39° 28′ N
@@ -250,37 +250,39 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
       $rootScope.resultsType = "Look at another city's inspections.";
     }
 
+    var searchRadii = [4000, 8000, 16000, 32000];
 
-    var noResults = false;
-    var searchRadius = 10000;
-
-    $scope.nameSearch = function() {
-      console.log("Searching for " + $scope.query + ".");
+    $scope.nameSearch = function(index) {
       $rootScope.isSearchbarVisible = false;
 
-      // if ($scope.query.length < 3) {
-      //   alert('Please enter a search term longer than 3 characters.');
-      //   return;
-      // }
+      if ($scope.query.length < 4) {
+        alert('Please enter a longer search term.');
+        return;
+      }
 
       if (!_.isUndefined(Search.city)) {
+        console.log('search for ' + $scope.query + ' in ' + Search.city.name);
         searchQuery = {
           name: $scope.query,
           city: Search.city.name
         }
-      } else if (noResults) {
-        $scope.searchAreaText = 'Virginia';
+      } else if (searchRadii[index] === undefined &&
+                 searchQuery.dist === undefined) {
+        console.log('no results found anywhere');
+        alert('We weren\'t able to find any results for '+ $scope.query +' in the state of Virginia');
+        return;
+      } else if (searchRadii[index] === undefined) {
+        console.log('unable to find any ' + $scope.query + ' nearby...')
         searchQuery = {
           name: $scope.query
         }
-        noResults = false;
       } else {
-        $scope.searchAreaText = 'within 3 Miles';
+        console.log('searching for results within ' + searchRadii[index]);
         searchQuery = {
           name: $scope.query,
           lat: Geosearch.coords.latitude,
           lng: Geosearch.coords.longitude,
-          dist: searchRadius
+          dist: searchRadii[index]
         }
       }
 
@@ -293,21 +295,16 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
         }));
 
         if (Search.results.length === 0) {
-          alert('no results');
-          noResults = true;
-          return $scope.nameSearch();
+          return $scope.nameSearch(index + 1);
         }
 
         Search.results.forEach(function(el, index){
           if (!_.isUndefined(el.coordinates)) {
             
-            // alert(JSON.stringify(Geosearch.coords));
-
-            el.dist = $filter('distanceCalculation')(el.coordinates, Geosearch.coords);
-
             el.score = !_.isUndefined(el.score) &&
                        !_.isNull(el.score) ?
                        Math.round(el.score) : "n/a";
+
           } else {
             Search.results.splice(index,1);
           }
@@ -530,37 +527,7 @@ angular.module('openHealthDataAppFilters', [])
         return "grayBadge";
       }
     }
-  }).filter('distanceCalculation', function() {
-
-    function toRad(value, position) {
-      return value * Math.Pi / 180;
-    }
-
-    return function(input, position) {
-
-      // alert(JSON.stringify(input, position));
-
-      var lat2 = input.latitude;
-      var lon2 = input.longitude;
-
-      var lat1 = position.latitude;
-      var lon1 = position.longitude;
-
-      var R = 6378.137; // km
-      var dLat = toRad(lat2-lat1);
-      var dLon = toRad(lon2-lon1);
-      lat1 = toRad(lat1);
-      lat2 = toRad(lat2);
-
-      var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-              Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2);
-      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-      var d = R * c;
-
-      return d * 0.62137;
-    }
   });
-
 /*
     The frontend for Code for Hampton Roads' Open Health Inspection Data.
     Copyright (C) 2014  Code for Hampton Roads contributors.
