@@ -16,13 +16,17 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/*global angular */
+
 /****************
 App.js
 ****************/
 
-"use strict";
+'use strict';
 
-var openHealthDataApp = angular.module('openHealthDataApp', ['ngRoute', 'ui.bootstrap', 'openHealthDataAppControllers', 'ngAnimate', 'openHealthDataServices', 'openHealthDataAppFilters', 'LocalStorageModule']);
+var openHealthDataApp = angular.module('openHealthDataApp', ['ngRoute',
+  'ui.bootstrap', 'openHealthDataAppControllers', 'ngAnimate', 
+  'openHealthDataServices', 'openHealthDataAppFilters', 'LocalStorageModule']);
 
 openHealthDataApp.config(['$routeProvider',
   function($routeProvider) {
@@ -58,20 +62,27 @@ openHealthDataApp.config(['$routeProvider',
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/*global _, angular, ga*/
+
+
 /******************
 Controllers
 ******************/
 
-var openHealthDataAppControllers = angular.module('openHealthDataAppControllers', []);
+'use strict';
 
-openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$http', '$location', '$q', 'Geosearch', 'Search', '$filter', '$modal', 'localStorageService',
-  function($scope, $rootScope, $http, $location, $q, Geosearch, Search, $filter, $modal, localStorageService) {
+var openHealthDataAppControllers = 
+  angular.module('openHealthDataAppControllers', []);
+
+openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
+ '$http', '$location', 'Geosearch', 'Search', '$filter', '$modal',
+ 'localStorageService', 'Toast', '$window', function($scope, $rootScope, $http,
+ $location, Geosearch, Search, $filter, $modal, localStorageService,
+ Toast, $window) {
 
     $rootScope.$on('$locationChangeSuccess', function() {
         ga('send', 'pageview', $location.path());
     });
-
-    console.log("Screen width", screen.width);
 
     var calcHeight = angular.element(window).height() - 100 + 64;
       if (screen.width < 776) {
@@ -89,7 +100,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
           $scope.showError
         );
       } else {
-        $scope.error = "Geolocation is not supported by this browser.";
+        $scope.error = 'Geolocation is not supported by this browser.';
       }
     };
 
@@ -103,11 +114,10 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
       //- Longitude  75° 15′ W to 83° 41′ W
       // 75.25 - 83.683333
 
-      if ( ((position.coords.latitude > 36.533333 ) &&
-           (position.coords.latitude < 39.466667 ) )
-          &&
+      if (((position.coords.latitude > 36.533333 ) &&
+          (position.coords.latitude < 39.466667 )) &&
           ((position.coords.longitude < -75.25 ) &&
-           (position.coords.longitude > -83.683333 ))) {
+          (position.coords.longitude > -83.683333 ))) {
 
         console.log('coordinates are within Virgina');
 
@@ -122,7 +132,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
         position.coords = {
           latitude: 36.84687,
           longitude: -76.29228710000001,
-        }
+        };
 
       }
 
@@ -130,6 +140,10 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
 
         console.log('attempt to get results near ' +
         position.coords.latitude + ',' + position.coords.longitude);
+
+        Toast.searchAreaText = 'Within ' + searchRadii[index] + 'M';
+        Toast.query = '';
+        $rootScope.$broadcast('updateToast');
 
         Geosearch.results = Geosearch.query({
           lat: position.coords.latitude, 
@@ -142,13 +156,14 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
           }));
 
           if (Geosearch.results.length < 20) {
-            alert('Not many results found within ' + searchRadii[index] + ' Expanding search radius');
+            $window.alert('Not many results found within ' +
+                            searchRadii[index] + ' Expanding search radius');
             return doSearch(index + 1);
           }
 
-          Geosearch.results.forEach(function(el, index) { 
+          Geosearch.results.forEach(function(el) { 
             el.dist = el.dist * 0.000621371;
-            el.score = el.score ? Math.round(el.score) : "n/a";
+            el.score = el.score ? Math.round(el.score) : 'n/a';
           });
 
           Geosearch.results = 
@@ -164,7 +179,8 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
     };
 
     $scope.showError = function() {
-      console.log("Geolocation is not supported by this browser. Fallback to Norfolk");
+      console.log('Geolocation is not supported by this browser.' +
+                  'Fallback to Norfolk');
       $rootScope.showPosition();
     };
 
@@ -176,22 +192,27 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
 
   }]);
 
-openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', '$http', '$location', '$rootScope', 'Geosearch', 'Inspections',
-  function($scope, $routeParams, $http, $location, $rootScope, Geosearch, Inspections) {
+openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope',
+ '$routeParams', '$http', '$location', '$rootScope', 'Geosearch',
+ 'Inspections', function($scope, $routeParams, $http, $location, 
+ $rootScope, Geosearch, Inspections) {
 
     $rootScope.isVisible = false;
 
     $scope.results = Inspections.query({vendorid: $routeParams.id}, function(){
       var restaurant = $scope.results[$routeParams.id];
       $rootScope.restaurantName = restaurant.name;
-      restaurant.score = !_.isUndefined(restaurant.score) ? Math.round(restaurant.score) : 'n/a';
+      restaurant.score = !_.isUndefined(restaurant.score) ?
+                         Math.round(restaurant.score) :
+                         'n/a';
       $rootScope.restaurantPermalink = $location.absUrl();
     });
 
 }]);
 
-openHealthDataAppControllers.controller('cityJumpCtrl', ['$scope', '$rootScope', 'Search', 'Geosearch', '$http',
-  function($scope, $rootScope, Search, Geosearch, $http){
+openHealthDataAppControllers.controller('cityJumpCtrl', ['$scope',
+  '$rootScope', 'Search', 'Geosearch', '$http', function($scope, $rootScope,
+  Search, Geosearch, $http) {
 
     $rootScope.isCityJumpVisible = false;
 
@@ -200,7 +221,7 @@ openHealthDataAppControllers.controller('cityJumpCtrl', ['$scope', '$rootScope',
     });
 
     $scope.cityJump = function(city) {
-      console.log(Search)
+      console.log(Search);
       console.log('city center is ', city);
       Search.city = city;
       $rootScope.isCityJumpVisible = false;
@@ -209,8 +230,10 @@ openHealthDataAppControllers.controller('cityJumpCtrl', ['$scope', '$rootScope',
 
 }]);
 
-openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '$timeout', 'Search', 'Geosearch', '$filter',
-  function($scope, $rootScope, $timeout, Search, Geosearch, $filter){
+openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope',
+ '$timeout', 'Search', 'Geosearch', '$filter', 'Toast', '$window',
+  function($scope, $rootScope, $timeout, Search, Geosearch, $filter, Toast,
+   $window){
 
     var searchQuery;
 
@@ -224,6 +247,11 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
         $scope.searchAreaText = 'Near me';
         Search.city = undefined;
       }
+    });
+
+    $rootScope.$on('updateToast', function() {
+      $scope.searchQuery = Toast.query;
+      $scope.searchAreaText = Toast.searchAreaText;
     });
 
     $rootScope.toggleList = function(){
@@ -247,8 +275,8 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
     $rootScope.toggleCityJump = function() {
       $rootScope.isVisible = false;
       $rootScope.isCityJumpVisible = !$rootScope.isCityJumpVisible;
-      $rootScope.resultsType = "Look at another city's inspections.";
-    }
+      // $rootScope.resultsType = 'Look at another city\'s inspections.';
+    };
 
     var searchRadii = [4000, 8000, 16000, 32000];
 
@@ -256,7 +284,7 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
       $rootScope.isSearchbarVisible = false;
 
       if ($scope.query.length < 4) {
-        alert('Please enter a longer search term.');
+        $window.alert('Please enter a longer search term.');
         return;
       }
 
@@ -265,17 +293,20 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
         searchQuery = {
           name: $scope.query,
           city: Search.city.name
-        }
+        };
       } else if (searchRadii[index] === undefined &&
                  searchQuery.dist === undefined) {
         console.log('no results found anywhere');
-        alert('We weren\'t able to find any results for '+ $scope.query +' in the state of Virginia');
+        $window.alert('We weren\'t able to find any results for ' +
+               $scope.query +' in the state of Virginia');
         return;
       } else if (searchRadii[index] === undefined) {
-        console.log('unable to find any ' + $scope.query + ' nearby...')
+        console.log('unable to find any ' + $scope.query + ' nearby...');
         searchQuery = {
           name: $scope.query
-        }
+        };
+        Toast.searchAreaText = 'In Virginia';
+        Toast.query = $scope.query;
       } else {
         console.log('searching for results within ' + searchRadii[index]);
         searchQuery = {
@@ -283,8 +314,12 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
           lat: Geosearch.coords.latitude,
           lng: Geosearch.coords.longitude,
           dist: searchRadii[index]
-        }
+        };
+        Toast.searchAreaText = 'Within ' + searchRadii[index] + 'M';
+        Toast.query = $scope.query;
       }
+
+      $rootScope.$broadcast('updateToast');
 
       Search.results = Search.query(searchQuery, function() {
 
@@ -303,7 +338,7 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
             
             el.score = !_.isUndefined(el.score) &&
                        !_.isNull(el.score) ?
-                       Math.round(el.score) : "n/a";
+                       Math.round(el.score) : 'n/a';
 
           } else {
             Search.results.splice(index,1);
@@ -318,40 +353,28 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope', '
   }]);
 
 openHealthDataAppControllers.controller('searchResultsPreview',
-  ['$scope', '$rootScope', 'Geosearch', 'Inspections', function($scope, $rootScope, Geosearch, Inspections) {
-
+  ['$scope', '$rootScope',
+    function($scope, $rootScope) {
     $rootScope.isVisible = true;    
-
 }]);
 
-openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootScope', '$location', 'Search', 'Geosearch',
+openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope',
+ '$rootScope', '$location', 'Search', 'Geosearch',
   function($scope, $rootScope, $location, Search, Geosearch){
 
     $rootScope.$on('searchFire', function() {
-      console.log("Displaying the results of your search, along with our score.");
+      console.log('Displaying the results of your search,' +
+                  'along with our score.');
       $scope.results = Search.results;
       $rootScope.isVisible = true;
       $scope.resultsCount = Search.results.length;
-
     });
 
-    $rootScope.alerts = [];
-
-    $rootScope.closeAlert = function(index) {
-      $scope.alerts.splice(index, 1);
-    };
-
     $rootScope.$on('geosearchFire', function(){
-      $scope.resultsType = "Displaying results near you, along with our score.";
       $scope.results = Geosearch.results;
-      // if ($location.url() === '/') {
-      //   $rootScope.isVisible = true;
-      // }
     });
 
     $scope.map = Geosearch.map;
-
-    // console.log("Geosearch map in search results" + Geosearch.map)
 
     $rootScope.isVisible = false;
 
@@ -546,26 +569,58 @@ angular.module('openHealthDataAppFilters', [])
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-var openHealthDataServices = angular.module('openHealthDataServices', ['ngResource']);
+/*global angular*/
+
+'use strict';
+
+var openHealthDataServices = angular.module('openHealthDataServices',
+['ngResource']);
  
 openHealthDataServices.factory('Inspections', ['$resource',
   function($resource){
-    return $resource('http://api.openhealthinspection.com/inspections?vendorid=:vendorid', {}, {
-      query: { method: 'JSONP', params: {vendorid: '', callback: 'JSON_CALLBACK'} }
+    return $resource('http://api.openhealthinspection.com/' +
+      'inspections?vendorid=:vendorid', {}, {
+      query: { 
+        method: 'JSONP',
+        params: {
+          vendorid: '',
+          callback: 'JSON_CALLBACK'
+        } 
+      }
     });
   }]);
 
 openHealthDataServices.factory('Geosearch', ['$resource',
   function($resource) {
-    return $resource('http://api.openhealthinspection.com/vendors?lat=:lat&lng=:lon&dist=:dist', {}, {
-      query: { method: 'JSONP', params: {lat: '36', lon: '-72', dist: '1000', callback: 'JSON_CALLBACK'} }
+    return $resource('http://api.openhealthinspection.com/' +
+      'vendors?lat=:lat&lng=:lon&dist=:dist', {}, {
+      query: {
+        method: 'JSONP',
+        params: {
+          lat: '36',
+          lon: '-72',
+          dist: '1000',
+          callback: 'JSON_CALLBACK'} 
+        }
     });
   }]);
 
 openHealthDataServices.factory('Search', ['$resource',
   function($resource) {
     return $resource('http://api.openhealthinspection.com/vendors', {}, {
-      query: { method: 'JSONP', params: {callback: 'JSON_CALLBACK'} }
+      query: { 
+        method: 'JSONP',
+        params: {
+          callback: 'JSON_CALLBACK'
+        } 
+      }
     });
   }]);
+
+openHealthDataServices.factory('Toast', function() {
+  return {
+    query: '',
+    searchAreaText: '',
+  };
+});
 

@@ -89,16 +89,12 @@
             <a id="backToMe" class="listIcon clearfix" ng-click="getLocation()">
               <span class="fa fa-crosshairs"></span>
             </a>
-
-<!--             <a ng-click="toggleList()" ng-fclass="{'active-button': isVisible}" class="listIcon">
-              <span id="listButton"  class="glyphicon glyphicon-th-list" class="col-xs-1"></span>
-            </a> -->
           
             <section class="clearfix tray" ng-show="isVisible">
               <ul>
                 <li class="col-xs-12">
                   <small>Displaying results</small>
-                  {{query}} <span>In</span> {{searchAreaText}}
+                  {{searchQuery}} <span>In</span> {{searchAreaText}}
                 </li>
               </ul>
             </section>

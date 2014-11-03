@@ -16,13 +16,17 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/*global angular */
+
 /****************
 App.js
 ****************/
 
-"use strict";
+'use strict';
 
-var openHealthDataApp = angular.module('openHealthDataApp', ['ngRoute', 'ui.bootstrap', 'openHealthDataAppControllers', 'ngAnimate', 'openHealthDataServices', 'openHealthDataAppFilters', 'LocalStorageModule']);
+var openHealthDataApp = angular.module('openHealthDataApp', ['ngRoute',
+  'ui.bootstrap', 'openHealthDataAppControllers', 'ngAnimate', 
+  'openHealthDataServices', 'openHealthDataAppFilters', 'LocalStorageModule']);
 
 openHealthDataApp.config(['$routeProvider',
   function($routeProvider) {
