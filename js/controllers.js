@@ -60,7 +60,8 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
 
     $rootScope.showPosition = function(position) {
 
-      var searchRadii = [500, 1000, 2000, 4000, 8000, 16000, 32000];
+      var searchRadii = [805, 1609, 3219, 4828, 6437, 8047, 9656];
+      var searchRadiiLabel = ['½', '1', '2', '3', '4', '5' , '6'];
 
       //outside Virginia check.
       //- Latitude  36° 32′ N to 39° 28′ N
@@ -95,7 +96,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
         console.log('attempt to get results near ' +
         position.coords.latitude + ',' + position.coords.longitude);
 
-        Toast.searchAreaText = 'Within ' + searchRadii[index] + 'M';
+        Toast.searchAreaText = 'Within ' + searchRadiiLabel[index] + ' mi.';
         Toast.query = '';
         $rootScope.$broadcast('updateToast');
 
@@ -229,10 +230,10 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope',
     $rootScope.toggleCityJump = function() {
       $rootScope.isVisible = false;
       $rootScope.isCityJumpVisible = !$rootScope.isCityJumpVisible;
-      // $rootScope.resultsType = 'Look at another city\'s inspections.';
     };
 
-    var searchRadii = [4000, 8000, 16000, 32000];
+    var searchRadii = [805, 1609, 3219, 4828, 6437, 8047, 9656];
+    var searchRadiiLabel = ['½', '1', '2', '3', '4', '5' , '6'];
 
     $scope.nameSearch = function(index) {
       $rootScope.isSearchbarVisible = false;
@@ -269,7 +270,7 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope',
           lng: Geosearch.coords.longitude,
           dist: searchRadii[index]
         };
-        Toast.searchAreaText = 'Within ' + searchRadii[index] + 'M';
+        Toast.searchAreaText = 'Within ' + searchRadiiLabel[index] + ' mi.';
         Toast.query = $scope.query;
       }
 
