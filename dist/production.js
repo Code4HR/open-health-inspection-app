@@ -369,10 +369,12 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope',
       $scope.results = Search.results;
       $rootScope.isVisible = true;
       $scope.resultsCount = Search.results.length;
+      $location.url('/#');
     });
 
     $rootScope.$on('geosearchFire', function(){
       $scope.results = Geosearch.results;
+      $location.url('/#');
     });
 
     $scope.map = Geosearch.map;
