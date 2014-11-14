@@ -130,7 +130,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
       } else {
 
         console.log('Coming from out of state or geolocation unavailable.');
-        position.coords = {
+        Geosearch.coords = {
           latitude: 36.84687,
           longitude: -76.29228710000001,
         };
@@ -147,8 +147,8 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
         $rootScope.$broadcast('updateToast');
 
         Geosearch.results = Geosearch.query({
-          lat: position.coords.latitude, 
-          lon: position.coords.longitude, 
+          lat: Geosearch.coords.latitude, 
+          lon: Geosearch.coords.longitude, 
           dist: searchRadii[index]
         }, function() {
 
