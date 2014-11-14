@@ -69,7 +69,8 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
       //- Longitude  75° 15′ W to 83° 41′ W
       // 75.25 - 83.683333
 
-      if (((position.coords.latitude > 36.533333 ) &&
+      if (!_.isUndefined(position) &&
+         ((position.coords.latitude > 36.533333 ) &&
           (position.coords.latitude < 39.466667 )) &&
           ((position.coords.longitude < -75.25 ) &&
           (position.coords.longitude > -83.683333 ))) {
@@ -94,7 +95,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
       function doSearch(index) {
 
         console.log('attempt to get results near ' +
-        position.coords.latitude + ',' + position.coords.longitude);
+        Geosearch.coords.latitude + ',' + Geosearch.coords.longitude);
 
         Toast.searchAreaText = 'Within ' + searchRadiiLabel[index] + ' mi.';
         Toast.query = '';
@@ -134,7 +135,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
     };
 
     $scope.showError = function() {
-      console.log('Geolocation is not supported by this browser.' +
+      console.log('Geolocation is not supported by this browser. ' +
                   'Fallback to Norfolk');
       $rootScope.showPosition();
     };
