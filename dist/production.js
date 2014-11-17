@@ -183,8 +183,10 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
                   'Fallback to Norfolk');
       $rootScope.showPosition();
     };
-
-    $scope.getLocation();
+    
+    if ($location.url() === '/') {
+      $scope.getLocation();
+    }
 
     $rootScope.toRad = function(Value) {
         return Value * Math.PI / 180;
