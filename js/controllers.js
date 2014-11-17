@@ -137,8 +137,10 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
                   'Fallback to Norfolk');
       $rootScope.showPosition();
     };
-    
-    if ($location.url() === '/') {
+
+    console.log($location.url().search('vendor'));
+
+    if ($location.url().search('vendor') === -1) {
       $scope.getLocation();
     }
 
