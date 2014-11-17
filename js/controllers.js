@@ -112,8 +112,6 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
           }));
 
           if (Geosearch.results.length < 20) {
-            $window.alert('Not many results found within ' +
-                            searchRadii[index] + ' Expanding search radius');
             return doSearch(index + 1);
           }
 
