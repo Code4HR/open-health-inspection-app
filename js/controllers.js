@@ -69,7 +69,8 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
       //- Longitude  75° 15′ W to 83° 41′ W
       // 75.25 - 83.683333
 
-      if (((position.coords.latitude > 36.533333 ) &&
+      if (!_.isUndefined(position) &&
+         ((position.coords.latitude > 36.533333 ) &&
           (position.coords.latitude < 39.466667 )) &&
           ((position.coords.longitude < -75.25 ) &&
           (position.coords.longitude > -83.683333 ))) {
@@ -84,7 +85,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
       } else {
 
         console.log('Coming from out of state or geolocation unavailable.');
-        position.coords = {
+        Geosearch.coords = {
           latitude: 36.84687,
           longitude: -76.29228710000001,
         };
@@ -94,15 +95,15 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
       function doSearch(index) {
 
         console.log('attempt to get results near ' +
-        position.coords.latitude + ',' + position.coords.longitude);
+        Geosearch.coords.latitude + ',' + Geosearch.coords.longitude);
 
         Toast.searchAreaText = 'Within ' + searchRadiiLabel[index] + ' mi.';
         Toast.query = '';
         $rootScope.$broadcast('updateToast');
 
         Geosearch.results = Geosearch.query({
-          lat: position.coords.latitude, 
-          lon: position.coords.longitude, 
+          lat: Geosearch.coords.latitude, 
+          lon: Geosearch.coords.longitude, 
           dist: searchRadii[index]
         }, function() {
 
@@ -111,8 +112,6 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
           }));
 
           if (Geosearch.results.length < 20) {
-            $window.alert('Not many results found within ' +
-                            searchRadii[index] + ' Expanding search radius');
             return doSearch(index + 1);
           }
 
@@ -134,12 +133,16 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
     };
 
     $scope.showError = function() {
-      console.log('Geolocation is not supported by this browser.' +
+      console.log('Geolocation is not supported by this browser. ' +
                   'Fallback to Norfolk');
       $rootScope.showPosition();
     };
 
-    $scope.getLocation();
+    console.log($location.url().search('vendor'));
+
+    if ($location.url().search('vendor') === -1) {
+      $scope.getLocation();
+    }
 
     $rootScope.toRad = function(Value) {
         return Value * Math.PI / 180;

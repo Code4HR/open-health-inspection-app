@@ -15,9 +15,11 @@ Now when you make edits to CSS or JS in css/ and js/ folders, they are automatic
 
 live demo
 =====
-a live demo of the app
-
+The app lives at:
 http://openhealthinspection.com/
+
+The prerelease branch lives at;
+http://next.openhealthinspection.com/
 
 Installation
 ---
