@@ -112,8 +112,6 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
           }));
 
           if (Geosearch.results.length < 20) {
-            $window.alert('Not many results found within ' +
-                            searchRadii[index] + ' Expanding search radius');
             return doSearch(index + 1);
           }
 
@@ -140,7 +138,11 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
       $rootScope.showPosition();
     };
 
-    $scope.getLocation();
+    console.log($location.url().search('vendor'));
+
+    if ($location.url().search('vendor') === -1) {
+      $scope.getLocation();
+    }
 
     $rootScope.toRad = function(Value) {
         return Value * Math.PI / 180;
