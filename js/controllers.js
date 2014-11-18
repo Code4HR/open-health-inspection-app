@@ -44,6 +44,11 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
       }
       angular.element('.cityResults').css('max-height', calcHeight - 64);
 
+    $rootScope.getLocationButton = function() {
+      $scope.getLocation();
+      $location.url('/#');
+    };
+
     $rootScope.getLocation = function() {
 
       console.log('getting location');
@@ -138,15 +143,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
       $rootScope.showPosition();
     };
 
-    console.log($location.url().search('vendor'));
-
-    if ($location.url().search('vendor') === -1) {
-      $scope.getLocation();
-    }
-
-    $rootScope.toRad = function(Value) {
-        return Value * Math.PI / 180;
-    };
+    $scope.getLocation();
 
   }]);
 
@@ -330,8 +327,8 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope',
     });
 
     $rootScope.$on('geosearchFire', function(){
+      console.log('printing results to scope.');
       $scope.results = Geosearch.results;
-      $location.url('/#');
     });
 
     $scope.map = Geosearch.map;
