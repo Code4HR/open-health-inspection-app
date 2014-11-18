@@ -45,6 +45,7 @@
       <div class="container-fluid">
 
         <div class="row">
+          
           <div id="logoWrapper" class="hidden-xs col-sm-7 col-md-8">
             <a href="#/" class="clearfix">
               <img id="logo" src="img/build/logo.png" height="48px" width="48px" alt="Open Health Inspection Logo">
@@ -54,7 +55,7 @@
 
           <div id="searchbar" class="col-xs-12 col-sm-5 col-md-4 clearfix" ng-controller="searchCtrl">
 
-            <section id="search" ng-show="isSearchbarVisible" class="navbar-fixed-top col-xs-12 col-sm-5 col-md-4">
+            <section id="search" ng-show="isSearchbarVisible" class="col-xs-12">
               
               <form ng-submit="nameSearch(0)" class=" clearfix" novalidate>
                 <span id="exitButton" ng-click="toggleSearchField()" class="col-xs-1 glyphicon glyphicon-chevron-left"></span>
@@ -66,9 +67,9 @@
 
               <section class="clearfix row tray">
                 <ul class="">
-                  <li class="col-xs-7 searchDescription">
+                  <li class="col-xs-6 searchDescription">
                   <small>Search in:</small>{{searchAreaText}}</li>
-                  <li class="col-xs-5 moreButton">
+                  <li class="col-xs-6 moreButton">
                     <a ng-click="toggleCityJump()">
                       More Cities <i class="fa fa-plus-circle"></i>
                     </a>
@@ -86,7 +87,7 @@
               <span id="searchButton" class="glyphicon glyphicon-search"></span>
             </a>
 
-            <a id="backToMe" class="listIcon clearfix" ng-click="getLocation()">
+            <a id="backToMe" class="listIcon clearfix" ng-click="getLocationButton()">
               <span class="fa fa-crosshairs"></span>
             </a>
           
@@ -106,7 +107,7 @@
       </div>
     </header>
 
-    <div id="main" class="container-fluid ng-cloak" >
+    <div id="main" class="container ng-cloak" >
 
       <div class="bglogo hidden-md hidden-lg">
         <img src="img/build/logo-gray.png" height="70" width="70" alt="logo">
