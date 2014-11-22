@@ -4,7 +4,7 @@
 
 	<div class="container-fluid">
 
-		<section id="restuarant-info" class="col-md-12" ng-repeat="restaurant in results">
+		<section id="restuarant-info" class="col-md-12 drop-shadow" ng-repeat="restaurant in results">
 
 			<div class="row">
 
@@ -52,7 +52,7 @@
 		
 		<section id="inspections" class="col-xs-12" ng-repeat="restaurant in results">	
 
-			<section id="noResults" class="inspection row" ng-show="{{!restaurant.inspections}}">
+			<section id="noResults" class="inspection row drop-shadow" ng-show="{{!restaurant.inspections}}">
 				<span><i class="glyphicon glyphicon-warning-sign"></i></span>
 				<div class="report" class="col-sm-6">
 					<h2>We didn't find any results.</h2>
@@ -60,7 +60,7 @@
 				</div>
 			</section>
 
-			<ul class="inspection row"  ng-repeat="inspection in restaurant.inspections">
+			<ul class="inspection row drop-shadow"  ng-repeat="inspection in restaurant.inspections">
 				<li class="row">
 					
 					<div class="col-sm-2 col-md-1">

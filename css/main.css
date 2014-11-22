@@ -41,6 +41,10 @@ Colors:
 	color: #cccccc;
 }
 
+.grayBadge {
+	background: #cccccc;
+}
+
 .greenText {
 	color: #157F00;
 }
@@ -141,6 +145,10 @@ header {
 	min-height: 60px;
 }
 
+	header.drop-shadow {
+		box-shadow: 0 6px 1em rgba(0,0,0,.125);
+	}
+
 	header #logoWrapper {
 		text-align: left;
 		line-height: 60px;
@@ -206,8 +214,12 @@ center {
 		header .tray {
 			background: #efefef;
 			z-index: 1040;
-			
 		}
+
+		header .tray.drop-shadow {
+			box-shadow: 0 6px 1em rgba(0,0,0,.125);
+		}
+
 			header .tray ul {
 				font-size: 1.125em;
 				line-height: 2em;
@@ -450,7 +462,7 @@ center {
 	#listView ul {
 
 	}
-		ul li.list-container {
+		li.list-container {
 			padding: 10px 0;
 			min-height:60px;
 			border-bottom:1px solid #ccc;
@@ -698,6 +710,10 @@ a.close {
 			border: 1px solid #dfdfdf;
 			padding: 1em;
 			background: white;
+		}
+		
+		.inspection.drop-shadow {
+			box-shadow: 0 6px 1em rgba(0,0,0,.125);
 		}
 
 			.no-violations {

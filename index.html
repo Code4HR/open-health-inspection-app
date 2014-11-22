@@ -41,7 +41,7 @@
   </head>
   <body>
 
-    <header class="navbar-fixed-top">
+    <header class="navbar-fixed-top drop-shadow">
       <div class="container-fluid">
 
         <div class="row">
@@ -65,7 +65,7 @@
                 </button>
               </form>
 
-              <section class="clearfix row tray">
+              <section class="clearfix row tray drop-shadow">
                 <ul class="">
                   <li class="col-xs-6 searchDescription">
                   <small>Search in:</small>{{searchAreaText}}</li>
@@ -91,7 +91,7 @@
               <span class="fa fa-crosshairs"></span>
             </a>
           
-            <section class="clearfix tray" ng-show="isVisible">
+            <section class="clearfix tray drop-shadow" ng-show="isVisible">
               <ul>
                 <li class="col-xs-12">
                   <small>Displaying results</small>
@@ -130,7 +130,7 @@
                 <div ng-if="$index % 3 === 0" class="col-xs-12 visible-md visible-lg clearfix"></div>
                 
                 <div class="list-container col-sm-6 col-md-4">
-                  <div class="card clearfix {{restaurant.score | scoreBorder}}"> 
+                  <div class="card clearfix drop-shadow {{restaurant.score | scoreBorder}}"> 
                     <a href="#{{restaurant.url}}">
                       <div class="title clearfix">
                         <i class="{{restaurant.category | categoryIcon }} col-xs-2 category-icon"></i>
@@ -152,7 +152,7 @@
         </section>
       </section>
 
-      <section id="cityJump" ng-show="isCityJumpVisible" class="col-xs-12 col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-8 cityResults" ng-controller="cityJumpCtrl">
+      <section id="cityJump" ng-show="isCityJumpVisible" class="col-xs-12 col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-8 cityResults drop-shadow" ng-controller="cityJumpCtrl">
         <section>
           <ul class="row">
             <li class="list-container nearMe">

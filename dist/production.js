@@ -232,9 +232,9 @@ openHealthDataAppControllers.controller('cityJumpCtrl', ['$scope',
 }]);
 
 openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope',
- '$timeout', 'Search', 'Geosearch', '$filter', 'Toast', '$window',
+ '$timeout', 'Search', 'Geosearch', '$filter', 'Toast', '$window', '$location',
   function($scope, $rootScope, $timeout, Search, Geosearch, $filter, Toast,
-   $window){
+   $window, $location) {
 
     var searchQuery;
 
@@ -334,7 +334,13 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope',
 
           if (searchQuery.city) {
             alert('No results for "' + searchQuery.name + '" in ' + searchQuery.city + '.');
-            return $rootScope.isVisible = true; 
+
+            if ($location.url() === '/#') {
+              return $rootScope.isVisible = true; 
+            } else {
+              return;
+            }
+
           }
 
           return $scope.nameSearch(index + 1);
