@@ -270,7 +270,8 @@ center {
 			}
 		
 		header #search {
-			left: auto;
+			/*left: auto;*/
+			position: absolute;
 		}	
 
 		header #search .listIcon {
@@ -636,14 +637,21 @@ a.close {
 				padding-right: 2em;
 			}
 
-		#restaurantInfo h1 {
-			margin-bottom: 0;
-			font-size: 1.75em;
-		}
+			#restaurantInfo h1 {
+				margin-bottom: 0;
+				font-size: 1.75em;
+				line-height: 1em;
+				margin-top: 20px;
+			}
 
-		#restaurantInfo .address {
-			color: #666666;
-		}
+			#restaurantInfo .address {
+				color: #666666;
+			}
+
+			#restaurantInfo #explanation {
+				margin-bottom: 1em;
+				display: inline-block;
+			}
 
 	#violationKey {
 		background: white;
@@ -652,12 +660,12 @@ a.close {
 
 	#violationKey h4 {
 		font-weight: 500;
-		font-size: 1.25em;
+		font-size: 1em;
 		padding: 0;
 	}
 
 	#violationKey ul li {
-		font-size: 1em;
+		font-size: .95em;
 		display: block;
 	}
 		#violationKey i {
