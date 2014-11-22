@@ -331,6 +331,12 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope',
         }));
 
         if (Search.results.length === 0) {
+
+          if (searchQuery.city) {
+            alert('No results for "' + searchQuery.name + '" in ' + searchQuery.city + '.');
+            return $rootScope.isVisible = true; 
+          }
+
           return $scope.nameSearch(index + 1);
         }
 
