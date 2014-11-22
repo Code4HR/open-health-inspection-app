@@ -89,6 +89,10 @@ Tablet and Small Screen Styles here.
         border-bottom: none;
     }
 
+    .drop-shadow {
+        box-shadow: 0 6px 1em rgba(0,0,0,.125);
+    }
+
     .list-container .card {
         margin: .5em 0;
         /*padding: .5em 0;*/
@@ -192,6 +196,10 @@ Tablet and Small Screen Styles here.
                 display: inline-block;
                 margin: 8px .75em 0 0;
             }
+
+    #cityJump .list-container {
+        border-bottom: 1px solid #ccc;
+    }
 
 
 }
