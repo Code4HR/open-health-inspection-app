@@ -30,8 +30,8 @@ var openHealthDataAppControllers =
 
 openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
  '$http', '$location', 'Geosearch', 'Search', '$filter', '$modal',
- 'localStorageService', 'Toast', '$window', function($scope, $rootScope, $http,
- $location, Geosearch, Search, $filter, $modal, localStorageService,
+ 'Toast', '$window', function($scope, $rootScope, $http,
+ $location, Geosearch, Search, $filter, $modal,
  Toast, $window) {
 
     $rootScope.$on('$locationChangeSuccess', function() {
