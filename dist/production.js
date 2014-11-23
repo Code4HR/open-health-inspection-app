@@ -25,8 +25,8 @@ App.js
 'use strict';
 
 var openHealthDataApp = angular.module('openHealthDataApp', ['ngRoute',
-  'ui.bootstrap', 'openHealthDataAppControllers', 'ngAnimate', 
-  'openHealthDataServices', 'openHealthDataAppFilters', 'LocalStorageModule']);
+  'ui.bootstrap', 'openHealthDataAppControllers', 
+  'openHealthDataServices', 'openHealthDataAppFilters', 'ngTouch']);
 
 openHealthDataApp.config(['$routeProvider',
   function($routeProvider) {
@@ -76,8 +76,8 @@ var openHealthDataAppControllers =
 
 openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
  '$http', '$location', 'Geosearch', 'Search', '$filter', '$modal',
- 'localStorageService', 'Toast', '$window', function($scope, $rootScope, $http,
- $location, Geosearch, Search, $filter, $modal, localStorageService,
+ 'Toast', '$window', function($scope, $rootScope, $http,
+ $location, Geosearch, Search, $filter, $modal,
  Toast, $window) {
 
     $rootScope.$on('$locationChangeSuccess', function() {
@@ -427,7 +427,7 @@ openHealthDataApp.directive('bindOnce', function() {
     link: function(scope, element, attrs) {
       var model = $parse(attrs.focusMe);
       scope.$watch(model, function(value) {
-        console.log('value=',value);
+        // console.log('value=',value);
         if(value === true) { 
           $timeout(function() {
             element[0].focus(); 
