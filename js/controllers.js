@@ -282,11 +282,15 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope',
       }
 
       if (!_.isUndefined(Search.city)) {
+        console.log("hide show more");
+        $rootScope.showMore = false;
         console.log('search for ' + $scope.query + ' in ' + Search.city.name);
         searchQuery = {
           name: $scope.query,
           city: Search.city.name
         };
+        Toast.searchAreaText = Search.city.name;
+        Toast.query = $scope.query;
       } else if (searchRadii[index] === undefined &&
                  searchQuery.dist === undefined) {
         console.log('no results found anywhere');
@@ -302,6 +306,7 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope',
         Toast.query = $scope.query;
       } else {
         console.log('searching for results within ' + searchRadii[index]);
+        $rootScope.showMore = true;
         searchQuery = {
           name: $scope.query,
           lat: Geosearch.coords.latitude,
@@ -373,7 +378,7 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope',
 
     var searchType; 
 
-    $scope.showMore = false;
+    $rootScope.showMore = false;
 
     $rootScope.$on('searchFire', function() {
       searchType = 'search';
@@ -383,17 +388,14 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope',
       $rootScope.isVisible = true;
       $scope.resultsCount = Search.results.length;
       $location.url('/#');
-      $scope.showMore = true;
-      console.log('Display button: ' + $scope.showMore);
-
     });
 
     $rootScope.$on('geosearchFire', function(){
       searchType = 'geosearch';
       console.log('printing results to scope.');
       $scope.results = Geosearch.results;
-      $scope.showMore = true;
-      console.log('Display button: ' + $scope.showMore);
+      $rootScope.showMore = true;
+      console.log('Display button: ' + $rootScope.showMore);
     });
 
     $scope.loadMore = function() {
