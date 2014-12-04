@@ -286,15 +286,21 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope',
 
     $rootScope.toggleSearchField = function(){
       console.log('clicked search button');
+      $rootScope.toggleCityJump(false);
       $rootScope.isSearchbarVisible = !$rootScope.isSearchbarVisible;
       if ($rootScope.isSearchbarVisible === false) {
         $rootScope.isCityJumpVisible = false;
       }
     };
 
-    $rootScope.toggleCityJump = function() {
-      $rootScope.isVisible = false;
+    $rootScope.toggleCityJump = function(state) {
+      console.log('toggle city jump');
       $rootScope.isCityJumpVisible = !$rootScope.isCityJumpVisible;
+      if (state || $rootScope.isCityJumpVisible) {
+        angular.element('body').css('overflow', 'hidden');
+      } else if (!state || !$rootScope.isCityJumpVisible) {
+        angular.element('body').css('overflow', 'auto');
+      }
     };
 
     var currentIndex = 0;
@@ -428,7 +434,6 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope',
       $scope.results = Geosearch.results;
       $scope.showMore = true;
       console.log('Display button: ' + $scope.showMore);
-
     });
 
     $scope.loadMore = function() {
@@ -444,7 +449,6 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope',
     };
 
     $scope.map = Geosearch.map;
-
     $rootScope.isVisible = false;
 
   }]);

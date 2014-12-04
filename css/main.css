@@ -590,7 +590,7 @@ a.close {
 	top: 108px;
 	right: 0;
 	overflow-y: scroll;
-	z-index: 1;
+	z-index: 1040;
 	/*max-height: 100%;*/
 }
 
