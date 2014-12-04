@@ -702,6 +702,21 @@ a.close {
 
 		}
 
+	.results {}
+
+		.results .load-more-button a {
+			height: 64px;
+			background: #999;
+			text-align: center;
+			color: white;
+			font-size: 1.25em;
+			line-height: 64px;
+		}
+			.results .load-more-button a:hover, .results .load-more-button a:active {
+				background: #666;
+				color: #efefef;
+			}
+
 	#inspections {}
 
 		#inspections .inspection {
@@ -905,6 +920,10 @@ Tablet and Small Screen Styles here.
         max-height: auto;
     }
 
+    .results .load-more-button a {
+        margin-top: 2em;
+    }
+
     ul li.list-container {
         /*border-bottom: none !important;*/
         /*margin: .5em;*/
@@ -998,13 +1017,10 @@ Tablet and Small Screen Styles here.
                     vertical-align: top;
                 }
             
-
             #inspections .inspection .date {
                 text-align: left;
                 padding: .25em 0;
             }
-
-
 
         #violationKey h4 {
         }
