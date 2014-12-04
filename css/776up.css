@@ -82,11 +82,19 @@ Tablet and Small Screen Styles here.
         max-height: auto;
     }
 
+    .results .load-more-button a {
+        margin-top: 2em;
+    }
+
     ul li.list-container {
         /*border-bottom: none !important;*/
         /*margin: .5em;*/
         background: transparent;
         border-bottom: none;
+    }
+
+    .drop-shadow {
+        box-shadow: 0 6px 1em rgba(0,0,0,.125);
     }
 
     .list-container .card {
@@ -171,13 +179,10 @@ Tablet and Small Screen Styles here.
                     vertical-align: top;
                 }
             
-
             #inspections .inspection .date {
                 text-align: left;
                 padding: .25em 0;
             }
-
-
 
         #violationKey h4 {
         }
@@ -192,6 +197,10 @@ Tablet and Small Screen Styles here.
                 display: inline-block;
                 margin: 8px .75em 0 0;
             }
+
+    #cityJump .list-container {
+        border-bottom: 1px solid #ccc;
+    }
 
 
 }

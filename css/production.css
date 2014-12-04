@@ -41,6 +41,10 @@ Colors:
 	color: #cccccc;
 }
 
+.grayBadge {
+	background: #cccccc;
+}
+
 .greenText {
 	color: #157F00;
 }
@@ -141,6 +145,10 @@ header {
 	min-height: 60px;
 }
 
+	header.drop-shadow {
+		box-shadow: 0 6px 1em rgba(0,0,0,.125);
+	}
+
 	header #logoWrapper {
 		text-align: left;
 		line-height: 60px;
@@ -206,8 +214,12 @@ center {
 		header .tray {
 			background: #efefef;
 			z-index: 1040;
-			
 		}
+
+		header .tray.drop-shadow {
+			box-shadow: 0 6px 1em rgba(0,0,0,.125);
+		}
+
 			header .tray ul {
 				font-size: 1.125em;
 				line-height: 2em;
@@ -450,7 +462,7 @@ center {
 	#listView ul {
 
 	}
-		ul li.list-container {
+		li.list-container {
 			padding: 10px 0;
 			min-height:60px;
 			border-bottom:1px solid #ccc;
@@ -690,6 +702,21 @@ a.close {
 
 		}
 
+	.results {}
+
+		.results .load-more-button a {
+			height: 64px;
+			background: #999;
+			text-align: center;
+			color: white;
+			font-size: 1.25em;
+			line-height: 64px;
+		}
+			.results .load-more-button a:hover, .results .load-more-button a:active {
+				background: #666;
+				color: #efefef;
+			}
+
 	#inspections {}
 
 		#inspections .inspection {
@@ -698,6 +725,10 @@ a.close {
 			border: 1px solid #dfdfdf;
 			padding: 1em;
 			background: white;
+		}
+		
+		.inspection.drop-shadow {
+			box-shadow: 0 6px 1em rgba(0,0,0,.125);
 		}
 
 			.no-violations {
@@ -889,11 +920,19 @@ Tablet and Small Screen Styles here.
         max-height: auto;
     }
 
+    .results .load-more-button a {
+        margin-top: 2em;
+    }
+
     ul li.list-container {
         /*border-bottom: none !important;*/
         /*margin: .5em;*/
         background: transparent;
         border-bottom: none;
+    }
+
+    .drop-shadow {
+        box-shadow: 0 6px 1em rgba(0,0,0,.125);
     }
 
     .list-container .card {
@@ -978,13 +1017,10 @@ Tablet and Small Screen Styles here.
                     vertical-align: top;
                 }
             
-
             #inspections .inspection .date {
                 text-align: left;
                 padding: .25em 0;
             }
-
-
 
         #violationKey h4 {
         }
@@ -999,6 +1035,10 @@ Tablet and Small Screen Styles here.
                 display: inline-block;
                 margin: 8px .75em 0 0;
             }
+
+    #cityJump .list-container {
+        border-bottom: 1px solid #ccc;
+    }
 
 
 }
