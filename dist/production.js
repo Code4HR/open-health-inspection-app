@@ -218,6 +218,7 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope',
  $rootScope, Geosearch, Inspections) {
 
     $rootScope.isVisible = false;
+    $rootScope.toggleCityJump(false);
 
     $scope.results = Inspections.query({vendorid: $routeParams.id}, function(){
       var restaurant = $scope.results[$routeParams.id];
@@ -241,6 +242,7 @@ openHealthDataAppControllers.controller('cityJumpCtrl', ['$scope',
     });
 
     $scope.cityJump = function(city) {
+      $rootScope.toggleCityJump(false);
       console.log(Search);
       console.log('city center is ', city);
       Search.city = city;
@@ -295,12 +297,16 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope',
 
     $rootScope.toggleCityJump = function(state) {
       console.log('toggle city jump');
-      $rootScope.isCityJumpVisible = !$rootScope.isCityJumpVisible;
-      if (state || $rootScope.isCityJumpVisible) {
+      $rootScope.isCityJumpVisible = state;
+
+      if (state) {
         angular.element('body').css('overflow', 'hidden');
-      } else if (!state || !$rootScope.isCityJumpVisible) {
+        angular.element('#dismissScreen').css('z-index', 1030);
+      } else if (!state) {
         angular.element('body').css('overflow', 'auto');
+        angular.element('#dismissScreen').css('z-index', -1);
       }
+
     };
 
     var currentIndex = 0;
@@ -441,7 +447,7 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope',
       if (searchType === 'search') {
         console.log('get more search results of that name?');
         $rootScope.$broadcast('moreSearch');
-
+        
       } else if (searchType === 'geosearch') {
         console.log('get more search results around here.');
         $rootScope.$broadcast('moreGeosearch'); 

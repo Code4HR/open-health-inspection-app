@@ -41,6 +41,8 @@
   </head>
   <body>
 
+    <div id="dismissScreen" ng-click="toggleCityJump(false)"></div>
+
     <header class="navbar-fixed-top drop-shadow">
       <div class="container-fluid">
 
@@ -70,7 +72,7 @@
                   <li class="col-xs-6 searchDescription">
                   <small>Search in:</small>{{searchAreaText}}</li>
                   <li class="col-xs-6 moreButton">
-                    <a ng-click="toggleCityJump()">
+                    <a ng-click="toggleCityJump(true)">
                       More Cities <i class="fa fa-plus-circle"></i>
                     </a>
                   </li>
