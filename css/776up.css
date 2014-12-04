@@ -82,6 +82,10 @@ Tablet and Small Screen Styles here.
         max-height: auto;
     }
 
+    .results .load-more-button a {
+        margin-top: 2em;
+    }
+
     ul li.list-container {
         /*border-bottom: none !important;*/
         /*margin: .5em;*/
@@ -175,13 +179,10 @@ Tablet and Small Screen Styles here.
                     vertical-align: top;
                 }
             
-
             #inspections .inspection .date {
                 text-align: left;
                 padding: .25em 0;
             }
-
-
 
         #violationKey h4 {
         }

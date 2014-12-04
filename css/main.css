@@ -702,6 +702,21 @@ a.close {
 
 		}
 
+	.results {}
+
+		.results .load-more-button a {
+			height: 64px;
+			background: #999;
+			text-align: center;
+			color: white;
+			font-size: 1.25em;
+			line-height: 64px;
+		}
+			.results .load-more-button a:hover, .results .load-more-button a:active {
+				background: #666;
+				color: #efefef;
+			}
+
 	#inspections {}
 
 		#inspections .inspection {
