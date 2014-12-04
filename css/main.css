@@ -27,10 +27,18 @@ textarea, input { outline: none; }
 
 .angular-google-map-container { height:100%; width:100%; position:absolute; top:0; left:0; }
 
-body{
+body {
 	color:#494949;
 	background: #f3ece3;
 	font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Arial", "sans";
+}
+
+#dismissScreen {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	z-index: -1;
+	background: 'transparent';
 }
 
 /*
@@ -587,10 +595,10 @@ a.close {
 
 #cityJump {
 	position: fixed;
-	top: 108px;
+	top: 108px; 
 	right: 0;
 	overflow-y: scroll;
-	z-index: 1;
+	z-index: 1040;
 	/*max-height: 100%;*/
 }
 

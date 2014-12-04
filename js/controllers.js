@@ -172,6 +172,7 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope',
  $rootScope, Geosearch, Inspections) {
 
     $rootScope.isVisible = false;
+    $rootScope.toggleCityJump(false);
 
     $scope.results = Inspections.query({vendorid: $routeParams.id}, function(){
       var restaurant = $scope.results[$routeParams.id];
@@ -195,6 +196,7 @@ openHealthDataAppControllers.controller('cityJumpCtrl', ['$scope',
     });
 
     $scope.cityJump = function(city) {
+      $rootScope.toggleCityJump(false);
       console.log(Search);
       console.log('city center is ', city);
       Search.city = city;
@@ -240,15 +242,25 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope',
 
     $rootScope.toggleSearchField = function(){
       console.log('clicked search button');
+      $rootScope.toggleCityJump(false);
       $rootScope.isSearchbarVisible = !$rootScope.isSearchbarVisible;
       if ($rootScope.isSearchbarVisible === false) {
         $rootScope.isCityJumpVisible = false;
       }
     };
 
-    $rootScope.toggleCityJump = function() {
-      $rootScope.isVisible = false;
-      $rootScope.isCityJumpVisible = !$rootScope.isCityJumpVisible;
+    $rootScope.toggleCityJump = function(state) {
+      console.log('toggle city jump');
+      $rootScope.isCityJumpVisible = state;
+
+      if (state) {
+        angular.element('body').css('overflow', 'hidden');
+        angular.element('#dismissScreen').css('z-index', 1030);
+      } else if (!state) {
+        angular.element('body').css('overflow', 'auto');
+        angular.element('#dismissScreen').css('z-index', -1);
+      }
+
     };
 
     var currentIndex = 0;
@@ -270,11 +282,15 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope',
       }
 
       if (!_.isUndefined(Search.city)) {
+        console.log("hide show more");
+        $rootScope.showMore = false;
         console.log('search for ' + $scope.query + ' in ' + Search.city.name);
         searchQuery = {
           name: $scope.query,
           city: Search.city.name
         };
+        Toast.searchAreaText = Search.city.name;
+        Toast.query = $scope.query;
       } else if (searchRadii[index] === undefined &&
                  searchQuery.dist === undefined) {
         console.log('no results found anywhere');
@@ -290,6 +306,7 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope',
         Toast.query = $scope.query;
       } else {
         console.log('searching for results within ' + searchRadii[index]);
+        $rootScope.showMore = true;
         searchQuery = {
           name: $scope.query,
           lat: Geosearch.coords.latitude,
@@ -361,7 +378,7 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope',
 
     var searchType; 
 
-    $scope.showMore = false;
+    $rootScope.showMore = false;
 
     $rootScope.$on('searchFire', function() {
       searchType = 'search';
@@ -371,18 +388,14 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope',
       $rootScope.isVisible = true;
       $scope.resultsCount = Search.results.length;
       $location.url('/#');
-      $scope.showMore = true;
-      console.log('Display button: ' + $scope.showMore);
-
     });
 
     $rootScope.$on('geosearchFire', function(){
       searchType = 'geosearch';
       console.log('printing results to scope.');
       $scope.results = Geosearch.results;
-      $scope.showMore = true;
-      console.log('Display button: ' + $scope.showMore);
-
+      $rootScope.showMore = true;
+      console.log('Display button: ' + $rootScope.showMore);
     });
 
     $scope.loadMore = function() {
@@ -390,7 +403,7 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope',
       if (searchType === 'search') {
         console.log('get more search results of that name?');
         $rootScope.$broadcast('moreSearch');
-
+        
       } else if (searchType === 'geosearch') {
         console.log('get more search results around here.');
         $rootScope.$broadcast('moreGeosearch'); 
@@ -398,7 +411,6 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope',
     };
 
     $scope.map = Geosearch.map;
-
     $rootScope.isVisible = false;
 
   }]);
