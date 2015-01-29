@@ -28,10 +28,26 @@ Controllers
 var openHealthDataAppControllers = 
   angular.module('openHealthDataAppControllers', []);
 
+openHealthDataAppControllers.controller('modalController',
+  ['$scope', '$modalInstance', 'items', '$log', '$location', 
+  function($scope, $modalInstance, items, $log, $location){
+
+  $scope.ok = function () {
+    // $log.info('http://code4hr.eventbrite.com/?aff=busapp');
+    // $location.replace('http://eventbrite.com');
+    $location.href="http://code4hr.eventbrite.com/?aff=busapp";
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+
+}]);
+
 openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
- '$http', '$location', 'Geosearch', 'Search', '$filter', '$modal',
+ '$http', '$location', 'Geosearch', 'Search', '$filter', '$modal', '$log',
  'Toast', '$window', function($scope, $rootScope, $http,
- $location, Geosearch, Search, $filter, $modal,
+ $location, Geosearch, Search, $filter, $modal, $log,
  Toast, $window) {
 
     var currentIndex;
@@ -39,6 +55,30 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
     $rootScope.$on('$locationChangeSuccess', function() {
         ga('send', 'pageview', $location.path());
     });
+
+    $scope.items = ['item1', 'item2', 'item3'];
+    $scope.openModal = function(size) {
+
+      var modalInstance = $modal.open({
+        templateUrl: 'partials/modal.html',
+        controller: 'modalController',
+        size: size,
+        resolve: { 
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+
+    };
+
+    $scope.openModal();
 
     var calcHeight = angular.element(window).height() - 100 + 64;
       if (screen.width < 776) {
