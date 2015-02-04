@@ -26,7 +26,7 @@ module.exports = function(grunt) {
             // 2. Configuration for concatinating files goes here.
           dist: {
           src: [
-            'js/*.js', '!js/production.js', '!js/production.min.js'
+            'js/*.js', 'js/controllers/*.js', '!js/production.js', '!js/production.min.js'
           ],
             dest: 'dist/production.js',
           },
@@ -68,7 +68,7 @@ module.exports = function(grunt) {
 
         watch: {
             scripts: {
-                files: ['js/*.js'],
+                files: ['js/*.js', 'js/controllers/*.js'],
                 tasks: ['concat', 'uglify'],
                 options: {
                     spawn: false,
