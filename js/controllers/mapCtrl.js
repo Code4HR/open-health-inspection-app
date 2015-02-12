@@ -1,8 +1,26 @@
-openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
- '$http', '$location', 'Geosearch', 'Search', '$filter', '$modal', '$log',
- 'Toast', '$window', function($scope, $rootScope, $http,
- $location, Geosearch, Search, $filter, $modal, $log,
- Toast, $window) {
+openHealthDataAppControllers.controller('mapCtrl', [
+  '$scope',
+  '$rootScope',
+  '$http',
+  '$location',
+  'Geosearch',
+  'Search',
+  '$filter',
+  '$modal',
+  '$log',
+  'Toast',
+  '$window', 
+  function($scope,
+           $rootScope, 
+           $http,
+           $location,
+           Geosearch,
+           Search, 
+           $filter, 
+           $modal, 
+           $log,
+           Toast, 
+           $window) {
 
     var currentIndex;
 
@@ -34,8 +52,8 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
 
     $scope.openModal();
 
-    var calcHeight = angular.element(window).height() - 100 + 64;
-      if (screen.width < 776) {
+    var calcHeight = $window.height - 100 + 64;
+      if ($window.innerWidth < 776) {
         angular.element('.results').css('max-height' , calcHeight);
       }
       angular.element('.cityResults').css('max-height', calcHeight - 64);
