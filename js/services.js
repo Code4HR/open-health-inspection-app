@@ -37,6 +37,53 @@ openHealthDataServices.factory('Inspections', ['$resource',
     });
   }]);
 
+openHealthDataServices.factory('Geolocation', ['$q', '$timeout', function($q, $timeout) {
+  return {
+
+    getPosition: function() {
+
+      var deferred = $q.defer();
+
+      $timeout(countdown, 10000);
+
+      function countdown() {
+        deferred.reject('The request to get user location timed out.');
+      }
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          $timeout.cancel(countdown);
+          deferred.resolve(position);
+        },
+        function(error) {
+
+          $timeout.cancel(countdown);
+
+          var errorCode;
+          switch(error.code) {
+            case error.PERMISSION_DENIED:
+                errorCode = 'User denied the request for Geolocation.';
+                break;
+            case error.POSITION_UNAVAILABLE:
+                errorCode = 'Location information is unavailable.';
+                break;
+            case error.TIMEOUT:
+                errorCode = 'The request to get user location timed out.';
+                break;
+            case error.UNKNOWN_ERROR:
+                errorCode = 'An unknown error occurred.';
+                break;
+          }
+
+          deferred.reject(errorCode);
+      
+        });
+        return deferred.promise;
+      }
+    }
+  };
+}]);
+
 openHealthDataServices.factory('Geosearch', ['$resource',
   function($resource) {
     return $resource('http://api.openhealthinspection.com/' +
@@ -70,4 +117,6 @@ openHealthDataServices.factory('Toast', function() {
     searchAreaText: '',
   };
 });
+
+
 

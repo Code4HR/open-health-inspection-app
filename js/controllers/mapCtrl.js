@@ -28,7 +28,6 @@ openHealthDataAppControllers.controller('mapCtrl', [
         ga('send', 'pageview', $location.path());
     });
 
-    $scope.items = ['item1', 'item2', 'item3'];
     $scope.openModal = function(size) {
 
       var modalInstance = $modal.open({
@@ -68,14 +67,12 @@ openHealthDataAppControllers.controller('mapCtrl', [
       currentIndex = 0;
       console.log('getting location');
 
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          $scope.showPosition,
-          $scope.showError
-        );
-      } else {
-        $scope.error = 'Geolocation is not supported by this browser.';
-      }
+      Geolocation.getPosition().then(function(data) {
+        $rootScope.showPosition(data);
+      }).catch(function(error) {
+        $rootScope.showPosition();
+      });
+
     };
 
     $rootScope.showPosition = function(position) {
