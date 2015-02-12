@@ -1,8 +1,8 @@
 openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
  '$http', '$location', 'Geosearch', 'Search', '$filter', '$modal', '$log',
- 'Toast', '$window', function($scope, $rootScope, $http,
+ 'Toast', '$window', 'Geolocation', function($scope, $rootScope, $http,
  $location, Geosearch, Search, $filter, $modal, $log,
- Toast, $window) {
+ Toast, $window, Geolocation) {
 
     var currentIndex;
 
@@ -10,7 +10,6 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
         ga('send', 'pageview', $location.path());
     });
 
-    $scope.items = ['item1', 'item2', 'item3'];
     $scope.openModal = function(size) {
 
       var modalInstance = $modal.open({
@@ -50,14 +49,12 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
       currentIndex = 0;
       console.log('getting location');
 
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          $scope.showPosition,
-          $scope.showError
-        );
-      } else {
-        $scope.error = 'Geolocation is not supported by this browser.';
-      }
+      Geolocation.getPosition().then(function(data) {
+        $rootScope.showPosition(data);
+      }).catch(function(error) {
+        $rootScope.showPosition();
+      });
+
     };
 
     $rootScope.showPosition = function(position) {
