@@ -1,14 +1,12 @@
 <article id="restaurantDetailView">
 
-	<a href="/#/" class="close"><span class="glyphicon glyphicon-remove-circle"></span></a>
-
 	<div class="container-fluid">
 
 		<section id="restuarant-info" class="col-md-12 drop-shadow" ng-repeat="restaurant in results">
 
 			<div class="row">
 
-				<section id="restaurantInfo" class="col-xs-12">	
+				<section id="restaurantInfo" class="col-xs-12">
 
 					<div class="row">
 
@@ -20,7 +18,7 @@
 							</h2>
 
 						</div>
-						
+
 						<div class="col-xs-9 col-sm-10 col-md-11">
 
 							<ul>
@@ -34,7 +32,7 @@
 						<a class="col-xs-12" id="explanation" target="_blank" href="https://github.com/c4hrva/open-health-inspection-app/blob/gh-pages/README.md#scoring-system">How was this score calculated?</a>
 
 					</div>
-					
+
 				</section>
 
 				<section id="violationKey" class="col-xs-12">
@@ -49,8 +47,8 @@
 			</div>
 
 		</section>
-		
-		<section id="inspections" class="col-xs-12" ng-repeat="restaurant in results">	
+
+		<section id="inspections" class="col-xs-12" ng-repeat="restaurant in results">
 
 			<section id="noResults" class="inspection row drop-shadow" ng-show="{{!restaurant.inspections}}">
 				<span><i class="glyphicon glyphicon-warning-sign"></i></span>
@@ -62,7 +60,7 @@
 
 			<ul class="inspection row drop-shadow"  ng-repeat="inspection in restaurant.inspections">
 				<li class="row">
-					
+
 					<div class="col-sm-2 col-md-1">
 						<ul class="clearfix">
 							<li class="score col-xs-6 col-sm-12 {{inspection.score | scoreColor}}">{{inspection.score}}<span>Our Rating for this Inspection</span></li>
@@ -72,28 +70,28 @@
 					<div class="col-sm-10 col-md-11">
 						<h3>Observations for <strong>{{inspection.date}}</strong></h3>
 						<h4 class="no-violations" ng-if="inspection.violations.length === 0">No violations! :)</h4>
-					
+
 						<div ng-repeat="violation in inspection.violations">
-							
+
 							<div ng-if="$index % 2 === 0" class="visible-sm clearfix"></div>
 							<div ng-if="$index % 4 === 0" class="visible-md visible-lg clearfix"></div>
 
 							<ul class="violations col-sm-6 col-md-3" >
 								<li title="This violation {{violation.corrected | was}} corrected during the inspection." ng-class="{'active': violation.corrected}" class="violation"><i class="glyphicon glyphicon-ok"></i></li>
 								<li title="This {{violation.critical | was}} a critical violation." ng-class="{'active': violation.critical}" class="critical"><i class="glyphicon glyphicon-warning-sign"></i></li>
-								<li title="This {{violation.repeat | was}} a repeat violation." ng-class="{'active': violation.repeat}" class="repeat"><i class="glyphicon glyphicon-repeat"></i></li> 
+								<li title="This {{violation.repeat | was}} a repeat violation." ng-class="{'active': violation.repeat}" class="repeat"><i class="glyphicon glyphicon-repeat"></i></li>
 								<li class="code">{{violation.code}}</li>
 								<li class="observation">{{violation.observation}}</li>
 							</ul>
 
 						</div>
 					</div>
-					
+
 					<li ng-if="restaurant.inspections.length === 0">No violations!</li>
 
 				</li>
 			</ul>
-			
+
 		</section>
 
 	</div>
