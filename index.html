@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-  scale=1, user-scalable=no">    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-  scale=1, user-scalable=no">
     <META NAME="description" CONTENT="Easily get public health inspection data for eateries near you.">
     <meta name="keywords" content="inspection, health inspection, dining, restaurant, cafeteria, open data, open government data, Code for America, Code for America Brigade, cfabrigade, mobile, HTML5, app, open source, Code for Hampton Roads, volunteers, volunteering, civic, civic engagement, public service">
     <meta property="og:image" content="img/build/preview.jpg" />
@@ -47,7 +47,7 @@
       <div class="container-fluid">
 
         <div class="row">
-          
+
           <div id="logoWrapper" class="hidden-xs col-sm-7 col-md-8">
             <a href="#/" class="clearfix">
               <img id="logo" src="img/build/logo.png" height="48px" width="48px" alt="Open Health Inspection Logo">
@@ -58,7 +58,7 @@
           <div id="searchbar" class="col-xs-12 col-sm-5 col-md-4 clearfix" ng-controller="searchCtrl">
 
             <section id="search" ng-show="isSearchbarVisible" class="col-xs-12">
-              
+
               <form ng-submit="nameSearch(0)" class=" clearfix" novalidate>
                 <span id="exitButton" ng-click="toggleSearchField()" class="col-xs-1 glyphicon glyphicon-chevron-left"></span>
                 <input id="searchField" class="col-xs-9" type="search" ng-model="query" placeholder="Search for a restaurant" focus-me="isSearchbarVisible"/>
@@ -92,7 +92,11 @@
             <a id="backToMe" class="listIcon clearfix" ng-click="getLocationButton()">
               <span class="fa fa-crosshairs"></span>
             </a>
-          
+
+            <a href="/#/" class="listIcon" ng-show="isCloseButtonVisible">
+              <span class="glyphicon glyphicon-remove-circle"></span>
+            </a>
+
             <section class="clearfix tray drop-shadow" ng-show="isVisible">
               <ul>
                 <li class="col-xs-12">
@@ -116,23 +120,23 @@
         <h1>Open<br>Health<br>Inspection</h1>
       </div>
 
-      <section ng-controller="mapCtrl">    
+      <section ng-controller="mapCtrl">
   <!--       <div id="backToMe" ng-click="getLocation()">
           <i class="fa fa-crosshairs"></i>
         </div> -->
       </section>
 
-      <section class="results" ng-class="{'bump': isSearchbarVisible || isVisible}">    
+      <section class="results" ng-class="{'bump': isSearchbarVisible || isVisible}">
         <section id="searchResults" ng-controller="searchResultsCtrl">
           <section id="searchResultsDetail" ng-show="isVisible">
             <ul class="">
               <li ng-repeat="restaurant in results">
-    
+
                 <div ng-if="$index % 2 === 0" class="col-xs-12 visible-sm clearfix"></div>
                 <div ng-if="$index % 3 === 0" class="col-xs-12 visible-md visible-lg clearfix"></div>
-                
+
                 <div class="list-container col-sm-6 col-md-4">
-                  <div class="card clearfix drop-shadow {{restaurant.score | scoreBorder}}"> 
+                  <div class="card clearfix drop-shadow {{restaurant.score | scoreBorder}}">
                     <a href="#{{restaurant.url}}">
                       <div class="title clearfix">
                         <i class="{{restaurant.category | categoryIcon }} col-xs-2 category-icon"></i>
