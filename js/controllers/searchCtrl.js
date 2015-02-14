@@ -70,6 +70,10 @@ openHealthDataAppControllers.controller('searchCtrl',
 
     };
 
+    $rootScope.goToResults = function(state) {
+      $location.url('/');
+    };
+
     var currentIndex = 0;
     var searchRadii = [805, 1609, 3219, 4828, 6437, 8047, 9656];
     var searchRadiiLabel = ['½', '1', '2', '3', '4', '5' , '6'];

@@ -42,7 +42,7 @@ body {
 }
 
 /*
-Colors: 
+Colors:
 */
 
 .grayText {
@@ -95,7 +95,7 @@ Colors:
 
 .medal {
 	color: white !important;
-	padding: .25em 0; 
+	padding: .25em 0;
 }
 
 	.modalContainer h5, .modal-title {
@@ -140,7 +140,7 @@ Colors:
 		font-weight: 700;
 		text-align: center;
 	}
-	.modal-body h2 { 
+	.modal-body h2 {
 		text-align: center;
 	}
 	.modal-footer {
@@ -167,7 +167,7 @@ header {
 	z-index: 10;
 	border-bottom:1px solid #ccc;
 	text-align: center;
-	min-height: 60px;
+	height: 72px;
 }
 
 	header.drop-shadow {
@@ -176,7 +176,7 @@ header {
 
 	header #logoWrapper {
 		text-align: left;
-		line-height: 60px;
+		line-height: 72px;
 	}
 
 center {
@@ -217,7 +217,7 @@ center {
 	header #searchbar {
 		background: #3A546D;
 		border-left: 1px solid #43617E;
-		height: 60px;
+		height: 72px;
 		text-align: right;
 		position: relative;
 		padding-right: 0;
@@ -232,9 +232,28 @@ center {
 			width: 48px;
 		}
 
+    header #searchbar button {
+      /*height: 72px;*/
+    }
+
+    header #searchbar button.btn-transparent {
+      background: transparent;
+      color: white;
+      height: 72px;
+    }
+
+    header #searchbar button.btn-transparent span {
+      font-size: 1.5em;
+    }
+
 		header #searchbar form {
 			margin: 12px 0;
+      height: 48px;
 		}
+
+    header #searchbar form input, header #searchbar form button {
+      height: 48px;
+    }
 
 		header .tray {
 			background: #efefef;
@@ -305,11 +324,11 @@ center {
 				background: white ;
 				color: #3A546D !important;
 			}
-		
+
 		header #search {
 			/*left: auto;*/
 			position: absolute;
-		}	
+		}
 
 		header #search .listIcon {
 			margin: 0;
@@ -363,7 +382,7 @@ center {
 				margin: 0;
 				color: white;
 				font-size: 1.5em;
-				line-height: 36px;
+				line-height: 48px;
 				position: relative;
 				right: .5em;
 
@@ -457,8 +476,8 @@ center {
 	background: white;
 }
 
-#viewContainer { 
-	
+#viewContainer {
+
 }
 
 #searchResultsDetail ul {
@@ -552,7 +571,7 @@ center {
 			.readMore {
 				text-align: right;
 				line-height: 2em;
-			}	
+			}
 				.readMore i {
 					color: #999;
 					font-weight: 700;
@@ -570,7 +589,7 @@ center {
 					font-size: 3rem;
 				}
 
-				.title .address { 
+				.title .address {
 					margin-bottom: 0;
 				}
 
@@ -612,7 +631,7 @@ a.close {
 
 #cityJump {
 	position: fixed;
-	top: 108px; 
+	top: 120px;
 	right: 0;
 	overflow-y: scroll;
 	z-index: 1040;
@@ -629,7 +648,7 @@ a.close {
 		background: white;
 	}
 
-#restaurantDetailView {	
+#restaurantDetailView {
 	margin-top: 0px;
 }
 	#restaurantDetailView > .container-fluid {
@@ -751,7 +770,7 @@ a.close {
 			padding: 1em;
 			background: white;
 		}
-		
+
 		.inspection.drop-shadow {
 			box-shadow: 0 6px 1em rgba(0,0,0,.125);
 		}
@@ -835,7 +854,7 @@ a.close {
 						color: #B28C04;
 						background:  #FAAA0C;
 					}
-	
+
 					li.critical.active i {
 						color:  #cf2f36;
 						background: #f18775;
@@ -859,7 +878,6 @@ a.close {
 					.repeat.active span {
 						color: black;
 					}
-
 
 /*
     The frontend for Code for Hampton Roads' Open Health Inspection Data.
