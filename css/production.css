@@ -227,7 +227,7 @@ center {
 			display: inline-block;
 			position: absolute;
 			left: 6px;
-			top: 6px;
+			top: 12px;
 			height: 48px;
 			width: 48px;
 		}
@@ -401,8 +401,7 @@ center {
 			}
 
 #main {
-	margin-top: 60px;
-	/*background: #f3ece3;*/
+	margin-top: 72px;
 	z-index: 2;
 }
 	.bump {
