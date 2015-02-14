@@ -82,20 +82,20 @@
             </section>
 
             <a href="#/" class="visible-xs" class="clearfix">
-              <img class="logo" src="img/build/logo.png" height="36px" width="36px" alt="logo">
+              <img class="logo" src="img/build/logo.png" height="48px" width="48px" alt="logo">
             </a>
 
-            <a ng-click="toggleSearchField()"  class="listIcon clearfix">
+            <button ng-click="toggleSearchField()" class="btn btn-lg btn-transparent">
               <span id="searchButton" class="glyphicon glyphicon-search"></span>
-            </a>
+            </button>
 
-            <a id="backToMe" class="listIcon clearfix" ng-click="getLocationButton()">
+            <button ng-click="getLocationButton()" class="btn btn-lg btn-transparent">
               <span class="fa fa-crosshairs"></span>
-            </a>
+            </button>
 
-            <a href="/#/" class="listIcon" ng-show="isCloseButtonVisible">
+            <button ng-click="goToResults()" class="btn btn-lg btn-transparent" ng-if="isCloseButtonVisible">
               <span class="glyphicon glyphicon-remove-circle"></span>
-            </a>
+            </button>
 
             <section class="clearfix tray drop-shadow" ng-show="isVisible">
               <ul>
