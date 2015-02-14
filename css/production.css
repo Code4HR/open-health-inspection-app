@@ -631,7 +631,7 @@ a.close {
 
 #cityJump {
 	position: fixed;
-	top: 108px;
+	top: 120px;
 	right: 0;
 	overflow-y: scroll;
 	z-index: 1040;
