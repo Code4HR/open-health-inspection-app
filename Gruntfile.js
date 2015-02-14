@@ -116,7 +116,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-open');
 
-
     // 4. Where we tell Grunt what to do when we type "grunt" into the terminal.
     grunt.registerTask('build', ['concat', 'uglify', 'cssmin', 'imagemin']);
     grunt.registerTask('server', ['connect','open:dev','watch']);

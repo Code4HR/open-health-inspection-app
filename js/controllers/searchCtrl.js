@@ -1,7 +1,22 @@
-openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope',
- '$timeout', 'Search', 'Geosearch', '$filter', 'Toast', '$window', '$location',
-  function($scope, $rootScope, $timeout, Search, Geosearch, $filter, Toast,
-   $window, $location) {
+openHealthDataAppControllers.controller('searchCtrl',
+  ['$scope',
+   '$rootScope',
+   '$timeout',
+   'Search',
+   'Geosearch',
+   '$filter',
+   'Toast',
+   '$window',
+   '$location',
+   function($scope,
+            $rootScope,
+            $timeout,
+            Search,
+            Geosearch,
+            $filter,
+            Toast,
+            $window,
+            $location) {
 
     var searchQuery;
 
@@ -10,7 +25,7 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope',
     $rootScope.$on('cityJumpFire', function() {
       try {
         $scope.searchAreaText = Search.city.name;
-      } 
+      }
       catch(e) {
         $scope.searchAreaText = 'Near me';
         Search.city = undefined;
@@ -64,11 +79,10 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope',
       currentIndex = index;
 
       if (index > 6) {
-        console.log('no more results to give nearby');
-        return;
+        console.log('no more results to give nearby.');
       }
 
-      if ($scope.query.length < 4) {
+      if ($scope.query.length < 2) {
         $window.alert('Please enter a longer search term.');
         return;
       }
@@ -125,7 +139,7 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope',
             alert('No results for "' + searchQuery.name + '" in ' + searchQuery.city + '.');
 
             if ($location.url() === '/#') {
-              return $rootScope.isVisible = true; 
+              return $rootScope.isVisible = true;
             } else {
               return;
             }
@@ -137,7 +151,7 @@ openHealthDataAppControllers.controller('searchCtrl', ['$scope', '$rootScope',
 
         Search.results.forEach(function(el, index){
           if (!_.isUndefined(el.coordinates)) {
-            
+
             el.score = !_.isUndefined(el.score) &&
                        !_.isNull(el.score) ?
                        Math.round(el.score) : 'n/a';
