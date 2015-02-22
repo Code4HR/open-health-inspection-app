@@ -42,7 +42,7 @@ body {
 }
 
 /*
-Colors: 
+Colors:
 */
 
 .grayText {
@@ -95,7 +95,7 @@ Colors:
 
 .medal {
 	color: white !important;
-	padding: .25em 0; 
+	padding: .25em 0;
 }
 
 	.modalContainer h5, .modal-title {
@@ -111,21 +111,21 @@ Colors:
 		font-size: 1.125em;
 		margin: 0;
 	}
-	.modalContainer .defWrapper {
+	.modal-content .defWrapper {
 		background: #efefef;
 		margin: 0 0 1em 0;
 	}
-	.modalContainer dl {
+	.modal-content dl {
 		/*padding: .5em .25em;*/
 		margin: .25em 0;
 	}
-		.modalContainer dt {
+		.modal-content dt {
 			font-size: 1.5em;
 			line-height: 1.5em;
 			display: inline;
 			margin-right: .25em;
 		}
-		.modalContainer dd {
+		.modal-content dd {
 			line-height: 1.5em;
 			display: inline;
 		}
@@ -140,7 +140,10 @@ Colors:
 		font-weight: 700;
 		text-align: center;
 	}
-	.modal-body h2 { 
+  .modal-body .glyphicon {
+    font-size: 2em;
+  }
+  .modal-body h2 {
 		text-align: center;
 	}
 	.modal-footer {
@@ -305,11 +308,11 @@ center {
 				background: white ;
 				color: #3A546D !important;
 			}
-		
+
 		header #search {
 			/*left: auto;*/
 			position: absolute;
-		}	
+		}
 
 		header #search .listIcon {
 			margin: 0;
@@ -457,8 +460,8 @@ center {
 	background: white;
 }
 
-#viewContainer { 
-	
+#viewContainer {
+
 }
 
 #searchResultsDetail ul {
@@ -552,7 +555,7 @@ center {
 			.readMore {
 				text-align: right;
 				line-height: 2em;
-			}	
+			}
 				.readMore i {
 					color: #999;
 					font-weight: 700;
@@ -570,7 +573,7 @@ center {
 					font-size: 3rem;
 				}
 
-				.title .address { 
+				.title .address {
 					margin-bottom: 0;
 				}
 
@@ -612,7 +615,7 @@ a.close {
 
 #cityJump {
 	position: fixed;
-	top: 108px; 
+	top: 108px;
 	right: 0;
 	overflow-y: scroll;
 	z-index: 1040;
@@ -629,7 +632,7 @@ a.close {
 		background: white;
 	}
 
-#restaurantDetailView {	
+#restaurantDetailView {
 	margin-top: 0px;
 }
 	#restaurantDetailView > .container-fluid {
@@ -751,7 +754,7 @@ a.close {
 			padding: 1em;
 			background: white;
 		}
-		
+
 		.inspection.drop-shadow {
 			box-shadow: 0 6px 1em rgba(0,0,0,.125);
 		}
@@ -835,7 +838,7 @@ a.close {
 						color: #B28C04;
 						background:  #FAAA0C;
 					}
-	
+
 					li.critical.active i {
 						color:  #cf2f36;
 						background: #f18775;
@@ -859,4 +862,3 @@ a.close {
 					.repeat.active span {
 						color: black;
 					}
-
