@@ -1,9 +1,10 @@
 openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope',
  '$routeParams', '$http', '$location', '$rootScope', 'Geosearch',
- 'Inspections', function($scope, $routeParams, $http, $location, 
+ 'Inspections', function($scope, $routeParams, $http, $location,
  $rootScope, Geosearch, Inspections) {
 
     $rootScope.isVisible = false;
+    $rootScope.isCloseButtonVisible = true;
     $rootScope.toggleCityJump(false);
 
     $scope.results = Inspections.query({vendorid: $routeParams.id}, function(){

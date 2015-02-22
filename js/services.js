@@ -22,17 +22,17 @@
 
 var openHealthDataServices = angular.module('openHealthDataServices',
 ['ngResource']);
- 
+
 openHealthDataServices.factory('Inspections', ['$resource',
   function($resource){
     return $resource('http://api.openhealthinspection.com/' +
       'inspections?vendorid=:vendorid', {}, {
-      query: { 
+      query: {
         method: 'JSONP',
         params: {
           vendorid: '',
           callback: 'JSON_CALLBACK'
-        } 
+        }
       }
     });
   }]);
@@ -44,7 +44,7 @@ openHealthDataServices.factory('Geolocation', ['$q', '$timeout', function($q, $t
 
       var deferred = $q.defer();
 
-      $timeout(countdown, 10000);
+      $timeout(countdown, 5000);
 
       function countdown() {
         deferred.reject('The request to get user location timed out.');
@@ -76,7 +76,7 @@ openHealthDataServices.factory('Geolocation', ['$q', '$timeout', function($q, $t
           }
 
           deferred.reject(errorCode);
-      
+
         });
         return deferred.promise;
       }
@@ -94,7 +94,7 @@ openHealthDataServices.factory('Geosearch', ['$resource',
           lat: '36',
           lon: '-72',
           dist: '1000',
-          callback: 'JSON_CALLBACK'} 
+          callback: 'JSON_CALLBACK'}
         }
     });
   }]);
@@ -102,11 +102,11 @@ openHealthDataServices.factory('Geosearch', ['$resource',
 openHealthDataServices.factory('Search', ['$resource',
   function($resource) {
     return $resource('http://api.openhealthinspection.com/vendors', {}, {
-      query: { 
+      query: {
         method: 'JSONP',
         params: {
           callback: 'JSON_CALLBACK'
-        } 
+        }
       }
     });
   }]);
@@ -117,6 +117,3 @@ openHealthDataServices.factory('Toast', function() {
     searchAreaText: '',
   };
 });
-
-
-

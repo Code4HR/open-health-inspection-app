@@ -564,10 +564,11 @@ openHealthDataAppControllers.controller('modalController',
 }]);
 openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope',
  '$routeParams', '$http', '$location', '$rootScope', 'Geosearch',
- 'Inspections', function($scope, $routeParams, $http, $location, 
+ 'Inspections', function($scope, $routeParams, $http, $location,
  $rootScope, Geosearch, Inspections) {
 
     $rootScope.isVisible = false;
+    $rootScope.isCloseButtonVisible = true;
     $rootScope.toggleCityJump(false);
 
     $scope.results = Inspections.query({vendorid: $routeParams.id}, function(){
@@ -580,6 +581,7 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope',
     });
 
 }]);
+
 openHealthDataAppControllers.controller('searchCtrl',
   ['$scope',
    '$rootScope',
@@ -650,6 +652,10 @@ openHealthDataAppControllers.controller('searchCtrl',
         angular.element('#dismissScreen').css('z-index', -1);
       }
 
+    };
+
+    $rootScope.goToResults = function(state) {
+      $location.url('/');
     };
 
     var currentIndex = 0;
@@ -800,5 +806,6 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope',
 openHealthDataAppControllers.controller('searchResultsPreview',
   ['$scope', '$rootScope',
     function($scope, $rootScope) {
-    $rootScope.isVisible = true;    
+    $rootScope.isVisible = true;
+    $rootScope.isCloseButtonVisible = false;
 }]);

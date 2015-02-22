@@ -140,10 +140,7 @@ Colors:
 		font-weight: 700;
 		text-align: center;
 	}
-  .modal-body .glyphicon {
-    font-size: 2em;
-  }
-  .modal-body h2 {
+	.modal-body h2 {
 		text-align: center;
 	}
 	.modal-footer {
@@ -170,7 +167,7 @@ header {
 	z-index: 10;
 	border-bottom:1px solid #ccc;
 	text-align: center;
-	min-height: 60px;
+	height: 72px;
 }
 
 	header.drop-shadow {
@@ -179,7 +176,7 @@ header {
 
 	header #logoWrapper {
 		text-align: left;
-		line-height: 60px;
+		line-height: 72px;
 	}
 
 center {
@@ -220,7 +217,7 @@ center {
 	header #searchbar {
 		background: #3A546D;
 		border-left: 1px solid #43617E;
-		height: 60px;
+		height: 72px;
 		text-align: right;
 		position: relative;
 		padding-right: 0;
@@ -230,14 +227,33 @@ center {
 			display: inline-block;
 			position: absolute;
 			left: 6px;
-			top: 6px;
+			top: 12px;
 			height: 48px;
 			width: 48px;
 		}
 
+    header #searchbar button {
+      /*height: 72px;*/
+    }
+
+    header #searchbar button.btn-transparent {
+      background: transparent;
+      color: white;
+      height: 72px;
+    }
+
+    header #searchbar button.btn-transparent span {
+      font-size: 1.5em;
+    }
+
 		header #searchbar form {
 			margin: 12px 0;
+      height: 48px;
 		}
+
+    header #searchbar form input, header #searchbar form button {
+      height: 48px;
+    }
 
 		header .tray {
 			background: #efefef;
@@ -366,7 +382,7 @@ center {
 				margin: 0;
 				color: white;
 				font-size: 1.5em;
-				line-height: 36px;
+				line-height: 48px;
 				position: relative;
 				right: .5em;
 
@@ -385,8 +401,7 @@ center {
 			}
 
 #main {
-	margin-top: 60px;
-	/*background: #f3ece3;*/
+	margin-top: 72px;
 	z-index: 2;
 }
 	.bump {
@@ -615,7 +630,7 @@ a.close {
 
 #cityJump {
 	position: fixed;
-	top: 108px;
+	top: 120px;
 	right: 0;
 	overflow-y: scroll;
 	z-index: 1040;
