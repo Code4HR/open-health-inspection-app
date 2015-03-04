@@ -10,6 +10,8 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
         ga('send', 'pageview', $location.path());
     });
 
+    $scope.geoOptions = { useGeolocation: false, zip: '' };
+
     $scope.openModal = function(size) {
 
       var modalInstance = $modal.open({
@@ -17,14 +19,15 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
         controller: 'modalController',
         size: size,
         resolve: { 
-          items: function () {
-            return $scope.items;
+          geoOptions: function () {
+            return $scope.geoOptions;
           }
         }
       });
 
-      modalInstance.result.then(function (selectedItem) {
-        $scope.selected = selectedItem;
+      modalInstance.result.then(function (geoOptions) {
+        $scope.geoOptions = geoOptions;
+        $scope.getLocation();
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
@@ -40,7 +43,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
       angular.element('.cityResults').css('max-height', calcHeight - 64);
 
     $rootScope.getLocationButton = function() {
-      $scope.getLocation();
+      $scope.openModal();
       $location.url('/#');
     };
 
@@ -49,7 +52,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
       currentIndex = 0;
       console.log('getting location');
 
-      Geolocation.getPosition().then(function(data) {
+      Geolocation.getPosition($scope.geoOptions).then(function(data) {
         $rootScope.showPosition(data);
       }).catch(function(error) {
         $rootScope.showPosition();
@@ -147,8 +150,6 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
                   'Fallback to Norfolk');
       $rootScope.showPosition();
     };
-
-    $scope.getLocation();
 
     $rootScope.$on('moreGeosearch', function() {
       // debugger;
