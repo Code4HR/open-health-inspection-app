@@ -111,21 +111,21 @@ Colors:
 		font-size: 1.125em;
 		margin: 0;
 	}
-	.modalContainer .defWrapper {
+	.modal-content .defWrapper {
 		background: #efefef;
 		margin: 0 0 1em 0;
 	}
-	.modalContainer dl {
+	.modal-content dl {
 		/*padding: .5em .25em;*/
 		margin: .25em 0;
 	}
-		.modalContainer dt {
+		.modal-content dt {
 			font-size: 1.5em;
 			line-height: 1.5em;
 			display: inline;
 			margin-right: .25em;
 		}
-		.modalContainer dd {
+		.modal-content dd {
 			line-height: 1.5em;
 			display: inline;
 		}
