@@ -6,6 +6,9 @@
 <div class="modal-body">
       <p>This app makes it easy to get public health reports for Virginia restaurants near you.  To check the report for a specific restaurant, click its name in the list or use the search tool.</p>
 
+      <p><input type="checkbox" ng-model="geoOptions.useGeolocation" ng-click="geoOptions.zip = ''"> Use my location</p>
+      <p><input id="zip" type="text" ng-model="geoOptions.zip" ng-change="geoOptions.useGeolocation = false" placeholder="Search by zip code" /></p>
+
       <p>This app was developed by volunteers working through <a href="http://code4hr.org">Code for Hampton Roads.</a> <br>
         Please send any feedback or bug reports to <a href="mailto:openhealthinspection@gmail.com">openhealthinspection@gmail.com</a></p>
       <p/>
@@ -17,6 +20,6 @@
 </div>
 <div class="modal-footer">
     <div class="row">
-        <button class="btn btn-info" ng-click="cancel()">OK</button>
+        <button class="btn btn-info" ng-click="ok()">OK</button>
     </div>
 </div>
