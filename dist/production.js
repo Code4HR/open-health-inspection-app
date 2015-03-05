@@ -269,35 +269,36 @@ angular.module('openHealthDataAppFilters', [])
 
 var openHealthDataServices = angular.module('openHealthDataServices',
 ['ngResource']);
- 
+
 openHealthDataServices.factory('Inspections', ['$resource',
   function($resource){
     return $resource('http://api.openhealthinspection.com/' +
       'inspections?vendorid=:vendorid', {}, {
-      query: { 
+      query: {
         method: 'JSONP',
         params: {
           vendorid: '',
           callback: 'JSON_CALLBACK'
-        } 
+        }
       }
     });
   }]);
 
-openHealthDataServices.factory('Geolocation', ['$q', '$timeout', function($q, $timeout) {
+openHealthDataServices.factory('Geolocation', ['$q', '$timeout', 'Smarty', function($q, $timeout, Smarty) {
   return {
 
-    getPosition: function() {
+    getPosition: function(geoOptions) {
 
       var deferred = $q.defer();
 
-      $timeout(countdown, 10000);
+      $timeout(countdown, 5000);
 
       function countdown() {
         deferred.reject('The request to get user location timed out.');
       }
 
-      if (navigator.geolocation) {
+      if (geoOptions.useGeolocation && navigator.geolocation) {
+          console.log('using geolocation');
         navigator.geolocation.getCurrentPosition(function(position) {
           $timeout.cancel(countdown);
           deferred.resolve(position);
@@ -323,10 +324,22 @@ openHealthDataServices.factory('Geolocation', ['$q', '$timeout', function($q, $t
           }
 
           deferred.reject(errorCode);
-      
+
         });
-        return deferred.promise;
+      } else if (geoOptions.zip) {
+          console.log('using smarty',geoOptions.zip);
+        Smarty.query({ zip: geoOptions.zip }, function(data) {
+            var lat = data[0].zipcodes[0].latitude;
+            var lon = data[0].zipcodes[0].longitude;
+            deferred.resolve({ coords: { latitude: lat, longitude: lon } });
+        },
+        function(err) {
+            deferred.reject(err);
+        });
+      } else {
+          deferred.resolve();
       }
+      return deferred.promise;
     }
   };
 }]);
@@ -341,7 +354,7 @@ openHealthDataServices.factory('Geosearch', ['$resource',
           lat: '36',
           lon: '-72',
           dist: '1000',
-          callback: 'JSON_CALLBACK'} 
+          callback: 'JSON_CALLBACK'}
         }
     });
   }]);
@@ -349,13 +362,20 @@ openHealthDataServices.factory('Geosearch', ['$resource',
 openHealthDataServices.factory('Search', ['$resource',
   function($resource) {
     return $resource('http://api.openhealthinspection.com/vendors', {}, {
-      query: { 
+      query: {
         method: 'JSONP',
         params: {
           callback: 'JSON_CALLBACK'
-        } 
+        }
       }
     });
+  }]);
+
+openHealthDataServices.factory('Smarty', ['$resource',
+  function($resource) {
+    return $resource('https://api.smartystreets.com/zipcode' +
+        '?auth-id=3528212138785631906' +
+        '&city=&state=&zipcode=:zip', {}, {});
   }]);
 
 openHealthDataServices.factory('Toast', function() {
@@ -364,9 +384,6 @@ openHealthDataServices.factory('Toast', function() {
     searchAreaText: '',
   };
 });
-
-
-
 
 openHealthDataAppControllers.controller('cityJumpCtrl', ['$scope',
   '$rootScope', 'Search', 'Geosearch', '$http', function($scope, $rootScope,
@@ -400,6 +417,8 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
         ga('send', 'pageview', $location.path());
     });
 
+    $scope.geoOptions = { useGeolocation: false, zip: '' };
+
     $scope.openModal = function(size) {
 
       var modalInstance = $modal.open({
@@ -407,14 +426,15 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
         controller: 'modalController',
         size: size,
         resolve: { 
-          items: function () {
-            return $scope.items;
+          geoOptions: function () {
+            return $scope.geoOptions;
           }
         }
       });
 
-      modalInstance.result.then(function (selectedItem) {
-        $scope.selected = selectedItem;
+      modalInstance.result.then(function (geoOptions) {
+        $scope.geoOptions = geoOptions;
+        $scope.getLocation();
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
@@ -430,7 +450,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
       angular.element('.cityResults').css('max-height', calcHeight - 64);
 
     $rootScope.getLocationButton = function() {
-      $scope.getLocation();
+      $scope.openModal();
       $location.url('/#');
     };
 
@@ -439,7 +459,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
       currentIndex = 0;
       console.log('getting location');
 
-      Geolocation.getPosition().then(function(data) {
+      Geolocation.getPosition($scope.geoOptions).then(function(data) {
         $rootScope.showPosition(data);
       }).catch(function(error) {
         $rootScope.showPosition();
@@ -538,8 +558,6 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
       $rootScope.showPosition();
     };
 
-    $scope.getLocation();
-
     $rootScope.$on('moreGeosearch', function() {
       // debugger;
       doSearch(currentIndex);
@@ -548,13 +566,16 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
   }]);
 
 openHealthDataAppControllers.controller('modalController',
-  ['$scope', '$modalInstance', 'items', '$log', '$location', 
-  function($scope, $modalInstance, items, $log, $location){
+  ['$scope', '$modalInstance', 'geoOptions', '$log', '$location', 
+  function($scope, $modalInstance, geoOptions, $log, $location){
+
+  $scope.geoOptions = geoOptions;
 
   $scope.ok = function () {
     // $log.info('http://code4hr.eventbrite.com/?aff=busapp');
     // $location.replace('http://eventbrite.com');
-    $location.href="http://code4hr.eventbrite.com/?aff=busapp";
+    // $location.href="http://code4hr.eventbrite.com/?aff=busapp";
+    $modalInstance.close($scope.geoOptions);
   };
 
   $scope.cancel = function () {

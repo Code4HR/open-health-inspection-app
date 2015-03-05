@@ -127,7 +127,7 @@ openHealthDataServices.factory('Search', ['$resource',
 openHealthDataServices.factory('Smarty', ['$resource',
   function($resource) {
     return $resource('https://api.smartystreets.com/zipcode' +
-        '?auth-id=AUTH_ID_GOES_HERE' +
+        '?auth-id=3528212138785631906' +
         '&city=&state=&zipcode=:zip', {}, {});
   }]);
 
