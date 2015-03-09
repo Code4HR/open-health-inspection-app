@@ -428,7 +428,7 @@ module.exports = function(ngModule) {
 };
 
 },{}],7:[function(require,module,exports){
-module.exports = "<label>Using GPS</label>\n<form ng-submit=\"getLocation()\" class=\"input-group form-group input-group-lg\" novalidate>\n  <button class=\"btn btn-primary\">GPS</button>\n</form>\n";
+module.exports = "<label>Using GPS</label>\n<form ng-submit=\"getLocation()\" class=\"input-group form-group\" novalidate>\n  <button class=\"btn btn-primary btn-lg\">GPS</button>\n</form>\n";
 
 },{}],8:[function(require,module,exports){
 'use strict';
