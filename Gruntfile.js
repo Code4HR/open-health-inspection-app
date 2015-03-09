@@ -16,6 +16,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+var stringify = require('stringify');
+
 module.exports = function(grunt) {
 
     // 1. All configuration goes here
@@ -26,7 +28,7 @@ module.exports = function(grunt) {
             // 2. Configuration for concatinating files goes here.
           dist: {
           src: [
-            'js/*.js', 'js/controllers/*.js', '!js/production.js', '!js/production.min.js'
+            'js/*.js', 'js/controllers/*.js', '!js/production.js', '!js/production.min.js', '!js/modules/**/*.js'
           ],
             dest: 'dist/production.js',
           },
@@ -40,8 +42,8 @@ module.exports = function(grunt) {
 
         uglify: {
             build: {
-                src: 'js/production.js',
-                dest: 'js/production.min.js'
+                src: 'dist/production.js',
+                dest: 'dist/production.min.js'
             }
         },
 
@@ -66,12 +68,24 @@ module.exports = function(grunt) {
             }
         },
 
+        browserify: {
+          dist: {
+            files: {
+              'js/modules.js': ['js/modules/**/*.js'],
+            },
+            options: {
+              transform: ['stringify']
+            }
+          }
+        },
+
         watch: {
             scripts: {
-                files: ['js/*.js', 'js/controllers/*.js'],
-                tasks: ['concat', 'uglify'],
+                files: ['js/*.js', 'js/controllers/*.js', 'js/modules/**/*.{js,html}'],
+                tasks: ['browserify','concat', 'uglify'],
                 options: {
                     spawn: false,
+                    livereload: true
                 },
             },
             styles: {
@@ -79,6 +93,7 @@ module.exports = function(grunt) {
                 tasks: ['concat', 'cssmin'],
                 options: {
                     spawn: false,
+                    livereload: true
                 }
             },
             images: {
@@ -86,25 +101,29 @@ module.exports = function(grunt) {
                 tasks: ['imagemin'],
                 options: {
                     spawn: false,
+                    livereload: true
                 }
-            }
+            },
+
         },
+
         connect: {
           server : {
             options : {
               port : 9090,
-              keepalive : true
+              keepalive : false,
+              livereload : true
             }
           },
-          keepalive : true,
-          livereload : true
         },
+
         open: {
           dev: {
             // Gets the port from the connect configuration
-            path: 'http://localhost:<%= connect.all.options.port%>'
+            path: 'http://localhost:<%= connect.server.options.port%>'
           }
         }
+
     });
 
     // 3. Where we tell Grunt we plan to use this plug-in.
@@ -115,9 +134,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-open');
+    grunt.loadNpmTasks('grunt-browserify');
 
     // 4. Where we tell Grunt what to do when we type "grunt" into the terminal.
-    grunt.registerTask('build', ['concat', 'uglify', 'cssmin', 'imagemin']);
-    grunt.registerTask('server', ['connect','open:dev','watch']);
+    grunt.registerTask('build', ['browserify', 'concat', 'uglify', 'cssmin', 'imagemin']);
+    grunt.registerTask('default', ['connect','open:dev','watch']);
 
 };

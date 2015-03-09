@@ -4,7 +4,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
  $location, Geosearch, Search, $filter, $modal, $log,
  Toast, $window, Geolocation) {
 
-    var currentIndex;
+    var currentIndex = 0;
 
     $rootScope.$on('$locationChangeSuccess', function() {
         ga('send', 'pageview', $location.path());
@@ -16,17 +16,18 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
         templateUrl: 'partials/modal.html',
         controller: 'modalController',
         size: size,
-        resolve: { 
-          items: function () {
-            return $scope.items;
+        resolve: {
+          geoOptions: function () {
+            return $scope.geoOptions;
           }
         }
       });
 
-      modalInstance.result.then(function (selectedItem) {
-        $scope.selected = selectedItem;
+      modalInstance.result.then(function (location) {
+        $rootScope.showPosition(location);
       }, function () {
-        $log.info('Modal dismissed at: ' + new Date());
+        // $log.info('Modal dismissed at: ' + new Date());
+        $rootScope.showPosition();
       });
 
     };
@@ -40,21 +41,8 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
       angular.element('.cityResults').css('max-height', calcHeight - 64);
 
     $rootScope.getLocationButton = function() {
-      $scope.getLocation();
+      $scope.openModal();
       $location.url('/#');
-    };
-
-    $rootScope.getLocation = function() {
-
-      currentIndex = 0;
-      console.log('getting location');
-
-      Geolocation.getPosition().then(function(data) {
-        $rootScope.showPosition(data);
-      }).catch(function(error) {
-        $rootScope.showPosition();
-      });
-
     };
 
     $rootScope.showPosition = function(position) {
@@ -73,7 +61,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
 
         console.log('coordinates are within Virgina');
 
-        // Position.coords is only avaible in this scope, share over 
+        // Position.coords is only avaible in this scope, share over
         // Geosearch service
 
         Geosearch.coords = position.coords;
@@ -114,8 +102,8 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
       $rootScope.$broadcast('updateToast');
 
       Geosearch.results = Geosearch.query({
-        lat: Geosearch.coords.latitude, 
-        lon: Geosearch.coords.longitude, 
+        lat: Geosearch.coords.latitude,
+        lon: Geosearch.coords.longitude,
         dist: searchRadii[index]
       }, function() {
 
@@ -129,12 +117,12 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
           return doSearch(index + 1);
         }
 
-        Geosearch.results.forEach(function(el) { 
+        Geosearch.results.forEach(function(el) {
           el.dist = el.dist * 0.000621371;
           el.score = el.score ? Math.round(el.score) : 'n/a';
         });
 
-        Geosearch.results = 
+        Geosearch.results =
           $filter('orderBy')(Geosearch.results, 'dist', false);
 
         $rootScope.$broadcast('geosearchFire');
@@ -147,8 +135,6 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
                   'Fallback to Norfolk');
       $rootScope.showPosition();
     };
-
-    $scope.getLocation();
 
     $rootScope.$on('moreGeosearch', function() {
       // debugger;

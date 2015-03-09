@@ -1,11 +1,9 @@
 openHealthDataAppControllers.controller('modalController',
-  ['$scope', '$modalInstance', 'items', '$log', '$location', 
-  function($scope, $modalInstance, items, $log, $location){
+  ['$scope', '$modalInstance', 'geoOptions', '$log', '$location', 'geocodeService',
+  function($scope, $modalInstance, geoOptions, $log, $location, geocodeService){
 
-  $scope.ok = function () {
-    // $log.info('http://code4hr.eventbrite.com/?aff=busapp');
-    // $location.replace('http://eventbrite.com');
-    $location.href="http://code4hr.eventbrite.com/?aff=busapp";
+  $scope.returnLocation = function (obj) {
+    $modalInstance.close(obj);
   };
 
   $scope.cancel = function () {

@@ -1,36 +1,30 @@
 open-health-inspection-app
 ==========================
 
-The frontend for Code for Hampton Roads' Open Health Inspection Data app.  Built using Angular, Bootstrap, and jQuery.
+The reference app built against Code for Hampton Roads' Open Health Inspection API.  Built using AngularJS.  Open Health Inspection allows users to quickly find health inspection information for their favorite restaurants.
 
-__How to contribute__
-* You'll need to install NodeJS, which can be found [here](nodejs.org).  
-* Run these commands in the project root directory for initial setup:
-  * npm install -g grunt-cli
-  * npm install
-* Run these commands everytime you start work
-  * grunt watch
-
-Now when you make edits to CSS or JS in css/ and js/ folders, they are automatically concatenated and minified in css/build/ and js/build/, respectively.  Images placed in img folder are losslessly optimized and saved to img/build/.
-
-live demo
-=====
 The app lives at:
 http://openhealthinspection.com/
 
-The prerelease branch lives at;
+The prerelease branch (next) lives at;
 http://next.openhealthinspection.com/
 
-Installation
+How to get up and running
 ---
-
 ```
 git clone git@github.com:c4hrva/open-health-inspection-app.git
+cd open-health-inspection-app
 npm install -g grunt-cli
 npm install
-grunt server
-#navigate to http://localhost:9090
+grunt
 ```
+
+Grunt is being used to run a local hosting environment, which opens a browser and watches the project folder for changes.
+
+OHI follows [Git Flow](http://nvie.com/posts/a-successful-git-branching-model/).  When you're ready to submit your changes, please open a pull request to the 'next' branch for review.
+
+Our Strider CD instance is [here](http://cd.ttavenner.com/c4hrva/open-health-inspection-app/).
+
 Scoring System
 ===
 First the fine print:

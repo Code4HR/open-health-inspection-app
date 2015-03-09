@@ -4,11 +4,18 @@
 </div>
 
 <div class="modal-body">
-      <p>This app makes it easy to get public health reports for Virginia restaurants near you.  To check the report for a specific restaurant, click its name in the list or use the search tool.</p>
+      <h3>How can we find you?</h3>
 
-      <p>This app was developed by volunteers working through <a href="http://code4hr.org">Code for Hampton Roads.</a> <br>
-        Please send any feedback or bug reports to <a href="mailto:openhealthinspection@gmail.com">openhealthinspection@gmail.com</a></p>
-      <p/>
+      <div class="row">
+        <div class="col-md-9">
+          <geocode callback="returnLocation"></geocode>
+        </div>
+        <div class="col-md-3">
+          <geolocation callback="returnLocation"></geolocation>
+        </div>
+      </div>
+
+      <p>This app makes it easy to get public health reports for Virginia restaurants near you.  To check the report for a specific restaurant, click its name in the list or use the search tool.</p>
 
       <p>Source code for this application can be found on <a href="https://github.com/c4hrva/open-health-inspection-app">
               <i class="fa fa-github"></i> Github</dd>
@@ -16,7 +23,4 @@
       </p>
 </div>
 <div class="modal-footer">
-    <div class="row">
-        <button class="btn btn-info" ng-click="cancel()">OK</button>
-    </div>
 </div>

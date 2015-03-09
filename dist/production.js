@@ -25,8 +25,8 @@ App.js
 'use strict';
 
 var openHealthDataApp = angular.module('openHealthDataApp', ['ngRoute',
-  'ui.bootstrap', 'openHealthDataAppControllers', 
-  'openHealthDataServices', 'openHealthDataAppFilters', 'ngTouch']);
+  'ui.bootstrap', 'openHealthDataAppControllers',
+  'openHealthDataServices', 'openHealthDataAppFilters', 'ngTouch', 'geocodeModule', 'geolocationModule']);
 
 openHealthDataApp.config(['$routeProvider',
   function($routeProvider) {
@@ -245,6 +245,201 @@ angular.module('openHealthDataAppFilters', [])
       }
     }
   });
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+module.exports = function(ngModule) {
+
+  ngModule.directive('geocode', ['geocodeService', function(geocodeService) {
+
+    var location,
+    directive = {
+      restrict: 'E',
+      replace: false,
+      scope: {
+        callback: '='
+      },
+      templateUrl: '/templates/geocode.html',
+      controllerAs: 'ctrl'
+    };
+
+    directive.link = function($scope) {
+
+      $scope.getLatLon = function() {
+        geocodeService.getLatLon($scope.zipcode)
+        .success(function(data) {
+
+          location = {
+            coords : {
+              latitude: data[0].zipcodes[0].latitude,
+              longitude: data[0].zipcodes[0].longitude
+            }
+          };
+
+          if ($scope.callback) {
+            $scope.callback(location);
+          }
+
+        })
+        .error(function(data) {
+
+        });
+      };
+
+    };
+
+    return directive;
+
+  }]);
+
+  ngModule.run(['$templateCache', function($templateCache){
+    $templateCache.put('/templates/geocode.html',
+      require('./geocode--template.html'));
+  }]);
+
+};
+
+},{"./geocode--template.html":3}],2:[function(require,module,exports){
+module.exports = function(ngModule) {
+  ngModule.factory('geocodeService', ['$http', '$q', function($http, $q){
+
+    return {
+      getLatLon: function(zip) {
+
+        // input validation here. If input is a zip code continue. Else fail;
+
+        var url = 'https://api.smartystreets.com/zipcode' +
+                  '?auth-id=3528212138785631906' +
+                  '&city=&state=&zipcode=' + zip;
+
+        return $http.get(url);
+
+      }
+    };
+  }]);
+};
+
+},{}],3:[function(require,module,exports){
+module.exports = "  <label>Zip Code</label>\n  <form ng-submit=\"getLatLon()\" novalidate class=\"input-group form-group input-group-lg\">\n    <input class=\"form-control\" ng-model=\"zipcode\" type=\"text\" placeholder=\"Zip Code\"/>\n    <span class=\"input-group-btn\">\n      <button class=\"btn btn-default\">\n        <span class=\"glyphicon glyphicon-search\"></span>\n      </button>\n    </span>\n  </form>\n";
+
+},{}],4:[function(require,module,exports){
+'use strict';
+
+var geocodeModule = angular.module('geocodeModule', []);
+
+require('./geocode--service.js')(geocodeModule);
+require('./geocode--directive.js')(geocodeModule);
+
+},{"./geocode--directive.js":1,"./geocode--service.js":2}],5:[function(require,module,exports){
+module.exports = function(ngModule) {
+
+  ngModule.directive('geolocation', ['geolocationService', function(geolocationService){
+
+    var directive = {
+      restrict: 'E',
+      replace: false,
+      scope: {
+        callback: '='
+      },
+      templateUrl: '/templates/geolocation.html',
+      controllerAs: 'ctrl'
+    };
+
+    directive.link = function($scope) {
+      $scope.getLocation = function() {
+        geolocationService.getLatLon()
+        .then(function(position) {
+
+          if ($scope.callback) {
+            $scope.callback(position);
+          }
+
+        });
+      };
+    };
+
+    return directive;
+
+  }]);
+
+  ngModule.run(['$templateCache', function($templateCache){
+    $templateCache.put('/templates/geolocation.html',
+      require('./geolocation--template.html'));
+  }]);
+
+};
+
+},{"./geolocation--template.html":7}],6:[function(require,module,exports){
+module.exports = function(ngModule) {
+
+  ngModule.factory('geolocationService', ['$q', '$timeout', function($q, $timeout) {
+    return {
+
+      getLatLon: function() {
+
+        var deferred = $q.defer();
+
+        function countdown() {
+          deferred.reject('The request to get user information timed out');
+        }
+
+        $timeout(countdown, 5000);
+
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            $timeout.cancel(countdown);
+
+            deferred.resolve({
+              coords: {
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude
+              }
+            });
+
+          }, function(error) {
+
+            $timeout.cancel(countdown);
+
+            var errorCode;
+            switch(error.code) {
+              case error.PERMISSION_DENIED:
+                  errorCode = 'User denied the request for Geolocation.';
+                  break;
+              case error.POSITION_UNAVAILABLE:
+                  errorCode = 'Location information is unavailable.';
+                  break;
+              case error.TIMEOUT:
+                  errorCode = 'The request to get user location timed out.';
+                  break;
+              case error.UNKNOWN_ERROR:
+                  errorCode = 'An unknown error occurred.';
+                  break;
+            }
+
+            deferred.reject(errorCode);
+
+          });
+
+          return deferred.promise;
+
+        }
+      }
+
+    };
+  }]);
+};
+
+},{}],7:[function(require,module,exports){
+module.exports = "<label>Using GPS</label>\n<form ng-submit=\"getLocation()\" class=\"input-group form-group\" novalidate>\n  <button class=\"btn btn-primary btn-lg\">GPS</button>\n</form>\n";
+
+},{}],8:[function(require,module,exports){
+'use strict';
+
+var geolocationModule = angular.module('geolocationModule', []);
+
+require('./geolocation--directive')(geolocationModule);
+require('./geolocation--service')(geolocationModule);
+
+},{"./geolocation--directive":5,"./geolocation--service":6}]},{},[1,2,4,5,6,8]);
+
 /*
     The frontend for Code for Hampton Roads' Open Health Inspection Data.
     Copyright (C) 2014  Code for Hampton Roads contributors.
@@ -269,35 +464,36 @@ angular.module('openHealthDataAppFilters', [])
 
 var openHealthDataServices = angular.module('openHealthDataServices',
 ['ngResource']);
- 
+
 openHealthDataServices.factory('Inspections', ['$resource',
   function($resource){
     return $resource('http://api.openhealthinspection.com/' +
       'inspections?vendorid=:vendorid', {}, {
-      query: { 
+      query: {
         method: 'JSONP',
         params: {
           vendorid: '',
           callback: 'JSON_CALLBACK'
-        } 
+        }
       }
     });
   }]);
 
-openHealthDataServices.factory('Geolocation', ['$q', '$timeout', function($q, $timeout) {
+openHealthDataServices.factory('Geolocation', ['$q', '$timeout', 'Smarty', function($q, $timeout, Smarty) {
   return {
 
-    getPosition: function() {
+    getPosition: function(geoOptions) {
 
       var deferred = $q.defer();
 
-      $timeout(countdown, 10000);
+      $timeout(countdown, 5000);
 
       function countdown() {
         deferred.reject('The request to get user location timed out.');
       }
 
-      if (navigator.geolocation) {
+      if (geoOptions.useGeolocation && navigator.geolocation) {
+          console.log('using geolocation');
         navigator.geolocation.getCurrentPosition(function(position) {
           $timeout.cancel(countdown);
           deferred.resolve(position);
@@ -323,10 +519,22 @@ openHealthDataServices.factory('Geolocation', ['$q', '$timeout', function($q, $t
           }
 
           deferred.reject(errorCode);
-      
+
         });
-        return deferred.promise;
+      } else if (geoOptions.zip) {
+          console.log('using smarty',geoOptions.zip);
+        Smarty.query({ zip: geoOptions.zip }, function(data) {
+            var lat = data[0].zipcodes[0].latitude;
+            var lon = data[0].zipcodes[0].longitude;
+            deferred.resolve({ coords: { latitude: lat, longitude: lon } });
+        },
+        function(err) {
+            deferred.reject(err);
+        });
+      } else {
+          deferred.resolve();
       }
+      return deferred.promise;
     }
   };
 }]);
@@ -341,7 +549,7 @@ openHealthDataServices.factory('Geosearch', ['$resource',
           lat: '36',
           lon: '-72',
           dist: '1000',
-          callback: 'JSON_CALLBACK'} 
+          callback: 'JSON_CALLBACK'}
         }
     });
   }]);
@@ -349,13 +557,20 @@ openHealthDataServices.factory('Geosearch', ['$resource',
 openHealthDataServices.factory('Search', ['$resource',
   function($resource) {
     return $resource('http://api.openhealthinspection.com/vendors', {}, {
-      query: { 
+      query: {
         method: 'JSONP',
         params: {
           callback: 'JSON_CALLBACK'
-        } 
+        }
       }
     });
+  }]);
+
+openHealthDataServices.factory('Smarty', ['$resource',
+  function($resource) {
+    return $resource('https://api.smartystreets.com/zipcode' +
+        '?auth-id=3528212138785631906' +
+        '&city=&state=&zipcode=:zip', {}, {});
   }]);
 
 openHealthDataServices.factory('Toast', function() {
@@ -364,9 +579,6 @@ openHealthDataServices.factory('Toast', function() {
     searchAreaText: '',
   };
 });
-
-
-
 
 openHealthDataAppControllers.controller('cityJumpCtrl', ['$scope',
   '$rootScope', 'Search', 'Geosearch', '$http', function($scope, $rootScope,
@@ -394,7 +606,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
  $location, Geosearch, Search, $filter, $modal, $log,
  Toast, $window, Geolocation) {
 
-    var currentIndex;
+    var currentIndex = 0;
 
     $rootScope.$on('$locationChangeSuccess', function() {
         ga('send', 'pageview', $location.path());
@@ -406,17 +618,18 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
         templateUrl: 'partials/modal.html',
         controller: 'modalController',
         size: size,
-        resolve: { 
-          items: function () {
-            return $scope.items;
+        resolve: {
+          geoOptions: function () {
+            return $scope.geoOptions;
           }
         }
       });
 
-      modalInstance.result.then(function (selectedItem) {
-        $scope.selected = selectedItem;
+      modalInstance.result.then(function (location) {
+        $rootScope.showPosition(location);
       }, function () {
-        $log.info('Modal dismissed at: ' + new Date());
+        // $log.info('Modal dismissed at: ' + new Date());
+        $rootScope.showPosition();
       });
 
     };
@@ -430,21 +643,8 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
       angular.element('.cityResults').css('max-height', calcHeight - 64);
 
     $rootScope.getLocationButton = function() {
-      $scope.getLocation();
+      $scope.openModal();
       $location.url('/#');
-    };
-
-    $rootScope.getLocation = function() {
-
-      currentIndex = 0;
-      console.log('getting location');
-
-      Geolocation.getPosition().then(function(data) {
-        $rootScope.showPosition(data);
-      }).catch(function(error) {
-        $rootScope.showPosition();
-      });
-
     };
 
     $rootScope.showPosition = function(position) {
@@ -463,7 +663,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
 
         console.log('coordinates are within Virgina');
 
-        // Position.coords is only avaible in this scope, share over 
+        // Position.coords is only avaible in this scope, share over
         // Geosearch service
 
         Geosearch.coords = position.coords;
@@ -504,8 +704,8 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
       $rootScope.$broadcast('updateToast');
 
       Geosearch.results = Geosearch.query({
-        lat: Geosearch.coords.latitude, 
-        lon: Geosearch.coords.longitude, 
+        lat: Geosearch.coords.latitude,
+        lon: Geosearch.coords.longitude,
         dist: searchRadii[index]
       }, function() {
 
@@ -519,12 +719,12 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
           return doSearch(index + 1);
         }
 
-        Geosearch.results.forEach(function(el) { 
+        Geosearch.results.forEach(function(el) {
           el.dist = el.dist * 0.000621371;
           el.score = el.score ? Math.round(el.score) : 'n/a';
         });
 
-        Geosearch.results = 
+        Geosearch.results =
           $filter('orderBy')(Geosearch.results, 'dist', false);
 
         $rootScope.$broadcast('geosearchFire');
@@ -538,8 +738,6 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
       $rootScope.showPosition();
     };
 
-    $scope.getLocation();
-
     $rootScope.$on('moreGeosearch', function() {
       // debugger;
       doSearch(currentIndex);
@@ -548,13 +746,11 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
   }]);
 
 openHealthDataAppControllers.controller('modalController',
-  ['$scope', '$modalInstance', 'items', '$log', '$location', 
-  function($scope, $modalInstance, items, $log, $location){
+  ['$scope', '$modalInstance', 'geoOptions', '$log', '$location', 'geocodeService',
+  function($scope, $modalInstance, geoOptions, $log, $location, geocodeService){
 
-  $scope.ok = function () {
-    // $log.info('http://code4hr.eventbrite.com/?aff=busapp');
-    // $location.replace('http://eventbrite.com');
-    $location.href="http://code4hr.eventbrite.com/?aff=busapp";
+  $scope.returnLocation = function (obj) {
+    $modalInstance.close(obj);
   };
 
   $scope.cancel = function () {
@@ -562,6 +758,7 @@ openHealthDataAppControllers.controller('modalController',
   };
 
 }]);
+
 openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope',
  '$routeParams', '$http', '$location', '$rootScope', 'Geosearch',
  'Inspections', function($scope, $routeParams, $http, $location,
