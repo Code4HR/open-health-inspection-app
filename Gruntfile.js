@@ -85,6 +85,7 @@ module.exports = function(grunt) {
                 tasks: ['browserify','concat', 'uglify'],
                 options: {
                     spawn: false,
+                    livereload: true
                 },
             },
             styles: {
@@ -92,6 +93,7 @@ module.exports = function(grunt) {
                 tasks: ['concat', 'cssmin'],
                 options: {
                     spawn: false,
+                    livereload: true
                 }
             },
             images: {
@@ -99,25 +101,29 @@ module.exports = function(grunt) {
                 tasks: ['imagemin'],
                 options: {
                     spawn: false,
+                    livereload: true
                 }
-            }
+            },
+
         },
+
         connect: {
           server : {
             options : {
               port : 9090,
-              keepalive : true
+              keepalive : false,
+              livereload : true
             }
           },
-          keepalive : true,
-          livereload : true
         },
+
         open: {
           dev: {
             // Gets the port from the connect configuration
-            path: 'http://localhost:<%= connect.all.options.port%>'
+            path: 'http://localhost:<%= connect.server.options.port%>'
           }
         }
+
     });
 
     // 3. Where we tell Grunt we plan to use this plug-in.
@@ -132,6 +138,6 @@ module.exports = function(grunt) {
 
     // 4. Where we tell Grunt what to do when we type "grunt" into the terminal.
     grunt.registerTask('build', ['browserify', 'concat', 'uglify', 'cssmin', 'imagemin']);
-    grunt.registerTask('server', ['connect','open:dev','watch']);
+    grunt.registerTask('default', ['connect','open:dev','watch']);
 
 };

@@ -28,9 +28,9 @@ textarea, input { outline: none; }
 .angular-google-map-container { height:100%; width:100%; position:absolute; top:0; left:0; }
 
 body {
-	color:#494949;
-	background: #f3ece3;
-	font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Arial", "sans";
+    color:#494949;
+    background: #f3ece3;
+    font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Arial", "sans";
 }
 
 #dismissScreen {
