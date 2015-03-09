@@ -318,7 +318,7 @@ module.exports = function(ngModule) {
 };
 
 },{}],3:[function(require,module,exports){
-module.exports = "  <label>Zip Code</label>\n  <form ng-submit=\"getLatLon()\" novalidate class=\"input-group form-group input-group-lg\">\n    <input class=\"form-control\" ng-model=\"zipcode\" type=\"text\" placeholder=\"Zip Code\"/>\n    <span class=\"input-group-btn\">\n      <button type=\"button\" class=\"btn btn-default\">\n        <span class=\"glyphicon glyphicon-search\"></span>\n      </button>\n    </span>\n  </form>\n";
+module.exports = "  <label>Zip Code</label>\n  <form ng-submit=\"getLatLon()\" novalidate class=\"input-group form-group input-group-lg\">\n    <input class=\"form-control\" ng-model=\"zipcode\" type=\"text\" placeholder=\"Zip Code\"/>\n    <span class=\"input-group-btn\">\n      <button class=\"btn btn-default\">\n        <span class=\"glyphicon glyphicon-search\"></span>\n      </button>\n    </span>\n  </form>\n";
 
 },{}],4:[function(require,module,exports){
 'use strict';
