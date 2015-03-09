@@ -23,6 +23,8 @@ Grunt is being used to run a local hosting environment, which opens a browser an
 
 OHI follows [Git Flow](http://nvie.com/posts/a-successful-git-branching-model/).  When you're ready to submit your changes, please open a pull request to the 'next' branch for review.
 
+Our Strider CD instance is [here](http://cd.ttavenner.com/c4hrva/open-health-inspection-app/).
+
 Scoring System
 ===
 First the fine print:
