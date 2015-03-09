@@ -26,7 +26,8 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
       modalInstance.result.then(function (location) {
         $rootScope.showPosition(location);
       }, function () {
-        $log.info('Modal dismissed at: ' + new Date());
+        // $log.info('Modal dismissed at: ' + new Date());
+        $rootScope.showPosition();
       });
 
     };
