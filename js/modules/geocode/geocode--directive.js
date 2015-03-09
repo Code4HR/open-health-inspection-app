@@ -15,9 +15,21 @@ module.exports = function(ngModule) {
 
     directive.link = function($scope) {
 
+      $scope.invalidZip = false;
+
+      $scope.resetZipValid = function() {
+        $scope.invalidZip = false;
+      };
+
       $scope.getLatLon = function() {
+
         geocodeService.getLatLon($scope.zipcode)
         .success(function(data) {
+
+          if (data[0].zipcodes === undefined) {
+            $scope.invalidZip = true;
+            return;
+          }
 
           location = {
             coords : {

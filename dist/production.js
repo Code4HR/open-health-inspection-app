@@ -263,9 +263,21 @@ module.exports = function(ngModule) {
 
     directive.link = function($scope) {
 
+      $scope.invalidZip = false;
+
+      $scope.resetZipValid = function() {
+        $scope.invalidZip = false;
+      };
+
       $scope.getLatLon = function() {
+
         geocodeService.getLatLon($scope.zipcode)
         .success(function(data) {
+
+          if (data[0].zipcodes === undefined) {
+            $scope.invalidZip = true;
+            return;
+          }
 
           location = {
             coords : {
@@ -318,7 +330,7 @@ module.exports = function(ngModule) {
 };
 
 },{}],3:[function(require,module,exports){
-module.exports = "  <label>Zip Code</label>\n  <form ng-submit=\"getLatLon()\" novalidate class=\"input-group form-group input-group-lg\">\n    <input class=\"form-control\" ng-model=\"zipcode\" type=\"text\" placeholder=\"Zip Code\"/>\n    <span class=\"input-group-btn\">\n      <button class=\"btn btn-default\">\n        <span class=\"glyphicon glyphicon-search\"></span>\n      </button>\n    </span>\n  </form>\n";
+module.exports = "  <label>Zip Code</label>\n  <form name=\"geocodeForm\" ng-submit=\"getLatLon()\" novalidate >\n    <div class=\"input-group form-group input-group-lg\">\n      <input class=\"form-control\" name=\"zipcode\" ng-change=\"resetZipValid()\" ng-model=\"zipcode\" ng-minlength=\"5\" ng-maxlength=\"10\" ng-pattern=\"/^\\d{5}(?:[-\\s]\\d{4})?$/\" type=\"text\" placeholder=\"Zip Code\"/>\n      <span class=\"input-group-btn\">\n        <button class=\"btn btn-default\">\n          <span class=\"glyphicon glyphicon-search\"></span>\n        </button>\n      </span>\n    </div>\n\n    <p class=\"alert alert-danger\" ng-show=\"geocodeForm.zipcode.$error.pattern && !geocodeForm.zipcode.$error.minlength\">\n      Please enter a valid 5-digit VA ZIP code\n    </p>\n\n    <p class=\"alert alert-warning\" ng-show=\"invalidZip\">\n      Invalid ZIP code\n    </p>\n\n  </form>\n";
 
 },{}],4:[function(require,module,exports){
 'use strict';
@@ -438,7 +450,9 @@ var geolocationModule = angular.module('geolocationModule', []);
 require('./geolocation--directive')(geolocationModule);
 require('./geolocation--service')(geolocationModule);
 
-},{"./geolocation--directive":5,"./geolocation--service":6}]},{},[1,2,4,5,6,8]);
+},{"./geolocation--directive":5,"./geolocation--service":6}],9:[function(require,module,exports){
+
+},{}]},{},[1,2,4,5,6,8,9]);
 
 /*
     The frontend for Code for Hampton Roads' Open Health Inspection Data.
