@@ -6,7 +6,7 @@ The reference app built against Code for Hampton Roads' Open Health Inspection A
 The app lives at:
 http://openhealthinspection.com/
 
-The prerelease branch lives at;
+The prerelease branch (next) lives at;
 http://next.openhealthinspection.com/
 
 How to get up and running
@@ -18,6 +18,8 @@ npm install -g grunt-cli
 npm install
 grunt
 ```
+
+Grunt is being used to run a local hosting environment, which opens a browser and watches the project folder for changes.
 
 OHI follows [Git Flow](http://nvie.com/posts/a-successful-git-branching-model/).  When you're ready to submit your changes, please open a pull request to the 'next' branch for review.
 
