@@ -1,9 +1,18 @@
-@import 'main-legacy';
+/* All this stuff is going to be refactored.
+   I'm just working around it until I have time. */
+
+@import 'globals/colors';
+@import 'globals/typography';
+@import 'globals/breakpoints';
+
+@import 'modules/detailView';
+@import 'modules/header';
+@import 'modules/modal';
+@import 'modules/badges';
+@import 'modules/listView';
+
+@import 'base';
 @import '479up';
 @import '776up';
 @import '992up';
 @import '1200up';
-
-/* body {
-  background: orange;
-} */
