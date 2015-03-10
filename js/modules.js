@@ -203,6 +203,4 @@ var geolocationModule = angular.module('geolocationModule', []);
 require('./geolocation--directive')(geolocationModule);
 require('./geolocation--service')(geolocationModule);
 
-},{"./geolocation--directive":5,"./geolocation--service":6}],9:[function(require,module,exports){
-
-},{}]},{},[1,2,4,5,6,8,9]);
+},{"./geolocation--directive":5,"./geolocation--service":6}]},{},[1,2,4,5,6,8]);
