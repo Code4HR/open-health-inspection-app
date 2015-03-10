@@ -648,7 +648,9 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
 
     };
 
-    $scope.openModal();
+    if ($location.path() === '/') {
+      $scope.openModal();
+    }
 
     var calcHeight = angular.element(window).height() - 100 + 64;
       if (screen.width < 776) {
