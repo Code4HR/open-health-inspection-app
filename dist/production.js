@@ -245,6 +245,10 @@ angular.module('openHealthDataAppFilters', [])
       }
     }
   });
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+
+},{}]},{},[1]);
+
 /*
     The frontend for Code for Hampton Roads' Open Health Inspection Data.
     Copyright (C) 2014  Code for Hampton Roads contributors.
@@ -269,17 +273,17 @@ angular.module('openHealthDataAppFilters', [])
 
 var openHealthDataServices = angular.module('openHealthDataServices',
 ['ngResource']);
- 
+
 openHealthDataServices.factory('Inspections', ['$resource',
   function($resource){
     return $resource('http://api.openhealthinspection.com/' +
       'inspections?vendorid=:vendorid', {}, {
-      query: { 
+      query: {
         method: 'JSONP',
         params: {
           vendorid: '',
           callback: 'JSON_CALLBACK'
-        } 
+        }
       }
     });
   }]);
@@ -291,7 +295,7 @@ openHealthDataServices.factory('Geolocation', ['$q', '$timeout', function($q, $t
 
       var deferred = $q.defer();
 
-      $timeout(countdown, 10000);
+      $timeout(countdown, 5000);
 
       function countdown() {
         deferred.reject('The request to get user location timed out.');
@@ -323,7 +327,7 @@ openHealthDataServices.factory('Geolocation', ['$q', '$timeout', function($q, $t
           }
 
           deferred.reject(errorCode);
-      
+
         });
         return deferred.promise;
       }
@@ -341,7 +345,7 @@ openHealthDataServices.factory('Geosearch', ['$resource',
           lat: '36',
           lon: '-72',
           dist: '1000',
-          callback: 'JSON_CALLBACK'} 
+          callback: 'JSON_CALLBACK'}
         }
     });
   }]);
@@ -349,11 +353,11 @@ openHealthDataServices.factory('Geosearch', ['$resource',
 openHealthDataServices.factory('Search', ['$resource',
   function($resource) {
     return $resource('http://api.openhealthinspection.com/vendors', {}, {
-      query: { 
+      query: {
         method: 'JSONP',
         params: {
           callback: 'JSON_CALLBACK'
-        } 
+        }
       }
     });
   }]);
@@ -364,9 +368,6 @@ openHealthDataServices.factory('Toast', function() {
     searchAreaText: '',
   };
 });
-
-
-
 
 openHealthDataAppControllers.controller('cityJumpCtrl', ['$scope',
   '$rootScope', 'Search', 'Geosearch', '$http', function($scope, $rootScope,
