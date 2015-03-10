@@ -646,7 +646,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
 
     };
 
-    if ($location.path() === '/') {
+    if ($location.path() === '/' || $location.path() === '') {
       $scope.openModal();
     }
 
