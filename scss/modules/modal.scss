@@ -1,0 +1,62 @@
+.modalContainer h5, .modal-title {
+  font-family: "Source Sans Pro";
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.modal-title {
+  font-size: 1.25em;
+  margin: 0;
+}
+.modal-subtitle {
+  font-size: 1.125em;
+  margin: 0;
+}
+.modal-content .defWrapper {
+  background: #efefef;
+  margin: 0 0 1em 0;
+}
+.modal-content dl {
+  /*padding: .5em .25em;*/
+  margin: .25em 0;
+}
+  .modal-content dt {
+    font-size: 1.5em;
+    line-height: 1.5em;
+    display: inline;
+    margin-right: .25em;
+  }
+  .modal-content dd {
+    line-height: 1.5em;
+    display: inline;
+  }
+.modal-body .body {
+  margin: 3em 0 0 0;
+  font-size: 1.25em;
+  text-align: center;
+}
+.modal-body h1 {
+  font-family: "Source Sans Pro";
+  text-transform: uppercase;
+  font-weight: 700;
+  text-align: center;
+}
+.modal-body h2 {
+  text-align: center;
+}
+.modal-footer {
+  text-align: center;
+}
+.modal-footer .btn {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.5em;
+  /*display: block;*/
+  padding-left: 1em;
+  padding-right: 1em;
+  }
+.modal-footer form {
+  text-align: left;
+}
+  .modal-footer form input {
+    margin-right: .5em;
+  }
