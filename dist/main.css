@@ -1,187 +1,234 @@
-/*
-    The frontend for Code for Hampton Roads' Open Health Inspection Data.
-    Copyright (C) 2014  Code for Hampton Roads contributors.
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-/************************
-Base / Mobile Styles here.
-*************************/
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-  display: none !important;
+/* All this stuff is going to be refactored.
+   I'm just working around it until I have time. */
+/* _colors.scss */
+#restaurantDetailView {
+  margin-top: 0px;
 }
 
-textarea, input {
-  outline: none;
+#restaurantDetailView > .container-fluid {
+  padding: 0;
 }
 
-.angular-google-map-container {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
+#restuarant-info {
+  font-family: "Bitter";
+  background-color: rgba(255, 255, 255, 0.85);
+  position: relative;
 }
 
-body {
-  color: #494949;
-  background: #f3ece3;
-  font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Arial", "sans";
+#restaurant-info a {
+  display: inline-block;
 }
 
-#dismissScreen {
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  z-index: -1;
-  background: 'transparent';
+#restuarant-info .score {
+  font-size: 2.25em;
+  vertical-align: top;
+  margin-top: 20px;
+  text-align: center;
 }
 
-/*
-Colors:
-*/
-.grayText {
-  color: #cccccc;
+#restuarant-info .score span {
+  display: block;
+  font-size: .33em;
+  line-height: 1.25em;
+  font-weight: 300;
+  margin-top: .25em;
+  padding: 0;
+  /*color: #999;*/
 }
 
-.grayBadge {
-  background: #cccccc;
+#restaurantInfo {
+  position: relative;
+  vertical-align: top;
 }
 
-.greenText {
+#restaurantInfo ul {
+  display: inline-block;
+  margin-left: -.75em;
+  padding-right: 2em;
+}
+
+#restaurantInfo h1 {
+  margin-bottom: 0;
+  font-size: 1.75em;
+  line-height: 1em;
+  margin-top: 20px;
+}
+
+#restaurantInfo .address {
+  color: #666666;
+}
+
+#restaurantInfo #explanation {
+  margin-bottom: 1em;
+  display: inline-block;
+}
+
+#violationKey {
+  background: white;
+}
+
+#violationKey h4 {
+  font-weight: 500;
+  font-size: 1em;
+  padding: 0;
+}
+
+#violationKey ul li {
+  font-size: .95em;
+  display: block;
+}
+
+#violationKey i {
+  margin-right: .5em;
+  font-size: .85em;
+}
+
+#noResults {
+  padding: 2em 0;
+}
+
+#noResults span {
+  text-align: center;
+  display: block;
+}
+
+#noResults i {
+  text-align: center;
+  margin-bottom: .5em;
+  font-size: 3em;
+  color: #aaaaaa;
+}
+
+.load-more-button a {
+  height: 64px;
+  background: #999;
+  text-align: center;
+  color: white;
+  font-size: 1.25em;
+  line-height: 64px;
+}
+
+.load-more-button a:hover, .results .load-more-button a:active {
+  background: #666;
+  color: #efefef;
+}
+
+#inspections .inspection {
+  padding: .5em;
+  margin-bottom: 1em;
+  border: 1px solid #dfdfdf;
+  padding: 1em;
+  background: white;
+}
+
+.inspection.drop-shadow {
+  box-shadow: 0 6px 1em rgba(0, 0, 0, 0.125);
+}
+
+.no-violations {
+  font-size: 1.125em;
   color: #157F00;
 }
 
-.greenBadge {
-  background: #157F00;
-  border-bottom: 2px solid #333;
+.inspection .date {
+  /*font-size: 1.25em;*/
+  color: #777;
+  display: inline-block;
+  vertical-align: top;
+  text-align: right;
 }
 
-.yellowGreenText {
-  color: #A8C433;
+.inspection .score {
+  text-align: left;
+  font-size: 1.75em;
+  margin-bottom: .5em;
+  padding: 0;
+  display: inline-block;
+  vertical-align: top;
+  font-weight: 500;
 }
 
-.yellowGreenBadge {
-  background: #A8C433;
-  border-bottom: 2px solid #333;
+.inspection .score span {
+  margin-top: .5em;
+  display: block;
+  line-height: 1.125em;
+  font-size: .5em;
+  color: #999;
 }
 
-.yellowText {
-  color: #B28C04;
+.inspection h3 {
+  margin-top: 0px;
+  font-size: 1em;
+  color: gray;
+  font-family: "Bitter";
+  border-bottom: 1px dotted #efefef;
+  padding-bottom: .25em;
 }
 
-.yellowBadge {
-  background: #B28C04;
-  border-bottom: 2px solid #333;
+.inspection h4 {
+  color: #3c9542;
 }
 
-.redText {
-  color: #f18775;
+li.violationBar {
+  border-bottom: 1px solid #CCC;
+  padding-bottom: 1em;
 }
 
-.redBadge {
-  background: #f18775;
+ul.violations {
+  margin-bottom: 1em;
+  display: inline-block;
+  vertical-align: top;
 }
 
-.results {
-  position: relative;
-  top: 0;
-  right: 0;
-  z-index: 50;
-  overflow: visible;
-  width: 100%;
-}
-
-.medal {
-  color: white !important;
-  padding: .25em 0;
-}
-
-.modalContainer h5, .modal-title {
-  font-family: "Source Sans Pro";
-  text-transform: uppercase;
-  font-weight: 700;
-}
-
-.modal-title {
-  font-size: 1.25em;
-  margin: 0;
-}
-
-.modal-subtitle {
-  font-size: 1.125em;
-  margin: 0;
-}
-
-.modal-content .defWrapper {
-  background: #efefef;
-  margin: 0 0 1em 0;
-}
-
-.modal-content dl {
-  /*padding: .5em .25em;*/
-  margin: .25em 0;
-}
-
-.modal-content dt {
-  font-size: 1.5em;
-  line-height: 1.5em;
-  display: inline;
+li.violation,
+li.critical,
+li.repeat {
+  display: inline-block;
+  margin: .5em 0em;
   margin-right: .25em;
 }
 
-.modal-content dd {
-  line-height: 1.5em;
-  display: inline;
-}
-
-.modal-body .body {
-  margin: 3em 0 0 0;
-  font-size: 1.25em;
+li.violation i,
+li.critical i,
+li.repeat i {
+  height: 2em;
+  width: 2em;
+  line-height: 2em;
   text-align: center;
-}
-
-.modal-body h1 {
-  font-family: "Source Sans Pro";
-  text-transform: uppercase;
-  font-weight: 700;
-  text-align: center;
-}
-
-.modal-body h2 {
-  text-align: center;
-}
-
-.modal-footer {
-  text-align: center;
-}
-
-.modal-footer .btn {
-  margin-left: auto;
-  margin-right: auto;
   font-size: 1.5em;
-  /*display: block;*/
-  padding-left: 1em;
-  padding-right: 1em;
+  border-radius: 100%;
+  background: #efefef;
+  color: #ffffff;
 }
 
-.modal-footer form {
-  text-align: left;
+li.violation.active i {
+  color: #B28C04;
+  background: #FAAA0C;
 }
 
-.modal-footer form input {
-  margin-right: .5em;
+li.critical.active i {
+  color: #cf2f36;
+  background: #f18775;
+}
+
+li.repeat.active i {
+  color: #cf2f36;
+  background: #f18775;
+}
+
+li.code {
+  font-size: 1.25em;
+  font-weight: 700;
+}
+
+li.observation {
+  width: 90%;
+}
+
+.violation.active span,
+.critical.active span,
+.repeat.active span {
+  color: black;
 }
 
 header {
@@ -443,101 +490,128 @@ header #search {
   border-bottom-left-radius: 0;
 }
 
-#main {
-  margin-top: 72px;
-  z-index: 2;
-}
-
-.bump {
-  padding-top: 48px !important;
-}
-
-#main ul {
-  padding: 0;
-  list-style-type: none;
-}
-
-#main #instructions {
-  position: fixed;
-  top: 75px;
-  right: 0;
-  width: 220px;
-  color: #aaa;
-}
-
-#main #instructions p, #main #instructions .leaderline {
-  display: inline-block;
-}
-
-#main #instructions .leaderline {
-  border-bottom: 1px solid #aaa;
-  border-right: 1px solid #aaa;
-  width: 100px;
-  height: 20px;
-  position: relative;
-  bottom: .25em;
-}
-
-#instructions #newSearch .leaderline {
-  width: 18px;
-}
-
-#main .bglogo {
-  position: fixed;
-  top: 33%;
-  left: 50%;
-  margin-left: -114px;
-  z-index: -1;
-}
-
-#main .bglogo img {
-  display: inline-block;
-  vertical-align: middle;
-  position: relative;
-  top: 3px;
-  margin-right: 6px;
-}
-
-#main .bglogo h1 {
-  display: inline-block;
-  vertical-align: middle;
-  font-family: Source Sans Pro;
-  font-size: 2em;
+.modalContainer h5, .modal-title {
+  font-family: "Source Sans Pro";
   text-transform: uppercase;
   font-weight: 700;
-  color: #AAA;
-  line-height: .85em;
-  text-shadow: 1px 1px white;
 }
 
-#main.container, #main.container-fluid {
-  padding: 0;
+.modal-title {
+  font-size: 1.25em;
+  margin: 0;
 }
 
-#output {
-  background: white;
+.modal-subtitle {
+  font-size: 1.125em;
+  margin: 0;
 }
 
-#searchResultsDetail ul {
-  margin-bottom: 0;
-}
-
-#searchResults {
-  background: white;
-  z-index: 999;
-}
-
-.resultsDescription {
-  font-family: 'Bitter';
-  margin: 0 -1em;
-  line-height: 1em;
-  padding: .5em 0;
-  text-indent: 1em;
+.modal-content .defWrapper {
   background: #efefef;
+  margin: 0 0 1em 0;
 }
 
-#searchResults .alert {
-  margin: 1em 0;
+.modal-content dl {
+  /*padding: .5em .25em;*/
+  margin: .25em 0;
+}
+
+.modal-content dt {
+  font-size: 1.5em;
+  line-height: 1.5em;
+  display: inline;
+  margin-right: .25em;
+}
+
+.modal-content dd {
+  line-height: 1.5em;
+  display: inline;
+}
+
+.modal-body .body {
+  margin: 3em 0 0 0;
+  font-size: 1.25em;
+  text-align: center;
+}
+
+.modal-body h1 {
+  font-family: "Source Sans Pro";
+  text-transform: uppercase;
+  font-weight: 700;
+  text-align: center;
+}
+
+.modal-body h2 {
+  text-align: center;
+}
+
+.modal-footer {
+  text-align: center;
+}
+
+.modal-footer .btn {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.5em;
+  /*display: block;*/
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.modal-footer form {
+  text-align: left;
+}
+
+.modal-footer form input {
+  margin-right: .5em;
+}
+
+.grayText {
+  color: #cccccc;
+}
+
+.grayBadge {
+  background: #cccccc;
+}
+
+.greenText {
+  color: #157F00;
+}
+
+.greenBadge {
+  background: #157F00;
+  border-bottom: 2px solid #333;
+}
+
+.yellowGreenText {
+  color: #A8C433;
+}
+
+.yellowGreenBadge {
+  background: #A8C433;
+  border-bottom: 2px solid #333;
+}
+
+.yellowText {
+  color: #B28C04;
+}
+
+.yellowBadge {
+  background: #B28C04;
+  border-bottom: 2px solid #333;
+}
+
+.redText {
+  color: #f18775;
+}
+
+.redBadge {
+  background: #f18775;
+}
+
+.medal {
+  color: white !important;
+  padding: .25em 0;
 }
 
 li.list-container {
@@ -652,18 +726,152 @@ ul li a:hover {
   float: right;
 }
 
-a.close {
+/*
+    The frontend for Code for Hampton Roads' Open Health Inspection Data.
+    Copyright (C) 2014  Code for Hampton Roads contributors.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/************************
+Base / Mobile Styles here.
+*************************/
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+textarea, input {
+  outline: none;
+}
+
+body {
+  color: #666666;
+  background: #f3ece3;
+  font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Arial", "sans";
+}
+
+#dismissScreen {
   position: fixed;
-  top: 2.75em;
-  right: .5em;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  background: 'transparent';
+}
+
+.results {
+  position: relative;
+  top: 0;
+  right: 0;
+  z-index: 50;
+  overflow: visible;
+  width: 100%;
+}
+
+#main {
+  margin-top: 72px;
+  z-index: 2;
+}
+
+.bump {
+  padding-top: 48px !important;
+}
+
+#main ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+#main #instructions {
+  position: fixed;
+  top: 75px;
+  right: 0;
+  width: 220px;
+  color: #aaa;
+}
+
+#main #instructions p, #main #instructions .leaderline {
+  display: inline-block;
+}
+
+#main #instructions .leaderline {
+  border-bottom: 1px solid #aaa;
+  border-right: 1px solid #aaa;
+  width: 100px;
+  height: 20px;
+  position: relative;
+  bottom: .25em;
+}
+
+#instructions #newSearch .leaderline {
+  width: 18px;
+}
+
+#main .bglogo {
+  position: fixed;
+  top: 33%;
+  left: 50%;
+  margin-left: -114px;
+  z-index: -1;
+}
+
+#main .bglogo img {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  top: 3px;
+  margin-right: 6px;
+}
+
+#main .bglogo h1 {
+  display: inline-block;
+  vertical-align: middle;
+  font-family: Source Sans Pro;
   font-size: 2em;
-  height: 1em;
-  width: 1em;
-  border-radius: 100%;
-  color: #f18775;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #AAA;
+  line-height: .85em;
+  text-shadow: 1px 1px white;
+}
+
+#main.container, #main.container-fluid {
+  padding: 0;
+}
+
+#output {
   background: white;
-  z-index: 9;
-  opacity: 1;
+}
+
+#searchResultsDetail ul {
+  margin-bottom: 0;
+}
+
+#searchResults {
+  background: white;
+  z-index: 999;
+}
+
+.resultsDescription {
+  font-family: 'Bitter';
+  margin: 0 -1em;
+  line-height: 1em;
+  padding: .5em 0;
+  text-indent: 1em;
+  background: #efefef;
+}
+
+#searchResults .alert {
+  margin: 1em 0;
 }
 
 #cityJump {
@@ -685,234 +893,11 @@ a.close {
   background: white;
 }
 
-#restaurantDetailView {
-  margin-top: 0px;
-}
-
-#restaurantDetailView > .container-fluid {
-  padding: 0;
-}
-
-#restuarant-info {
-  font-family: "Bitter";
-  background-color: rgba(255, 255, 255, 0.85);
-  position: relative;
-}
-
-#restaurant-info a {
-  display: inline-block;
-}
-
-#restuarant-info .score {
-  font-size: 2.25em;
-  vertical-align: top;
-  margin-top: 20px;
-  text-align: center;
-}
-
-#restuarant-info .score span {
-  display: block;
-  font-size: .33em;
-  line-height: 1.25em;
-  font-weight: 300;
-  margin-top: .25em;
-  padding: 0;
-  /*color: #999;*/
-}
-
-#restaurantInfo {
-  position: relative;
-  vertical-align: top;
-}
-
-#restaurantInfo ul {
-  display: inline-block;
-  margin-left: -.75em;
-  padding-right: 2em;
-}
-
-#restaurantInfo h1 {
-  margin-bottom: 0;
-  font-size: 1.75em;
-  line-height: 1em;
-  margin-top: 20px;
-}
-
-#restaurantInfo .address {
-  color: #666666;
-}
-
-#restaurantInfo #explanation {
-  margin-bottom: 1em;
-  display: inline-block;
-}
-
-#violationKey {
-  background: white;
-}
-
-#violationKey h4 {
-  font-weight: 500;
-  font-size: 1em;
-  padding: 0;
-}
-
-#violationKey ul li {
-  font-size: .95em;
-  display: block;
-}
-
-#violationKey i {
-  margin-right: .5em;
-  font-size: .85em;
-}
-
-#noResults {
-  padding: 2em 0;
-}
-
-#noResults span {
-  text-align: center;
-  display: block;
-}
-
-#noResults i {
-  text-align: center;
-  margin-bottom: .5em;
-  font-size: 3em;
-  color: #aaaaaa;
-}
-
-.results .load-more-button a {
-  height: 64px;
-  background: #999;
-  text-align: center;
-  color: white;
-  font-size: 1.25em;
-  line-height: 64px;
-}
-
-.results .load-more-button a:hover, .results .load-more-button a:active {
-  background: #666;
-  color: #efefef;
-}
-
-#inspections .inspection {
-  padding: .5em;
-  margin-bottom: 1em;
-  border: 1px solid #dfdfdf;
-  padding: 1em;
-  background: white;
-}
-
-.inspection.drop-shadow {
-  box-shadow: 0 6px 1em rgba(0, 0, 0, 0.125);
-}
-
-.no-violations {
-  font-size: 1.125em;
-  color: #157F00;
-}
-
-.inspection .date {
-  /*font-size: 1.25em;*/
-  color: #777;
-  display: inline-block;
-  vertical-align: top;
-  text-align: right;
-}
-
-.inspection .score {
-  text-align: left;
-  font-size: 1.75em;
-  margin-bottom: .5em;
-  padding: 0;
-  display: inline-block;
-  vertical-align: top;
-  font-weight: 500;
-}
-
-.inspection .score span {
-  margin-top: .5em;
-  display: block;
-  line-height: 1.125em;
-  font-size: .5em;
-  color: #999;
-}
-
-.inspection h3 {
-  margin-top: 0px;
-  font-size: 1em;
-  color: gray;
-  font-family: "Bitter";
-  border-bottom: 1px dotted #efefef;
-  padding-bottom: .25em;
-}
-
-.inspection h4 {
-  color: #3c9542;
-}
-
-li.violationBar {
-  border-bottom: 1px solid #CCC;
-  padding-bottom: 1em;
-}
-
-ul.violations {
-  margin-bottom: 1em;
-  display: inline-block;
-  vertical-align: top;
-}
-
-li.violation,
-li.critical,
-li.repeat {
-  display: inline-block;
-  margin: .5em 0em;
-  margin-right: .25em;
-}
-
-li.violation i,
-li.critical i,
-li.repeat i {
-  height: 2em;
-  width: 2em;
-  line-height: 2em;
-  text-align: center;
-  font-size: 1.5em;
-  border-radius: 100%;
-  background: #efefef;
-  color: #ffffff;
-}
-
-li.violation.active i {
-  color: #B28C04;
-  background: #FAAA0C;
-}
-
-li.critical.active i {
-  color: #cf2f36;
-  background: #f18775;
-}
-
-li.repeat.active i {
-  color: #cf2f36;
-  background: #f18775;
-}
-
-li.code {
-  font-size: 1.25em;
-  font-weight: 700;
-}
-
-li.observation {
-  width: 90%;
-}
-
-.violation.active span,
-.critical.active span,
-.repeat.active span {
-  color: black;
+@media screen and (max-width: 775px) {
+  #results .list-container {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 /*
@@ -1153,8 +1138,5 @@ Normal sized desktop styles here.
 /************************
 Big desktop styles here
 *************************/
-/* body {
-  background: orange;
-} */
 
 /*# sourceMappingURL=main.css.map */

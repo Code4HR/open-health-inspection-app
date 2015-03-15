@@ -1,0 +1,231 @@
+#restaurantDetailView {
+	margin-top: 0px;
+}
+	#restaurantDetailView > .container-fluid {
+		padding: 0;
+	}
+
+	#restuarant-info {
+		font-family: "Bitter";
+		background-color: rgba(255,255,255,.85);
+		position: relative;
+	}
+
+		#restaurant-info a {
+			display: inline-block;
+		}
+
+		#restuarant-info .score {
+			font-size: 2.25em;
+			vertical-align: top;
+			margin-top: 20px;
+			text-align: center;
+		}
+
+			#restuarant-info .score span {
+				display: block;
+				font-size: .33em;
+				line-height: 1.25em;
+				font-weight: 300;
+				margin-top: .25em;
+				padding: 0;
+				/*color: #999;*/
+			}
+
+		#restaurantInfo {
+			position: relative;
+			vertical-align: top;
+		}
+
+			#restaurantInfo ul {
+				display: inline-block;
+				margin-left: -.75em;
+				padding-right: 2em;
+			}
+
+			#restaurantInfo h1 {
+				margin-bottom: 0;
+				font-size: 1.75em;
+				line-height: 1em;
+				margin-top: 20px;
+			}
+
+			#restaurantInfo .address {
+				color: #666666;
+			}
+
+			#restaurantInfo #explanation {
+				margin-bottom: 1em;
+				display: inline-block;
+			}
+
+	#violationKey {
+		background: white;
+
+	}
+
+	#violationKey h4 {
+		font-weight: 500;
+		font-size: 1em;
+		padding: 0;
+	}
+
+	#violationKey ul li {
+		font-size: .95em;
+		display: block;
+	}
+		#violationKey i {
+			margin-right: .5em;
+			font-size: .85em;
+		}
+
+	#noResults {
+		padding: 2em 0;
+	}
+		#noResults span {
+			text-align: center;
+			display: block;
+		}
+		#noResults i {
+			text-align: center;
+			margin-bottom: .5em;
+			font-size: 3em;
+			color: #aaaaaa;
+		}
+		#noResults .report {
+
+		}
+
+	.results {}
+
+		.load-more-button a {
+			height: 64px;
+			background: #999;
+			text-align: center;
+			color: white;
+			font-size: 1.25em;
+			line-height: 64px;
+		}
+
+			.load-more-button a:hover, .results .load-more-button a:active {
+				background: #666;
+				color: #efefef;
+			}
+
+	#inspections {}
+
+		#inspections .inspection {
+			padding: .5em;
+			margin-bottom: 1em;
+			border: 1px solid #dfdfdf;
+			padding: 1em;
+			background: white;
+		}
+
+		.inspection.drop-shadow {
+			box-shadow: 0 6px 1em rgba(0,0,0,.125);
+		}
+
+			.no-violations {
+				font-size: 1.125em;
+				color: #157F00;
+			}
+
+			.inspection .date {
+				/*font-size: 1.25em;*/
+				color: #777;
+				display: inline-block;
+				vertical-align: top;
+				text-align: right;
+			}
+
+			.inspection .score {
+				text-align: left;
+				font-size: 1.75em;
+				margin-bottom: .5em;
+				padding: 0;
+				display: inline-block;
+				vertical-align: top;
+				font-weight: 500;
+			}
+				.inspection .score span {
+					margin-top: .5em;
+					display: block;
+					line-height: 1.125em;
+					font-size: .5em;
+					color: #999;
+				}
+
+	    .inspection h3 {
+	        margin-top: 0px;
+	        font-size: 1em;
+	        color: gray;
+	        font-family: "Bitter";
+	        border-bottom: 1px dotted #efefef;
+	        padding-bottom: .25em;
+	    }
+
+	    .inspection h4 {
+	        color: #3c9542;
+	    }
+
+	    	li.violationBar {
+	    		border-bottom: 1px solid #CCC;
+	    		padding-bottom: 1em;
+	    	}
+
+			ul.violations {
+				margin-bottom: 1em;
+				display: inline-block;
+				vertical-align: top;
+			}
+				li.violation,
+			  li.critical,
+				li.repeat {
+					display: inline-block;
+					margin: .5em 0em;
+					margin-right: .25em;
+				}
+
+					li.violation i,
+					li.critical i,
+					li.repeat i {
+						height: 2em;
+						width: 2em;
+						line-height: 2em;
+						text-align: center;
+						font-size: 1.5em;
+						border-radius: 100%;
+						background: #efefef;
+						color: #ffffff;
+
+					}
+
+					li.violation.active i {
+						color: #B28C04;
+						background:  #FAAA0C;
+					}
+
+					li.critical.active i {
+						color:  #cf2f36;
+						background: #f18775;
+					}
+					li.repeat.active i {
+						color:  #cf2f36;
+						background: #f18775;
+					}
+
+					li.code {
+						font-size: 1.25em;
+						font-weight: 700;
+					}
+
+					li.observation {
+						width: 90%;
+					}
+
+					.violation.active span,
+					.critical.active span,
+					.repeat.active span {
+						color: black;
+					}

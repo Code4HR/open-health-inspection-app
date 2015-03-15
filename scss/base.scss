@@ -1,0 +1,180 @@
+/*
+    The frontend for Code for Hampton Roads' Open Health Inspection Data.
+    Copyright (C) 2014  Code for Hampton Roads contributors.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+/************************
+Base / Mobile Styles here.
+*************************/
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+textarea, input { outline: none; }
+
+body {
+    color: $gray;
+    background: $beige;
+    font-family: $header-font;
+}
+
+#dismissScreen {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	z-index: -1;
+	background: 'transparent';
+}
+
+.results {
+	position: relative;
+	top: 0;
+	right: 0;
+	z-index: 50;
+	overflow: visible;
+	width: 100%;
+}
+
+#main {
+	margin-top: 72px;
+	z-index: 2;
+}
+	.bump {
+		padding-top: 48px !important;
+	}
+
+	#main ul {
+		padding: 0;
+		list-style-type: none;
+	}
+
+	#main #instructions {
+		position: fixed;
+		top: 75px;
+		right: 0;
+		width: 220px;
+		color: #aaa;
+	}
+		#main #instructions p, #main #instructions .leaderline {
+			display: inline-block;
+		}
+		#main #instructions .leaderline {
+			border-bottom: 1px solid #aaa;
+			border-right: 1px solid #aaa;
+			width: 100px;
+			height: 20px;
+			position: relative;
+			bottom: .25em;
+		}
+			#main #instructions #newSearch {}
+				#instructions #newSearch .leaderline {
+					width: 18px;
+				}
+			#main #instructions #browseList {}
+				#instructions #browseList .leaderline {
+				}
+
+	#main .bglogo {
+		position: fixed;
+		top: 33%;
+		left: 50%;
+		margin-left: -114px;
+		z-index: -1;
+	}
+
+		#main .bglogo img {
+			display: inline-block;
+			vertical-align: middle;
+			position: relative;
+			top: 3px;
+			margin-right: 6px;
+		}
+
+		#main .bglogo h1 {
+			display: inline-block;
+			vertical-align: middle;
+			font-family: Source Sans Pro;
+			font-size: 2em;
+			text-transform: uppercase;
+			font-weight: 700;
+			color: #AAA;
+			line-height: .85em;
+			text-shadow: 1px 1px white;
+		}
+
+#main.container, #main.container-fluid {
+	padding: 0;
+}
+
+#output {
+	background: white;
+}
+
+#viewContainer {
+
+}
+
+#searchResultsDetail ul {
+	margin-bottom: 0;
+}
+
+#searchResults {
+	background: white;
+	z-index: 999;
+}
+
+	.resultsDescription {
+		font-family: 'Bitter';
+		margin: 0 -1em;
+		line-height: 1em;
+		padding: .5em 0;
+		text-indent: 1em;
+		background: #efefef;
+	}
+
+	#searchResults .alert {
+		margin: 1em 0;
+	}
+
+#cityJump {
+	position: fixed;
+	top: 120px;
+	right: 0;
+	overflow-y: scroll;
+	z-index: 1040;
+	/*max-height: 100%;*/
+}
+
+#cityJump > section {
+	/*z-index: 1;*/
+	/*margin-top: 2em;*/
+}
+
+	#cityJump li {
+		padding: inherit 15px;
+		background: white;
+	}
+
+#results {
+  @media screen and (max-width: 775px) {
+      .list-container {
+        padding-left: 0;
+        padding-right: 0;
+      }
+  }
+
+}
