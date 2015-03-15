@@ -203,4 +203,137 @@ var geolocationModule = angular.module('geolocationModule', []);
 require('./geolocation--directive')(geolocationModule);
 require('./geolocation--service')(geolocationModule);
 
-},{"./geolocation--directive":5,"./geolocation--service":6}]},{},[1,2,4,5,6,8]);
+},{"./geolocation--directive":5,"./geolocation--service":6}],9:[function(require,module,exports){
+module.exports = function(ngModule) {
+
+  ngModule.factory('resultsService', [function() {
+
+    return {
+      
+    };
+
+  }]);
+
+};
+
+},{}],10:[function(require,module,exports){
+module.exports = function(ngModule) {
+
+  ngModule.directive('result', [function() {
+
+      var directive = {
+        restrict: 'E',
+        replace: false,
+        templateUrl: '/templates/result.html',
+        controllerAs: 'ctrl'
+      };
+
+      directive.link = function(scope, element, attrs) {
+        scope.restaurant = scope.$eval(attrs.data);
+      };
+
+      return directive;
+
+  }]);
+
+  ngModule.run(['$templateCache', function($templateCache) {
+    $templateCache.put('/templates/result.html',
+    require('./../templates/result--template.html'));
+  }]);
+
+};
+
+},{"./../templates/result--template.html":13}],11:[function(require,module,exports){
+module.exports = function(ngModule) {
+
+  ngModule.directive('results', [function() {
+
+    var searchType, lastSearch,
+    directive = {
+      restrict: 'E',
+      replace: false,
+      scope: {},
+      templateUrl: '/templates/results.html',
+      controllerAs: 'ctrl'
+    };
+
+    directive.link = function(scope, element, attrs) {
+
+      scope.results = [{
+        url: '/'
+      }];
+
+      if (!lastSearch) {
+        for (var i = 0; i < 20; i++) {
+          scope.results.push({});
+        }
+      } else {
+        scope.results = lastSearch;
+      }
+
+    };
+
+    directive.controller = ['$rootScope', '$location', '$scope', 'Geosearch', 'Search', function($rootScope, $location, $scope, Geosearch, Search) {
+
+      if (!lastSearch) {
+        // should open modal
+      }
+
+      $rootScope.$on('geosearchFire', function() {
+        searchType = 'geosearch';
+        $scope.results = Geosearch.results;
+        lastSearch = Geosearch.results;
+        if ($location.url() !== '/') {
+          $location.url('/');
+        }
+      });
+
+      $rootScope.$on('searchFire', function() {
+        searchType = 'search';
+        $scope.results = Search.results;
+        lastSearch = Search.results;
+        if ($location.url() !== '/') {
+          $location.url('/');
+        }
+      });
+
+      $scope.loadMore = function() {
+        console.log("Clicked the button");
+        if (searchType === 'search') {
+          console.log('get more search results of that name?');
+          $rootScope.$broadcast('moreSearch');
+
+        } else if (searchType === 'geosearch') {
+          console.log('get more search results around here.');
+          $rootScope.$broadcast('moreGeosearch');
+        }
+      };
+
+    }];
+
+    return directive;
+
+  }]);
+
+  ngModule.run(['$templateCache', function($templateCache) {
+    $templateCache.put('/templates/results.html',
+      require('./../templates/results--template.html'));
+  }]);
+
+};
+
+},{"./../templates/results--template.html":14}],12:[function(require,module,exports){
+'use strict';
+
+var resultsModule = angular.module('resultsModule', []);
+
+require('./directives/results--directive.js')(resultsModule);
+require('./directives/result--directive.js')(resultsModule);
+
+},{"./directives/result--directive.js":10,"./directives/results--directive.js":11}],13:[function(require,module,exports){
+module.exports = "<div ng-if=\"$index % 2 === 0\" class=\"col-xs-12 visible-sm clearfix\"></div>\n<div ng-if=\"$index % 3 === 0\" class=\"col-xs-12 visible-md visible-lg clearfix\"></div>\n\n<div class=\"list-container col-sm-6 col-md-4\">\n  <div class=\"card clearfix drop-shadow {{restaurant.score | scoreBorder}}\">\n    <a href=\"#{{restaurant.url}}\">\n      <div class=\"title clearfix\">\n        <i class=\"{{restaurant.category | categoryIcon }} col-xs-2 category-icon\"></i>\n        <ul class=\"col-xs-7 info\">\n          <li class=\"name\">{{restaurant.name}}</li>\n          <li class=\"address\">{{restaurant.address}}</li>\n        </ul>\n        <p class=\"score col-xs-3 {{restaurant.score | scoreColor}}\">{{restaurant.score}}</p>\n      </div>\n      <div class=\"inspections visible-md visible-lg\"></div>\n      <p class=\"readMore visible-sm visible-md visible-lg\">Read this vendor's full report.</p>\n    </a>\n  </div>\n</div>\n";
+
+},{}],14:[function(require,module,exports){
+module.exports = "<section id=\"results\">\n  <ul>\n    <li ng-repeat=\"result in results\">\n      <result data=\"result\"></result>\n    </li>\n    <li class=\"clearfix\"></li>\n\n    <li class=\"container load-more-button\" ng-show=\"true\">\n      <div class=\"row\">\n        <a class=\"col-xs-12\" ng-click=\"loadMore()\">Expand Search Radius</a>\n      </div>\n    </li>\n\n  </ul>\n</div>\n";
+
+},{}]},{},[1,2,4,5,6,8,9,10,11,12]);

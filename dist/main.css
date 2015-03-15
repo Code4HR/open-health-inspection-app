@@ -99,7 +99,7 @@
   color: #aaaaaa;
 }
 
-.results .load-more-button a {
+.load-more-button a {
   height: 64px;
   background: #999;
   text-align: center;
@@ -108,7 +108,7 @@
   line-height: 64px;
 }
 
-.results .load-more-button a:hover, .results .load-more-button a:active {
+.load-more-button a:hover, .results .load-more-button a:active {
   background: #666;
   color: #efefef;
 }
@@ -891,6 +891,13 @@ body {
 #cityJump li {
   padding: inherit 15px;
   background: white;
+}
+
+@media screen and (max-width: 775px) {
+  #results .list-container {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 /*
