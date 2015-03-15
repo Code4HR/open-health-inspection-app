@@ -524,6 +524,7 @@ module.exports = function(ngModule) {
 
       if (!lastSearch) {
         // should open modal
+        $rootScope.getLocationButton();
       }
 
       $rootScope.$on('geosearchFire', function() {
@@ -779,9 +780,9 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
 
     };
 
-    if ($location.path() === '/' || $location.path() === '') {
-      $scope.openModal();
-    }
+    // if ($location.path() === '/' || $location.path() === '') {
+    //   $scope.openModal();
+    // }
 
     var calcHeight = angular.element(window).height() - 100 + 64;
       if (screen.width < 776) {

@@ -277,6 +277,7 @@ module.exports = function(ngModule) {
 
       if (!lastSearch) {
         // should open modal
+        $rootScope.getLocationButton();
       }
 
       $rootScope.$on('geosearchFire', function() {
