@@ -18,15 +18,23 @@
 
 /*global angular */
 
-/****************
-App.js
-****************/
-
 'use strict';
 
-var openHealthDataApp = angular.module('openHealthDataApp', ['ngRoute',
-  'ui.bootstrap', 'openHealthDataAppControllers',
-  'openHealthDataServices', 'openHealthDataAppFilters', 'ngTouch', 'geocodeModule', 'geolocationModule', 'resultsModule']);
+var openHealthDataAppControllers =
+  angular.module('openHealthDataAppControllers', []);
+
+var openHealthDataApp = angular.module('openHealthDataApp', [
+  'ngRoute',
+  'ui.bootstrap',
+  'openHealthDataAppControllers',
+  'openHealthDataServices',
+  'openHealthDataAppFilters',
+  'ngTouch',
+  'geocodeModule',
+  'geolocationModule',
+  'resultsModule',
+  'geolocationModal'
+]);
 
 openHealthDataApp.config(['$routeProvider',
   function($routeProvider) {
@@ -44,35 +52,16 @@ openHealthDataApp.config(['$routeProvider',
       });
   }]);
 
-/*
-    The frontend for Code for Hampton Roads' Open Health Inspection Data.
-    Copyright (C) 2014  Code for Hampton Roads contributors.
+openHealthDataApp.run([
+  '$rootScope',
+  '$location',
+  function($rootScope, $location) {
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+    $rootScope.$on('$locationChangeSuccess', function() {
+        ga('send', 'pageview', $location.path());
+    });
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
-/*global _, angular, ga*/
-
-
-/******************
-Controllers
-******************/
-
-'use strict';
-
-var openHealthDataAppControllers = 
-  angular.module('openHealthDataAppControllers', []);
+}]);
 
 /*
     The frontend for Code for Hampton Roads' Open Health Inspection Data.
@@ -451,6 +440,73 @@ require('./geolocation--directive')(geolocationModule);
 require('./geolocation--service')(geolocationModule);
 
 },{"./geolocation--directive":5,"./geolocation--service":6}],9:[function(require,module,exports){
+'use strict';
+
+var modalModule = angular.module('geolocationModal', []);
+
+require('./modal--controller.js')(modalModule);
+require('./modal-instance--controller.js')(modalModule);
+
+},{"./modal--controller.js":10,"./modal-instance--controller.js":11}],10:[function(require,module,exports){
+'use strict';
+
+module.exports = function(ngModule) {
+
+  ngModule.controller('modalController', [
+    '$scope',
+    '$modal',
+    '$rootScope',
+    function($scope, $modal, $rootScope) {
+
+    $scope.openModal = function(size) {
+
+      var modalInstance = $modal.open({
+        templateUrl: 'partials/modal.html',
+        controller: 'modalInstanceController',
+        size: size,
+        resolve: {
+          geoOptions: function () {
+            return $scope.geoOptions;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (location) {
+        $rootScope.showPosition(location);
+      }, function () {
+        // $log.info('Modal dismissed at: ' + new Date());
+        $rootScope.showPosition();
+      });
+
+    };
+
+  }]);
+
+};
+
+},{}],11:[function(require,module,exports){
+'use strict';
+
+module.exports = function(ngModule) {
+
+  ngModule.controller('modalInstanceController', [
+    '$scope',
+    '$modalInstance',
+    function($scope, $modalInstance){
+
+      $scope.returnLocation = function (obj) {
+        $modalInstance.close(obj);
+      };
+
+      $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+      };
+
+  }]);
+
+};
+
+},{}],12:[function(require,module,exports){
 module.exports = function(ngModule) {
 
   ngModule.factory('resultsService', [function() {
@@ -463,7 +519,7 @@ module.exports = function(ngModule) {
 
 };
 
-},{}],10:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 module.exports = function(ngModule) {
 
   ngModule.directive('result', [function() {
@@ -490,7 +546,7 @@ module.exports = function(ngModule) {
 
 };
 
-},{"./../templates/result--template.html":13}],11:[function(require,module,exports){
+},{"./../templates/result--template.html":16}],14:[function(require,module,exports){
 module.exports = function(ngModule) {
 
   ngModule.directive('results', [function() {
@@ -570,7 +626,7 @@ module.exports = function(ngModule) {
 
 };
 
-},{"./../templates/results--template.html":14}],12:[function(require,module,exports){
+},{"./../templates/results--template.html":17}],15:[function(require,module,exports){
 'use strict';
 
 var resultsModule = angular.module('resultsModule', []);
@@ -578,13 +634,13 @@ var resultsModule = angular.module('resultsModule', []);
 require('./directives/results--directive.js')(resultsModule);
 require('./directives/result--directive.js')(resultsModule);
 
-},{"./directives/result--directive.js":10,"./directives/results--directive.js":11}],13:[function(require,module,exports){
+},{"./directives/result--directive.js":13,"./directives/results--directive.js":14}],16:[function(require,module,exports){
 module.exports = "<div ng-if=\"$index % 2 === 0\" class=\"col-xs-12 visible-sm clearfix\"></div>\n<div ng-if=\"$index % 3 === 0\" class=\"col-xs-12 visible-md visible-lg clearfix\"></div>\n\n<div class=\"list-container col-sm-6 col-md-4\">\n  <div class=\"card clearfix drop-shadow {{restaurant.score | scoreBorder}}\">\n    <a href=\"#{{restaurant.url}}\">\n      <div class=\"title clearfix\">\n        <i class=\"{{restaurant.category | categoryIcon }} col-xs-2 category-icon\"></i>\n        <ul class=\"col-xs-7 info\">\n          <li class=\"name\">{{restaurant.name}}</li>\n          <li class=\"address\">{{restaurant.address}}</li>\n        </ul>\n        <p class=\"score col-xs-3 {{restaurant.score | scoreColor}}\">{{restaurant.score}}</p>\n      </div>\n      <div class=\"inspections visible-md visible-lg\"></div>\n      <p class=\"readMore visible-sm visible-md visible-lg\">Read this vendor's full report.</p>\n    </a>\n  </div>\n</div>\n";
 
-},{}],14:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 module.exports = "<section id=\"results\">\n  <ul>\n    <li ng-repeat=\"result in results\">\n      <result data=\"result\"></result>\n    </li>\n    <li class=\"clearfix\"></li>\n\n    <li class=\"container load-more-button\" ng-show=\"true\">\n      <div class=\"row\">\n        <a class=\"col-xs-12\" ng-click=\"loadMore()\">Expand Search Radius</a>\n      </div>\n    </li>\n\n  </ul>\n</div>\n";
 
-},{}]},{},[1,2,4,5,6,8,9,10,11,12]);
+},{}]},{},[1,2,4,5,6,8,9,10,11,12,13,14,15]);
 
 /*
     The frontend for Code for Hampton Roads' Open Health Inspection Data.
@@ -754,36 +810,6 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
 
     var currentIndex = 0;
 
-    $rootScope.$on('$locationChangeSuccess', function() {
-        ga('send', 'pageview', $location.path());
-    });
-
-    $scope.openModal = function(size) {
-
-      var modalInstance = $modal.open({
-        templateUrl: 'partials/modal.html',
-        controller: 'modalController',
-        size: size,
-        resolve: {
-          geoOptions: function () {
-            return $scope.geoOptions;
-          }
-        }
-      });
-
-      modalInstance.result.then(function (location) {
-        $rootScope.showPosition(location);
-      }, function () {
-        // $log.info('Modal dismissed at: ' + new Date());
-        $rootScope.showPosition();
-      });
-
-    };
-
-    // if ($location.path() === '/' || $location.path() === '') {
-    //   $scope.openModal();
-    // }
-
     var calcHeight = angular.element(window).height() - 100 + 64;
       if (screen.width < 776) {
         angular.element('.results').css('max-height' , calcHeight);
@@ -892,20 +918,6 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
     });
 
   }]);
-
-openHealthDataAppControllers.controller('modalController',
-  ['$scope', '$modalInstance', 'geoOptions', '$log', '$location', 'geocodeService',
-  function($scope, $modalInstance, geoOptions, $log, $location, geocodeService){
-
-  $scope.returnLocation = function (obj) {
-    $modalInstance.close(obj);
-  };
-
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
-
-}]);
 
 openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope',
  '$routeParams', '$http', '$location', '$rootScope', 'Geosearch',

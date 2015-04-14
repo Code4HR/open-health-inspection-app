@@ -18,15 +18,23 @@
 
 /*global angular */
 
-/****************
-App.js
-****************/
-
 'use strict';
 
-var openHealthDataApp = angular.module('openHealthDataApp', ['ngRoute',
-  'ui.bootstrap', 'openHealthDataAppControllers',
-  'openHealthDataServices', 'openHealthDataAppFilters', 'ngTouch', 'geocodeModule', 'geolocationModule', 'resultsModule']);
+var openHealthDataAppControllers =
+  angular.module('openHealthDataAppControllers', []);
+
+var openHealthDataApp = angular.module('openHealthDataApp', [
+  'ngRoute',
+  'ui.bootstrap',
+  'openHealthDataAppControllers',
+  'openHealthDataServices',
+  'openHealthDataAppFilters',
+  'ngTouch',
+  'geocodeModule',
+  'geolocationModule',
+  'resultsModule',
+  'geolocationModal'
+]);
 
 openHealthDataApp.config(['$routeProvider',
   function($routeProvider) {
@@ -43,3 +51,14 @@ openHealthDataApp.config(['$routeProvider',
         redirectTo: '/'
       });
   }]);
+
+openHealthDataApp.run([
+  '$rootScope',
+  '$location',
+  function($rootScope, $location) {
+
+    $rootScope.$on('$locationChangeSuccess', function() {
+        ga('send', 'pageview', $location.path());
+    });
+
+}]);

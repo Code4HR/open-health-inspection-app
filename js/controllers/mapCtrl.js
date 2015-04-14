@@ -6,36 +6,6 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
 
     var currentIndex = 0;
 
-    $rootScope.$on('$locationChangeSuccess', function() {
-        ga('send', 'pageview', $location.path());
-    });
-
-    $scope.openModal = function(size) {
-
-      var modalInstance = $modal.open({
-        templateUrl: 'partials/modal.html',
-        controller: 'modalController',
-        size: size,
-        resolve: {
-          geoOptions: function () {
-            return $scope.geoOptions;
-          }
-        }
-      });
-
-      modalInstance.result.then(function (location) {
-        $rootScope.showPosition(location);
-      }, function () {
-        // $log.info('Modal dismissed at: ' + new Date());
-        $rootScope.showPosition();
-      });
-
-    };
-
-    // if ($location.path() === '/' || $location.path() === '') {
-    //   $scope.openModal();
-    // }
-
     var calcHeight = angular.element(window).height() - 100 + 64;
       if (screen.width < 776) {
         angular.element('.results').css('max-height' , calcHeight);
