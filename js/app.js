@@ -33,7 +33,7 @@ var openHealthDataApp = angular.module('openHealthDataApp', [
   'geocodeModule',
   'geolocationModule',
   'resultsModule',
-  'geolocationModal'
+  'geolocationModalModule'
 ]);
 
 openHealthDataApp.config(['$routeProvider',

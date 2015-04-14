@@ -33,7 +33,7 @@ var openHealthDataApp = angular.module('openHealthDataApp', [
   'geocodeModule',
   'geolocationModule',
   'resultsModule',
-  'geolocationModal'
+  'geolocationModalModule'
 ]);
 
 openHealthDataApp.config(['$routeProvider',
@@ -442,7 +442,7 @@ require('./geolocation--service')(geolocationModule);
 },{"./geolocation--directive":5,"./geolocation--service":6}],9:[function(require,module,exports){
 'use strict';
 
-var modalModule = angular.module('geolocationModal', []);
+var modalModule = angular.module('geolocationModalModule', []);
 
 require('./modal--controller.js')(modalModule);
 require('./modal-instance--controller.js')(modalModule);
@@ -452,33 +452,29 @@ require('./modal-instance--controller.js')(modalModule);
 
 module.exports = function(ngModule) {
 
-  ngModule.controller('modalController', [
-    '$scope',
+  ngModule.factory('geolocationModal', [
     '$modal',
-    '$rootScope',
-    function($scope, $modal, $rootScope) {
+    function($modal) {
 
-    $scope.openModal = function(size) {
+        var service = {};
+        service.open = function(size) {
 
-      var modalInstance = $modal.open({
-        templateUrl: 'partials/modal.html',
-        controller: 'modalInstanceController',
-        size: size,
-        resolve: {
-          geoOptions: function () {
-            return $scope.geoOptions;
-          }
-        }
-      });
+          var geoOptions;
 
-      modalInstance.result.then(function (location) {
-        $rootScope.showPosition(location);
-      }, function () {
-        // $log.info('Modal dismissed at: ' + new Date());
-        $rootScope.showPosition();
-      });
+          return $modal.open({
+            templateUrl: 'partials/modal.html',
+            controller: 'modalInstanceController',
+            size: size,
+            resolve: {
+              geoOptions: function () {
+                return geoOptions;
+              }
+            }
+          }).result;
 
-    };
+      };
+
+      return service;
 
   }]);
 
@@ -802,11 +798,25 @@ openHealthDataAppControllers.controller('cityJumpCtrl', ['$scope',
     };
 
 }]);
-openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
- '$http', '$location', 'Geosearch', 'Search', '$filter', '$modal', '$log',
- 'Toast', '$window', 'Geolocation', function($scope, $rootScope, $http,
- $location, Geosearch, Search, $filter, $modal, $log,
- Toast, $window, Geolocation) {
+'use strict';
+
+/*global angular */
+
+openHealthDataAppControllers.controller('mapCtrl', [
+  '$scope',
+  '$rootScope',
+  '$http',
+  '$location',
+  'Geosearch',
+  'Search',
+  '$filter',
+  '$log',
+  'Toast',
+  '$window',
+  'Geolocation',
+  'geolocationModal',
+  function($scope, $rootScope, $http, $location, Geosearch, Search, $filter,
+           $log, Toast, $window, Geolocation, geolocationModal) {
 
     var currentIndex = 0;
 
@@ -817,7 +827,10 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
       angular.element('.cityResults').css('max-height', calcHeight - 64);
 
     $rootScope.getLocationButton = function() {
-      $scope.openModal();
+      geolocationModal.open()
+      .then(function(data) {
+        $rootScope.showPosition(data);
+      });
       $location.url('/#');
     };
 

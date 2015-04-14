@@ -1,8 +1,22 @@
-openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
- '$http', '$location', 'Geosearch', 'Search', '$filter', '$modal', '$log',
- 'Toast', '$window', 'Geolocation', function($scope, $rootScope, $http,
- $location, Geosearch, Search, $filter, $modal, $log,
- Toast, $window, Geolocation) {
+'use strict';
+
+/*global angular */
+
+openHealthDataAppControllers.controller('mapCtrl', [
+  '$scope',
+  '$rootScope',
+  '$http',
+  '$location',
+  'Geosearch',
+  'Search',
+  '$filter',
+  '$log',
+  'Toast',
+  '$window',
+  'Geolocation',
+  'geolocationModal',
+  function($scope, $rootScope, $http, $location, Geosearch, Search, $filter,
+           $log, Toast, $window, Geolocation, geolocationModal) {
 
     var currentIndex = 0;
 
@@ -13,7 +27,10 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
       angular.element('.cityResults').css('max-height', calcHeight - 64);
 
     $rootScope.getLocationButton = function() {
-      $scope.openModal();
+      geolocationModal.open()
+      .then(function(data) {
+        $rootScope.showPosition(data);
+      });
       $location.url('/#');
     };
 

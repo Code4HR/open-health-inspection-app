@@ -2,33 +2,29 @@
 
 module.exports = function(ngModule) {
 
-  ngModule.controller('modalController', [
-    '$scope',
+  ngModule.factory('geolocationModal', [
     '$modal',
-    '$rootScope',
-    function($scope, $modal, $rootScope) {
+    function($modal) {
 
-    $scope.openModal = function(size) {
+        var service = {};
+        service.open = function(size) {
 
-      var modalInstance = $modal.open({
-        templateUrl: 'partials/modal.html',
-        controller: 'modalInstanceController',
-        size: size,
-        resolve: {
-          geoOptions: function () {
-            return $scope.geoOptions;
-          }
-        }
-      });
+          var geoOptions;
 
-      modalInstance.result.then(function (location) {
-        $rootScope.showPosition(location);
-      }, function () {
-        // $log.info('Modal dismissed at: ' + new Date());
-        $rootScope.showPosition();
-      });
+          return $modal.open({
+            templateUrl: 'partials/modal.html',
+            controller: 'modalInstanceController',
+            size: size,
+            resolve: {
+              geoOptions: function () {
+                return geoOptions;
+              }
+            }
+          }).result;
 
-    };
+      };
+
+      return service;
 
   }]);
 
