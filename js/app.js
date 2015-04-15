@@ -36,8 +36,10 @@ var openHealthDataApp = angular.module('openHealthDataApp', [
   'geolocationModalModule'
 ]);
 
-openHealthDataApp.config(['$routeProvider',
+openHealthDataApp.config([
+  '$routeProvider',
   function($routeProvider) {
+
     $routeProvider.
       when('/vendor/:id', {
         templateUrl: 'partials/restaurantDetailView.html',
@@ -50,12 +52,21 @@ openHealthDataApp.config(['$routeProvider',
       otherwise({
         redirectTo: '/'
       });
+
   }]);
 
 openHealthDataApp.run([
   '$rootScope',
   '$location',
-  function($rootScope, $location) {
+  '$window',
+  function($rootScope, $location, $window) {
+
+    var calcHeight = $window.innerHeight - 100 + 64;
+    if ($window.innerWidth < 776) {
+      angular.element('.results').css('max-height' , calcHeight);
+    } else {
+      angular.element('.cityResults').css('max-height', calcHeight - 64);
+    }
 
     $rootScope.$on('$locationChangeSuccess', function() {
         ga('send', 'pageview', $location.path());
