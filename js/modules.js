@@ -146,7 +146,7 @@ module.exports = function(ngModule) {
           deferred.reject('The request to get user information timed out');
         }
 
-        $timeout(countdown, 5000);
+        $timeout(countdown, 2500);
 
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
@@ -424,18 +424,6 @@ module.exports = function(ngModule) {
       controllerAs: 'ctrl'
     };
 
-    directive.link = function(scope, element, attrs) {
-
-      scope.results = [{
-        url: '/'
-      }];
-
-      for (var i = 0; i < 20; i++) {
-        scope.results.push({});
-      }
-
-    };
-
     directive.controller = [
       '$rootScope',
       '$location',
@@ -446,9 +434,18 @@ module.exports = function(ngModule) {
       function($rootScope, $location, $scope, Geosearch, geolocationModal, Search) {
 
       if (!lastSearch) {
+
+        $scope.results = [];
+
+        for (var i = 0; i < 20; i++) {
+          $scope.results.push({});
+        }
+
         geolocationModal.open()
         .then(function(position) {
           Geosearch.get(position, 0);
+        }, function(error) {
+          debugger;
         });
       }
 
