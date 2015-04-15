@@ -13,10 +13,9 @@ openHealthDataAppControllers.controller('mapCtrl', [
   '$log',
   'Toast',
   '$window',
-  'Geolocation',
   'geolocationModal',
   function($scope, $rootScope, $http, $location, Geosearch, Search, $filter,
-           $log, Toast, $window, Geolocation, geolocationModal) {
+           $log, Toast, $window, geolocationModal) {
 
     var currentIndex = 0;
 
@@ -30,37 +29,17 @@ openHealthDataAppControllers.controller('mapCtrl', [
 
     $rootScope.showPosition = function(position) {
 
-      //outside Virginia check.
-      //- Latitude  36° 32′ N to 39° 28′ N
-      // 36.533333 - 39.466667
-      //- Longitude  75° 15′ W to 83° 41′ W
-      // 75.25 - 83.683333
-
-      if (!_.isUndefined(position) &&
-         ((position.coords.latitude > 36.533333 ) &&
-          (position.coords.latitude < 39.466667 )) &&
-          ((position.coords.longitude < -75.25 ) &&
-          (position.coords.longitude > -83.683333 ))) {
-
-        console.log('coordinates are within Virgina');
-
-        // Position.coords is only avaible in this scope, share over
-        // Geosearch service
-
-        Geosearch.coords = position.coords;
-
-      } else {
-
-        console.log('Coming from out of state or geolocation unavailable.');
-        Geosearch.coords = {
-          latitude: 36.84687,
-          longitude: -76.29228710000001,
-        };
-
-      }
+      Geosearch.get({
+        coords: {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        },
+        dist: 1000
+      }, function(data) {
+        debugger;
+      });
 
       doSearch(currentIndex);
-
     };
 
     function doSearch(index) {

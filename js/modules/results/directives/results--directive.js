@@ -41,6 +41,7 @@ module.exports = function(ngModule) {
         if ($location.url() !== '/') {
           $location.url('/');
         }
+        debugger;
       });
 
       $rootScope.$on('searchFire', function() {

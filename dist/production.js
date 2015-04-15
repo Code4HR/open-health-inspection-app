@@ -107,9 +107,9 @@ openHealthDataApp.directive('bindOnce', function() {
       var model = $parse(attrs.focusMe);
       scope.$watch(model, function(value) {
         // console.log('value=',value);
-        if(value === true) { 
+        if(value === true) {
           $timeout(function() {
-            element[0].focus(); 
+            element[0].focus();
           });
         }
       });
@@ -245,6 +245,7 @@ angular.module('openHealthDataAppFilters', [])
       }
     }
   });
+
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 module.exports = function(ngModule) {
 
@@ -399,6 +400,23 @@ module.exports = function(ngModule) {
           navigator.geolocation.getCurrentPosition(function(position) {
             $timeout.cancel(countdown);
 
+            if (((position.coords.latitude > 36.533333 ) &&
+                (position.coords.latitude < 39.466667 )) &&
+                ((position.coords.longitude < -75.25 ) &&
+                (position.coords.longitude > -83.683333 ))) {
+
+              console.log('coordinates are within Virgina');
+
+            } else {
+
+              console.log('Coming from out of state or geolocation unavailable.');
+              position.coords = {
+                latitude: 36.84687,
+                longitude: -76.29228710000001,
+              };
+
+            }
+
             deferred.resolve({
               coords: {
                 latitude: position.coords.latitude,
@@ -445,12 +463,102 @@ module.exports = "<label>Using GPS</label>\n<form ng-submit=\"getLocation()\" cl
 },{}],8:[function(require,module,exports){
 'use strict';
 
+module.exports = function(ngModule) {
+
+  ngModule.factory('Geosearch', [
+    '$resource',
+    '$rootScope',
+    '$filter',
+    'Toast',
+    function($resource, $rootScope, $filter, Toast) {
+
+      var service = {};
+
+      function _doSearch(position) {
+        return $resource('http://api.openhealthinspection.com/' +
+          'vendors?lat=:lat&lng=:lon&dist=:dist', {}, {
+          query: {
+            method: 'JSONP',
+            params: {
+              lat: '36',
+              lon: '-72',
+              dist: '1000',
+              callback: 'JSON_CALLBACK'}
+            }
+        });
+      }
+
+      service.results = {};
+      service.get = function(position) {
+
+        var index = 0;
+        var searchRadii = [805, 1609, 3219, 4828, 6437, 8047, 9656];
+        var searchRadiiLabel = ['½', '1', '2', '3', '4', '5' , '6'];
+
+        console.log('attempt to get results near ' + position.coords.latitude + ',' + position.coords.longitude);
+
+        function doSearchWrapper(index) {
+
+          _doSearch.query({
+            lat: position.coords.latitude,
+            lon: position.coords.longitude,
+            dist: searchRadii[index] || position.dist
+          }, function(data) {
+
+            if (index > 6) {
+              console.log('not going to work');
+              return;
+            }
+
+            index++;
+
+            // Toast.searchAreaText = 'Within ' + searchRadiiLabel[index] + ' mi.';
+            // Toast.query = '';
+            // $rootScope.$broadcast('updateToast');
+
+            service.results = _.values(_.reject(data, function(el){
+              return _.isUndefined(el.name);
+            }));
+
+            if (service.results.length < 20) {
+              return _doSearch(index + 1);
+            }
+
+            service.results.forEach(function(el) {
+              el.dist = el.dist * 0.000621371;
+              el.score = el.score ? Math.round(el.score) : 'n/a';
+            });
+
+            service.results =
+              $filter('orderBy')(service.results, 'dist', false);
+
+            $rootScope.$broadcast('geosearchFire');
+            debugger;
+
+          });
+
+        }
+
+        doSearchWrapper(0);
+
+      };
+
+      return service;
+
+    }]);
+
+};
+
+},{}],9:[function(require,module,exports){
+'use strict';
+
 var geolocationModule = angular.module('geolocationModule', []);
 
 require('./geolocation--directive')(geolocationModule);
 require('./geolocation--service')(geolocationModule);
+require('./geosearch--service')(geolocationModule);
 
-},{"./geolocation--directive":5,"./geolocation--service":6}],9:[function(require,module,exports){
+},{"./geolocation--directive":5,"./geolocation--service":6,"./geosearch--service":8}],10:[function(require,module,exports){
 'use strict';
 
 var modalModule = angular.module('geolocationModalModule', []);
@@ -458,7 +566,7 @@ var modalModule = angular.module('geolocationModalModule', []);
 require('./modal--controller.js')(modalModule);
 require('./modal-instance--controller.js')(modalModule);
 
-},{"./modal--controller.js":10,"./modal-instance--controller.js":11}],10:[function(require,module,exports){
+},{"./modal--controller.js":11,"./modal-instance--controller.js":12}],11:[function(require,module,exports){
 'use strict';
 
 module.exports = function(ngModule) {
@@ -491,7 +599,7 @@ module.exports = function(ngModule) {
 
 };
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 'use strict';
 
 module.exports = function(ngModule) {
@@ -513,20 +621,20 @@ module.exports = function(ngModule) {
 
 };
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 module.exports = function(ngModule) {
 
   ngModule.factory('resultsService', [function() {
 
     return {
-      
+
     };
 
   }]);
 
 };
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 module.exports = function(ngModule) {
 
   ngModule.directive('result', [function() {
@@ -553,7 +661,7 @@ module.exports = function(ngModule) {
 
 };
 
-},{"./../templates/result--template.html":16}],14:[function(require,module,exports){
+},{"./../templates/result--template.html":17}],15:[function(require,module,exports){
 module.exports = function(ngModule) {
 
   ngModule.directive('results', [function() {
@@ -597,6 +705,7 @@ module.exports = function(ngModule) {
         if ($location.url() !== '/') {
           $location.url('/');
         }
+        debugger;
       });
 
       $rootScope.$on('searchFire', function() {
@@ -633,7 +742,7 @@ module.exports = function(ngModule) {
 
 };
 
-},{"./../templates/results--template.html":17}],15:[function(require,module,exports){
+},{"./../templates/results--template.html":18}],16:[function(require,module,exports){
 'use strict';
 
 var resultsModule = angular.module('resultsModule', []);
@@ -641,13 +750,13 @@ var resultsModule = angular.module('resultsModule', []);
 require('./directives/results--directive.js')(resultsModule);
 require('./directives/result--directive.js')(resultsModule);
 
-},{"./directives/result--directive.js":13,"./directives/results--directive.js":14}],16:[function(require,module,exports){
+},{"./directives/result--directive.js":14,"./directives/results--directive.js":15}],17:[function(require,module,exports){
 module.exports = "<div ng-if=\"$index % 2 === 0\" class=\"col-xs-12 visible-sm clearfix\"></div>\n<div ng-if=\"$index % 3 === 0\" class=\"col-xs-12 visible-md visible-lg clearfix\"></div>\n\n<div class=\"list-container col-sm-6 col-md-4\">\n  <div class=\"card clearfix drop-shadow {{restaurant.score | scoreBorder}}\">\n    <a href=\"#{{restaurant.url}}\">\n      <div class=\"title clearfix\">\n        <i class=\"{{restaurant.category | categoryIcon }} col-xs-2 category-icon\"></i>\n        <ul class=\"col-xs-7 info\">\n          <li class=\"name\">{{restaurant.name}}</li>\n          <li class=\"address\">{{restaurant.address}}</li>\n        </ul>\n        <p class=\"score col-xs-3 {{restaurant.score | scoreColor}}\">{{restaurant.score}}</p>\n      </div>\n      <div class=\"inspections visible-md visible-lg\"></div>\n      <p class=\"readMore visible-sm visible-md visible-lg\">Read this vendor's full report.</p>\n    </a>\n  </div>\n</div>\n";
 
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 module.exports = "<section id=\"results\">\n  <ul>\n    <li ng-repeat=\"result in results\">\n      <result data=\"result\"></result>\n    </li>\n    <li class=\"clearfix\"></li>\n\n    <li class=\"container load-more-button\" ng-show=\"true\">\n      <div class=\"row\">\n        <a class=\"col-xs-12\" ng-click=\"loadMore()\">Expand Search Radius</a>\n      </div>\n    </li>\n\n  </ul>\n</div>\n";
 
-},{}]},{},[1,2,4,5,6,8,9,10,11,12,13,14,15]);
+},{}]},{},[1,2,4,5,6,8,9,10,11,12,13,14,15,16]);
 
 /*
     The frontend for Code for Hampton Roads' Open Health Inspection Data.
@@ -688,80 +797,7 @@ openHealthDataServices.factory('Inspections', ['$resource',
     });
   }]);
 
-openHealthDataServices.factory('Geolocation', ['$q', '$timeout', 'Smarty', function($q, $timeout, Smarty) {
-  return {
 
-    getPosition: function(geoOptions) {
-
-      var deferred = $q.defer();
-
-      $timeout(countdown, 5000);
-
-      function countdown() {
-        deferred.reject('The request to get user location timed out.');
-      }
-
-      if (geoOptions.useGeolocation && navigator.geolocation) {
-          console.log('using geolocation');
-        navigator.geolocation.getCurrentPosition(function(position) {
-          $timeout.cancel(countdown);
-          deferred.resolve(position);
-        },
-        function(error) {
-
-          $timeout.cancel(countdown);
-
-          var errorCode;
-          switch(error.code) {
-            case error.PERMISSION_DENIED:
-                errorCode = 'User denied the request for Geolocation.';
-                break;
-            case error.POSITION_UNAVAILABLE:
-                errorCode = 'Location information is unavailable.';
-                break;
-            case error.TIMEOUT:
-                errorCode = 'The request to get user location timed out.';
-                break;
-            case error.UNKNOWN_ERROR:
-                errorCode = 'An unknown error occurred.';
-                break;
-          }
-
-          deferred.reject(errorCode);
-
-        });
-      } else if (geoOptions.zip) {
-          console.log('using smarty',geoOptions.zip);
-        Smarty.query({ zip: geoOptions.zip }, function(data) {
-            var lat = data[0].zipcodes[0].latitude;
-            var lon = data[0].zipcodes[0].longitude;
-            deferred.resolve({ coords: { latitude: lat, longitude: lon } });
-        },
-        function(err) {
-            deferred.reject(err);
-        });
-      } else {
-          deferred.resolve();
-      }
-      return deferred.promise;
-    }
-  };
-}]);
-
-openHealthDataServices.factory('Geosearch', ['$resource',
-  function($resource) {
-    return $resource('http://api.openhealthinspection.com/' +
-      'vendors?lat=:lat&lng=:lon&dist=:dist', {}, {
-      query: {
-        method: 'JSONP',
-        params: {
-          lat: '36',
-          lon: '-72',
-          dist: '1000',
-          callback: 'JSON_CALLBACK'}
-        }
-    });
-  }]);
 
 openHealthDataServices.factory('Search', ['$resource',
   function($resource) {
@@ -773,13 +809,6 @@ openHealthDataServices.factory('Search', ['$resource',
         }
       }
     });
-  }]);
-
-openHealthDataServices.factory('Smarty', ['$resource',
-  function($resource) {
-    return $resource('https://api.smartystreets.com/zipcode' +
-        '?auth-id=3528212138785631906' +
-        '&city=&state=&zipcode=:zip', {}, {});
   }]);
 
 openHealthDataServices.factory('Toast', function() {
@@ -824,10 +853,9 @@ openHealthDataAppControllers.controller('mapCtrl', [
   '$log',
   'Toast',
   '$window',
-  'Geolocation',
   'geolocationModal',
   function($scope, $rootScope, $http, $location, Geosearch, Search, $filter,
-           $log, Toast, $window, Geolocation, geolocationModal) {
+           $log, Toast, $window, geolocationModal) {
 
     var currentIndex = 0;
 
@@ -841,37 +869,17 @@ openHealthDataAppControllers.controller('mapCtrl', [
 
     $rootScope.showPosition = function(position) {
 
-      //outside Virginia check.
-      //- Latitude  36° 32′ N to 39° 28′ N
-      // 36.533333 - 39.466667
-      //- Longitude  75° 15′ W to 83° 41′ W
-      // 75.25 - 83.683333
-
-      if (!_.isUndefined(position) &&
-         ((position.coords.latitude > 36.533333 ) &&
-          (position.coords.latitude < 39.466667 )) &&
-          ((position.coords.longitude < -75.25 ) &&
-          (position.coords.longitude > -83.683333 ))) {
-
-        console.log('coordinates are within Virgina');
-
-        // Position.coords is only avaible in this scope, share over
-        // Geosearch service
-
-        Geosearch.coords = position.coords;
-
-      } else {
-
-        console.log('Coming from out of state or geolocation unavailable.');
-        Geosearch.coords = {
-          latitude: 36.84687,
-          longitude: -76.29228710000001,
-        };
-
-      }
+      Geosearch.get({
+        coords: {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        },
+        dist: 1000
+      }, function(data) {
+        debugger;
+      });
 
       doSearch(currentIndex);
-
     };
 
     function doSearch(index) {
@@ -1139,7 +1147,7 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope',
  '$rootScope', '$location', 'Search', 'Geosearch',
   function($scope, $rootScope, $location, Search, Geosearch) {
 
-    var searchType; 
+    var searchType;
 
     $rootScope.showMore = false;
 
@@ -1166,10 +1174,10 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope',
       if (searchType === 'search') {
         console.log('get more search results of that name?');
         $rootScope.$broadcast('moreSearch');
-        
+
       } else if (searchType === 'geosearch') {
         console.log('get more search results around here.');
-        $rootScope.$broadcast('moreGeosearch'); 
+        $rootScope.$broadcast('moreGeosearch');
       }
     };
 
