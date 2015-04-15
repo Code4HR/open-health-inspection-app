@@ -831,12 +831,6 @@ openHealthDataAppControllers.controller('mapCtrl', [
 
     var currentIndex = 0;
 
-    var calcHeight = angular.element(window).height() - 100 + 64;
-    if (screen.width < 776) {
-      angular.element('.results').css('max-height' , calcHeight);
-    }
-    angular.element('.cityResults').css('max-height', calcHeight - 64);
-
     $rootScope.getLocationButton = function() {
       geolocationModal.open()
       .then(function(data) {
