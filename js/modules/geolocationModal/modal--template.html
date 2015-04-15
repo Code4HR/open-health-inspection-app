@@ -1,0 +1,26 @@
+<div class="modal-header">
+    <h2 class="modal-title">Open Health Inspection</h2>
+    <h3 class="modal-subtitle">Learn More About Where You Eat</h3>
+</div>
+
+<div class="modal-body">
+      <h3>How can we find you?</h3>
+
+      <div class="row">
+        <div class="col-md-9">
+          <geocode callback="returnLocation"></geocode>
+        </div>
+        <div class="col-md-3">
+          <geolocation callback="returnLocation"></geolocation>
+        </div>
+      </div>
+
+      <p>This app makes it easy to get public health reports for Virginia restaurants near you.  To check the report for a specific restaurant, click its name in the list or use the search tool.</p>
+
+      <p>Source code for this application can be found on <a href="https://github.com/c4hrva/open-health-inspection-app">
+              <i class="fa fa-github"></i> Github</dd>
+            </a>
+      </p>
+</div>
+<div class="modal-footer">
+</div>

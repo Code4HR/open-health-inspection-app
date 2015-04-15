@@ -1,49 +1,30 @@
-openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope',
- '$http', '$location', 'Geosearch', 'Search', '$filter', '$modal', '$log',
- 'Toast', '$window', 'Geolocation', function($scope, $rootScope, $http,
- $location, Geosearch, Search, $filter, $modal, $log,
- Toast, $window, Geolocation) {
+'use strict';
+
+/*global angular */
+
+openHealthDataAppControllers.controller('mapCtrl', [
+  '$scope',
+  '$rootScope',
+  '$http',
+  '$location',
+  'Geosearch',
+  'Search',
+  '$filter',
+  '$log',
+  'Toast',
+  '$window',
+  'Geolocation',
+  'geolocationModal',
+  function($scope, $rootScope, $http, $location, Geosearch, Search, $filter,
+           $log, Toast, $window, Geolocation, geolocationModal) {
 
     var currentIndex = 0;
 
-    $rootScope.$on('$locationChangeSuccess', function() {
-        ga('send', 'pageview', $location.path());
-    });
-
-    $scope.openModal = function(size) {
-
-      var modalInstance = $modal.open({
-        templateUrl: 'partials/modal.html',
-        controller: 'modalController',
-        size: size,
-        resolve: {
-          geoOptions: function () {
-            return $scope.geoOptions;
-          }
-        }
-      });
-
-      modalInstance.result.then(function (location) {
-        $rootScope.showPosition(location);
-      }, function () {
-        // $log.info('Modal dismissed at: ' + new Date());
-        $rootScope.showPosition();
-      });
-
-    };
-
-    // if ($location.path() === '/' || $location.path() === '') {
-    //   $scope.openModal();
-    // }
-
-    var calcHeight = angular.element(window).height() - 100 + 64;
-      if (screen.width < 776) {
-        angular.element('.results').css('max-height' , calcHeight);
-      }
-      angular.element('.cityResults').css('max-height', calcHeight - 64);
-
     $rootScope.getLocationButton = function() {
-      $scope.openModal();
+      geolocationModal.open()
+      .then(function(data) {
+        $rootScope.showPosition(data);
+      });
       $location.url('/#');
     };
 

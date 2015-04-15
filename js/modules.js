@@ -204,6 +204,69 @@ require('./geolocation--directive')(geolocationModule);
 require('./geolocation--service')(geolocationModule);
 
 },{"./geolocation--directive":5,"./geolocation--service":6}],9:[function(require,module,exports){
+'use strict';
+
+var modalModule = angular.module('geolocationModalModule', []);
+
+require('./modal--controller.js')(modalModule);
+require('./modal-instance--controller.js')(modalModule);
+
+},{"./modal--controller.js":10,"./modal-instance--controller.js":11}],10:[function(require,module,exports){
+'use strict';
+
+module.exports = function(ngModule) {
+
+  ngModule.factory('geolocationModal', [
+    '$modal',
+    function($modal) {
+
+        var service = {};
+        service.open = function(size) {
+
+          var geoOptions;
+
+          return $modal.open({
+            templateUrl: 'partials/modal.html',
+            controller: 'modalInstanceController',
+            size: size,
+            resolve: {
+              geoOptions: function () {
+                return geoOptions;
+              }
+            }
+          }).result;
+
+      };
+
+      return service;
+
+  }]);
+
+};
+
+},{}],11:[function(require,module,exports){
+'use strict';
+
+module.exports = function(ngModule) {
+
+  ngModule.controller('modalInstanceController', [
+    '$scope',
+    '$modalInstance',
+    function($scope, $modalInstance){
+
+      $scope.returnLocation = function (obj) {
+        $modalInstance.close(obj);
+      };
+
+      $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+      };
+
+  }]);
+
+};
+
+},{}],12:[function(require,module,exports){
 module.exports = function(ngModule) {
 
   ngModule.factory('resultsService', [function() {
@@ -216,7 +279,7 @@ module.exports = function(ngModule) {
 
 };
 
-},{}],10:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 module.exports = function(ngModule) {
 
   ngModule.directive('result', [function() {
@@ -243,7 +306,7 @@ module.exports = function(ngModule) {
 
 };
 
-},{"./../templates/result--template.html":13}],11:[function(require,module,exports){
+},{"./../templates/result--template.html":16}],14:[function(require,module,exports){
 module.exports = function(ngModule) {
 
   ngModule.directive('results', [function() {
@@ -323,7 +386,7 @@ module.exports = function(ngModule) {
 
 };
 
-},{"./../templates/results--template.html":14}],12:[function(require,module,exports){
+},{"./../templates/results--template.html":17}],15:[function(require,module,exports){
 'use strict';
 
 var resultsModule = angular.module('resultsModule', []);
@@ -331,10 +394,10 @@ var resultsModule = angular.module('resultsModule', []);
 require('./directives/results--directive.js')(resultsModule);
 require('./directives/result--directive.js')(resultsModule);
 
-},{"./directives/result--directive.js":10,"./directives/results--directive.js":11}],13:[function(require,module,exports){
+},{"./directives/result--directive.js":13,"./directives/results--directive.js":14}],16:[function(require,module,exports){
 module.exports = "<div ng-if=\"$index % 2 === 0\" class=\"col-xs-12 visible-sm clearfix\"></div>\n<div ng-if=\"$index % 3 === 0\" class=\"col-xs-12 visible-md visible-lg clearfix\"></div>\n\n<div class=\"list-container col-sm-6 col-md-4\">\n  <div class=\"card clearfix drop-shadow {{restaurant.score | scoreBorder}}\">\n    <a href=\"#{{restaurant.url}}\">\n      <div class=\"title clearfix\">\n        <i class=\"{{restaurant.category | categoryIcon }} col-xs-2 category-icon\"></i>\n        <ul class=\"col-xs-7 info\">\n          <li class=\"name\">{{restaurant.name}}</li>\n          <li class=\"address\">{{restaurant.address}}</li>\n        </ul>\n        <p class=\"score col-xs-3 {{restaurant.score | scoreColor}}\">{{restaurant.score}}</p>\n      </div>\n      <div class=\"inspections visible-md visible-lg\"></div>\n      <p class=\"readMore visible-sm visible-md visible-lg\">Read this vendor's full report.</p>\n    </a>\n  </div>\n</div>\n";
 
-},{}],14:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 module.exports = "<section id=\"results\">\n  <ul>\n    <li ng-repeat=\"result in results\">\n      <result data=\"result\"></result>\n    </li>\n    <li class=\"clearfix\"></li>\n\n    <li class=\"container load-more-button\" ng-show=\"true\">\n      <div class=\"row\">\n        <a class=\"col-xs-12\" ng-click=\"loadMore()\">Expand Search Radius</a>\n      </div>\n    </li>\n\n  </ul>\n</div>\n";
 
-},{}]},{},[1,2,4,5,6,8,9,10,11,12]);
+},{}]},{},[1,2,4,5,6,8,9,10,11,12,13,14,15]);
