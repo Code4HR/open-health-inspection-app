@@ -678,12 +678,8 @@ module.exports = function(ngModule) {
         url: '/'
       }];
 
-      if (!lastSearch) {
-        for (var i = 0; i < 20; i++) {
-          scope.results.push({});
-        }
-      } else {
-        scope.results = lastSearch;
+      for (var i = 0; i < 20; i++) {
+        scope.results.push({});
       }
 
     };
@@ -704,7 +700,9 @@ module.exports = function(ngModule) {
         });
       }
 
-      $rootScope.$on('geosearchFire', function() {
+      $scope.$watch(function() {
+        return Geosearch.results;
+      }, function() {
         searchType = 'geosearch';
         $scope.results = Geosearch.results;
         lastSearch = Geosearch.results;
