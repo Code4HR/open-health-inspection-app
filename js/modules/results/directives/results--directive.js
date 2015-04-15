@@ -34,6 +34,7 @@ module.exports = function(ngModule) {
         }, function(error) {
           debugger;
         });
+
       }
 
       $scope.$watch(function() {
@@ -42,9 +43,6 @@ module.exports = function(ngModule) {
         searchType = 'geosearch';
         $scope.results = Geosearch.results;
         lastSearch = Geosearch.results;
-        if ($location.url() !== '/') {
-          $location.url('/');
-        }
       });
 
       $rootScope.$on('searchFire', function() {
@@ -66,6 +64,7 @@ module.exports = function(ngModule) {
           console.log('get more search results around here.');
           Geosearch.get(Geosearch.position, Geosearch.index + 1);
         }
+
       };
 
     }];

@@ -11,7 +11,7 @@ module.exports = function(ngModule) {
           deferred.reject('The request to get user information timed out');
         }
 
-        $timeout(countdown, 2500);
+        $timeout(countdown, 10000);
 
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {

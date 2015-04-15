@@ -146,7 +146,7 @@ module.exports = function(ngModule) {
           deferred.reject('The request to get user information timed out');
         }
 
-        $timeout(countdown, 2500);
+        $timeout(countdown, 10000);
 
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
@@ -356,10 +356,14 @@ module.exports = function(ngModule) {
   ngModule.controller('modalInstanceController', [
     '$scope',
     '$modalInstance',
-    function($scope, $modalInstance){
+    '$location',
+    function($scope, $modalInstance, $location){
 
       $scope.returnLocation = function (obj) {
         $modalInstance.close(obj);
+        if ($location.url() !== '/' || $location.url() !== '') {
+          $location.url('/');
+        }
       };
 
       $scope.cancel = function () {
@@ -447,6 +451,7 @@ module.exports = function(ngModule) {
         }, function(error) {
           debugger;
         });
+
       }
 
       $scope.$watch(function() {
@@ -455,9 +460,6 @@ module.exports = function(ngModule) {
         searchType = 'geosearch';
         $scope.results = Geosearch.results;
         lastSearch = Geosearch.results;
-        if ($location.url() !== '/') {
-          $location.url('/');
-        }
       });
 
       $rootScope.$on('searchFire', function() {
@@ -479,6 +481,7 @@ module.exports = function(ngModule) {
           console.log('get more search results around here.');
           Geosearch.get(Geosearch.position, Geosearch.index + 1);
         }
+
       };
 
     }];
