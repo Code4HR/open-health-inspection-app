@@ -225,6 +225,12 @@ module.exports = function(ngModule) {
     function($resource, $rootScope, $filter, Toast) {
 
       var service = {};
+      service.results = {};
+      service.index = 0;
+      service.position = {};
+
+      var searchRadii = [805, 1609, 3219, 4828, 6437, 8047, 9656];
+      var searchRadiiLabel = ['½', '1', '2', '3', '4', '5' , '6'];
 
       function _doSearch(position) {
         return $resource('http://api.openhealthinspection.com/' +
@@ -240,58 +246,49 @@ module.exports = function(ngModule) {
         });
       }
 
-      service.results = {};
-      service.get = function(position) {
+      service.get = function(position, index) {
 
-        var index = 0;
-        var searchRadii = [805, 1609, 3219, 4828, 6437, 8047, 9656];
-        var searchRadiiLabel = ['½', '1', '2', '3', '4', '5' , '6'];
+        service.position = position;
 
-        console.log('attempt to get results near ' + position.coords.latitude + ',' + position.coords.longitude);
+        _doSearch.query({
+          lat: position.coords.latitude,
+          lon: position.coords.longitude,
+          dist: searchRadii[index] || position.dist
+        }, function(data) {
 
-        function doSearchWrapper(index) {
+          if (service.index > 6) {
+            console.log('not going to work');
+            return;
+          }
 
-          _doSearch.query({
-            lat: position.coords.latitude,
-            lon: position.coords.longitude,
-            dist: searchRadii[index] || position.dist
-          }, function(data) {
+          Toast.searchAreaText = 'Within ' + searchRadiiLabel[index] + ' mi.';
+          Toast.query = '';
+          $rootScope.$broadcast('updateToast');
 
-            if (index > 6) {
-              console.log('not going to work');
-              return;
-            }
+          service.index++;
 
-            index++;
+          service.results = _.values(_.reject(data, function(el){
+            return _.isUndefined(el.name);
+          }));
 
-            // Toast.searchAreaText = 'Within ' + searchRadiiLabel[index] + ' mi.';
-            // Toast.query = '';
-            // $rootScope.$broadcast('updateToast');
+          if (service.results.length < 20) {
+            return service.get(
+              service.position,
+              service.index + 1
+            );
+          }
 
-            service.results = _.values(_.reject(data, function(el){
-              return _.isUndefined(el.name);
-            }));
-
-            if (service.results.length < 20) {
-              return _doSearch(index + 1);
-            }
-
-            service.results.forEach(function(el) {
-              el.dist = el.dist * 0.000621371;
-              el.score = el.score ? Math.round(el.score) : 'n/a';
-            });
-
-            service.results =
-              $filter('orderBy')(service.results, 'dist', false);
-
-            $rootScope.$broadcast('geosearchFire');
-            debugger;
-
+          service.results.forEach(function(el) {
+            el.dist = el.dist * 0.000621371;
+            el.score = el.score ? Math.round(el.score) : 'n/a';
           });
 
-        }
+          service.results =
+            $filter('orderBy')(service.results, 'dist', false);
 
-        doSearchWrapper(0);
+          $rootScope.$broadcast('geosearchFire');
+
+        });
 
       };
 
@@ -443,11 +440,20 @@ module.exports = function(ngModule) {
 
     };
 
-    directive.controller = ['$rootScope', '$location', '$scope', 'Geosearch', 'Search', function($rootScope, $location, $scope, Geosearch, Search) {
+    directive.controller = [
+      '$rootScope',
+      '$location',
+      '$scope',
+      'Geosearch',
+      'geolocationModal',
+      'Search',
+      function($rootScope, $location, $scope, Geosearch, geolocationModal, Search) {
 
       if (!lastSearch) {
-        // should open modal
-        $rootScope.getLocationButton();
+        geolocationModal.open()
+        .then(function(position) {
+          Geosearch.get(position, 0);
+        });
       }
 
       $rootScope.$on('geosearchFire', function() {
@@ -457,7 +463,6 @@ module.exports = function(ngModule) {
         if ($location.url() !== '/') {
           $location.url('/');
         }
-        debugger;
       });
 
       $rootScope.$on('searchFire', function() {
@@ -477,7 +482,7 @@ module.exports = function(ngModule) {
 
         } else if (searchType === 'geosearch') {
           console.log('get more search results around here.');
-          $rootScope.$broadcast('moreGeosearch');
+          Geosearch.get(Geosearch.position, Geosearch.index + 1);
         }
       };
 
