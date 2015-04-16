@@ -426,6 +426,16 @@ module.exports = function(ngModule) {
       controllerAs: 'ctrl'
     };
 
+    directive.link = function(scope, element, attrs) {
+
+      scope.results = [];
+
+      for (var i = 0; i < 20; i++) {
+        scope.results.push({});
+      }
+
+    };
+
     directive.controller = [
       '$rootScope',
       '$location',
@@ -436,12 +446,6 @@ module.exports = function(ngModule) {
       function($rootScope, $location, $scope, Geosearch, geolocationModal, Search) {
 
       if (!lastSearch) {
-
-        $scope.results = [];
-
-        for (var i = 0; i < 20; i++) {
-          $scope.results.push({});
-        }
 
         geolocationModal.open()
         .then(function(position) {
