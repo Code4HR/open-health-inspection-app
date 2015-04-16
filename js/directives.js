@@ -31,9 +31,9 @@ openHealthDataApp.directive('bindOnce', function() {
       var model = $parse(attrs.focusMe);
       scope.$watch(model, function(value) {
         // console.log('value=',value);
-        if(value === true) {
+        if(value === true) { 
           $timeout(function() {
-            element[0].focus();
+            element[0].focus(); 
           });
         }
       });

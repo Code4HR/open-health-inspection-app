@@ -37,7 +37,7 @@ openHealthDataApp.config(['$routeProvider',
   }]);
 /******************
 Controllers
-******************/
+******************/	
 
 var openHealthDataAppControllers = angular.module('openHealthDataAppControllers', []);
 
@@ -50,8 +50,8 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
             latitude: 36.847010,
             longitude: -76.292430
         },
-        zoom: 18,
-        options: {
+        zoom: 18, 
+        options: { 
             streetViewControl: false,
             panControl: true,
             panControlOptions: {
@@ -79,10 +79,10 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
     $rootScope.showPosition = function(position) {
       Geosearch.map.center.latitude = position.coords.latitude;
       Geosearch.map.center.longitude = position.coords.longitude;
-      $scope.results =
+      $scope.results = 
       Geosearch.results = Geosearch.query({lat: $scope.map.center.latitude, lon: $scope.map.center.longitude, dist: $scope.dist}, function(){
         Geosearch.results = _.values(Geosearch.results);
-        Geosearch.results.forEach(function(el, index){
+        Geosearch.results.forEach(function(el, index){ 
           console.log(el.dist);
           el.dist = el.dist * 0.000621371;
         });
@@ -104,7 +104,7 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
     }
 
     $rootScope.getLocation();
-
+    
     $rootScope.toRad = function(Value) {
         return Value * Math.PI / 180;
     };
@@ -124,17 +124,17 @@ openHealthDataAppControllers.controller('mapCtrl', ['$scope', '$rootScope', '$ht
       lat2 = $scope.toRad(lat2);
 
       var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-              Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2);
-      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+              Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
       var d = R * c;
 
       return d * 0.62137;
-
+      
     };
 
   }]);
 
-openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', '$http', '$location', '$rootScope', 'Geosearch', 'Inspections',
+openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$routeParams', '$http', '$location', '$rootScope', 'Geosearch', 'Inspections', 
   function($scope, $routeParams, $http, $location, $rootScope, Geosearch, Inspections) {
 
     $rootScope.isVisible = false;
@@ -145,7 +145,7 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope', '$rou
         $scope.$watch(Geosearch.map.center, function(e){
             $location.path('/#');
           }, true);
-        }, 1000);
+        }, 1000); 
     });
 
 }]);
@@ -230,7 +230,7 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope', '$rootSc
       }, 100);
     };
 
-
+    
   }]);
 
 openHealthDataApp.directive('bindOnce', function() {
@@ -253,7 +253,7 @@ Models
 ******************/
 
 var openHealthDataServices = angular.module('openHealthDataServices', ['ngResource']);
-
+ 
 openHealthDataServices.factory('Inspections', ['$resource',
   function($resource){
     return $resource('http://api.openhealthinspection.com/inspections?vendorid=:vendorid', {}, {

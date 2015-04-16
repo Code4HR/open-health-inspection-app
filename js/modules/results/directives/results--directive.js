@@ -13,40 +13,34 @@ module.exports = function(ngModule) {
 
     directive.link = function(scope, element, attrs) {
 
-      scope.results = [];
+      scope.results = [{
+        url: '/'
+      }];
 
-      for (var i = 0; i < 20; i++) {
-        scope.results.push({});
+      if (!lastSearch) {
+        for (var i = 0; i < 20; i++) {
+          scope.results.push({});
+        }
+      } else {
+        scope.results = lastSearch;
       }
 
     };
 
-    directive.controller = [
-      '$rootScope',
-      '$location',
-      '$scope',
-      'Geosearch',
-      'geolocationModal',
-      'Search',
-      function($rootScope, $location, $scope, Geosearch, geolocationModal, Search) {
+    directive.controller = ['$rootScope', '$location', '$scope', 'Geosearch', 'Search', function($rootScope, $location, $scope, Geosearch, Search) {
 
       if (!lastSearch) {
-
-        geolocationModal.open()
-        .then(function(position) {
-          Geosearch.get(position, 0);
-        }, function(error) {
-          debugger;
-        });
-
+        // should open modal
+        $rootScope.getLocationButton();
       }
 
-      $scope.$watch(function() {
-        return Geosearch.results;
-      }, function() {
+      $rootScope.$on('geosearchFire', function() {
         searchType = 'geosearch';
         $scope.results = Geosearch.results;
         lastSearch = Geosearch.results;
+        if ($location.url() !== '/') {
+          $location.url('/');
+        }
       });
 
       $rootScope.$on('searchFire', function() {
@@ -66,9 +60,8 @@ module.exports = function(ngModule) {
 
         } else if (searchType === 'geosearch') {
           console.log('get more search results around here.');
-          Geosearch.get(Geosearch.position, Geosearch.index + 1);
+          $rootScope.$broadcast('moreGeosearch');
         }
-
       };
 
     }];
