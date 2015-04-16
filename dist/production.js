@@ -480,8 +480,7 @@ module.exports = function(ngModule) {
       var searchRadii = [805, 1609, 3219, 4828, 6437, 8047, 9656];
       var searchRadiiLabel = ['½', '1', '2', '3', '4', '5' , '6'];
 
-      function _doSearch(position) {
-        return $resource('http://api.openhealthinspection.com/' +
+      var _doSearch = $resource('http://api.openhealthinspection.com/' +
           'vendors?lat=:lat&lng=:lon&dist=:dist', {}, {
           query: {
             method: 'JSONP',
@@ -492,7 +491,6 @@ module.exports = function(ngModule) {
               callback: 'JSON_CALLBACK'}
             }
         });
-      }
 
       service.get = function(position, index) {
 
