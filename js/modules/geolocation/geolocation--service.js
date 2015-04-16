@@ -11,11 +11,28 @@ module.exports = function(ngModule) {
           deferred.reject('The request to get user information timed out');
         }
 
-        $timeout(countdown, 5000);
+        $timeout(countdown, 10000);
 
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
             $timeout.cancel(countdown);
+
+            if (((position.coords.latitude > 36.533333 ) &&
+                (position.coords.latitude < 39.466667 )) &&
+                ((position.coords.longitude < -75.25 ) &&
+                (position.coords.longitude > -83.683333 ))) {
+
+              console.log('coordinates are within Virgina');
+
+            } else {
+
+              console.log('Coming from out of state or geolocation unavailable.');
+              position.coords = {
+                latitude: 36.84687,
+                longitude: -76.29228710000001,
+              };
+
+            }
 
             deferred.resolve({
               coords: {
