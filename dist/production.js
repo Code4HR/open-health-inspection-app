@@ -388,7 +388,13 @@ module.exports = function(ngModule) {
 
       getLatLon: function() {
 
-        var deferred = $q.defer();
+        var thePosition = {
+          coords: {
+            latitude: null,
+            longitude: null
+          }
+        },
+        deferred = $q.defer();
 
         function countdown() {
           deferred.reject('The request to get user information timed out');
@@ -406,23 +412,19 @@ module.exports = function(ngModule) {
                 (position.coords.longitude > -83.683333 ))) {
 
               console.log('coordinates are within Virgina');
+              thePosition = position;
 
             } else {
 
               console.log('Coming from out of state or geolocation unavailable.');
-              position.coords = {
+              thePosition.coords = {
                 latitude: 36.84687,
                 longitude: -76.29228710000001,
               };
 
             }
 
-            deferred.resolve({
-              coords: {
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude
-              }
-            });
+            deferred.resolve(thePosition);
 
           }, function(error) {
 
@@ -700,6 +702,7 @@ module.exports = function(ngModule) {
           Geosearch.get(position, 0);
         }, function(error) {
           debugger;
+
         });
 
       }

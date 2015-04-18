@@ -37,6 +37,7 @@ module.exports = function(ngModule) {
           Geosearch.get(position, 0);
         }, function(error) {
           debugger;
+
         });
 
       }
