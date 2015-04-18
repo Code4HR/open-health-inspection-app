@@ -1,0 +1,20 @@
+  <label>Zip Code</label>
+  <form name="geocodeForm" ng-submit="getLatLon()" novalidate >
+    <div class="input-group form-group input-group-lg">
+      <input class="form-control" name="zipcode" ng-change="resetZipValid()" ng-model="zipcode" ng-minlength="5" ng-maxlength="10" ng-pattern="/^\d{5}(?:[-\s]\d{4})?$/" type="text" placeholder="Zip Code"/>
+      <span class="input-group-btn">
+        <button class="btn btn-default">
+          <span class="glyphicon glyphicon-search"></span>
+        </button>
+      </span>
+    </div>
+
+    <p class="alert alert-danger" ng-show="geocodeForm.zipcode.$error.pattern && !geocodeForm.zipcode.$error.minlength">
+      Please enter a valid 5-digit VA ZIP code
+    </p>
+
+    <p class="alert alert-warning" ng-show="invalidZip">
+      Invalid ZIP code
+    </p>
+
+  </form>

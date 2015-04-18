@@ -26,7 +26,8 @@
 
     <title>Open Health Inspection</title>
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/production.min.css" rel="stylesheet">
+    <!-- <link href="css/production.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="dist/main.css">
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,300italic,400italic,700,700italic,900italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Bitter:400,700,400italic' rel='stylesheet' type='text/css'>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
@@ -113,7 +114,9 @@
       </div>
     </header>
 
-    <div id="main" class="container ng-cloak" >
+    <div id="main" ng-class="{'bump': isSearchbarVisible || isVisible}" class="container ng-cloak" >
+
+      <div id="viewContainer" ng-view></div>
 
       <div class="bglogo hidden-md hidden-lg">
         <img src="img/build/logo-gray.png" height="70" width="70" alt="logo">
@@ -121,49 +124,7 @@
       </div>
 
       <section ng-controller="mapCtrl">
-  <!--       <div id="backToMe" ng-click="getLocation()">
-          <i class="fa fa-crosshairs"></i>
-        </div> -->
-      </section>
 
-      <section class="results" ng-class="{'bump': isSearchbarVisible || isVisible}">
-        <section id="searchResults" ng-controller="searchResultsCtrl">
-          <section id="searchResultsDetail" ng-show="isVisible">
-            <ul class="">
-              <li ng-repeat="restaurant in results">
-
-                <div ng-if="$index % 2 === 0" class="col-xs-12 visible-sm clearfix"></div>
-                <div ng-if="$index % 3 === 0" class="col-xs-12 visible-md visible-lg clearfix"></div>
-
-                <div class="list-container col-sm-6 col-md-4">
-                  <div class="card clearfix drop-shadow {{restaurant.score | scoreBorder}}">
-                    <a href="#{{restaurant.url}}">
-                      <div class="title clearfix">
-                        <i class="{{restaurant.category | categoryIcon }} col-xs-2 category-icon"></i>
-                        <ul class="col-xs-7 info">
-                          <li class="name">{{restaurant.name}}</li>
-                          <li class="address">{{restaurant.address}}</li>
-                        </ul>
-                        <p class="score col-xs-3 {{restaurant.score | scoreColor}}">{{restaurant.score}}</p>
-                      </div>
-                      <div class="inspections visible-md visible-lg"></div>
-                      <p class="readMore visible-sm visible-md visible-lg">Read this vendor's full report.</p>
-                    </a>
-                  </div>
-                </div>
-
-              </li>
-
-              <li class="clearfix"></li>
-              <li class="container load-more-button" ng-show="showMore">
-                <div class="row">
-                  <a class="col-xs-12" ng-click="loadMore()">Expand Search Radius</a>
-                </div>
-              </li>
-
-            </ul>
-          </section>
-        </section>
       </section>
 
       <section id="cityJump" ng-show="isCityJumpVisible" class="col-xs-12 col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-8 cityResults drop-shadow" ng-controller="cityJumpCtrl">
@@ -178,12 +139,10 @@
         </section>
       </section>
 
-      <div id="viewContainer" ng-view></div>
-
     </div>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular-resource.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular-route.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular-animate.min.js"></script>

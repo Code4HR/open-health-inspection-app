@@ -37,10 +37,10 @@ openHealthDataServices.factory('Inspections', ['$resource',
     });
   }]);
 
-openHealthDataServices.factory('Geolocation', ['$q', '$timeout', function($q, $timeout) {
+openHealthDataServices.factory('Geolocation', ['$q', '$timeout', 'Smarty', function($q, $timeout, Smarty) {
   return {
 
-    getPosition: function() {
+    getPosition: function(geoOptions) {
 
       var deferred = $q.defer();
 
@@ -50,7 +50,8 @@ openHealthDataServices.factory('Geolocation', ['$q', '$timeout', function($q, $t
         deferred.reject('The request to get user location timed out.');
       }
 
-      if (navigator.geolocation) {
+      if (geoOptions.useGeolocation && navigator.geolocation) {
+          console.log('using geolocation');
         navigator.geolocation.getCurrentPosition(function(position) {
           $timeout.cancel(countdown);
           deferred.resolve(position);
@@ -78,8 +79,20 @@ openHealthDataServices.factory('Geolocation', ['$q', '$timeout', function($q, $t
           deferred.reject(errorCode);
 
         });
-        return deferred.promise;
+      } else if (geoOptions.zip) {
+          console.log('using smarty',geoOptions.zip);
+        Smarty.query({ zip: geoOptions.zip }, function(data) {
+            var lat = data[0].zipcodes[0].latitude;
+            var lon = data[0].zipcodes[0].longitude;
+            deferred.resolve({ coords: { latitude: lat, longitude: lon } });
+        },
+        function(err) {
+            deferred.reject(err);
+        });
+      } else {
+          deferred.resolve();
       }
+      return deferred.promise;
     }
   };
 }]);
@@ -109,6 +122,13 @@ openHealthDataServices.factory('Search', ['$resource',
         }
       }
     });
+  }]);
+
+openHealthDataServices.factory('Smarty', ['$resource',
+  function($resource) {
+    return $resource('https://api.smartystreets.com/zipcode' +
+        '?auth-id=3528212138785631906' +
+        '&city=&state=&zipcode=:zip', {}, {});
   }]);
 
 openHealthDataServices.factory('Toast', function() {
