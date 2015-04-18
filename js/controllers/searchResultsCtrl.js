@@ -2,7 +2,7 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope',
  '$rootScope', '$location', 'Search', 'Geosearch',
   function($scope, $rootScope, $location, Search, Geosearch) {
 
-    var searchType; 
+    var searchType;
 
     $rootScope.showMore = false;
 
@@ -29,10 +29,10 @@ openHealthDataAppControllers.controller('searchResultsCtrl', ['$scope',
       if (searchType === 'search') {
         console.log('get more search results of that name?');
         $rootScope.$broadcast('moreSearch');
-        
+
       } else if (searchType === 'geosearch') {
         console.log('get more search results around here.');
-        $rootScope.$broadcast('moreGeosearch'); 
+        $rootScope.$broadcast('moreGeosearch');
       }
     };
 

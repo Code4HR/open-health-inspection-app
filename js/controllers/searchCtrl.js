@@ -4,6 +4,7 @@ openHealthDataAppControllers.controller('searchCtrl',
    '$timeout',
    'Search',
    'Geosearch',
+   'geolocationModal',
    '$filter',
    'Toast',
    '$window',
@@ -13,6 +14,7 @@ openHealthDataAppControllers.controller('searchCtrl',
             $timeout,
             Search,
             Geosearch,
+            geolocationModal,
             $filter,
             Toast,
             $window,
@@ -74,6 +76,12 @@ openHealthDataAppControllers.controller('searchCtrl',
       $location.url('/');
     };
 
+    $scope.getLocationButton = function() {
+      geolocationModal.open().then(function(position) {
+        Geosearch.get(position, 0);
+      });
+    };
+
     var currentIndex = 0;
     var searchRadii = [805, 1609, 3219, 4828, 6437, 8047, 9656];
     var searchRadiiLabel = ['½', '1', '2', '3', '4', '5' , '6'];
@@ -119,8 +127,8 @@ openHealthDataAppControllers.controller('searchCtrl',
         $rootScope.showMore = true;
         searchQuery = {
           name: $scope.query,
-          lat: Geosearch.coords.latitude,
-          lng: Geosearch.coords.longitude,
+          lat: Geosearch.position.coords.latitude,
+          lng: Geosearch.position.coords.longitude,
           dist: searchRadii[index]
         };
         Toast.searchAreaText = 'Within ' + searchRadiiLabel[index] + ' mi.';
