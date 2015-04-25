@@ -33,8 +33,6 @@ module.exports = function(ngModule) {
 
         service.position = position;
 
-        debugger;
-
         _doSearch.query({
           lat: position.coords.latitude,
           lon: position.coords.longitude,
