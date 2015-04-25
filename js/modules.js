@@ -250,6 +250,8 @@ module.exports = function(ngModule) {
 
         service.position = position;
 
+        debugger;
+
         _doSearch.query({
           lat: position.coords.latitude,
           lon: position.coords.longitude,
@@ -423,19 +425,9 @@ module.exports = function(ngModule) {
     directive = {
       restrict: 'E',
       replace: false,
-      scope: {},
+      // scope: true,
       templateUrl: '/templates/results.html',
       controllerAs: 'ctrl'
-    };
-
-    directive.link = function(scope, element, attrs) {
-
-      scope.results = [];
-
-      for (var i = 0; i < 20; i++) {
-        scope.results.push({});
-      }
-
     };
 
     directive.controller = [
@@ -447,13 +439,23 @@ module.exports = function(ngModule) {
       'Search',
       function($rootScope, $location, $scope, Geosearch, geolocationModal, Search) {
 
+      $scope.results = [];
+      for (var i = 0; i < 20; i++) {
+        $scope.results.push({});
+      }
+
       if (!lastSearch) {
 
         geolocationModal.open()
         .then(function(position) {
           Geosearch.get(position, 0);
         }, function(error) {
-          debugger;
+          Geosearch.get({
+            coords: {
+              latitude: 36.84687,
+              longitude: -76.29228710000001,
+            }
+          }, 0);
 
         });
 
