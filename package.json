@@ -16,6 +16,7 @@
     "stringify": "^3.1.0"
   },
   "dependencies": {
+    "grunt-contrib-imagemin": "github:gruntjs/grunt-contrib-imagemin",
     "grunt-open": "^0.2.3"
   }
 }

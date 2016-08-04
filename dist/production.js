@@ -482,7 +482,7 @@ module.exports = function(ngModule) {
       var searchRadii = [805, 1609, 3219, 4828, 6437, 8047, 9656];
       var searchRadiiLabel = ['½', '1', '2', '3', '4', '5' , '6'];
 
-      var _doSearch = $resource('http://api.openhealthinspection.com/' +
+      var _doSearch = $resource('http://ohi-api.code4hr.org/' +
           'vendors?lat=:lat&lng=:lon&dist=:dist', {}, {
           query: {
             method: 'JSONP',
@@ -808,7 +808,7 @@ var openHealthDataServices = angular.module('openHealthDataServices',
 
 openHealthDataServices.factory('Inspections', ['$resource',
   function($resource){
-    return $resource('http://api.openhealthinspection.com/' +
+    return $resource('http://ohi-api.code4hr.org/' +
       'inspections?vendorid=:vendorid', {}, {
       query: {
         method: 'JSONP',
@@ -824,7 +824,7 @@ openHealthDataServices.factory('Inspections', ['$resource',
 
 openHealthDataServices.factory('Search', ['$resource',
   function($resource) {
-    return $resource('http://api.openhealthinspection.com/vendors', {}, {
+    return $resource('http://ohi-api.code4hr.org/vendors', {}, {
       query: {
         method: 'JSONP',
         params: {
