@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "grunt-contrib-imagemin": "github:gruntjs/grunt-contrib-imagemin",
+    "grunt-contrib-sass": "^1.0.0",
     "grunt-open": "^0.2.3"
   }
 }
