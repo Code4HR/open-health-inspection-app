@@ -25,7 +25,7 @@ var openHealthDataServices = angular.module('openHealthDataServices',
 
 openHealthDataServices.factory('Inspections', ['$resource',
   function($resource){
-    return $resource('http://api.openhealthinspection.com/' +
+    return $resource('http://ohi-api.code4hr.org/' +
       'inspections?vendorid=:vendorid', {}, {
       query: {
         method: 'JSONP',
@@ -41,7 +41,7 @@ openHealthDataServices.factory('Inspections', ['$resource',
 
 openHealthDataServices.factory('Search', ['$resource',
   function($resource) {
-    return $resource('http://api.openhealthinspection.com/vendors', {}, {
+    return $resource('http://ohi-api.code4hr.org/vendors', {}, {
       query: {
         method: 'JSONP',
         params: {
