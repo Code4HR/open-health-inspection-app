@@ -14,12 +14,12 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope',
                          Math.round(restaurant.score) :
                          'n/a';
 
-      restaurant.inspections = _.map(restaurant.inspections, (i) => {
+      restaurant.inspections = _.map(restaurant.inspections, function(i) {
         i.dateNum = Date.parse(i.date)
         return i
-      })
-      
-      restaurant.inspections = _.sortBy(restaurant.inspections, ['dateNum'], ['desc']).reverse()
+      });
+
+      restaurant.inspections = _.sortBy(restaurant.inspections, ['dateNum'], ['desc']).reverse();
       $rootScope.restaurantPermalink = $location.absUrl();
     });
 

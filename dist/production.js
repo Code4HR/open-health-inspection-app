@@ -481,7 +481,7 @@ module.exports = function(ngModule) {
       var searchRadii = [805, 1609, 3219, 4828, 6437, 8047, 9656];
       var searchRadiiLabel = ['½', '1', '2', '3', '4', '5' , '6'];
 
-      var _doSearch = $resource('http://ohi-api.code4hr.org/' +
+      var _doSearch = $resource('https://ohi-api.code4hr.org/' +
           'vendors?lat=:lat&lng=:lon&dist=:dist', {}, {
           query: {
             method: 'JSONP',
@@ -807,7 +807,7 @@ var openHealthDataServices = angular.module('openHealthDataServices',
 
 openHealthDataServices.factory('Inspections', ['$resource',
   function($resource){
-    return $resource('http://ohi-api.code4hr.org/' +
+    return $resource('https://ohi-api.code4hr.org/' +
       'inspections?vendorid=:vendorid', {}, {
       query: {
         method: 'JSONP',
@@ -823,7 +823,7 @@ openHealthDataServices.factory('Inspections', ['$resource',
 
 openHealthDataServices.factory('Search', ['$resource',
   function($resource) {
-    return $resource('http://ohi-api.code4hr.org/vendors', {}, {
+    return $resource('https://ohi-api.code4hr.org/vendors', {}, {
       query: {
         method: 'JSONP',
         params: {
@@ -876,12 +876,12 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope',
                          Math.round(restaurant.score) :
                          'n/a';
 
-      restaurant.inspections = _.map(restaurant.inspections, (i) => {
+      restaurant.inspections = _.map(restaurant.inspections, function(i) {
         i.dateNum = Date.parse(i.date)
         return i
-      })
-      
-      restaurant.inspections = _.sortBy(restaurant.inspections, ['dateNum'], ['desc']).reverse()
+      });
+
+      restaurant.inspections = _.sortBy(restaurant.inspections, ['dateNum'], ['desc']).reverse();
       $rootScope.restaurantPermalink = $location.absUrl();
     });
 
