@@ -13,6 +13,13 @@ openHealthDataAppControllers.controller('restaurantDetailCtrl', ['$scope',
       restaurant.score = !_.isUndefined(restaurant.score) ?
                          Math.round(restaurant.score) :
                          'n/a';
+
+      restaurant.inspections = _.map(restaurant.inspections, (i) => {
+        i.dateNum = Date.parse(i.date)
+        return i
+      })
+      
+      restaurant.inspections = _.sortBy(restaurant.inspections, ['dateNum'], ['desc']).reverse()
       $rootScope.restaurantPermalink = $location.absUrl();
     });
 
