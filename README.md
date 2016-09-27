@@ -4,10 +4,7 @@ open-health-inspection-app
 The reference app built against Code for Hampton Roads' Open Health Inspection API.  Built using AngularJS.  Open Health Inspection allows users to quickly find health inspection information for their favorite restaurants.
 
 The app lives at:
-http://openhealthinspection.com/
-
-The prerelease branch (next) lives at;
-http://next.openhealthinspection.com/
+https://ohi.code4hr.org
 
 How to get up and running
 ---
