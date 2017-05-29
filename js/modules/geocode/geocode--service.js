@@ -5,9 +5,9 @@ module.exports = function(ngModule) {
       getLatLon: function(zip) {
 
         // input validation here. If input is a zip code continue. Else fail;
-        var url = 'https://us-zipcode.api.smartystreets.com/lookup' +
-                  '?auth-id=3528212138785631906' +
-                  '&zipcode=' + zip;
+        var url = 'https://maps.googleapis.com/maps/api/geocode/json' +
+                  '?key=AIzaSyCxE9VT08-CfQcE1II_xy2l3JNQECBly44' +
+                  '&address=' + zip;
 
         return $http.get(url);
 

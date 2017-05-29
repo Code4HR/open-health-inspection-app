@@ -26,15 +26,15 @@ module.exports = function(ngModule) {
         geocodeService.getLatLon($scope.zipcode)
         .success(function(data) {
 
-          if (data[0].zipcodes === undefined) {
+          if (data.status != "OK") {
             $scope.invalidZip = true;
             return;
           }
 
           location = {
             coords : {
-              latitude: data[0].zipcodes[0].latitude,
-              longitude: data[0].zipcodes[0].longitude
+              latitude: data.results[0].geometry.location.lat,
+              longitude: data.results[0].geometry.location.lng
             }
           };
 

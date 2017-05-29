@@ -27,15 +27,15 @@ module.exports = function(ngModule) {
         geocodeService.getLatLon($scope.zipcode)
         .success(function(data) {
 
-          if (data[0].zipcodes === undefined) {
+          if (data.status != "OK") {
             $scope.invalidZip = true;
             return;
           }
 
           location = {
             coords : {
-              latitude: data[0].zipcodes[0].latitude,
-              longitude: data[0].zipcodes[0].longitude
+              latitude: data.results[0].geometry.location.lat,
+              longitude: data.results[0].geometry.location.lng
             }
           };
 
@@ -70,9 +70,9 @@ module.exports = function(ngModule) {
       getLatLon: function(zip) {
 
         // input validation here. If input is a zip code continue. Else fail;
-        var url = 'https://us-zipcode.api.smartystreets.com/lookup' +
-                  '?auth-id=3528212138785631906' +
-                  '&zipcode=' + zip;
+        var url = 'https://maps.googleapis.com/maps/api/geocode/json' +
+                  '?key=AIzaSyCxE9VT08-CfQcE1II_xy2l3JNQECBly44' +
+                  '&address=' + zip;
 
         return $http.get(url);
 
